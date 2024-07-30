@@ -18,7 +18,7 @@
           <ul class="splide__list">
             <li class="splide__slide p-2" v-for="item in $store.state.anuncios" :key="item.id">
               <!-- <router-link :to="'/verveiculo?id='+item.id"> -->
-                <div v-if="item.foto1" class="eliteSlide card-categ position-relative" style="border-radius: 8px !important; overflow: hidden;" @click="execAll(item.id)">
+                <div v-if="item.foto1" class="eliteSlide card-categ position-relative" style="border-radius: 8px !important; overflow: hidden; cursor: pointer;" @click="execAll(item.id)">
                   <div>
 
                     <!-- Desktop -->
@@ -34,7 +34,7 @@
                                     <h5 class="mb-1">{{ item.nome_marca }}</h5>
                                     <p class="mb-1">{{ item.nome_modelo }}</p>
                                     <div style="opacity: 0.5; text-transform: uppercase;">
-                                        <p>{{ item.motor }} {{ item.combustivel }} {{ item.cambio }}</p>
+                                        <p>{{ item.combustivel }}</p>
                                     </div>
                                     <!-- div class="bg-dark position-absolute p-2" style="top: 0; right: 5px;"></div>
                                     <div class="bg-danger position-absolute p-2" style="top: 0; right: 25px;"></div -->
@@ -47,7 +47,7 @@
                                     <div>
                                         <div class="row p-2 m-0">
                                             <div class="col-6 p-0 m-0" style="font-size: 12px; opacity: 0.7;">
-                                                {{ item.ano_modelo }}/{{ item.ano_fabricacao }}
+                                                {{ item.ano_modelo }}
                                             </div>
                                             <div class="col-6 p-0 m-0 text-end" style="font-size: 12px; opacity: 0.7;">
                                                 {{ item.km }} km
