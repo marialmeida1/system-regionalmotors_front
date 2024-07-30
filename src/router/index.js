@@ -169,7 +169,11 @@ const router = createRouter({
       name: 'Revenda',
       component: () => import('../views/InicioRevendaView.vue')
     },
-    
+    {
+      path: '/termosuso',
+      name: 'Termos de Uso',
+      component: () => import('../views/TermosUsoView.vue')
+    },
   ]
 })
 
