@@ -1,40 +1,32 @@
-# Pokevite
+# Regional Motors
 
-### Objetivo:
-Esse é mais um projeto desenvolvido para fins didáticos com intúito de praticar o desenvolvimento com Vue 3 utilizando Vite e consumindo a API PokeAPI.
+Bem-vindo ao repositório da aplicação Vue.js da loja de revenda de carros Regional Motors. Esta aplicação consome uma API desenvolvida em PHP/Laravel.
 
-A playlist com o desenvolvimento passo a passo está no YouTube e te convido a acompanhar caso queira aprender ou aprimorar suas abilidades com as técnologias utilizadas.
+## Visão Geral
 
-[![Watch the video](https://user-images.githubusercontent.com/44410208/213874225-3556aefc-cd31-428b-aa2c-787289d8e4a3.png)](https://youtu.be/JWEhN12bW8w)
+A Regional Motors é uma aplicação web que permite aos usuários visualizar e gerenciar o inventário de carros disponíveis para revenda. A aplicação oferece funcionalidades como busca, filtragem, e visualização de detalhes dos veículos.
 
-No final do projeto desenvolvemos essa pokedex:
-<img width="800" alt="Captura de Tela 2023-01-21 às 17 00 45" src="https://user-images.githubusercontent.com/44410208/213885050-e603d590-5c32-45cc-abfa-be128513b964.png">
+## Tecnologias Utilizadas
 
-Agradeço as pessoas que acompanharam a incentivaram o projeto! 
-Caso queira desenvolver acompanhando as video aulas e fique com alguma dúvida, fique a vontade para entrar em contato via e-mail.
-yuri.erik.oliveira@gmail.com
-🤓 ✌️
+- **Frontend:** Vue.js
+- **Backend:** PHP/Laravel (API)
 
----
+## Funcionalidades
 
-## Como rodar projeto?
+- Visualização de lista de carros disponíveis
+- Busca e filtragem de veículos por critérios diversos (marca, modelo, ano, etc.)
+- Detalhamento de informações de cada veículo
+- Contato para consulta sobre veículos
 
-Basta abrir seu terminal e rodar os seguintes comandos:
+## Pré-requisitos
 
-```sh
-git clone https://github.com/yurimarcon/PokeVite.git
-```
+Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-```sh
-cd PokeVite
-```
+- [Node.js](https://nodejs.org/) (versão 12 ou superior)
+- [npm](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
 
-```sh
-npm i
-```
+## Instalação
 
-```sh
-npm run dev
-```
-
-Após isso provavelmente o projeto estará rodando em http://localhost:5173/
+1. Clone este repositório:
+   ```sh
+   git clone https://github.com/marialmeida1/regional-motors.git

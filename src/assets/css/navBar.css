@@ -133,7 +133,8 @@
         background-color: rgba(255, 255, 255, 1);
         height: 80%;
         border-radius: 20px;
-        height: 92vh;
+        height: min-content;
+        padding-bottom: 2rem;
         overflow: auto;
         border: 1px solid red;
     }
