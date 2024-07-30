@@ -3,11 +3,12 @@
 
     <footer>
         <div class="rodape-dark" style="padding: 2em 3em;">
-            <div class="row">
+            <div class="row d-flex justify-content-evenly">
                 <div class="col-12 col-md-6 col-lg-3 border-smoll links">
-                    <h5>
+                    <h5 class="mb-3 ">
                         Comprar
                     </h5>
+
                     <p @click="execAll('carro')">
                         Carros usados
                     </p>
@@ -21,7 +22,8 @@
                         Motos novas
                     </p>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3 border-smoll">
+
+                <!--<div class="col-12 col-md-6 col-lg-3 border-smoll">
                      <h5>
                         Serviços
                     </h5>
@@ -30,9 +32,10 @@
                      <h5>
                         Revista
                     </h5>
-                </div>
+                </div>-->
+                
                 <div class="col-12 col-md-4 col-lg-3 links">
-                    <h5>
+                    <h5 class="mb-3">
                         Institucional
                     </h5>
                     <p>
@@ -64,7 +67,7 @@
                             <i class="fab fa-youtube fa-lg" style="color: #ff5969;"></i>
                         </div>
                     </a>
-                    <a href="https://www.facebook.com/regionalmotors" target="_blank">
+                    <a href="https://www.facebook.com/people/Regional-Motors/100095121334509/" target="_blank">
                         <div class="social" style="display: inline-block; width: 45px; height: 45px; border-radius: 100px; border: 2px solid rgba(255,255,255,0.2); padding-top: 10px;">
                             <i class="fab fa-facebook-f fa-lg" style="color: #8fd1f7;"></i>
                         </div>
