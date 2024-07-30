@@ -1,0 +1,33 @@
+{
+  "name": "regional-motors",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@glidejs/glide": "^3.6.0",
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "@splidejs/vue-splide": "^0.6.12",
+    "axios": "^1.5.0",
+    "glidejs": "^2.1.0",
+    "jquery": "^3.7.1",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.7.29",
+    "vue": "^3.2.45",
+    "vue-carousel": "^0.18.0",
+    "vue-lazyload": "^3.0.0",
+    "vue-owl-carousel": "^2.0.3",
+    "vue-router": "^4.1.6",
+    "vue-slick-carousel": "^1.0.6",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "vite": "^4.0.0",
+    "vite-plugin-pwa": "^0.14.1"
+  }
+}
