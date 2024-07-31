@@ -184,6 +184,11 @@ const router = createRouter({
       name: 'Sobre a Regional Motors',
       component: () => import('../views/SobreRmView.vue')
     },
+    {
+      path: '/segcomprar',
+      name: 'Segurança ao Comprar',
+      component: () => import('../views/SegComprar.vue')
+    },
   ]
 })
 
