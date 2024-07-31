@@ -189,6 +189,11 @@ const router = createRouter({
       name: 'Segurança ao Comprar',
       component: () => import('../views/SegComprar.vue')
     },
+    {
+      path: '/sobreempresa',
+      name: 'Sobre a empresa',
+      component: () => import('../views/SobreEmpresa.vue')
+    },
   ]
 })
 
