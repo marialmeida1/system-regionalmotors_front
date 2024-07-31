@@ -92,7 +92,7 @@
 
 .filter-select {
   width: 100%;
-  color: #9e9e9e !important;
+  color: #444444 !important;
   background: none;
   border: none;
   font-size: 14px;
@@ -100,7 +100,7 @@
 
 .filter-input {
   width: 100%;
-  color: #9e9e9e !important;
+  color: #444444 !important;
   background: none;
   border: none;
   font-size: 14px;
@@ -120,6 +120,18 @@ select option {
   font-size: small;
   font-weight: 600;
   color: #2e2e2e !important;
+}
+
+.error-message {
+  padding-top: 2px;
+  color: #f14b4b;
+  font-size: 8px;
+  font-weight: bold;
+}
+
+.input-error {
+  border: 1px solid red;
+  background-color: #fff1f1;
 }
 
 /* TheNavTop */

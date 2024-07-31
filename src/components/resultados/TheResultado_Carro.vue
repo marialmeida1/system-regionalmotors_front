@@ -463,12 +463,10 @@ export default {
 
   methods: {
     show_menu_lateral() {
-      console.log("ola mundos");
       this.$emit("show_menu_lateral");
     },
 
     showCarroDetalhes(id) {
-      console.log("buscando...");
       const parametros = { id: id };
       this.$router.push({ path: "/verveiculo", query: parametros });
     },
@@ -625,7 +623,6 @@ export default {
 
   updated() {
     this.$nextTick(() => {
-      console.log("chamou 1");
       if (this.$store.state.resultado) {
         Object.values(this.$refs).forEach((glideRefs) => {
           glideRefs.forEach((glideRef) => {
@@ -642,7 +639,6 @@ export default {
             glide.mount();
           });
         });
-        console.log("Chamando...");
       }
     });
   },

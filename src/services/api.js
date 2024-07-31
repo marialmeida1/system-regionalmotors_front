@@ -426,6 +426,7 @@ export async function detalharAnuncio(id) {
 export async function filtrarAnuncio(url) {
   try {
     const response = await api.get(url)
+    console.log(url);
     
     return response.data;
 
