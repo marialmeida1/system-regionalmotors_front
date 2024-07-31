@@ -174,6 +174,11 @@ const router = createRouter({
       name: 'Termos de Uso',
       component: () => import('../views/TermosUsoView.vue')
     },
+    {
+      path: '/privacidadeseguranca',
+      name: 'Políticas de Privacidade e Segurança',
+      component: () => import('../views/PrivSegView.vue')
+    },
   ]
 })
 
