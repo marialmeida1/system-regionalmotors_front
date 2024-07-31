@@ -35,7 +35,7 @@
           adequadas para proteger essas informações contra acesso não autorizado, perda, alteração ou destruição.
         </p>
 
-        <p class="paragraph_use">3.2. Os dados coletados serão mantidos pelo período necessário para cumprir as finalidades previstas neste Termo, ou conforme exigido por lei.</p>
+        <p class="paragraph_use"><span>3.2.</span>  Os dados coletados serão mantidos pelo período necessário para cumprir as finalidades previstas neste Termo, ou conforme exigido por lei.</p>
       </div>
 
       <div class="py-2">
