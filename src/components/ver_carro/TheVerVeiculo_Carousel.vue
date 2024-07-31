@@ -111,12 +111,12 @@
 
             <div class="row pt-2">
               <div class="col-12 col-md-6 col-lg-6 mb-3 p-0" v-for="item in Api_CategOpcionais">
-                <p class="mb-1 d-none">
+                <p class="mb-1 d-none mx-2">
                   <b>{{ item.nome }}</b>
                 </p>
 
                 <div v-for="item2 in listOpcionais(item.id)">
-                  <p class="mb-1">
+                  <p class="mb-1 mx-2">
                     <img src="/bom.png" width="22" style="margin-top: -3px" />
                     {{ item2.nome }}
                   </p>
@@ -134,7 +134,7 @@
 
             <div class="my-" style="opacity: 0.7">
               <div class="row p-0">
-                <div class="col-lg-6 mb-2 p-0">
+                <div class="col-lg-6 mb-2">
                   <div>
                     <h3 class="m-0 pt-1">{{ veiculo.anunciantes }}</h3>
                     <p class="pt-1 mb-1">{{ veiculo.cidade }}, {{ veiculo.uf }}</p>
@@ -152,9 +152,9 @@
               <div class="py-2">
                 <span style="color: #000; font-weight: 600">
                   <span style="color: #000; font-weight: 600" v-if="mostraContato">
-                    <p class="mb-1" style="opacity: 0.7">Telefone: {{ veiculo.celular }}</p>
-                    <p class="mb-1" style="opacity: 0.7">Celular: {{ veiculo.telefone }}</p>
-                    <p class="mb-2" style="opacity: 0.7">WhatsApp: {{ veiculo.whatsapp }}</p>
+                    <p class="mb-1" style="opacity: 0.7"><span class="fw-bold">Telefone:</span> {{ veiculo.celular }}</p>
+                    <p class="mb-1" style="opacity: 0.7"><span class="fw-bold">Celular:</span> {{ veiculo.telefone }}</p>
+                    <p class="mb-2" style="opacity: 0.7"><span class="fw-bold">WhatsApp:</span> {{ veiculo.whatsapp }}</p>
 
                     <a :href="`https://api.whatsapp.com/send?phone=${veiculo.whatsapp}&text=testando`" target="_blank">
                       <button class="btn py-3 text-center rounded-3" style="width: 200px; background-color: #5fcb71">

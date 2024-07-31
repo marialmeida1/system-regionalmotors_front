@@ -20,7 +20,7 @@
                                     <i class="fas fa-search"></i>
                                 </div>
                                 
-                                <input type="text" style="width: 90%;" placeholder="Digite a marca ou modelo do veiculo" v-model="searchQuery" @focus="onFocus" @blur="onBlur">
+                                <input type="text" style="width: 90%; cursor: pointer;" placeholder="Digite a marca ou modelo do veiculo" v-model="searchQuery" @focus="onFocus" @blur="onBlur">
                             </div>
                             <div class="contant-main-buscar">
                                 <div class="bg-white rounded-3 pt-2" style="height: 350px; overflow: auto; box-shadow: -3px 3px 20px rgba(0,0,0,0.1);" v-if="showBar">
