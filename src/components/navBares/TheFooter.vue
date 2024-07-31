@@ -30,7 +30,7 @@
             <router-link to="/termosuso" class="link">Termos de Uso</router-link>
           </p>
           <p><router-link to="/privacidadeseguranca" class="link">Politicas de Privacidade e Segurança</router-link></p>
-          <p>Sobre a Regional Motors</p>
+          <p><router-link to="/sobreregional" class="link">Sobre a Regional Motors</router-link></p>
           <p>Segurança ao comprar</p>
           <p>Sobre a Empresa</p>
         </div>

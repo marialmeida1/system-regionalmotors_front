@@ -179,6 +179,11 @@ const router = createRouter({
       name: 'Políticas de Privacidade e Segurança',
       component: () => import('../views/PrivSegView.vue')
     },
+    {
+      path: '/sobreregional',
+      name: 'Sobre a Regional Motors',
+      component: () => import('../views/SobreRmView.vue')
+    },
   ]
 })
 
