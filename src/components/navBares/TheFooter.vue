@@ -7,10 +7,10 @@
         <div class="col-12 col-md-6 col-lg-3 border-smoll links">
           <h5 class="mb-3">Comprar</h5>
 
-          <p @click="execAll('carro')">Carros usados</p>
-          <p @click="execAll('carro')">Carros novos</p>
-          <p @click="execAll('moto')">Motos usadas</p>
-          <p @click="execAll('moto')">Motos novas</p>
+          <p><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=2" class="link">Carro Usados</router-link></p>
+          <p><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=1" class="link">Carro Usados</router-link></p>
+          <p><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=2" class="link">Motos Usadas</router-link></p>
+          <p><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=1" class="link">Motos Usadas</router-link></p>
         </div>
 
         <!--<div class="col-12 col-md-6 col-lg-3 border-smoll">
@@ -60,27 +60,10 @@
 </template>
 
 <script>
-//import $ from "jquery"
-
 export default {
   name: "TheFooter",
 
   methods: {
-    goVerVeiculos(veiculo) {
-      const parametros = { tipo_veiculo: veiculo };
-      this.$router.push({ path: "/resultados", query: parametros });
-
-      this.$emit("filterVeiculoRoute", veiculo);
-    },
-
-    emitShowLoader() {
-      this.$emit("showLoader");
-    },
-
-    execAll(id) {
-      this.emitShowLoader();
-      this.goVerVeiculos(id);
-    },
   },
 };
 </script>

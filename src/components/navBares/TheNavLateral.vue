@@ -489,6 +489,7 @@ export default {
   },
 
   async created() {
+
     this.$store.state.tipo_veiculo = await api.listarTipo_Veiculo();
     this.$store.state.estado = await api.listarEstado();
     this.Api_CategOpcionais = await api.listarCategoriaOpcionais();

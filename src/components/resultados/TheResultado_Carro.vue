@@ -5,11 +5,7 @@
       <div class="py-2 pt-3 px-2" style="font-size: 13px">
         <span
           class="me-2 p-1 px-2 rounded-3 me-2"
-          style="
-            background-color: rgba(82, 82, 82, 0.2);
-            color: #000;
-            font-weight: 600;
-          "
+          style="background-color: rgba(82, 82, 82, 0.2); color: #000; font-weight: 600"
           v-for="(filtro, index) in array_filtros"
           :key="index"
         >
@@ -17,9 +13,7 @@
             <span v-if="filtro.valor == '1'"> Novo </span>
             <span v-if="filtro.valor == '2'"> Usado </span>
           </span>
-          <span v-else-if="filtro.chave == 'opcionais_id'">
-            Itens Opcionais
-          </span>
+          <span v-else-if="filtro.chave == 'opcionais_id'"> Itens Opcionais </span>
           <span v-else>
             {{ filtro.valor }}
           </span>
@@ -33,13 +27,7 @@
       <div class="px-2 py-2">
         <h4>
           Resultados
-          <span
-            class="me-2"
-            v-for="(filtro, index) in $store.state.todosFiltros"
-            :key="index"
-          >
-            oa {{ filtro.valor }},
-          </span>
+          <span class="me-2" v-for="(filtro, index) in $store.state.todosFiltros" :key="index"> oa {{ filtro.valor }}, </span>
           | Regionalmotors
         </h4>
       </div>
@@ -47,27 +35,17 @@
 
     <div v-if="loader" style="height: 60vh" class="text-center">
       <div>
-        <img
-          class="caixa"
-          src="/regLoader.png"
-          alt=""
-          style="width: 50px; height: 50px; background: none !important"
-        />
+        <img class="caixa" src="/regLoader.png" alt="" style="width: 50px; height: 50px; background: none !important" />
       </div>
       <span style="font-size: 12px"> Carregando... </span>
     </div>
 
     <div class="pt-5 px-3" v-show="notFound">
-      <div
-        class="col-lg-6 mx-auto rounded-3 text-center py-4"
-        style="background-color: rgba(82, 82, 82, 0.2);"
-      >
+      <div class="col-lg-6 mx-auto rounded-3 text-center py-4" style="background-color: rgba(82, 82, 82, 0.2)">
         <h4>Nenhum resultado!</h4>
         <p class="m-0">
           Click para
-          <span style="color: crimson; cursor: pointer" @click="verTodos">
-            ver todos
-          </span>
+          <span style="color: crimson; cursor: pointer" @click="verTodos"> ver todos </span>
         </p>
       </div>
     </div>
@@ -76,214 +54,88 @@
       <div class="col-lg-8 col-md-8 p-0 m-0">
         <div>
           <div class="row p-0 m-0">
-
             <!-- Card -->
-            <div
-              class="col-lg-4 col-md-6 p-0 m-0 mb-3"
-              v-for="(item, index) in $store.state.resultado"
-              :key="index"
-              style="cursor: pointer"
-            >
+            <div class="col-lg-4 col-md-6 p-0 m-0 mb-3" v-for="(item, index) in $store.state.resultado" :key="index" style="cursor: pointer">
               <div class="px-2 container-completo">
                 <div class="row p-0 m-0">
                   <div class="col-5 col-md-12 col-lg-12 m-0 p-0">
                     <splide :options="splideOptions" class="bg-dark">
-                      <splide-slide
-                        v-if="item.foto1"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto1" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto1
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto1}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto2"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto2" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto2
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto2}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto3"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto3" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto3
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto3}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto4"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto4" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto4
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto4}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto5"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto5" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto5
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto5}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto6"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto6" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto6
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto6}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto7"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto7" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto7
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto7}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto8"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto8" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto8
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto8}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto9"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto9" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto9
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto9}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
 
-                      <splide-slide
-                        v-if="item.foto10"
-                        @click="goverveiculo(item.id)"
-                      >
+                      <splide-slide v-if="item.foto10" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
-                            <img
-                              v-lazy="
-                                `${
-                                  item.foto10
-                                }destaque_mini.jpg?v=${new Date().getTime()}`
-                              "
-                              :alt="item.nome_marca"
-                              alt="Sua imagem"
-                              class="img-fluid"
-                            />
+                            <img v-lazy="`${item.foto10}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                           </div>
                         </div>
                       </splide-slide>
@@ -295,64 +147,31 @@
                           <li class="glide__slide">
                             <div>
                               <div class="imagem-container2">
-                                <img
-                                  v-lazy="
-                                    `${
-                                      item.foto1
-                                    }destaque_mini.jpg?v=${new Date().getTime()}`
-                                  "
-                                  :alt="item.nome_marca"
-                                  alt="Sua imagem"
-                                  class="img-fluid"
-                                />
+                                <img v-lazy="`${item.foto1}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                               </div>
                             </div>
                           </li>
                           <li class="glide__slide">
                             <div>
                               <div class="imagem-container2">
-                                <img
-                                  v-lazy="
-                                    `${
-                                      item.foto2
-                                    }destaque_mini.jpg?v=${new Date().getTime()}`
-                                  "
-                                  :alt="item.nome_marca"
-                                  alt="Sua imagem"
-                                  class="img-fluid"
-                                />
+                                <img v-lazy="`${item.foto2}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                               </div>
                             </div>
                           </li>
                           <li class="glide__slide">
                             <div>
                               <div class="imagem-container2">
-                                <img
-                                  v-lazy="
-                                    `${
-                                      item.foto3
-                                    }destaque_mini.jpg?v=${new Date().getTime()}`
-                                  "
-                                  :alt="item.nome_marca"
-                                  alt="Sua imagem"
-                                  class="img-fluid"
-                                />
+                                <img v-lazy="`${item.foto3}destaque_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" alt="Sua imagem" class="img-fluid" />
                               </div>
                             </div>
                           </li>
                         </ul>
                       </div>
                       <div class="glide__arrows" data-glide-el="controls">
-                        <div
-                          class="btn glide__arrow glide__arrow--left btn-voltar"
-                          data-glide-dir="<"
-                        >
+                        <div class="btn glide__arrow glide__arrow--left btn-voltar" data-glide-dir="<">
                           <span> > </span>
                         </div>
-                        <div
-                          class="btn glide__arrow glide__arrow--right btn-avancar"
-                          data-glide-dir=">"
-                        >
+                        <div class="btn glide__arrow glide__arrow--right btn-avancar" data-glide-dir=">">
                           <span> > </span>
                         </div>
                       </div>
@@ -360,15 +179,12 @@
                   </div>
 
                   <div class="col-7 col-md-12 col-lg-12 titles p-0 m-0">
-                    <div
-                      class="resultados-titulos"
-                      @click="showCarroDetalhes(item.id)"
-                    >
+                    <div class="resultados-titulos" @click="showCarroDetalhes(item.id)">
                       <div class="px-2 pt-2 position-relative">
                         <h5>{{ item.nome_marca }} {{ item.nome_modelo }}</h5>
                         <div style="opacity: 0.5; text-transform: uppercase">
                           <p>
-                           {{ item.combustivel }}
+                            {{ item.combustivel }}
                           </p>
                         </div>
                         <!-- div class="bg-dark position-absolute p-2" style="top: 0; right: 5px;"></div>
@@ -377,24 +193,14 @@
                       <div>
                         <div class="pt-2 pb-1 position-relative">
                           <div>
-                            <h5 class="py-1 ps-2" style="color: #000000">
-                              R$ {{ item.valor_preco }}
-                            </h5>
+                            <h5 class="py-1 ps-2" style="color: #000000">R$ {{ item.valor_preco }}</h5>
                           </div>
                           <div>
                             <div class="row p-2 m-0">
-                              <div
-                                class="col-6 p-0 m-0"
-                                style="font-size: 12px; opacity: 0.7"
-                              >
+                              <div class="col-6 p-0 m-0" style="font-size: 12px; opacity: 0.7">
                                 {{ item.ano_modelo }}
                               </div>
-                              <div
-                                class="col-6 p-0 m-0 text-end"
-                                style="font-size: 12px; opacity: 0.7"
-                              >
-                                {{ item.km }} km
-                              </div>
+                              <div class="col-6 p-0 m-0 text-end" style="font-size: 12px; opacity: 0.7">{{ item.km }} km</div>
                             </div>
                           </div>
                         </div>
@@ -414,20 +220,8 @@
       </div>
     </div>
 
-    <div
-      style="position: fixed; right: 15px; bottom: 25px; z-index: 99"
-      class="text-center d-lg-none d-md-none"
-      @click="show_menu_lateral"
-    >
-      <div
-        class="bg-dark"
-        style="
-          border-radius: 100px;
-          height: 55px;
-          width: 55px;
-          padding-top: 5px;
-        "
-      >
+    <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="text-center d-lg-none d-md-none" @click="show_menu_lateral">
+      <div class="bg-dark" style="border-radius: 100px; height: 55px; width: 55px; padding-top: 5px">
         <i class="fas fa-filter" style="font-size: 12px"></i> <br />
         <div style="font-size: 11px">Filtrar</div>
       </div>
@@ -561,9 +355,7 @@ export default {
       this.loader = true;
       this.notFound = false;
       this.array_filtros = [];
-      this.$store.state.resultado = await api.filtrarAnuncio(
-        "api/anuncios/listar_anuncios?destaque_busca=1&status_publicacao=2"
-      );
+      this.$store.state.resultado = await api.filtrarAnuncio("api/anuncios/listar_anuncios?destaque_busca=1&status_publicacao=2");
       this.$store.state.results = true;
       this.filtro = "";
       this.textMarca = "";
@@ -585,29 +377,26 @@ export default {
     this.$store.state.resultado = [];
 
     const keys = Object.keys(this.$route.query);
+    console.log(keys);
 
-    let valor = "";
+    let titles = "Comprar ";
+    let queryString = "";
 
-    if (keys[0] == "tipo_veiculo") {
-      valor = this.$route.query.tipo_veiculo;
-    } else if (keys[0] == "nome_marca") {
-      valor = this.$route.query.nome_marca;
-    } else if (keys[0] == "nome_modelo") {
-      valor = this.$route.query.nome_modelo;
-    }
+    keys.forEach((key, index) => {
+      let valor = this.$route.query[key];
+      titles += `${valor} `;
 
-    var titles = "Comprar ";
-    titles += valor + " ";
+      if (index === 0) {
+        queryString += `${key}=${valor}`;
+      } else {
+        queryString += `&${key}=${valor}`;
+      }
+    });
+
     document.title = titles;
 
-    //alert(`${keys[0]} = ${valor}`)
-
-    //this.applyFiltro(keys[0], valor)
-    //this.$store.state.resultado = await api.listarAnuncio()
-
-    this.$store.state.resultado = await api.filtrarAnuncio(
-      `api/anuncios/listar_anuncios?${keys[0]}=${valor}&destaque_busca=1&status_publicacao=2`
-    );
+    // Faz a chamada para a API com a query string construída dinamicamente
+    this.$store.state.resultado = await api.filtrarAnuncio(`api/anuncios/listar_anuncios?${queryString}&destaque_busca=1&status_publicacao=2`);
 
     if (this.$store.state.resultado) {
       this.results = true;

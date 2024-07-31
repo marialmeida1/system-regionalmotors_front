@@ -152,6 +152,7 @@ export default {
 
 .card-categ {
   box-shadow: -3px 2px 8px rgba(0, 0, 0, 0.2) !important;
+  cursor: pointer;
 }
 
 .desc-vitrine {
