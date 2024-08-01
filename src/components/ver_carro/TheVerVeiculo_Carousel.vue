@@ -136,7 +136,7 @@
               <div class="row p-0">
                 <div class="col-lg-6 mb-2">
                   <div>
-                    <h3 class="m-0 pt-1">{{ veiculo.anunciantes }}</h3>
+                    <h3 class="m-0 pt-1">{{ veiculo.empresa }}</h3>
                     <p class="pt-1 mb-1">{{ veiculo.cidade }}, {{ veiculo.uf }}</p>
                   </div>
                 </div>

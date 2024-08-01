@@ -25,7 +25,7 @@
                     <img class="deApagar custom-image d-none d-lg-block" v-lazy="`${item.foto1}principal.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" style="width: 100%; height: 130px;">
 
                     <!-- Mobile -->
-                    <img class="deApagar custom-image d-lg-none" v-lazy="`${item.foto1}principal_mini.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" style="width: 100%; height: 130px;">
+                    <img class="deApagar custom-image d-lg-none" v-lazy="`${item.foto1}principal.jpg?v=${new Date().getTime()}`" :alt="item.nome_marca" style="width: 100%; height: 130px;">
 
 
                   </div>

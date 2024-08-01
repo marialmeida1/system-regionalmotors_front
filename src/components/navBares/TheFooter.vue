@@ -7,9 +7,9 @@
         <div class="col-12 col-md-6 col-lg-3 border-smoll links">
           <h5 class="mb-3">Comprar</h5>
 
-          <p><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=2" class="link">Carro Usados</router-link></p>
+          <p><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=2" class="link">Carro Novos</router-link></p>
           <p><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=1" class="link">Carro Usados</router-link></p>
-          <p><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=2" class="link">Motos Usadas</router-link></p>
+          <p><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=2" class="link">Motos Novas</router-link></p>
           <p><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=1" class="link">Motos Usadas</router-link></p>
         </div>
 
@@ -64,6 +64,7 @@ export default {
   name: "TheFooter",
 
   methods: {
+    
   },
 };
 </script>

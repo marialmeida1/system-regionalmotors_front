@@ -42,7 +42,18 @@ export default {
     TheFooter,
   },
 
-  methods: {},
+  mounted() {
+    this.scrollToTop();
+  },
+
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  },
 };
 </script>
 

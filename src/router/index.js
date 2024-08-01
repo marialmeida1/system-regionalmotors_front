@@ -197,4 +197,11 @@ const router = createRouter({
   ]
 })
 
+router.afterEach((to, from) => {
+  document.activeElement?.blur();
+  window.scrollTo(0, 0); 
+  setTimeout(() => {
+  }, 100);
+});
+
 export default router
