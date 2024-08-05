@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 px-1 col-lg-10 mx-auto p-lg-0 mb-5">
+  <div class="col-12 px-1 col-lg-10 mx-auto p-lg-0 mb-5 list-categorias">
     <!-- Exibir a largura da tela -->
     <div class="py-4 pb-1">
       <h5 class="mb-3" style="opacity: 0.7">
@@ -182,5 +182,9 @@ export default {
   width: 100%;
   /* transition: height 1s ease-in-out; */
   border-top-right-radius: 50px;
+}
+
+.list-categorias {
+  min-height: 22rem;
 }
 </style>

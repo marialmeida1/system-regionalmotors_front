@@ -14,7 +14,7 @@
               class="logo bg-succes px-1 d-flex align-items-center"
               style="width: 190px"
             >
-              <img src="/logo.png" class="logo" />
+              <img src="/logo.png" class="logo" alt="Logo Regional Motors">
             </div>
           </RouterLink>
         </div>
