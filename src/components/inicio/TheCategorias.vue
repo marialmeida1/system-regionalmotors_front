@@ -178,10 +178,16 @@ export default {
 }
 
 .nome-categ {
-  background-color: rgba(255, 31, 31, 0.8);
+  /*background-color: rgba(255, 31, 31, 0.8);*/
   width: 100%;
+  font-weight: 900;
+  color:#fff;
   /* transition: height 1s ease-in-out; */
   border-top-right-radius: 50px;
+}
+
+.nome-categ b {
+  font-size: 1.25rem;
 }
 
 .list-categorias {
