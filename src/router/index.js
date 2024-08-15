@@ -185,7 +185,7 @@ const router = createRouter({
       component: () => import('../views/SobreRmView.vue')
     },
     {
-      path: '/segcomprar',
+      path: '/seg ',
       name: 'Segurança ao Comprar',
       component: () => import('../views/SegComprar.vue')
     },

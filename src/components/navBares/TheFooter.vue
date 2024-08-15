@@ -56,16 +56,32 @@
       </div>
     </div>
   </footer>
-  <div class="py-3 text-center">© Copyright 2023 Regional Motors</div>
+  <div class="py-3 text-center">© Copyright {{ year }} Regional Motors</div>
 </template>
 
 <script>
 export default {
   name: "TheFooter",
 
+  data() {
+    return {
+      year: '',
+    }
+  },
+
   methods: {
     
+    getYear() {
+      const date = new Date();
+      const currentYear = date.getFullYear();
+      this.year = currentYear;
+    }
   },
+
+  created() {
+    this.getYear();
+  }
+
 };
 </script>
 

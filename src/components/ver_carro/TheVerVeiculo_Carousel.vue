@@ -17,11 +17,11 @@
             </div>
           </splide-slide>
         </splide>
-        <div style="position: fixed; top: 50px; z-index: 99; cursor: pointer" class="ver-loja">
+        <!--<div style="position: fixed; top: 50px; z-index: 99; cursor: pointer" class="ver-loja">
           <div @click="visitarLoja">
             <div class="bg-dark p-2 px-1"><i class="fa fa-store" style="opacity: 0.8"></i> Visitar Loja</div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
 
@@ -223,19 +223,20 @@ export default {
     window.addEventListener("resize", this.debouncedHandleResize);
 
     //Lightbox
-    $(document).ready(function () {
-      $("[data-fancybox='minha-galeria']").fancybox({
-        buttons: ["slideShow", "fullScreen", "thumbs", "close"],
-        thumbs: {
-          autoStart: true, // Abre as miniaturas automaticamente
-          axis: "x", // Mostra as miniaturas na horizontal
-        },
-      });
+    this.$nextTick(() => {
+    $("[data-fancybox='minha-galeria']").fancybox({
+      buttons: ["close"],
+      thumbs: {
+        autoStart: true, 
+        axis: "x",
+      },
     });
+  });
 
     window.addEventListener("scroll", this.handleScroll);
 
     this.veiculo = [];
+
 
     const id = parseInt(this.$route.query.id); // Converter para número
 
@@ -244,6 +245,11 @@ export default {
     this.veiculo = dados[0];
 
     this.id = this.veiculo.id_anunciante;
+
+    const title_page = this.veiculo.marca + " " + this.veiculo.modelo + " " + this.veiculo.ano_modelo + " " + this.veiculo.cor
+    console.log(title_page)
+
+    document.title = title_page;
 
     if (this.veiculo) {
       this.showTheVerVeiculos = false;

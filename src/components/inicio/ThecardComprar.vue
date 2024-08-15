@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-12 col-lg-4 mb-2">
                             <router-link to="/resultados">
-                                <div class="btn crimson col-12 py-2" style="background: crimson; color: #fff;">TODAS OFERTAS</div>  
+                                <div class="btn crimson col-12 py-2" style="background: crimson; color: #fff; font-weight: bold">OFERTAS</div>  
                             </router-link>
                         </div>
                     </div>
