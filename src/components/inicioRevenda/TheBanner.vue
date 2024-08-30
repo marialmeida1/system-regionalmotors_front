@@ -13,7 +13,7 @@
             <div class="carousel-item active bg-dark">
               <div class="box-carousel-1">
                 <picture class="banner">
-                  <source media="(max-width: 568px)" :srcset="infos?.foto ? `https://api.regionalmotors.com.br/${infos.foto}` : '/banner/foto-mobile1.jpg'" />
+                  <source media="(max-width: 568px)" :srcset="infos?.banner_mobile_movel ? `https://api.regionalmotors.com.br/${infos.banner_mobile_movel}` : '/banner/foto-mobile1.jpg'" />
                   <img
                     :src="infos?.banner_mobile ? `https://api.regionalmotors.com.br/${infos.banner_mobile}` : '/banner/foto1.jpg'"
                     alt="Banner"
@@ -23,19 +23,6 @@
                 </picture>
               </div>
             </div>
-
-            <!--<div class="carousel-item bg-dark">
-              <div class="box-carousel-2">
-                <picture class="banner">
-                  <source media="(max-width: 568px)" srcset="/banner/foto-mobile3.png" />
-                  <img
-                    src="/banner/foto3.png"
-                    alt="Banner"
-                    style="width: 100%; height: 100%; object-fit: cover"
-                  />
-                </picture>
-              </div>
-            </div>-->
           </div>
           <button
             class="carousel-control-prev"
