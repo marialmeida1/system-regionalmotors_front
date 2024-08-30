@@ -76,7 +76,7 @@
             <a
               class="menu-link routerLink position-relative py-3"
               href=""
-              @click.prevent="$emit('scrollToFooter')"
+              @click="goFooter()"
             >
               Contato
             </a>
@@ -190,6 +190,10 @@ export default {
         console.error("Erro ao buscar dados do anunciante:", error);
         // Lide com erros conforme necessário
       }
+    },
+
+    goFooter() {
+      this.$emit("scrollToFooter");
     },
   },
 

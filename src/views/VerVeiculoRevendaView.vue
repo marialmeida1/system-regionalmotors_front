@@ -15,7 +15,7 @@
 <script>
     import TheNavTop from "../components/inicioRevenda/TheNavTop.vue"
     import TheVerVeiculo_Carousel from "../components/ver_carro/TheVerVeiculo_Carousel.vue"
-    import TheFooter from "../components/navBares/TheFooter.vue" 
+    import TheFooter from "../components/inicioRevenda/TheFooter.vue" 
     import loader from "../components/loaders/loader.vue"
 
 

@@ -61,7 +61,7 @@
             goverveiculo(id) {
               //document.querySelector('.loader').classList.remove('d-none')
               const parametros = { id: id };
-              this.$router.push({ path: '/verveiculo', query: parametros });
+              this.$router.push({ path: '/verveiculorevenda', query: parametros });
             },
 
             execFilterVeiculoRoute(veiculo) {

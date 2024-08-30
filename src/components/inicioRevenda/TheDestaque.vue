@@ -26,7 +26,7 @@
         <div>
           <div class="row p-0 m-0">
             <div
-              class="col-lg-3 col-md-6 p-0 m-0 mb-3"
+              class="col-lg-3 col-md-6 p-0 m-0 mb-3 card-veiculo"
               v-for="(item, index) in $store.state.resultado"
               :key="index"
             >
@@ -301,14 +301,14 @@ export default {
 
   methods: {
     show_menu_lateral() {
-      console.log("ola mundos");
       this.$emit("show_menu_lateral");
     },
 
     showCarroDetalhes(id) {
-      console.log("buscando...");
       const parametros = { id: id };
-      this.$router.push({ path: "/verveiculorevenda", query: parametros });
+      const url = window.location.href;
+      const id_anunciante = new URL(url).hash.split("/")[2];
+      this.$router.push({ path: `${id_anunciante}/verveiculorevenda`, query: parametros });
     },
 
     upPage() {
@@ -330,8 +330,6 @@ export default {
       `api/anuncios/listar_anuncios?anunciante_id=${id}&status_publicacao=2`
     );
 
-    console.log("Result " + this.$store.state.resultado);
-
     if (this.$store.state.resultado) {
       this.results = true;
       this.loader = false;
@@ -344,7 +342,6 @@ export default {
 
   updated() {
     this.$nextTick(() => {
-      console.log("chamou 1");
       if (this.$store.state.resultado) {
         Object.values(this.$refs).forEach((glideRefs) => {
           glideRefs.forEach((glideRef) => {
@@ -361,7 +358,6 @@ export default {
             glide.mount();
           });
         });
-        console.log("Chamando...");
       }
     });
   },
@@ -446,5 +442,9 @@ export default {
 .glide__arrow--left span {
   display: inline-block;
   transform: rotate(180deg);
+}
+
+.card-veiculo {
+  cursor: pointer;
 }
 </style>
