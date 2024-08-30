@@ -15,7 +15,6 @@
 
         <div class="icons bg-succes p-2 px-3">
           <div class="icon d-none d-lg-block"><i class="fa fa-user"></i> Entrar</div>
-          <div class="icon"><i class="far fa-bell"></i></div>
           <div class="icon d-block d-lg-none btn-menu" @click="show_menu">
             <i class="fas fa-bars"></i>
           </div>
@@ -27,32 +26,19 @@
                   <span @click="show_menu" style="font-size: 25px; cursor: pointer">x</span>
                 </div>
                 <div class="items-menu-mobile">
-                  <div class="mb-2" v-if="session">
-                    <h4>
-                      <div
-                        style="
-                          display: inline-block;
-                          width: 15px;
-                          height: 15px;
-                          background-color: green;
-                          border-radius: 100px;
-                        "
-                      ></div>
-                      {{ $store.state.userName }}
-                    </h4>
-                    <div>
-                      <router-link to="/conta">
-                        <span class="fas fa-user me-1"></span> Conta
-                      </router-link>
-                      |
-                      <span @click="sair" style="cursor: pointer; color: crimson"> Sair </span>
-                    </div>
-                  </div>
-
-                  <div v-else class="mb-2" style="font-size: 18px">
-                    <span @click="abrirModal">Iniciar Sessão</span> |
-                    <span style="color: crimson">Registar</span>
-                  </div>
+                  <a
+                    :href="`https://api.whatsapp.com/send?phone=${infos.whatsapp}&text=testando`"
+                    target="_blank"
+                  >
+                    <button class="btn py-1 text-center rounded-2 btn-whatsapp">
+                      <img src="/whatsapp.png" width="24" class="pe-1" />
+                      <span style="color: #fff; font-weight: 600">
+                        <span style="font-size: 14px; font-weight: bold" @click="enviarMsg"
+                          >Whatsapp</span
+                        >
+                      </span>
+                    </button>
+                  </a>
 
                   <h5 class="mt-4">Comprar</h5>
                   <div class="ps-2">
@@ -60,7 +46,6 @@
                     <p class="">Estoque</p>
                     <p class="">Contato</p>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -74,12 +59,14 @@
     <!-- menu desktop -->
     <div class="navegacao d-none d-lg-block fixed-top">
       <header class="header bg-dark bg-white ps-5">
-        <RouterLink class="routerLink pt-2" to="/inicio">
-        </RouterLink>
+        <RouterLink class="routerLink pt-2" to="/inicio"> </RouterLink>
 
         <div id="men" class="bg-inf card-menu">
-          <div class="card-menu-content d-flex align-items-center"> 
-            <RouterLink class="menu-link routerLink position-relative py-3" :to="`/loja/${infos.id}`">
+          <div class="card-menu-content d-flex align-items-center">
+            <RouterLink
+              class="menu-link routerLink position-relative py-3"
+              :to="`/loja/${infos.id}`"
+            >
               Início
             </RouterLink>
             <RouterLink class="menu-link routerLink position-relative py-3" to="">
@@ -91,9 +78,10 @@
           </div>
         </div>
         <div class="icons bg-succes px-3 d-flex align-items-center">
-          
-
-          <a :href="`https://api.whatsapp.com/send?phone=${infos.whatsapp}&text=testando`" target="_blank">
+          <a
+            :href="`https://api.whatsapp.com/send?phone=${infos.whatsapp}&text=testando`"
+            target="_blank"
+          >
             <button class="btn py-1 text-center rounded-2 btn-whatsapp">
               <img src="/whatsapp.png" width="24" class="pe-1" />
               <span style="color: #fff; font-weight: 600">
