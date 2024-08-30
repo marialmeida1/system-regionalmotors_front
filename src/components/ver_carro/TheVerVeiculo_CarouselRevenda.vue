@@ -404,10 +404,6 @@ export default {
         };
       }
     },
-
-    visitarLoja() {
-      this.$router.push({ path: "/loja/" + this.id });
-    },
   },
 };
 </script>

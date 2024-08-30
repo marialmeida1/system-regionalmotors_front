@@ -379,7 +379,10 @@ export default {
 
     showCarroDetalhes(id) {
       const parametros = { id: id };
-      this.$router.push({ path: "/verveiculorevenda", query: parametros });
+      const url = window.location.href;
+      const id_anunciante = new URL(url).hash.split("/")[2];
+      console.log(this.$router);
+      this.$router.push({ path: `/loja/${id_anunciante}/verveiculorevenda`, query: parametros });
     },
 
     upPage() {
