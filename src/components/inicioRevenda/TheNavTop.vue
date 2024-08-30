@@ -59,22 +59,27 @@
     <!-- menu desktop -->
     <div class="navegacao d-none d-lg-block fixed-top">
       <header class="header bg-dark bg-white ps-5">
-        <RouterLink class="routerLink pt-2" to="/inicio"> </RouterLink>
-
-        <div id="men" class="bg-inf card-menu">
-          <div class="card-menu-content d-flex align-items-center">
+        <div id="men" class="bg-inf card-menu col-md-4">
+          <div class="card-menu-content d-flex justify-content-between">
             <RouterLink
               class="menu-link routerLink position-relative py-3"
               :to="`/loja/${infos.id}`"
             >
               Início
             </RouterLink>
-            <RouterLink class="menu-link routerLink position-relative py-3" :to="`/loja/${infos.id}/estoque`">
+            <RouterLink
+              class="menu-link routerLink position-relative py-3"
+              :to="`/loja/${infos.id}/estoque`"
+            >
               Estoque
             </RouterLink>
-            <RouterLink class="menu-link routerLink position-relative py-3" to="">
+            <a
+              class="menu-link routerLink position-relative py-3"
+              href=""
+              @click.prevent="$emit('scrollToFooter')"
+            >
               Contato
-            </RouterLink>
+            </a>
           </div>
         </div>
         <div class="icons bg-succes px-3 d-flex align-items-center">
