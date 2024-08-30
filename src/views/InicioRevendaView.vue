@@ -19,7 +19,7 @@
 
 <script>
     import TheNavTop from "../components/inicioRevenda/TheNavTop.vue" 
-    import TheBanner from "../components/inicio/TheBanner.vue"
+    import TheBanner from "../components/inicioRevenda/TheBanner.vue"
     import ThecardComprar from "../components/inicio/ThecardComprar.vue"
     import TheCategorias from "../components/inicio/TheCategorias.vue"
     import TheDestaque from "../components/inicio/TheDestaque.vue"

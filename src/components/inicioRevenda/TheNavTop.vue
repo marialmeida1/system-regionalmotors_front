@@ -187,7 +187,7 @@ export default {
 
     async fetchAnunciante() {
       try {
-        const url = "http://loja.marceloveiculos.com.br:5173/#/loja/26";
+        const url = window.location.href;
         const id = new URL(url).hash.split("/")[2];
 
         const response = await api.encontrarAnunciante(id);
