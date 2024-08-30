@@ -21,7 +21,7 @@
     import TheBanner from "../components/inicioRevenda/TheBanner.vue"
     import ThecardComprar from "../components/inicioRevenda/ThecardComprar.vue"
     import TheDestaque from "../components/inicioRevenda/TheDestaque.vue"
-    import TheFooter from "../components/navBares/TheFooter.vue"
+    import TheFooter from "../components/inicioRevenda/TheFooter.vue"
     import loader from "../components/loaders/loader.vue" 
 
 

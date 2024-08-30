@@ -46,9 +46,6 @@ export default {
 
   methods: {
     applyFiltro(chaveID, valorID) {
-      console.log(chaveID);
-      console.log(valorID);
-
       setTimeout(() => {
         const parametros = { [chaveID]: valorID };
         this.$router.push({ path: "/resultados", query: parametros });
@@ -94,7 +91,6 @@ export default {
         const response = await api.encontrarAnunciante(id);
 
         this.infos = response.data;
-        console.log(this.infos);
       } catch (error) {
         console.error("Erro ao buscar dados do anunciante:", error);
         // Lide com erros conforme necessário

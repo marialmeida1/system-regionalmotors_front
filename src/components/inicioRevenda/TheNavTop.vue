@@ -69,7 +69,7 @@
             >
               Início
             </RouterLink>
-            <RouterLink class="menu-link routerLink position-relative py-3" to="">
+            <RouterLink class="menu-link routerLink position-relative py-3" :to="`/loja/${infos.id}/estoque`">
               Estoque
             </RouterLink>
             <RouterLink class="menu-link routerLink position-relative py-3" to="">

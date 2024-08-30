@@ -70,7 +70,6 @@ export default {
         const response = await api.encontrarAnunciante(id);
 
         this.infos = response.data;
-        console.log(this.infos);
 
       } catch (error) {
         console.error("Erro ao buscar dados do anunciante:", error);
