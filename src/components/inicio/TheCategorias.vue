@@ -40,7 +40,11 @@
                   class="deApagar custom-image"
                   v-lazy="`${item.foto_categoria}?v=${new Date().getTime()}`"
                   alt="regional motors"
-                  style="width: 100%; height: 100%"
+                  style="
+                  width: 100%; 
+                  height: 100%;
+                  filter: brightness(75%);
+                  "
                 />
 
                 <div

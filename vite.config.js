@@ -13,7 +13,7 @@ export default defineConfig({
     }
   },
   server: {
-    host: 'regionalmotors',
+    host: 'loja.marceloveiculos.com.br',
     port: 5173,
   },
 })

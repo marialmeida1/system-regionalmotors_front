@@ -181,3 +181,11 @@ select option {
   margin-top: 5px;
   font-size: 18px;
 }
+
+.btn-whatsapp {
+  background-color: #25D366;
+}
+
+.btn-whatsapp:hover {
+  background-color: rgb(71, 146, 84);
+}

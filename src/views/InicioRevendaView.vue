@@ -1,4 +1,4 @@
-    <template>
+<template>
     <div>
         <div>
             <TheNavTop @showLoader="showLoaderNow"/>
@@ -6,9 +6,9 @@
             
             <ThecardComprar @showLoader="showLoaderNow"/> 
             <TheDestaque @showLoader="showLoaderNow"/>
-            <!-- TheCategorias/ -->
+            <TheCategorias/>
             
-            <TheFooter/>
+            <TheFooter @showLoader="showLoaderNow"/>
             
             <div class="loader d-none">
                 <loader/>
@@ -19,10 +19,12 @@
 
 <script>
     import TheNavTop from "../components/inicioRevenda/TheNavTop.vue" 
-    import TheBanner from "../components/inicioRevenda/TheBanner.vue"
-    import ThecardComprar from "../components/inicioRevenda/ThecardComprar.vue"
-    import TheDestaque from "../components/inicioRevenda/TheDestaque.vue"
-    import TheFooter from "../components/inicioRevenda/TheFooter.vue"
+    import TheBanner from "../components/inicio/TheBanner.vue"
+    import ThecardComprar from "../components/inicio/ThecardComprar.vue"
+    import TheCategorias from "../components/inicio/TheCategorias.vue"
+    import TheDestaque from "../components/inicio/TheDestaque.vue"
+    import TheCardes from "../components/inicio/TheCardes.vue"
+    import TheFooter from "../components/navBares/TheFooter.vue"
     import loader from "../components/loaders/loader.vue" 
 
 
@@ -31,7 +33,9 @@
             TheNavTop,
             TheBanner,
             ThecardComprar,
+            TheCategorias,
             TheDestaque,
+            TheCardes,
             TheFooter,
             loader,
         },

@@ -226,6 +226,17 @@ export async function listarAnunciante() {
   }
 }
 
+//Encontrar anunciante
+export async function encontrarAnunciante(id) {
+  try {
+    const response = await api.get(`api/anunciantes/encontrar_anunciante/${id}`);
+    return response.data;
+  } catch (error) {
+    erro(error.response.data.message)
+    throw error; // Opcional: propague o erro para que ele possa ser tratado em outro lugar, se necessário.
+  }
+}
+
 //Detalhar Anuncio
 export async function detalharAnunciante(id) {
   try {

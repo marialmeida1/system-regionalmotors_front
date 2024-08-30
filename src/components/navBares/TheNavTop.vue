@@ -318,21 +318,6 @@ export default {
       this.$store.state.anunciante_id = localStorage.getItem("anunciante_id");
       this.$store.state.userName = localStorage.getItem("anunciante_nome");
     }
-
-    /*Pega a url 
-            const url = "http://localhost:5173/#/inicio";
-            const hostname = new URL(url).hostname; // Isso retorna "localhost"
-            //alert(hostname);
-
-            const urlRequest = "api/anunciantes/buscar_anunciante_por_site"
-            
-            const data = {
-                    "site": "localhost"
-            }
-
-            const response = await api.getIdToUrl(urlRequest, data)
-
-            localStorage.setItem('hostname_id', response.id) */
   },
 };
 </script>
