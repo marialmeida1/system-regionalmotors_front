@@ -14,7 +14,7 @@
             <span v-if="filtro.valor == '2'"> Usado </span>
           </span>
           <span v-else-if="filtro.chave == 'opcionais_id'"> Itens Opcionais </span>
-          <span v-else> </span>
+          <span v-else> {{ filtro.valor }}</span>
         </span>
       </div>
 
@@ -428,6 +428,7 @@ export default {
 
       this.arrayTitles = [];
       var titles = "Comprar ";
+      var url_title = "";
 
       // Para iterar sobre os valores de queryParams
       Object.values(queryParams).forEach((el) => {
@@ -438,9 +439,18 @@ export default {
         }
         this.arrayTitles.push(el);
         titles += el + " ";
+        url_title += el + "-";
+
       });
 
       document.title = titles;
+
+      const url_title_min = url_title.toLowerCase();
+      const url = window.location.href;
+      const id = new URL(url).hash.split("/")[2];
+
+      const newPath = `/loja/${id}/estoque?=filtro${url_title_min}`;
+      this.$router.replace(newPath);
 
       this.queryString = Object.keys(queryParams)
         .map((key) => `${key}=${queryParams[key]}`)
@@ -531,6 +541,7 @@ export default {
     keys.forEach((key, index) => {
       let valor = this.$route.query[key];
       titles += `${valor} `;
+
 
       if (index === 0) {
         this.queryString += `${key}=${valor}`;

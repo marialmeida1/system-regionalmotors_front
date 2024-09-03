@@ -16,7 +16,7 @@
               />
             </div>
             <div class="card-comprar-title">
-              <h4 class="mb-0 text-center card-comprar-title-text">
+              <h4 class="mb-0 ms-4 card-comprar-title-text">
                 {{ infos?.nome_empresa }}
               </h4>
             </div>
@@ -155,7 +155,7 @@ export default {
 }
 
 .card-comprar-title-text {
-  opacity: 0.4;
+  opacity: 0.6;
   font-weight: 900;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="rodape-dark" style="padding: 2em 2em">
+    <div class="rodape-dark">
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 border-smoll">
           <h5 class="pb-2">{{ infos?.nome_empresa }}</h5>
@@ -76,7 +76,6 @@ export default {
         const id = new URL(url).hash.split("/")[2];
 
         const response = await api.encontrarAnunciante(id);
-        console.log(response.data);
 
         this.infos = response.data;
       } catch (error) {
@@ -94,9 +93,10 @@ export default {
 
 <style>
 .rodape-dark {
+  margin-top: 4rem;
   background: linear-gradient(90deg, rgb(27, 30, 36) 1%, rgb(36, 41, 49) 90%);
   color: #fff;
-  padding: 2em 2em;
+  padding: 2rem;
 }
 
 .img-contain {

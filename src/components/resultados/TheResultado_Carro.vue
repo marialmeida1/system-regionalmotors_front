@@ -14,7 +14,7 @@
             <span v-if="filtro.valor == '2'"> Usado </span>
           </span>
           <span v-else-if="filtro.chave == 'opcionais_id'"> Itens Opcionais </span>
-          <span v-else> </span>
+          <span v-else>{{ fltro.valor }}</span>
         </span>
       </div>
 

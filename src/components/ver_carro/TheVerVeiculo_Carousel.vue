@@ -241,13 +241,17 @@ export default {
     const id = parseInt(this.$route.query.id); // Converter para número
 
     const dados = await api.detalharAnuncio(id);
-    console.log(dados);
     this.veiculo = dados[0];
 
     this.id = this.veiculo.id_anunciante;
 
     const title_page = this.veiculo.marca + " " + this.veiculo.modelo + " " + this.veiculo.ano_modelo + " " + this.veiculo.cor
-    console.log(title_page)
+    const url_page = this.veiculo.marca + "-" + this.veiculo.modelo + "-" + this.veiculo.ano_modelo + "-" + this.veiculo.cor
+    const car = url_page.toLowerCase();
+    const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
+
+    this.$router.replace(newPath);
+
 
     document.title = title_page;
 
