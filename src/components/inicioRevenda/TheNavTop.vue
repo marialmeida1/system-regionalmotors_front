@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white" style="box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1)" v-if="infos">
+  <div class="bg-white navbar" v-if="infos">
     <!-- Menu Mobile -->
     <div class="navegacao bg-succes" style="padding: 0.9em 0"></div>
 
@@ -40,11 +40,19 @@
                     </button>
                   </a>
 
-                  <h5 class="mt-4">Comprar</h5>
-                  <div class="ps-2">
-                    <p class="">Início</p>
-                    <p class="">Estoque</p>
-                    <p class="">Contato</p>
+                  <div class="ps-2 pt-4">
+                    <RouterLink class="menu-link-mobile" :to="`/loja/${infos.id}`">
+                      Início
+                    </RouterLink>
+                    <RouterLink class="menu-link-mobile" :to="`/loja/${infos.id}/estoque`">
+                      Estoque
+                    </RouterLink>
+                    <p
+                      class="menu-link-mobile"
+                      @click="scrollToFooter"
+                    >
+                      Contato
+                    </p>
                   </div>
                 </div>
               </div>
@@ -73,13 +81,9 @@
             >
               Estoque
             </RouterLink>
-            <a
-              class="menu-link routerLink position-relative py-3"
-              href=""
-              @click="goFooter()"
-            >
+            <p class="menu-link m-0 p-0 routerLink position-relative py-3" @click="scrollToFooter">
               Contato
-            </a>
+            </p>
           </div>
         </div>
         <div class="icons bg-succes px-3 d-flex align-items-center">
@@ -96,11 +100,11 @@
           </a>
 
           <!--<div class="icon invisible">
-            <span style="font-size: 23px" class="far fa-bell"></span>
-          </div>
-          <div class="icon d-block d-lg-none btn-menu">
-            <i class="fas fa-bars"></i>
-          </div>-->
+              <span style="font-size: 23px" class="far fa-bell"></span>
+            </div>
+            <div class="icon d-block d-lg-none btn-menu">
+              <i class="fas fa-bars"></i>
+            </div>-->
         </div>
       </header>
     </div>
@@ -192,8 +196,11 @@ export default {
       }
     },
 
-    goFooter() {
-      this.$emit("scrollToFooter");
+    scrollToFooter() {
+      const footer = document.getElementById("footer");
+      if (footer) {
+        footer.scrollIntoView({ behavior: "smooth" });
+      }
     },
   },
 

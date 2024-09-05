@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer id="footer" >
     <div class="rodape-dark">
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 border-smoll">
@@ -41,15 +41,12 @@
       </div>
       <div class="pt-4 d-flex justify-content-center">
         <div class="col-12 col-md-3 col-lg-3 text-center mb-1">
-          <div class="icon-border me-3">
+          <a class="icon-border me-3" :href="`${infos?.instagram}`">
             <i class="fab fa-instagram fa-lg" style="color: #f0bd84"></i>
-          </div>
-          <div class="icon-border me-3">
-            <i class="fab fa-youtube fa-lg" style="color: #ff5969"></i>
-          </div>
-          <div class="icon-border">
+          </a>
+          <a class="icon-border" :href="`${infos?.facebook}`">
             <i class="fab fa-facebook-f fa-lg" style="color: #8fd1f7"></i>
-          </div>
+          </a>
         </div>
       </div>
     </div>

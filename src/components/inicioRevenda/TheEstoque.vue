@@ -326,6 +326,15 @@
       </div>
     </div>
 
+    <div class="pagination">
+      <button @click="changePage(current_page - 1)" :disabled="current_page === 1">Anterior</button>
+      <button @click="changePage(current_page + 1)" :disabled="current_page === total_pages">Próximo</button>
+      <button v-for="page in total_pages" :key="page" @click="changePage(page)">
+        {{ page }}
+      </button>
+    </div>
+
+
     <div
       style="position: fixed; right: 15px; bottom: 25px; z-index: 99"
       class="text-center d-lg-none d-md-none"
@@ -359,7 +368,6 @@ export default {
         type: "carousel", // Tipo de slider
         perPage: 1,
       },
-
       array_filtros: [],
       results: false,
       loader: true,
@@ -369,6 +377,8 @@ export default {
       url: "",
       queryString: "",
       infos: null,
+      total_pages: 0,
+      current_page: 1,
     };
   },
 
@@ -439,7 +449,7 @@ export default {
         }
         this.arrayTitles.push(el);
         titles += el + " ";
-        url_title += el + "-";
+        url_title += el + "%";
 
       });
 
@@ -449,7 +459,7 @@ export default {
       const url = window.location.href;
       const id = new URL(url).hash.split("/")[2];
 
-      const newPath = `/loja/${id}/estoque?=filtro${url_title_min}`;
+      const newPath = `/loja/${id}/estoque/#/${url_title_min}`;
       this.$router.replace(newPath);
 
       this.queryString = Object.keys(queryParams)
@@ -476,7 +486,7 @@ export default {
 
     async fetchAnuncios() {
       this.$store.state.resultado = await api.filtrarAnuncio(
-        `api/anuncios/listar_anuncios/${this.ordenacao_type}?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`
+        `api/anuncios/listar_anuncios/${this.ordenacao_type}?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2&page=${this.current_page}`
       );
     },
 
@@ -488,6 +498,13 @@ export default {
     verTodos() {
       this.limparFiltro();
     },
+
+    async changePage(pageNumber) {
+    if (pageNumber >= 1 && pageNumber <= this.total_pages) {
+      this.current_page = pageNumber;
+      await this.fetchAnuncios();
+    }
+  },
 
     async limparFiltro() {
       this.$store.state.resultado = [];
@@ -512,6 +529,12 @@ export default {
           this.notFound = true;
         }
       }
+
+      const url = window.location.href;
+      const id = new URL(url).hash.split("/")[2];
+
+      const path = `/loja/${id}/estoque/`;
+      this.$router.replace(path);
     },
 
     async fetchAnunciante() {
@@ -532,8 +555,8 @@ export default {
   async mounted() {
     await this.fetchAnunciante();
     this.$store.state.resultado = [];
-
     const keys = Object.keys(this.$route.query);
+
 
     let titles = "Comprar ";
     this.queryString = "";
@@ -568,6 +591,20 @@ export default {
       }
     }
 
+    const url = window.location.href;
+    const id = new URL(url).hash.split("/")[2];
+
+    const path = `/loja/${id}/estoque/`;
+    this.$router.replace(path);
+
+    const resultado = this.$store.state.resultado;
+
+    const currentPage = resultado[0].current_page;
+    const totalPages = resultado[0].total_pages; 
+    this.current_page = currentPage;
+    this.total_pages = totalPages;
+    console.log(this.current_page);
+    console.log(this.total_pages);
   },
 
   updated() {
@@ -690,4 +727,26 @@ export default {
   max-width: 8rem;
   cursor: pointer;
 }
+
+
+.pagination {
+  width: 100%;
+  gap: 0.25rem;
+  padding: 1rem 0rem 1rem 0rem;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  border: 1px solid #0000003b;
+  padding: 0.5rem 1rem;
+  border-radius: 0.125rem;
+  color: #000000d2;
+  font-size: 0.75rem
+} 
+
+.pagination button:disabled{
+  color: #00000071;
+} 
+
 </style>
