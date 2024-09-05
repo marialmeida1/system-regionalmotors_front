@@ -49,21 +49,17 @@
 
           methods: {
             handle_showHidden_menu_lateral() {
-              console.log('Emitido...')
 
               this.TheAdminNavLateral.classList.toggle('showHidden_menu-lateral')
             },
 
             async refreshAnuncioVar(id){
-              console.log('Recebido no Pai' + id)
               this.$store.state.anuncioID = id
               
-              console.log('Actualizado' + id)
               this.$refs.theAnuncios.recarregarDados(this.$store.state.anuncioID);
 
               this.$refs.theCarregarFoto.exibeCarregarFoto()
 
-              console.log("Exibindo loader")
               //this.loading = true
               this.$store.state.anuncioID = id
 
@@ -71,17 +67,14 @@
             },
 
             showCarregarFotos() {
-              console.log('Show carregar fotos')
               this.$refs.theCriarAnuncio.showCarregarFotos();
             },
             
             showCarregarFotos() {
-              console.log('Refresh Page')
               this.$refs.theCarregarFoto.refreshFotos();
             },
 
             editarAnuncioNow(id) {
-              console.log('ola ' + id)
 
               this.$store.state.anuncioID = id
 
@@ -90,7 +83,6 @@
 
             exibeCarregarFoto() {
               this.exibeModalCarregarFoto = true
-              console.log('Exibindo Carregar Fotos') 
               this.$refs.theCarregarFoto.showCarregarFotos();
             },
 
@@ -99,7 +91,6 @@
             },
 
             hiddenLoadingNow() {
-              console.log("Emitiu Loading")
               this.loading = false
             },
             

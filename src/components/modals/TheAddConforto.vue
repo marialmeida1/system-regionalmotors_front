@@ -66,11 +66,9 @@
           try {
             const response = await api.adicionarConforto(data)
 
-            console.log("resposta: " + response)
 
             if (response) {
 
-              console.log("Eliminado... " + response.id)
               this.$store.state.adminID = null
               this.$store.state.conforto = await api.listarConforto()
 

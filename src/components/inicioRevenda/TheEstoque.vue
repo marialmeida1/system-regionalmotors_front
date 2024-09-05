@@ -392,7 +392,6 @@ export default {
       const parametros = { id: id };
       const url = window.location.href;
       const id_anunciante = new URL(url).hash.split("/")[2];
-      console.log(this.$router);
       this.$router.push({ path: `/loja/${id_anunciante}/verveiculorevenda`, query: parametros });
     },
 
@@ -601,8 +600,6 @@ export default {
     const totalPages = resultado[0].total_pages;
     this.current_page = currentPage;
     this.total_pages = totalPages;
-    console.log(this.current_page);
-    console.log(this.total_pages);
   },
 
   updated() {

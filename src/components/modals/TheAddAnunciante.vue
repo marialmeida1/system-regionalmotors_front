@@ -381,9 +381,6 @@
 
             try {
               const response = await api.criarAnunciante(dataAnunciante)
-
-              console.log("resposta: " + response)
-
               if (response) {
 
                 this.$store.state.anunciantes = await api.listarAnunciante()

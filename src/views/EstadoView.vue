@@ -35,13 +35,11 @@
 
           methods: {
             handle_showHidden_menu_lateral() {
-              console.log('Emitido...')
 
               this.TheNavLateral.classList.toggle('showHidden_menu-lateral')
             },
 
             editarCategoriaNow() {
-              console.log('editar Categoria')
               this.$refs.theEditarCategoria.showgetDados();
             }
           },

@@ -404,7 +404,6 @@ export default {
 
     async listData(data) {
       this.$store.state.resultado = await data;
-      console.log(this.$store.state.resultado);
     },
 
 
@@ -442,7 +441,6 @@ export default {
 
       // Para iterar sobre os valores de queryParams
       Object.values(queryParams).forEach((el) => {
-        console.log(el);
         if (el == 1) {
           el = "Novo";
         } else if (el == 2) {
@@ -465,7 +463,6 @@ export default {
 
       // Construa a URL com base nos filtros
       this.url = `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2`;
-      console.log(this.queryString);
 
       // Chamada à API para filtrar anúncios com a URL construída
       this.$store.state.resultado = await api.filtrarAnuncio(this.url);
@@ -537,7 +534,6 @@ export default {
     this.$store.state.resultado = [];
 
     const keys = Object.keys(this.$route.query);
-    console.log(keys);
 
     let titles = "Comprar ";
     this.queryString = "";
@@ -577,8 +573,6 @@ export default {
     const totalPages = resultado[0].total_pages;
     this.current_page = currentPage;
     this.total_pages = totalPages;
-    console.log(this.current_page);
-    console.log(this.total_pages);
 
     const path = `/resultados`;
     this.$router.replace(path);

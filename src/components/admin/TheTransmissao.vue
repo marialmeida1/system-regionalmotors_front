@@ -213,7 +213,6 @@ export default {
         // Editar estado
         const response = await api.editarTransmissao(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -236,28 +235,23 @@ export default {
 
             this.transmissao = this.$store.state.transmissao.find(objeto => objeto.id == this.id);
 
-            console.log('Novo dado')
 
             this.nome = this.transmissao.transmissao
             this.desc = this.transmissao.descricao
 
-            console.log(this.novoEstado)
         },
 
         modalApagar(id) {
             this.id = id
 
-            console.log(id)
         },
 
         async apagar() {
 
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarTransmissao(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.transmissao = await api.listarTransmissao();
@@ -266,7 +260,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 

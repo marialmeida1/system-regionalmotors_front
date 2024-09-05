@@ -55,26 +55,21 @@ export default {
 
   methods: {
     handle_showHidden_menu_lateral() {
-      console.log("Emitido...");
 
       this.TheNavLateral.classList.toggle("showHidden_menu-lateral");
     },
 
     filtrar_tipo(tipo_veiculo) {
       this.set_tipo_veiculo = tipo_veiculo;
-      console.log("Tipo pai: " + this.set_tipo_veiculo);
     },
 
     filter_novo(novo) {
-      console.log("Novo: " + novo);
-      console.log("Semi_no: " + semi_novo);
     },
 
     goverveiculo(id) {
       const parametros = { id: id };
       const url = window.location.href;
       const id_anunciante = new URL(url).hash.split("/")[2];
-      console.log(this.$router);
       this.$router.push({ path: `/loja/${id_anunciante}/verveiculorevenda`, query: parametros });
     },
 

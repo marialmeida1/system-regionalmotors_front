@@ -65,11 +65,9 @@
           try {
             const response = await api.adicionarEstado(data)
 
-            console.log("resposta: " + response)
 
             if (response) {
 
-              console.log("Eliminado... " + response.id)
               this.$store.state.adminID = null
               this.$store.state.estado = await api.listarEstado()
 

@@ -66,11 +66,9 @@
           try {
             const response = await api.adicionarSeguranca(data)
 
-            console.log("resposta: " + response)
 
             if (response) {
 
-              console.log("Eliminado... " + response.id)
               this.$store.state.adminID = null
               this.$store.state.seguranca = await api.listarSeguranca()
 

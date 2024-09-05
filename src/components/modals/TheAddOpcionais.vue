@@ -84,7 +84,6 @@
 
       async created() {
         this.categ_opcionais = await api.listarCategoriaOpcionais()
-        console.log(this.categ_opcionais)
       }
   }
 </script>

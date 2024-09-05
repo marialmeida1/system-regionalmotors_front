@@ -211,20 +211,15 @@ import * as api from "../../services/api";
                     return;
                   }
 
-                  console.log(varFoto)
-                  console.log(this.file)
 
 
                   const formData = new FormData();
                   formData.append(varFoto, this.file);
 
-                  console.log("Redimensionada")
-                  console.log(formData)
 
                   try {
 
                     const responseData = await api.carregarFotoAnunciante(url, formData, id)
-                    console.log(responseData)
                     // Assuming the API returns the URL of the uploaded photo
                     //this.imageUrl = responseData.imageUrl;
                     if (responseData) {

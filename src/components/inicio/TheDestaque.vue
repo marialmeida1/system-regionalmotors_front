@@ -110,13 +110,9 @@ export default {
 
     // Verifica se a URL contém a palavra "regionalmotors"
     if (url.includes("regionalmotors")) {
-      console.log("Está bem");
     } else {
       // Extrair a parte principal da URL sem o hash e o caminho
       const newUrl = `${window.location.protocol}//${hostname}:${window.location.port}`;
-
-      console.log("Hostname:", hostname);
-      console.log("Nova URL:", newUrl);
 
       const data = {
         site: hostname,

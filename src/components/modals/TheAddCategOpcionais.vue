@@ -59,8 +59,6 @@
           try {
             const response = await api.adicionarCategoriaOpcionais(data)
 
-            console.log("resposta: " + response)
-
             if (response) {
               this.$store.state.categoriaOpcionais = await api.listarCategoriaOpcionais()
 

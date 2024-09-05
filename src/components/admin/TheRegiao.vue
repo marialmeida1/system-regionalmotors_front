@@ -218,9 +218,7 @@ export default {
     },
 
     async editar(id) {
-        console.log('emitindo...'+id)
         this.$store.state.adminID = await id
-        console.log(this.$store.state.adminID)
 
         this.$emit('editarCategoria', id)
     },
@@ -237,7 +235,6 @@ export default {
         // Editar categorias
         const response = await api.editarRegiao(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -260,29 +257,24 @@ export default {
 
                 this.regiao = this.$store.state.regiao.find(objeto => objeto.id == this.id);
 
-                console.log('Novo dado')
 
                 this.novaRegiao = this.regiao.regiao
                 this.novoEstado_id = this.regiao.id_estado
                 this.novoEstado = this.regiao.estado
 
-                console.log(this.novoEstado_id)
             },
 
             modalApagar(id) {
                 this.id = id
 
-                console.log(id)
             },
 
             async apagar() {
 
-                  console.log('Eliminando ' + this.id)
                     
                   try {
                     const response = await api.eliminarRegiao(this.id)
 
-                     console.log("temp Ja eliminando" + response)
 
                      setTimeout(async function () {
                         this.$store.state.regiao = await api.listarRegiao();
@@ -291,7 +283,6 @@ export default {
 
                     if (response.data) {
 
-                        console.log('Eliminou...')
                         
                         // this.$store.state.estado = await api.listarEstado()        
 

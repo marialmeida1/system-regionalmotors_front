@@ -214,7 +214,6 @@ export default {
         // Editar estado
         const response = await api.editarTecnologia(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -237,7 +236,6 @@ export default {
 
             this.tecnologia = this.$store.state.tecnologia.find(objeto => objeto.id == this.id);
 
-            console.log('Novo dado')
 
             this.nome = this.tecnologia.tecnologia
             this.desc = this.tecnologia.descricao
@@ -246,17 +244,14 @@ export default {
     modalApagar(id) {
             this.id = id
 
-            console.log(id)
         },
 
         async apagar() {
 
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarTecnologia(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.tecnologia = await api.listarTecnologia();
@@ -265,7 +260,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 

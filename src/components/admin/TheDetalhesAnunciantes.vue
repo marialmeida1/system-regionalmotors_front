@@ -336,7 +336,6 @@ export default {
 
   methods: {
     show_menu_lateral(){
-        console.log('ola mundos')
         this.$emit('show_menu_lateral')
     },
 
@@ -359,8 +358,6 @@ export default {
             
             this.anunciante = dados[0]
 
-            console.log('veiculos')
-            console.log(this.anunciante.id)
 
         } catch (e) {
             console.error("Erro na requisição:", e);

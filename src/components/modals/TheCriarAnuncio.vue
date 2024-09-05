@@ -376,8 +376,6 @@
           },
   
           async criar() {
-            console.log(this.getVitrine())
-            console.log(this.getDestaque())
 
 
             this.titulo = this.marca_id + ' ' + this.modelo_id + ' - ' +  this.ano_modelo  
@@ -436,7 +434,6 @@
   
               if (response) {
   
-                console.log("Anuncio Criado... " + response.id)
                 // A requisição foi bem-sucedida, exiba a mensagem de "criado"
                 // this.criarAnuncio.classList.add('d-none')
                 // this.carregarFotos.classList.remove('d-none')
@@ -449,9 +446,7 @@
                 // this.$emit('emitCarregarFoto')
   
                 // Setar fotos
-                console.log('emitCarregarFoto')
   
-                console.log('Limpando...')
                 // Limpar form
                 this.tipo_veiculo = ''
                 this.marca_id = ''
@@ -499,7 +494,6 @@
           },
 
           showCarregarFotos() {
-            console.log('Show carregar fotos Agora')
           },
 
           formatarNumero() {

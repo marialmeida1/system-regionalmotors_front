@@ -319,7 +319,6 @@ export default {
         // Editar estado
         const response = await api.editarModelo(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -342,7 +341,6 @@ export default {
 
             this.modelos = this.$store.state.modelos.find(objeto => objeto.id === this.id);
 
-            console.log('Novo dado')
 
             this.nome = this.modelos.nome_modelo
             this.tipo_veiculo_id = this.modelos.id_tipo_veiculo
@@ -352,19 +350,16 @@ export default {
         modalApagar(id) {
             this.id = id
 
-            console.log(id)
         },
 
         async apagar() {
 
               this.filter_tipo_veiculo = ""
               
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarModelo(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.modelos = await api.filtrarAnuncio('api/modelos/listar_modelos?nome_tipo_veiculo=carro')
@@ -373,7 +368,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 
@@ -403,7 +397,6 @@ export default {
 
                 //this.modelos_filtrados = await api.filtrarAnuncio("api/modelos/listar_modelos?nome_tipo_veiculo="+valor) 
                 
-                //console.log(this.modelos_filtrados)
 
                 //return this.$store.state.modelos
             },
@@ -441,7 +434,6 @@ export default {
             //this.$store.state.modelos = await api.filtrarAnuncio(url)
             this.$store.state.modelos = await api.filtrarAnuncio(url)
             
-            console.log(url)    
             
             } else {
                 this.limparFiltro()

@@ -139,11 +139,9 @@
             try {
               const response = await api.adicionarUser(data, dataAnunciante)
 
-              console.log("resposta: " + response)
 
               if (response) {
 
-                console.log("Eliminado... " + response.id)
                 this.$store.state.adminID = null
                 // this.$store.state.categorias = await api.listarCategoria()
 

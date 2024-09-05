@@ -61,14 +61,11 @@
 
           try {
 
-            console.log('Adicionando tipo de veiculo...')
             const response = await api.adicionarTipo_Veiculo(data)
 
-            console.log("resposta: " + response)
 
             if (response) {
 
-              console.log("Eliminado... " + response.id)
               this.$store.state.adminID = null
               this.$store.state.tipo_veiculo = await api.listarTipo_Veiculo()
 

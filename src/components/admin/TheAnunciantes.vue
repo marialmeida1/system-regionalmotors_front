@@ -845,7 +845,6 @@ export default {
 
     methods: {
         async addPlano() {
-            console.log(this.id_plano)
 
             const data = {
                 "plano_id": this.id_plano,
@@ -856,20 +855,12 @@ export default {
             try {
 
                 const response = api.adicionarPlanoAnunciante(data)
-
-                if (response) {
-                    console.log("Sucesso...")
-
-                }
-
             } catch (error) {
                 console.log("Ocorreu um erro " + error)
             }
         },
 
         async editarPlano() {
-            console.log(this.id_plano)
-
             const data = {
                 "plano_id": this.id_plano,
                 "anunciante_id": this.$store.state.adminID,
@@ -878,15 +869,9 @@ export default {
             }
 
             try {
-
-                console.log("ID plano anunciante: " + this.pegaPlano.id)
-                console.log("ID anunciante: " + this.$store.state.adminID)
-                console.log("Status: " + this.plano_status)
-
                 const response = api.editarPlanoAnunciante(data, this.pegaPlano.id)
 
                 if (response) {
-                    console.log("Sucesso...")
                 }
 
             } catch (error) {
@@ -902,8 +887,6 @@ export default {
             this.data_criacao = ''
             this.data_vencimento = ''
             
-            console.log(id)
-            
             this.mostrarPlano = await api.listarPlanoAnunciante()
 
             this.pegaPlano = await this.mostrarPlano.find(objeto => objeto.id_anunciantes == id);
@@ -911,8 +894,6 @@ export default {
             this.id_anunciante = id
             this.$store.state.adminID = id
             
-            console.log("ID " + this.id_anunciante)
-
             if(this.pegaPlano) {
                 this.id_plano = this.pegaPlano.id_planos
                 this.id_anunciante = this.pegaPlano.anunciante_id
@@ -921,8 +902,6 @@ export default {
                 this.data_vencimento = this.pegaPlano.data_vencimento
                 this.data_criacao = this.pegaPlano.created_at
             }
-
-            console.log("status plano " + this.status_plano)
 
        },
 
@@ -968,8 +947,6 @@ export default {
             try {
             // Editar estado
             const response = await api.editarAnunciante(data, this.id)
-
-            console.log("Ja esta" + response)
 
             if (response.data) {
                 
@@ -1078,29 +1055,14 @@ export default {
             this.api_estado = await api.listarEstado()
             this.api_regiao = await api.listarRegiao()
             this.api_cidade = await api.listarCidade()
-
-            console.log(this.api_estado)
-            console.log(this.api_regiao)
-
-
             this.id = id
-
             this.anunciante = this.$store.state.anunciantes.find(objeto => objeto.id == this.id);
-
-            console.log(this.anunciante)
-
-            //this.novoEstado = this.estado.estado
-
-
-
             this.Pessoal_responsavel = this.anunciante.Pessoal_responsavel
             this.email = this.anunciante.email
             this.telefone = this.anunciante.telefone
-
             this.estado_id = this.anunciante.estado_id  
             this.cidade_id = this.anunciante.cidade_id
             this.regiao_id = this.anunciante.regiao_id
-
             this.nome_empresa = this.anunciante.nome_empresa
             this.cnpj = this.anunciante.cnpj
             this.celular = this.anunciante.celular
@@ -1123,25 +1085,15 @@ export default {
             this.tipo_anunciante = this.anunciante.tipo_anunciante
             this.bairros_comercial = this.anunciante.bairro_comercial
             this.senha = this.anunciante.password
-
-            console.log('Anunciantes')
-            console.log(this.$store.state.anunciantes)
         },
 
         modalApagar(id) {
             this.id = id
-
-            console.log(id)
         },
 
         async apagar() {
-
-              console.log('Eliminando ' + this.id)
-                
               try {
                 const response = await api.eliminarAnunciante(this.id)
-
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.anunciantes = await api.listarAnunciante();
@@ -1150,8 +1102,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
-                    
                     // this.$store.state.estado = await api.listarEstado()        
 
                 } else {
@@ -1167,7 +1117,6 @@ export default {
             },
 
             showDetalhes(id) {
-                console.log('buscando...')
                 const parametros = { id: id };
                 this.$router.push({ path: '/admin-detalhes-anunciante', query: parametros });
             },
@@ -1188,7 +1137,6 @@ export default {
           },
 
           onFocus() {
-              console.log('Input em focus');
               // Adicione aqui o código que você deseja executar quando o input está em focus
             },
           
@@ -1315,21 +1263,11 @@ export default {
                     alert("Please select a file.");
                     return;
                   }
-
-                  console.log(varFoto)
-                  console.log(this.file)
-
-
                   const formData = new FormData();
                   formData.append(varFoto, this.file);
-
-                  console.log("Redimensionada")
-                  console.log(formData)
-
                   try {
 
                     const responseData = await api.carregarFotoAnunciante('api/anunciantes/uploadFoto_anuciantes/', formData, id)
-                    console.log(responseData)
                     // Assuming the API returns the URL of the uploaded photo
                     //this.imageUrl = responseData.imageUrl;
                     if (responseData) {
@@ -1359,11 +1297,6 @@ export default {
         this.$store.state.anunciantes = await api.listarAnunciante()
         this.planos = await api.listarPlano()
         this.dados = await api.listarPlanoAnunciante()
-
-
-
-        console.log(this.planos)
-
     },
 
     mounted() {

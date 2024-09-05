@@ -16,10 +16,8 @@
         //const parametros = { id: data.user.id, name: data.user.name };
         //this.$router.push({ path: '/gerenciador', query: parametros });
         this.$router.push({ path: '/inicio'});
-        // console.log("Sessao"+data.user.name)
       }
       else {
-        // console.log("Sem sessao")
         this.$router.push({ path: '/login'});
       }
       

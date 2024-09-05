@@ -141,8 +141,6 @@
           try {
             const status = await api.adicionarPlano(data); // Espera a resposta da chamada assíncrona
 
-            console.log("Status")
-            console.log(status)
 
             if (status) {
               this.nome = ''
@@ -165,7 +163,6 @@
 
       async created() {
         this.marcas = await api.listarPlano()
-        console.log(this.marcas)
       }
   }
 </script>

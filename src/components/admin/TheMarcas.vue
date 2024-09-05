@@ -282,7 +282,6 @@ export default {
         // Editar estado
         const response = await api.editarMarca(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -305,7 +304,6 @@ export default {
 
             this.marcas = this.$store.state.marcas.find(objeto => objeto.id == this.id);
 
-            console.log('Novo dado')
 
             this.nome = this.marcas.nome_marca
             this.id_tipo_veiculo = this.marcas.tipo_veiculo_id
@@ -315,19 +313,16 @@ export default {
     modalApagar(id) {
             this.id = id
 
-            console.log(id)
     },
 
     async apagar() {
 
-              console.log('Eliminando ' + this.id)
 
               this.filter_tipo_veiculo = ""
                 
               try {
                 const response = await api.eliminarMarca(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.marcas = this.applyFiltro("tipo_veiculo", "carro")
@@ -336,7 +331,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 
@@ -393,7 +387,6 @@ export default {
 
             //this.marcas_filtradas = this.$store.state.marcas
 
-            console.log(url)    
             
             } else {
                 this.limparFiltro()

@@ -213,7 +213,6 @@ export default {
         // Editar estado
         const response = await api.editarCores(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -236,7 +235,6 @@ export default {
 
             this.cores = this.$store.state.cores.find(objeto => objeto.id === this.id);
 
-            console.log('Novo dado')
 
             this.nome = this.cores.cor
             this.desc = this.cores.descricao
@@ -245,17 +243,14 @@ export default {
         modalApagar(id) {
             this.id = id
 
-            console.log(id)
         },
 
         async apagar() {
 
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarCores(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.cores = await api.listarCores();
@@ -264,7 +259,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 

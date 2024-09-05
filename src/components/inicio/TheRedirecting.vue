@@ -25,12 +25,8 @@ export default {
 
     // Verifica se a URL contém a palavra "regionalmotors"
     if (url.includes("regionalmotors")) {
-      console.log("Está bem");
       window.location.href = `${newUrl}/#/inicioregional`;
     } else {
-      console.log("Hostname:", hostname);
-      console.log("Nova URL:", newUrl);
-
       const data = {
         "site": hostname
       };

@@ -321,9 +321,7 @@ export default {
     },
 
     async editar(id) {
-        console.log('emitindo...'+id)
         this.$store.state.adminID = await id
-        console.log(this.$store.state.adminID)
 
         this.$emit('editarplanooria', id)
     },
@@ -350,7 +348,6 @@ export default {
         // Editar estado
         const response = await api.editarPlano(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -373,7 +370,6 @@ export default {
 
             this.planos = this.$store.state.planos.find(objeto => objeto.id == this.id);
 
-            console.log('Novo dado')
 
             //this.novoEstado = this.estado.estado
             this.nome = this.planos.nome
@@ -387,23 +383,19 @@ export default {
             this.tipo = this.planos.tipo
             this.ativo = this.planos.activo
 
-            console.log(this.planos)
         },
 
         modalApagar(id) {
             this.id = id
 
-            console.log(id)
         },
 
         async apagar() {
 
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarPlano(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.planos = await api.listarPlano();
@@ -412,7 +404,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 

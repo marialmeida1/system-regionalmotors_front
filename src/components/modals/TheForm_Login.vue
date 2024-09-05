@@ -118,7 +118,6 @@
 
             } catch (error) {
 
-                console.log("Erro!")
                 this.$store.state.fechaModal = false
 
                 if (error) {

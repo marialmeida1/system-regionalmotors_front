@@ -70,11 +70,9 @@
           try {
             const response = await api.adicionarCombustivel(data)
 
-            console.log("resposta: " + response)
 
             if (response) {
 
-              console.log("Eliminado... " + response.id)
               this.$store.state.adminID = null
               this.$store.state.combustivel = await api.listarCombustivel()
 

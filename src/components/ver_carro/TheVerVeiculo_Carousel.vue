@@ -291,7 +291,6 @@ export default {
         this.veiculos.push({ image: this.veiculo.foto10 });
       }
     } else {
-      console.log("O ID na rota não é um número válido.");
     }
   },
 

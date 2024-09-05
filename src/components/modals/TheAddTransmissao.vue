@@ -61,11 +61,9 @@
           try {
             const response = await api.adicionarTransmissao(data)
 
-            console.log("resposta: " + response)
 
             if (response) {
 
-              console.log("Eliminado... " + response.id)
               this.$store.state.adminID = null
               this.$store.state.transmissao = await api.listarTransmissao()
 

@@ -290,7 +290,6 @@ export default {
     }
 
     if (this.veiculo != undefined) {
-      console.log(`Veículo com ID ${id}:`, this.veiculo.foto1);
 
       if (this.veiculo.foto1) {
         this.veiculos.push({ image: this.veiculo.foto1 });
@@ -323,7 +322,6 @@ export default {
         this.veiculos.push({ image: this.veiculo.foto10 });
       }
     } else {
-      console.log("O ID na rota não é um número válido.");
     }
   },
 
@@ -339,23 +337,19 @@ export default {
     async mostrarContato() {
       this.mostraContato = true;
 
-      console.log("show contato");
       await api.numClick("api/anuncios/contadorContacto/", this.veiculo.id);
     },
 
     async enviarMsg() {
-      console.log("show contato");
       await api.numClick("api/anuncios/contadorMensagem/", this.veiculo.id);
     },
 
     handleScroll() {
       if (window.scrollY == 0 || window.pageYOffset == 0) {
         // O scroll está no topo da página
-        console.log("esta no topo");
         this.isVisible = false;
       } else {
         // O scroll não está no topo da página
-        console.log("Desceu");
         this.isVisible = true;
       }
     },

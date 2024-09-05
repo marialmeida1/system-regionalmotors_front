@@ -284,7 +284,6 @@ export default {
         // Editar estado
         const response = await api.editarOpcionais(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -320,12 +319,10 @@ export default {
 
         async apagar() {
 
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarOpcionais(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.opcionais = await api.listarOpcionais();
@@ -334,7 +331,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 

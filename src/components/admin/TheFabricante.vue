@@ -218,7 +218,6 @@ export default {
         // Editar estado
         const response = await api.editarFabricante(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {            
             this.$store.state.fabricante = await api.listarFabricante()
@@ -240,28 +239,23 @@ export default {
 
             this.fabricante = this.$store.state.fabricante.find(objeto => objeto.id === this.id);
 
-            console.log('Novo dado')
 
             this.nome = this.fabricante.fabricante
             this.desc = this.fabricante.descricao
 
-            console.log(this.nome)
         },
 
         modalApagar(id) {
             this.id = id
 
-            console.log(id)
         },
 
         async apagar() {
 
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarFabricante(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.fabricante = await api.listarFabricante();
@@ -270,7 +264,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 

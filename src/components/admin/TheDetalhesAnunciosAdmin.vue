@@ -457,14 +457,11 @@ export default {
 
   methods: {
     show_menu_lateral(){
-        console.log('ola mundos')
         this.$emit('show_menu_lateral')
     },
 
     async editar() {
            // Obtém a data atual
-           console.log('Marca')
-           console.log(this.marcaSelecionada)
           const dataAtual = new Date();
 
           // Obtém o dia, mês e ano
@@ -475,9 +472,6 @@ export default {
           // Formata a data no formato "dia-mês-ano"
           const dataDoSistema = `${dia}-${mes}-${ano}`;
 
-          console.log('Passando Opcionais')
-          console.log(this.conforto)
-          console.log(this.seguranca)
 
           const confortoArray = JSON.stringify(this.conforto);
           const segurancaArray = JSON.stringify(this.seguranca);
@@ -533,12 +527,10 @@ export default {
             
           try {
             let id = this.$route.query.id;
-            console.log("Editando ID: " + id)
             const response = await api.editarAnuncio(data, id)
 
             if (response) {
 
-              console.log("Anuncio Editado... " + response.id)
               // A requisição foi bem-sucedida, exiba a mensagem de "criado"
               // this.criarAnuncio.classList.add('d-none')
               // this.carregarFotos.classList.remove('d-none')
@@ -552,7 +544,6 @@ export default {
               this.$emit('emitAnuncioEditado')
 
 
-              console.log('Limpando...')
               // Limpar form
               // this.marcaSelecionada = ''
               // this.modeloSelecionado = ''
@@ -577,9 +568,6 @@ export default {
             this.detalharAnuncios = this.$store.state.anuncios.find(objeto => objeto.id === parseInt(id));
 
 
-        console.log('Dados')
-        console.log(this.detalharAnuncios.nome_marca)
-        console.log(this.detalharAnuncios.fabricante)
 
         this.empresa = this.detalharAnuncios.empresa
         this.estado = this.detalharAnuncios.estado_id
@@ -628,12 +616,10 @@ export default {
         const id = parseInt(this.$route.query.id);
         this.$store.state.anuncioID = id
 
-        console.log("Recarregar fotos nos anuncios...#")
 
         try {
             this.$store.state.anuncios = await api.listarAnuncio();
 
-            console.log('Id ' + this.$store.state.anuncioID);
 
             if (this.$store.state.anuncios != null) {
                 this.$store.state.detalharAnuncios = this.$store.state.anuncios.find(objeto => objeto.id == this.$store.state.anuncioID);
@@ -655,9 +641,7 @@ export default {
             this.$store.state.foto10 = this.$store.state.detalharAnuncios.foto10
 
 
-            console.log("Novo contador " + this.contador)
 
-            console.log('Detalhar ' + JSON.stringify(this.$store.state.detalharAnuncios.seguranca_id));
 
             this.confortoArray = JSON.parse(this.$store.state.detalharAnuncios.conforto_id)
             // this.confortoArray = JSON.parse(confortoString)
@@ -665,7 +649,6 @@ export default {
             this.segurancaArray = JSON.parse(this.$store.state.detalharAnuncios.seguranca_id)
             // this.segurancaArray = JSON.parse(segurancaString)
 
-            console.log('opcionais ' + this.confortoArray);
             
             } catch (error) {
                 console.error('Erro ao listar anúncios:', error);
@@ -695,8 +678,6 @@ export default {
              const dados = await api.detalharAnuncio(id)
             this.veiculo = dados[0]
 
-            console.log('veiculos')
-            console.log(this.veiculo.id)
 
         } catch (e) {
             console.error("Erro na requisição:", e);

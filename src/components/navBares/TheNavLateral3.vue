@@ -275,7 +275,6 @@
 
         methods: {
             show_menu_lateral(){
-            console.log('ola mundos')
             this.$emit('show_menu_lateral')
             },
 

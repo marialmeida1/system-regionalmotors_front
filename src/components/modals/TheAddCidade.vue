@@ -77,11 +77,9 @@
           try {
             const response = await api.adicionarCidade(data)
 
-            console.log("resposta: " + response)
 
             if (response) {
 
-              console.log("Eliminado... " + response.id)
               this.$store.state.cidade = await api.listarCidade()
 
               this.nome = ''

@@ -210,7 +210,6 @@ export default {
 
       this.$store.state.anunciante_id = localStorage.getItem("anunciante_id");
       this.$store.state.userName = localStorage.getItem("anunciante_nome");
-      console.log(this.$store.state.anunciante_id);
     }
   },
 

@@ -234,7 +234,6 @@ export default {
         // Editar estado
         const response = await api.editarEstado(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -257,28 +256,23 @@ export default {
 
             this.estado = this.$store.state.estado.find(objeto => objeto.id === this.id);
 
-            console.log('Novo dado')
 
             this.uf = this.estado.uf
             this.nome = this.estado.estado
 
-            console.log(this.novoEstado)
         },
 
         modalApagar(id) {
             this.id = id
 
-            console.log(id)
         },
 
         async apagar() {
 
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarEstado(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.estado = await api.listarEstado();
@@ -287,7 +281,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 

@@ -436,9 +436,6 @@
                 const formData = new FormData();
                 formData.append(varFoto, file, file.name);
 
-                //console.log('Nome da imagem');
-                //console.log(file.name);
-
                 try {
                   // Tente realizar a solicitação
                   const response = await api.carregarFotos(formData, this.$store.state.anuncioID);
@@ -463,8 +460,6 @@
                     this.$store.state.foto10 = this.$store.state.detalharAnuncios.foto10                    
                   }
                   // Se a solicitação for bem-sucedida, exiba um console log de sucesso
-                  console.log('Solicitação bem-sucedida!');
-
                 } catch (error) {
                   // Se ocorrer um erro, exiba um console log de erro
                   console.error('Erro na solicitação:', error);
@@ -519,29 +514,19 @@
               const files = event.target.files;
               // Armazenar os arquivos selecionados em uma variável de dados
               this.multImagens = files;
-              console.log("imagens")
-
               this.totalFotos = 1
               this.multiArray = this.multImagens.length
-
-              console.log(this.multiplas)
 
               if(this.multImagens.length > 9) {
                 alert("Atenção: Selecione apenas 9 fotos")
               
               } else {
-                console.log('exibe')
-
                 for (let i = 1; i <= this.multImagens.length; i++) {
 
                     const fileImg = this.multImagens[i]
 
                     const index = i+1
-                    console.log(i)
-
                     this.varIndex = "foto"+index
-
-                    console.log(this.varIndex)
 
                     await this.uploadingFoto(fileImg, this.varIndex)
 
@@ -558,8 +543,6 @@
     
             showCarregarFotos() {
                 this.previewImage = null
-                console.log('Show carregar fotos Agora')
-                var modal = document.getElementById('CarregarFotos');
                 var modalBootstrap = new bootstrap.Modal(modal);
                 modalBootstrap.show();
 
@@ -567,8 +550,6 @@
 
             exibeCarregarFoto(){
                this.previewImage = null
-               console.log('Show carregar fotos Agora')
-               var modal = document.getElementById('CarregarFotos');
                var modalBootstrap = new bootstrap.Modal(modal);
                modalBootstrap.show();
 

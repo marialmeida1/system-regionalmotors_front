@@ -39,19 +39,15 @@
 
           methods: {
             handle_showHidden_menu_lateral() {
-              console.log('Emitido...')
-
               this.TheNavLateral.classList.toggle('showHidden_menu-lateral')
             },
 
             editarPlanoNow() {
-              console.log('editar Plano')
               this.$refs.theEditarPlano.showgetDados();
             },
 
             showPlanos_anuncianteNow(id) {
               this.ver_plano = id
-              console.log('Plano Pai id' + this.ver_plano)
             }
           },
 

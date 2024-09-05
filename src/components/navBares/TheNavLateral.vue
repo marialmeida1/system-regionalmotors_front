@@ -359,9 +359,6 @@ export default {
       const selectedIndex = event.target.selectedIndex;
       this.selectedText = event.target.options[selectedIndex].text;
 
-      //console.log(selectedIndex)
-      //console.log("texto" + this.selectedText)
-
       this.applyFiltro(chaveID, this.selectedText);
 
       this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas?tipo_veiculo=${this.selectedText}`);
@@ -471,7 +468,6 @@ export default {
     },
 
     exibirEstado() {
-      console.log(this.selecionados);
       this.applyFiltro("opcionais_id", this.selecionados);
     },
   },

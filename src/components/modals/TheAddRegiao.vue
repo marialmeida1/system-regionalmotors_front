@@ -68,11 +68,9 @@
           try {
             const response = await api.adicionarRegiao(data)
 
-            console.log("resposta: " + response)
 
             if (response) {
 
-              console.log("Eliminado... " + response.id)
               this.$store.state.adminID = null
               this.$store.state.regiao = await api.listarRegiao()
 

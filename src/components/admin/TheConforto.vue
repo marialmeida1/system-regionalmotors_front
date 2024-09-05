@@ -175,17 +175,13 @@ export default {
     },
 
     async editar(id) {
-        console.log('emitindo...'+id)
         this.$store.state.adminID = await id
-        console.log(this.$store.state.adminID)
 
         this.$emit('editarCategoria', id)
     },
 
     async eliminar(id) {
-        console.log('eliminando...' + id)
         this.$store.state.adminID = await id
-        console.log(this.$store.state.adminID)
 
     }
   },

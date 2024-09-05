@@ -121,9 +121,6 @@ export default {
 
   methods: {
     applyFiltro(chaveID, valorID) {
-      console.log(chaveID);
-      console.log(valorID);
-
       setTimeout(() => {
         const parametros = { [chaveID]: valorID };
         this.$router.push({ path: "/resultados", query: parametros });

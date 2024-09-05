@@ -214,7 +214,6 @@ export default {
         // Editar estado
         const response = await api.editarTipo_Veiculo(data, this.id)
 
-        console.log("Ja esta" + response)
 
         if (response.data) {
             
@@ -237,28 +236,23 @@ export default {
 
             this.tipo_veiculo = this.$store.state.tipo_veiculo.find(objeto => objeto.id == this.id);
 
-            console.log('Novo dado')
 
             this.nome = this.tipo_veiculo.tipo_veiculo
             this.desc = this.tipo_veiculo.descricao
 
-            //console.log(this.tipo_veiculo)
         },
 
             modalApagar(id) {
             this.id = id
 
-            console.log(id)
         },
 
         async apagar() {
 
-              console.log('Eliminando ' + this.id)
                 
               try {
                 const response = await api.eliminarTipo_Veiculo(this.id)
 
-                 console.log("temp Ja eliminando" + response)
 
                  setTimeout(async function () {
                     this.$store.state.tipo_veiculo = await api.listarTipo_Veiculo();
@@ -267,7 +261,6 @@ export default {
 
                 if (response.data) {
 
-                    console.log('Eliminou...')
                     
                     // this.$store.state.estado = await api.listarEstado()        
 
