@@ -328,12 +328,13 @@
 
     <div class="pagination">
       <button @click="changePage(current_page - 1)" :disabled="current_page === 1">Anterior</button>
-      <button @click="changePage(current_page + 1)" :disabled="current_page === total_pages">Próximo</button>
+      <button @click="changePage(current_page + 1)" :disabled="current_page === total_pages">
+        Próximo
+      </button>
       <button v-for="page in total_pages" :key="page" @click="changePage(page)">
         {{ page }}
       </button>
     </div>
-
 
     <div
       style="position: fixed; right: 15px; bottom: 25px; z-index: 99"
@@ -450,7 +451,6 @@ export default {
         this.arrayTitles.push(el);
         titles += el + " ";
         url_title += el + "%";
-
       });
 
       document.title = titles;
@@ -500,11 +500,11 @@ export default {
     },
 
     async changePage(pageNumber) {
-    if (pageNumber >= 1 && pageNumber <= this.total_pages) {
-      this.current_page = pageNumber;
-      await this.fetchAnuncios();
-    }
-  },
+      if (pageNumber >= 1 && pageNumber <= this.total_pages) {
+        this.current_page = pageNumber;
+        await this.fetchAnuncios();
+      }
+    },
 
     async limparFiltro() {
       this.$store.state.resultado = [];
@@ -557,14 +557,12 @@ export default {
     this.$store.state.resultado = [];
     const keys = Object.keys(this.$route.query);
 
-
     let titles = "Comprar ";
     this.queryString = "";
 
     keys.forEach((key, index) => {
       let valor = this.$route.query[key];
       titles += `${valor} `;
-
 
       if (index === 0) {
         this.queryString += `${key}=${valor}`;
@@ -600,7 +598,7 @@ export default {
     const resultado = this.$store.state.resultado;
 
     const currentPage = resultado[0].current_page;
-    const totalPages = resultado[0].total_pages; 
+    const totalPages = resultado[0].total_pages;
     this.current_page = currentPage;
     this.total_pages = totalPages;
     console.log(this.current_page);
@@ -728,7 +726,6 @@ export default {
   cursor: pointer;
 }
 
-
 .pagination {
   width: 100%;
   gap: 0.25rem;
@@ -742,11 +739,10 @@ export default {
   padding: 0.5rem 1rem;
   border-radius: 0.125rem;
   color: #000000d2;
-  font-size: 0.75rem
-} 
+  font-size: 0.75rem;
+}
 
-.pagination button:disabled{
+.pagination button:disabled {
   color: #00000071;
-} 
-
+}
 </style>

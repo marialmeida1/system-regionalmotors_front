@@ -14,7 +14,7 @@
             <span v-if="filtro.valor == '2'"> Usado </span>
           </span>
           <span v-else-if="filtro.chave == 'opcionais_id'"> Itens Opcionais </span>
-          <span v-else>{{ fltro.valor }}</span>
+          <span v-else>{{ filtro.valor }}</span>
         </span>
       </div>
 
@@ -328,6 +328,14 @@
       </div>
     </div>
 
+    <div class="pagination">
+      <button @click="changePage(current_page - 1)" :disabled="current_page === 1">Anterior</button>
+      <button @click="changePage(current_page + 1)" :disabled="current_page === total_pages">Próximo</button>
+      <button v-for="page in total_pages" :key="page" @click="changePage(page)">
+        {{ page }}
+      </button>
+    </div>
+
     <div
       style="position: fixed; right: 15px; bottom: 25px; z-index: 99"
       class="text-center d-lg-none d-md-none"
@@ -370,6 +378,8 @@ export default {
       ordenacao_type: '0',
       url: "",
       queryString: "",
+      total_pages: 0,
+      current_page: 1,
     };
   },
 
@@ -428,6 +438,7 @@ export default {
 
       this.arrayTitles = [];
       var titles = "Comprar ";
+      var url_title = "";
 
       // Para iterar sobre os valores de queryParams
       Object.values(queryParams).forEach((el) => {
@@ -439,9 +450,14 @@ export default {
         }
         this.arrayTitles.push(el);
         titles += el + " ";
+        url_title += el + " ";
       });
 
       document.title = titles;
+
+      const url_title_min = url_title.toLowerCase();
+      const newPath = `/resultados/#/${url_title_min}`;
+      this.$router.replace(newPath);
 
       this.queryString = Object.keys(queryParams)
         .map((key) => `${key}=${queryParams[key]}`)
@@ -468,8 +484,15 @@ export default {
 
     async fetchAnuncios() {
       this.$store.state.resultado = await api.filtrarAnuncio(
-        `api/anuncios/listar_anuncios/${this.ordenacao_type}?${this.queryString}&destaque_busca=1&status_publicacao=2`
+        `api/anuncios/listar_anuncios/${this.ordenacao_type}?${this.queryString}&destaque_busca=1&status_publicacao=2page=${this.current_page}`
       );
+    },
+
+    async changePage(pageNumber) {
+      if (pageNumber >= 1 && pageNumber <= this.total_pages) {
+        this.current_page = pageNumber;
+        await this.fetchAnuncios();
+      }
     },
 
     async getOrdenation(value) {
@@ -504,6 +527,9 @@ export default {
           this.notFound = true;
         }
       }
+
+      const path = `/resultados`;
+      this.$router.replace(path);
     },
   },
 
@@ -544,6 +570,18 @@ export default {
         this.notFound = false;
       }
     }
+
+    const resultado = this.$store.state.resultado;
+
+    const currentPage = resultado[0].current_page;
+    const totalPages = resultado[0].total_pages;
+    this.current_page = currentPage;
+    this.total_pages = totalPages;
+    console.log(this.current_page);
+    console.log(this.total_pages);
+
+    const path = `/resultados`;
+    this.$router.replace(path);
   },
 
   updated() {
@@ -667,5 +705,25 @@ export default {
   padding-left: 0.5rem;
   max-width: 8rem;
   cursor: pointer;
+}
+
+.pagination {
+  width: 100%;
+  gap: 0.25rem;
+  padding: 1rem 0rem 1rem 0rem;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  border: 1px solid #0000003b;
+  padding: 0.5rem 1rem;
+  border-radius: 0.125rem;
+  color: #000000d2;
+  font-size: 0.75rem;
+}
+
+.pagination button:disabled {
+  color: #00000071;
 }
 </style>
