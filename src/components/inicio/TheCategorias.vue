@@ -72,13 +72,13 @@ import Splide from "@splidejs/splide";
 export default {
   name: "TheDestaque",
 
-  data() {
-    return {
-      pageReload: false,
-      carregar: true,
-      Api_categorias: [],
-    };
-  },
+    data() {
+      return {
+        pageReload: false,
+        carregar: true,
+        Api_categorias: [],
+      };
+    },
 
   async mounted() {
     this.Api_categorias = await api.listarCategoria();
@@ -132,7 +132,7 @@ export default {
             perPage: 4,
           },
           3000: {
-            perPage: 6,
+            perPage: 4,
           },
         },
         autoplay: true,

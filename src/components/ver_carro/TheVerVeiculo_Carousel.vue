@@ -252,7 +252,7 @@ export default {
     const hostname = new URL(url).hostname;
 
     console.log(hostname)
-    if(hostname == "teste.regionalmotors.com.br" || hostname == "regionalmotors.com.br" || hostname == 'regionalmotors') {
+    if(hostname == "teste.regionalmotors.com.br" || hostname == "regionalmotors.com.br" || hostname == 'regionalmotors  ') {
       const newPath = `/verveiculo?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
       console.log("entrou1")
