@@ -252,7 +252,6 @@ export async function detalharAnunciante(id) {
 
 //Editar Anunciante
 export async function editarAnunciante(data, id) {
-  console.log("Enviando ");
   console.log(data);
 
   try {

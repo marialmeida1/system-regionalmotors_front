@@ -239,7 +239,6 @@ export default {
 
 
     const id = parseInt(this.$route.query.id); // Converter para número
-
     const dados = await api.detalharAnuncio(id);
     this.veiculo = dados[0];
 
@@ -248,9 +247,21 @@ export default {
     const title_page = this.veiculo.marca + " " + this.veiculo.modelo + " " + this.veiculo.ano_modelo + " " + this.veiculo.cor
     const url_page = this.veiculo.marca + "-" + this.veiculo.modelo + "-" + this.veiculo.ano_modelo + "-" + this.veiculo.cor
     const car = url_page.toLowerCase();
-    const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
 
-    this.$router.replace(newPath);
+    const url = window.location.href;
+    const hostname = new URL(url).hostname;
+
+    console.log(hostname)
+    if(hostname == "teste.regionalmotors.com.br" || hostname == "regionalmotors.com.br" || hostname == 'regionalmotors') {
+      const newPath = `/verveiculo?id=${this.veiculo.id}/${car}`;
+      this.$router.replace(newPath);
+      console.log("entrou1")
+    } else {
+      const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
+      this.$router.replace(newPath);
+      console.log("entoru2");
+    }
+
 
 
     document.title = title_page;
