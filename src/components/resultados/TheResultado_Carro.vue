@@ -553,7 +553,7 @@ export default {
 
     // Faz a chamada para a API com a query string construída dinamicamente
     this.$store.state.resultado = await api.filtrarAnuncio(
-      `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2`
+      `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
     );
 
     if (this.$store.state.resultado) {

@@ -472,18 +472,6 @@ export default {
     },
   },
 
-  async mounted() {
-    this.card_resultado = document.getElementById("card-resultado");
-
-    if (keys[0] == "tipo_veiculo") {
-      this.valor = this.$route.query.tipo_veiculo;
-    } else {
-      this.valor = "carro";
-    }
-
-    this.valor = "ola mundo";
-  },
-
   async created() {
 
     this.$store.state.tipo_veiculo = await api.listarTipo_Veiculo();
@@ -492,6 +480,10 @@ export default {
     this.$store.state.categoriaOpcionais = this.Api_CategOpcionais;
     this.Api_Opcionais = await api.listarOpcionais();
     this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas`);
+
+    document.getElementById('tipo_veiculo').value = "1";
+    document.getElementById('situacao_veiculo').value = "2";
+
 
     //alert(JSON.stringify(this.marcas))
   },
