@@ -461,6 +461,9 @@ export default {
         .map((key) => `${key}=${queryParams[key]}`)
         .join("&");
 
+        console.log(this.queryString);
+
+
       // Construa a URL com base nos filtros
       this.url = `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2`;
 

@@ -69,6 +69,20 @@
       <hr />
 
       <div class="px-2 pb-2">
+        <div class="title__filter pb-2">Categoria</div>
+        <div class="pesquisar pesquisar-lateral p-2">
+          <select @change="filtrarCategoria('nome_categoria', $event.target.value)" class="filter-select" id="categoria">
+            <option value="">Categoria</option>
+            <option v-for="item in categorias" :value="item.nome">
+              {{ item.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="px-2 pb-2">
         <div class="title__filter pb-2">Estado</div>
         <div class="pesquisar pesquisar-lateral p-2">
           <select @change="filtrarCidade('estado', $event.target.value)" class="filter-select" id="estado">
@@ -297,6 +311,7 @@ export default {
 
       marcas: [],
       modelos: [],
+      categorias: [],
       regioes: [],
       cidades: [],
       precoMax: "",
@@ -342,6 +357,7 @@ export default {
       document.getElementById('tipo_veiculo').value = '';
       document.getElementById('marca').value = '';
       document.getElementById('modelo').value = '';
+      document.getElementById('categoria').value = '';
       document.getElementById('estado').value = '';
       document.getElementById('cidade').value = '';
 
@@ -369,6 +385,13 @@ export default {
 
       this.modelos = await api.filtrarAnuncio(`api/modelos/listar_modelos?nome_marca=${valorID}`);
     },
+
+    async filtrarCategoria(chaveID, valorID) {
+      this.applyFiltro(chaveID, valorID);
+
+      this.categorias = await api.filtrarAnuncio(`api/categorias/listar_categorias?nome_categoria=${valorID}`);
+    },
+
 
     /*async filtrarRegiao(chaveID, valorID) {
       this.applyFiltro(chaveID, valorID);
@@ -480,6 +503,7 @@ export default {
     this.$store.state.categoriaOpcionais = this.Api_CategOpcionais;
     this.Api_Opcionais = await api.listarOpcionais();
     this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas`);
+    this.categorias = await api.filtrarAnuncio(`api/categorias/listar_categorias`);
 
     document.getElementById('tipo_veiculo').value = "1";
     document.getElementById('situacao_veiculo').value = "2";
