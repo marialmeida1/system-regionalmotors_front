@@ -5,12 +5,12 @@
     <div class="rodape-dark" style="padding: 2em 3em">
       <div class="row d-flex justify-content-evenly">
         <div class="col-12 col-md-6 col-lg-3 border-smoll links">
-          <h5 class="mb-3">Comprar</h5>
+          <h5 class="mb-3 link-footer-title">Comprar</h5>
 
-          <p><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=2" class="link">Carro Novos</router-link></p>
-          <p><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=1" class="link">Carro Usados</router-link></p>
-          <p><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=2" class="link">Motos Novas</router-link></p>
-          <p><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=1" class="link">Motos Usadas</router-link></p>
+          <p class="link-footer"><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=2" class="link">Carro Novos</router-link></p>
+          <p class="link-footer"><router-link to="/resultados?tipo_veiculo=carro&situacao_veiculo=1" class="link">Carro Usados</router-link></p>
+          <p class="link-footer"><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=2" class="link">Motos Novas</router-link></p>
+          <p class="link-footer"><router-link to="/resultados?tipo_veiculo=moto&situacao_veiculo=1" class="link">Motos Usadas</router-link></p>
         </div>
 
         <!--<div class="col-12 col-md-6 col-lg-3 border-smoll">
@@ -25,14 +25,14 @@
                 </div>-->
 
         <div class="col-12 col-md-4 col-lg-3 links">
-          <h5 class="mb-3">Institucional</h5>
-          <p>
+          <h5 class="mb-3 link-footer-title">Institucional</h5>
+          <p class="link-footer">
             <router-link to="/termosuso" class="link">Termos de Uso</router-link>
           </p>
-          <p><router-link to="/privacidadeseguranca" class="link">Politicas de Privacidade e Segurança</router-link></p>
-          <p><router-link to="/sobreregional" class="link">Sobre a Regional Motors</router-link></p>
-          <p><router-link to="/segcomprar" class="link">Segurança ao comprar</router-link></p>
-          <p><router-link to="/sobreempresa" class="link">Sobre a empresa</router-link></p>
+          <p class="link-footer"><router-link to="/privacidadeseguranca" class="link">Politicas de Privacidade e Segurança</router-link></p>
+          <p class="link-footer"><router-link to="/sobreregional" class="link">Sobre a Regional Motors</router-link></p>
+          <p class="link-footer"><router-link to="/segcomprar" class="link">Segurança ao comprar</router-link></p>
+          <p class="link-footer"><router-link to="/sobreempresa" class="link">Sobre a empresa</router-link></p>
         </div>
       </div>
       <div class="py-4 d-flex justify-content-center">
@@ -108,4 +108,19 @@ export default {
 .link {
   color: #fff !important;
 }
+
+.link-footer-title {
+  font-weight: bold;
+}
+
+.link-footer {
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.link-footer a {
+  text-decoration: none;
+}
+
+
 </style>
