@@ -183,7 +183,7 @@
                     <div v-if="session">
                       <router-link to="/conta" class="link-profile">
                         <p>
-                          {{ $store.state.userName }}
+                          {{ $store.state.userName }} - Conta
                         </p>
                       </router-link>
                       <p class="m-0 mb-2" style="text-align: left !important" @click="sair">Sair</p>

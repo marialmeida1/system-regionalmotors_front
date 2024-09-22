@@ -5,7 +5,8 @@
             <h4 class="op-7">
                 <span @click="goToAdmin" v-if="admin" style="cursor: pointer;">Admin</span> 
                 <span v-else>Conta</span>
-                | <span style="font-size: 14px;" class="irParaLoja" @click="visitarLoja">Ir para Loja</span></h4> <br>
+                | <span style="font-size: 14px;" class="irParaLoja" @click="visitarLoja">Ir para Loja</span>
+                | <span style="font-size: 14px;" class="irParaLoja" @click="visitarAdmin">Ir para Admin</span></h4><br>
 
             <div class="bg-white p-4 rounded-3 mb-3 position-relative">
 
@@ -242,6 +243,17 @@ import * as api from "../../services/api";
 
             visitarLoja() {
               this.$router.push({ path: '/loja/'+localStorage.getItem("anunciante_id")});
+            },
+
+            visitarAdmin() {
+              if (localStorage.getItem('token')) {
+                if (localStorage.getItem('perfil') == 'admin') {
+                    this.$router.push({ path: '/anuncios'});
+                }
+                else if(localStorage.getItem('perfil') == 'superadmin') {
+                    this.$router.push({ path: '/admin-anuncios'});
+                }
+            }
             },
 
             goToAdmin() {
