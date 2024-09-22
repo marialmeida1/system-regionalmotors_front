@@ -21,7 +21,11 @@
       <!-- Ordenação -->
       <div class="ordenacao">
         <i class="fa fa-sort fa-md"></i>
-        <select class="ordenacao_select" @change="getOrdenation($event.target.value)" id="ordenacao_select">
+        <select
+          class="ordenacao_select"
+          @change="getOrdenation($event.target.value)"
+          id="ordenacao_select"
+        >
           <option value="0" selected>MAIS RELEVANTES</option>
           <option value="1">MENOR PREÇO</option>
           <option value="2">MAIOR PREÇO</option>
@@ -329,10 +333,8 @@
     </div>
 
     <div class="pagination">
-      <button @click="changePage(current_page - 1)" :disabled="current_page === 1">Anterior</button>
-      <button @click="changePage(current_page + 1)" :disabled="current_page === total_pages">Próximo</button>
-      <button v-for="page in total_pages" :key="page" @click="changePage(page)">
-        {{ page }}
+      <button v-if="current_page < total_pages" @click="verMaisCarros" class="btn-pagination">
+        Ver mais carros
       </button>
     </div>
 
@@ -375,7 +377,7 @@ export default {
       loader: true,
       notFound: false,
       arrayTitles: [],
-      ordenacao_type: '0',
+      ordenacao_type: "0",
       url: "",
       queryString: "",
       total_pages: 0,
@@ -405,7 +407,6 @@ export default {
     async listData(data) {
       this.$store.state.resultado = await data;
     },
-
 
     async applyFiltro(chaveID, valorID) {
       this.notFound = false;
@@ -461,8 +462,7 @@ export default {
         .map((key) => `${key}=${queryParams[key]}`)
         .join("&");
 
-        console.log(this.queryString);
-
+      console.log(this.queryString);
 
       // Construa a URL com base nos filtros
       this.url = `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2`;
@@ -483,21 +483,29 @@ export default {
     },
 
     async fetchAnuncios() {
-      this.$store.state.resultado = await api.filtrarAnuncio(
-        `api/anuncios/listar_anuncios/${this.ordenacao_type}?${this.queryString}&destaque_busca=1&status_publicacao=2page=${this.current_page}`
-      );
+      let allResults = [];
+
+      for (let page = 1; page <= this.current_page; page++) {
+        const resultado = await api.filtrarAnuncio(
+          `api/anuncios/listar_anuncios/${this.ordenacao_type}?${this.queryString}&destaque_busca=1&status_publicacao=2&page=${page}`
+        );
+
+        allResults = [...allResults, ...resultado];
+      }
+
+      this.$store.state.resultado = allResults;
     },
 
-    async changePage(pageNumber) {
-      if (pageNumber >= 1 && pageNumber <= this.total_pages) {
-        this.current_page = pageNumber;
+    async verMaisCarros() {
+      if (this.current_page < this.total_pages) {
+        this.current_page += 1;
         await this.fetchAnuncios();
       }
     },
 
     async getOrdenation(value) {
-      this.ordenacao_type = value; 
-      await this.fetchAnuncios(); 
+      this.ordenacao_type = value;
+      await this.fetchAnuncios();
     },
 
     verTodos() {
@@ -582,7 +590,6 @@ export default {
   },
 
   updated() {
-    
     this.$nextTick(() => {
       if (this.$store.state.resultado) {
         Object.values(this.$refs).forEach((glideRefs) => {
@@ -687,9 +694,8 @@ export default {
 }
 
 .ordenacao {
-  color: rgba(51, 51, 51, 0.562); 
+  color: rgba(51, 51, 51, 0.562);
 }
-
 
 .ordenacao_select {
   appearance: none;
@@ -698,29 +704,24 @@ export default {
   -moz-appearance: none;
   background-color: transparent;
   font-size: 14px;
-  color: rgba(51, 51, 51, 0.562); 
+  color: rgba(51, 51, 51, 0.562);
   padding-left: 0.5rem;
   max-width: 8rem;
   cursor: pointer;
 }
 
 .pagination {
-  width: 100%;
-  gap: 0.25rem;
-  padding: 1rem 0rem 1rem 0rem;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
-.pagination button {
-  border: 1px solid #0000003b;
+.btn-pagination {
+  background-color: crimson;
+  color: #fff;
+  border: 0 solid;
   padding: 0.5rem 1rem;
-  border-radius: 0.125rem;
-  color: #000000d2;
-  font-size: 0.75rem;
-}
-
-.pagination button:disabled {
-  color: #00000071;
+  border-radius: 0.5rem;
+  margin: 2rem 0rem;
 }
 </style>
