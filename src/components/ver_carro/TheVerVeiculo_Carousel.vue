@@ -9,10 +9,26 @@
         <splide :options="splideOptions">
           <splide-slide v-for="(item, index) in veiculos" :key="index" class="custom-slide px-0">
             <!-- Conteúdo do slide -->
-            <div class="" style="background-color: #e3e3e3; border: 3px solid transparent; border-top: none; border-bottom: none">
+            <div
+              class=""
+              style="
+                background-color: #e3e3e3;
+                border: 3px solid transparent;
+                border-top: none;
+                border-bottom: none;
+              "
+            >
               <!-- Mobile mudar o nome do Fancybox -->
-              <a :href="item.image + 'detalhe_mini.jpg'" data-fancybox="minha-galeria" :data-caption="`${veiculo.marca} - ${veiculo.modelo}`">
-                <img :src="item.image + 'destaque.jpg'" :alt="`${veiculo.marca} - ${veiculo.modelo}`" class="custom-image" />
+              <a
+                :href="item.image + 'detalhe_mini.jpg'"
+                data-fancybox="minha-galeria"
+                :data-caption="`${veiculo.marca} - ${veiculo.modelo}`"
+              >
+                <img
+                  :src="item.image + 'destaque.jpg'"
+                  :alt="`${veiculo.marca} - ${veiculo.modelo}`"
+                  class="custom-image"
+                />
               </a>
             </div>
           </splide-slide>
@@ -33,14 +49,21 @@
       
     </div -->
 
-    <div style="position: relative" class="row titles-em-card p-0 m-0 col-12 col-lg-10 col-md-10 mx-auto">
+    <div
+      style="position: relative"
+      class="row titles-em-card p-0 m-0 col-12 col-lg-10 col-md-10 mx-auto"
+    >
       <div class="col-12 px-md-3 mb-3">
-        <div class="mb-3 rounded-3 px-0 bg-white card-ver-form" style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
+        <div
+          class="mb-3 rounded-3 px-0 bg-white card-ver-form"
+          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden"
+        >
           <div class="p-4">
             <div>
               <h1 style="font-size: 30px; margin-bottom: 5px">
                 <strong
-                  >{{ veiculo.marca }} <span style="color: crimson"> {{ veiculo.modelo }} </span></strong
+                  >{{ veiculo.marca }}
+                  <span style="color: crimson"> {{ veiculo.modelo }} </span></strong
                 >
               </h1>
 
@@ -49,7 +72,9 @@
 
             <div class="row">
               <div>
-                <h5 class="my-3" style="font-weight: 600; opacity: 0.8">R$ {{ veiculo.valor_preco }}</h5>
+                <h5 class="my-3" style="font-weight: 600; opacity: 0.8">
+                  R$ {{ veiculo.valor_preco }}
+                </h5>
               </div>
               <div class="col-6 col-lg-4">
                 <div class="mb-2">
@@ -103,7 +128,10 @@
 
         <!-- Itens de veiculo -->
 
-        <div class="mb-3 rounded-3 px-0 bg-white card-ver-form" style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
+        <div
+          class="mb-3 rounded-3 px-0 bg-white card-ver-form"
+          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden"
+        >
           <div class="p-4">
             <div>
               <p class="rotulo">Itens de Veículo</p>
@@ -126,7 +154,10 @@
           </div>
         </div>
 
-        <div class="mb-3 rounded-3 px-0 bg-white card-ver-form" style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
+        <div
+          class="mb-3 rounded-3 px-0 bg-white card-ver-form"
+          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden"
+        >
           <div class="p-4">
             <div>
               <p class="rotulo">Sobre o vendedor</p>
@@ -152,15 +183,29 @@
               <div class="py-2">
                 <span style="color: #000; font-weight: 600">
                   <span style="color: #000; font-weight: 600" v-if="mostraContato">
-                    <p class="mb-1" style="opacity: 0.7"><span class="fw-bold">Telefone:</span> {{ veiculo.celular }}</p>
-                    <p class="mb-1" style="opacity: 0.7"><span class="fw-bold">Celular:</span> {{ veiculo.telefone }}</p>
-                    <p class="mb-2" style="opacity: 0.7"><span class="fw-bold">WhatsApp:</span> {{ veiculo.whatsapp }}</p>
+                    <p class="mb-1" style="opacity: 0.7">
+                      <span class="fw-bold">Telefone:</span> {{ veiculo.celular }}
+                    </p>
+                    <p class="mb-1" style="opacity: 0.7">
+                      <span class="fw-bold">Celular:</span> {{ veiculo.telefone }}
+                    </p>
+                    <p class="mb-2" style="opacity: 0.7">
+                      <span class="fw-bold">WhatsApp:</span> {{ veiculo.whatsapp }}
+                    </p>
 
-                    <a :href="`https://api.whatsapp.com/send?phone=${veiculo.whatsapp}&text=testando`" target="_blank">
-                      <button class="btn py-3 text-center rounded-3" style="width: 200px; background-color: #5fcb71">
+                    <a
+                      :href="`https://api.whatsapp.com/send?phone=${veiculo.whatsapp}&text=testando`"
+                      target="_blank"
+                    >
+                      <button
+                        class="btn py-3 text-center rounded-3"
+                        style="width: 200px; background-color: #5fcb71"
+                      >
                         <img src="/whatsapp.png" width="32" style="margin-top: -3px" />
                         <span style="color: #fff; font-weight: 600">
-                          <span style="font-size: 14px; font-weight: bold" @click="enviarMsg"> Enviar mensagem </span>
+                          <span style="font-size: 14px; font-weight: bold" @click="enviarMsg">
+                            Enviar mensagem
+                          </span>
                         </span>
                       </button>
                     </a>
@@ -174,7 +219,9 @@
                   </span>
                 </span>
               </div>
-              <p style="font-size: 14px; font-weight: bold; opacity: 0.7">{{ veiculo.tipo_anunciante }}</p>
+              <p style="font-size: 14px; font-weight: bold; opacity: 0.7">
+                {{ veiculo.tipo_anunciante }}
+              </p>
             </div>
           </div>
         </div>
@@ -224,47 +271,79 @@ export default {
 
     //Lightbox
     this.$nextTick(() => {
-    $("[data-fancybox='minha-galeria']").fancybox({
-      buttons: ["close"],
-      thumbs: {
-        autoStart: true, 
-        axis: "x",
-      },
+      $("[data-fancybox='minha-galeria']").fancybox({
+        buttons: ["close"],
+        thumbs: {
+          autoStart: true,
+          axis: "x",
+        },
+      });
     });
-  });
 
     window.addEventListener("scroll", this.handleScroll);
 
     this.veiculo = [];
-
 
     const id = parseInt(this.$route.query.id); // Converter para número
     const dados = await api.detalharAnuncio(id);
     this.veiculo = dados[0];
 
     this.id = this.veiculo.id_anunciante;
+    console.log(JSON.stringify(this.veiculo));
 
-    const title_page = this.veiculo.marca + " " + this.veiculo.modelo + " " + this.veiculo.ano_modelo + " " + this.veiculo.cor
-    const url_page = this.veiculo.marca + "-" + this.veiculo.modelo + "-" + this.veiculo.ano_modelo + "-" + this.veiculo.cor
+    let title_page =
+      this.veiculo.marca +
+      " " +
+      this.veiculo.modelo +
+      " " +
+      this.veiculo.ano_modelo +
+      " " +
+      this.veiculo.cor +
+      " " +
+      this.veiculo.combustivel +
+      " " +
+      this.veiculo.transmissao;
+    const url_page =
+      this.veiculo.marca +
+      "-" +
+      this.veiculo.modelo +
+      "-" +
+      this.veiculo.ano_modelo +
+      "-" +
+      this.veiculo.cor +
+      " " +
+      this.veiculo.combustivel +
+      " " +
+      this.veiculo.transmissao;
     const car = url_page.toLowerCase();
 
     const url = window.location.href;
     const hostname = new URL(url).hostname;
 
-    console.log(hostname)
-    if(hostname == "teste.regionalmotors.com.br" || hostname == "regionalmotors.com.br" || hostname == 'regionalmotors  ') {
+    if (
+      hostname == "teste.regionalmotors.com.br" ||
+      hostname == "regionalmotors.com.br" ||
+      hostname == "regionalmotors"
+    ) {
       const newPath = `/verveiculo?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
-      console.log("entrou1")
+      title_page += " - Regional Motors";
     } else {
       const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
-      console.log("entoru2");
+      title_page += " - " + this.veiculo.email;
     }
 
-
-
     document.title = title_page;
+    let meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", title_page);
+    } else {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = title_page;
+      document.getElementsByTagName("head")[0].appendChild(meta);
+    }
 
     if (this.veiculo) {
       this.showTheVerVeiculos = false;
@@ -332,7 +411,9 @@ export default {
     },
 
     listOpcionais(id) {
-      const opcionaisFiltrados = this.veiculo.opcionais_id.filter((opcional) => opcional.categoria_opcional_id == id);
+      const opcionaisFiltrados = this.veiculo.opcionais_id.filter(
+        (opcional) => opcional.categoria_opcional_id == id
+      );
 
       return opcionaisFiltrados;
     },
