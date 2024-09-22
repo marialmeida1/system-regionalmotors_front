@@ -5,24 +5,16 @@
 
     <div class="navegacao d-block d-lg-none fixed-top">
       <header class="header bg-white">
-        <div
-          class="logo bg-succes px-3"
-          style="width: 260px; padding: 13.5px 0"
-        >
+        <div class="logo bg-succes px-3" style="width: 260px; padding: 13.5px 0">
           <RouterLink class="routerLink pt-2" to="/inicio">
-            <div
-              class="logo bg-succes px-1 d-flex align-items-center"
-              style="width: 190px"
-            >
-              <img src="/logo.png" class="logo" alt="Logo Regional Motors">
+            <div class="logo bg-succes px-1 d-flex align-items-center" style="width: 190px">
+              <img src="/logo.png" class="logo" alt="Logo Regional Motors" />
             </div>
           </RouterLink>
         </div>
 
         <div class="icons bg-succes p-2 px-3">
-          <div class="icon d-none d-lg-block">
-            <i class="fa fa-user"></i> Entrar
-          </div>
+          <div class="icon d-none d-lg-block"><i class="fa fa-user"></i> Entrar</div>
           <div class="icon"><i class="far fa-bell"></i></div>
           <div class="icon d-block d-lg-none btn-menu" @click="show_menu">
             <i class="fas fa-bars"></i>
@@ -32,11 +24,7 @@
             <div style="padding-top: 20px">
               <div class="px-4 mx-auto content-menu col-11 col-md-8">
                 <div class="d-flex justify-content-end pt-2">
-                  <span
-                    @click="show_menu"
-                    style="font-size: 25px; cursor: pointer"
-                    >x</span
-                  >
+                  <span @click="show_menu" style="font-size: 25px; cursor: pointer">x</span>
                 </div>
                 <div class="items-menu-mobile">
                   <div class="mb-2" v-if="session">
@@ -57,12 +45,7 @@
                         <span class="fas fa-user me-1"></span> Conta
                       </router-link>
                       |
-                      <span
-                        @click="sair"
-                        style="cursor: pointer; color: crimson"
-                      >
-                        Sair
-                      </span>
+                      <span @click="sair" style="cursor: pointer; color: crimson"> Sair </span>
                     </div>
                   </div>
 
@@ -108,19 +91,19 @@
     <div class="navegacao d-none d-lg-block fixed-top">
       <header class="header bg-dark bg-white ps-5">
         <RouterLink class="routerLink pt-2" to="/inicio">
-          <div
-            class="logo bg-succes ps-4 pt-1 d-flex align-items-center"
-            style="width: 210px"
-          >
+          <div class="logo bg-succes ps-4 pt-1 d-flex align-items-center" style="width: 210px">
             <img src="/logo.png" class="logo" />
           </div>
         </RouterLink>
 
         <div id="men" class="bg-inf card-menu">
           <div class="card-menu-content d-flex align-items-center">
-
-            <div class="menu-link position-relative py-3" @click="execAll('carro')">Comprar carros</div>
-            <div class="menu-link position-relative py-3" @click="execAll('moto')">Comprar motos</div>
+            <div class="menu-link position-relative py-3" @click="execAll('carro')">
+              Comprar carros
+            </div>
+            <div class="menu-link position-relative py-3" @click="execAll('moto')">
+              Comprar motos
+            </div>
 
             <!--<div class="menu-link position-relative py-3">
               Comprar
@@ -185,11 +168,7 @@
           </div>
           <div class="icon d-none d-lg-block menu-link position-relative py-">
             <i class="fa fa-user me-2 fa-lg"></i>
-            <span style="font-size: 0.8em">Conta</span>
-            <div
-              class="sub-menu-desktop position-absolute"
-              style="left: -50px !important"
-            >
+            <div class="sub-menu-desktop position-absolute" style="left: -50px !important">
               <div class="py-2" style="z-index: 99; width: 170px">
                 <div class="pb-2"></div>
                 <div
@@ -197,30 +176,21 @@
                   style="
                     border-bottom-left-radius: 8px;
                     border-bottom-right-radius: 8px;
+                    box-shadow: rgb(0 0 0 / 10%) 0.25rem 0.25rem 1rem;
                   "
                 >
                   <div class="px-3">
                     <div v-if="session">
-                      <router-link to="/conta">
-                        <p style="color: #000">
+                      <router-link to="/conta" class="link-profile">
+                        <p>
                           {{ $store.state.userName }}
                         </p>
                       </router-link>
-                      <p
-                        class="m-0 mb-2"
-                        style="text-align: left !important"
-                        @click="sair"
-                      >
-                        Sair
-                      </p>
+                      <p class="m-0 mb-2" style="text-align: left !important" @click="sair">Sair</p>
                     </div>
 
                     <div v-else>
-                      <p
-                        class="m-0"
-                        style="text-align: left !important"
-                        @click="abrirModal"
-                      >
+                      <p class="m-0" style="text-align: left !important" @click="abrirModal">
                         Iniciar Sessão
                       </p>
                     </div>

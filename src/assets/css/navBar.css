@@ -216,3 +216,12 @@ select option {
 .menu-lateral {
   z-index: 4;
 }
+
+.link-profile{
+  color: #000;
+  text-decoration: none;
+}
+
+.link-profile:hover {
+  color: #000;
+}
