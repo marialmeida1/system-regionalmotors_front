@@ -505,8 +505,15 @@ export default {
     this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas`);
     this.categorias = await api.filtrarAnuncio(`api/categorias/listar_categorias`);
 
-    document.getElementById('tipo_veiculo').value = "1";
-    document.getElementById('situacao_veiculo').value = "2";
+    
+
+    const url = window.location.href; 
+    const info_url = url.substring(url.indexOf('#'));
+
+    if (info_url == "#/resultados") {
+      document.getElementById('tipo_veiculo').value = "1";
+      document.getElementById('situacao_veiculo').value = "2";
+    }
 
 
     //alert(JSON.stringify(this.marcas))

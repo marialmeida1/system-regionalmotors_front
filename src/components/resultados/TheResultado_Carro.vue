@@ -545,6 +545,7 @@ export default {
     this.$store.state.resultado = [];
 
     const keys = Object.keys(this.$route.query);
+    console.log(keys);
 
     let titles = "Comprar ";
     this.queryString = "";
@@ -562,11 +563,20 @@ export default {
 
     document.title = titles;
 
-    // Faz a chamada para a API com a query string construída dinamicamente
-    this.$store.state.resultado = await api.filtrarAnuncio(
-      `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
-    );
+    const url = window.location.href; 
+    const info_url = url.substring(url.indexOf('#'));
 
+    if (info_url == "#/resultados") {
+      this.$store.state.resultado = await api.filtrarAnuncio(
+        `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
+      );
+    } else {
+      this.$store.state.resultado = await api.filtrarAnuncio(
+        `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2`
+      );
+    }
+
+    // Faz a chamada para a API com a query string construída dinamicamente
     if (this.$store.state.resultado) {
       this.results = true;
       this.loader = false;
@@ -584,9 +594,6 @@ export default {
     const totalPages = resultado[0].total_pages;
     this.current_page = currentPage;
     this.total_pages = totalPages;
-
-    const path = `/resultados`;
-    this.$router.replace(path);
   },
 
   updated() {
