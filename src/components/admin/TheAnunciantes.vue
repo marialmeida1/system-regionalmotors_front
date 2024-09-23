@@ -506,6 +506,32 @@
 
                   <div class="px-">
                     <div class="mb-3">
+                      <label for="email" class="form-label">Instagram</label>
+                      <input
+                        id="email"
+                        type="text"
+                        placeholder="Instagram"
+                        class="form-control"
+                        v-model="instagram"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="px-">
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Facebook</label>
+                      <input
+                        id="email"
+                        type="text"
+                        placeholder="Facebook"
+                        class="form-control"
+                        v-model="facebook"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="px-">
+                    <div class="mb-3">
                       <label for="email" class="form-label">Pessoa Responsavel</label>
                       <input
                         id="email"
@@ -950,7 +976,7 @@
                     class="ms-3 btn btn-primary"
                     @click="editarPlano()"
                   >
-                    Actualizar
+                    Atualizar
                   </button>
                   <button v-else type="button" class="ms-3 btn btn-primary" @click="addPlano()">
                     Atribuir
@@ -1017,6 +1043,8 @@ export default {
       celular: "",
       whatsapp: "",
       site: "",
+      instagram: "",
+      facebook: "",
       cep: "",
       endereco: "",
       numero: "",
@@ -1141,6 +1169,8 @@ export default {
         password: this.senha,
         status: this.status,
         site: this.site,
+        instagram: this.instagram,
+        facebook: this.facebook,
         cep: this.cep,
         endereco: this.endereco,
         numero: this.numero,
@@ -1284,6 +1314,7 @@ export default {
       this.api_cidade = await api.listarCidade();
       this.id = id;
       this.anunciante = this.$store.state.anunciantes.find((objeto) => objeto.id == this.id);
+      console.log(JSON.stringify(this.anunciante))
       this.Pessoal_responsavel = this.anunciante.Pessoal_responsavel;
       this.email = this.anunciante.email;
       this.telefone = this.anunciante.telefone;
@@ -1301,6 +1332,8 @@ export default {
 
       this.email = this.anunciante.email;
       this.site = this.anunciante.site;
+      this.instagram = this.anunciante.instagram;
+      this.facebook = this.anunciante.facebook;
       this.cep = this.anunciante.cep;
       this.endereco = this.anunciante.endereco;
       this.numero = this.anunciante.numero;

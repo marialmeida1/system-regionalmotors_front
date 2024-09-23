@@ -111,6 +111,19 @@
 
                       <div class="px-">
                         <div class="mb-3">
+                            <label for="email" class="form-label">Instagram</label>
+                            <input id="email" type="text" placeholder="Instagram" class="form-control" v-model="instagram">
+                        </div>
+                      </div>
+                      <div class="px-">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Facebook</label>
+                            <input id="email" type="text" placeholder="Facebook" class="form-control" v-model="facebook">
+                        </div>
+                      </div>
+
+                      <div class="px-">
+                        <div class="mb-3">
                             <label for="email" class="form-label">Pessoa Responsavel</label>
                             <input id="email" type="text" placeholder="Pessoa Responsavel" class="form-control" v-model="pessoal_responsavel" required>
                         </div>
@@ -320,6 +333,8 @@
           whatsapp: '37',
           email: '',
           sites: '',
+          instagram: '',
+          facebook: '',
           cep: '',
           endereco: '',
           numero: '',
@@ -362,6 +377,8 @@
               "password": this.senha,
               "status": this.status,
               "site": this.sites,
+              "instagram": this.instagram,
+              "facebook": this.facebook,
               "cep": this.cep,
               "endereco": this.endereco,
               "numero": this.numero,
@@ -395,6 +412,8 @@
               this.email = ''
               this.status = ''
               this.sites = ''
+              this.instagram = '',
+              this.facebook = '', 
               this.cep = ''
               this.endereco = ''
               this.numero = ''

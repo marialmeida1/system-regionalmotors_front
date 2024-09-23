@@ -1,7 +1,7 @@
 <template>
     <main class="content">
-            <div class="py-2" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
-                <!-- Filtros--> 
+            <!--<div class="py-2" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
+            
                 <div class="row">
                     <div class="col-8 col-lg-10">
                         <div class="row">
@@ -41,8 +41,8 @@
                             
                         </div>
                     </div>
-                </div>  
-            </div>
+                </div>
+            </div>-->
 
            <div class="p-4 pb-0">
                 <button class="btn bg-dark" @click="goBack()" style="cursor: pointer; opacity: 0.7;">
@@ -82,7 +82,7 @@
                                   <div style="height: 150px"
                                         class="col-lg-3" 
                                   >
-                                    <img :src="anunciante.foto" class="img-fluid">
+                                    <img :src="anunciante.foto" class="img-fluid img-anunciante">
                                   </div>
                                     
                                   </div>
@@ -164,6 +164,21 @@
                                         </p>
                                         {{anunciante.site}}
                                     </div>
+
+                                    <div class="col-12 col-md-4 col-lg-4 mb-3">
+                                        <p class="mb-1" style="opacity: 0.6; font-size: 15px;"> 
+                                            Instagram
+                                        </p>
+                                        {{anunciante.instagram}}
+                                    </div>
+
+                                    <div class="col-12 col-md-4 col-lg-4 mb-3">
+                                        <p class="mb-1" style="opacity: 0.6; font-size: 15px;"> 
+                                            Facebook
+                                        </p>
+                                        {{anunciante.facebook}}
+                                    </div>
+
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
@@ -466,6 +481,9 @@ export default {
         background: linear-gradient(90deg, rgb(72, 81, 102) 1%, rgb(21, 24, 29) 90%);
         color: #c2c2c2;
         box-shadow: -1px 2px 10px 0px   rgba(0, 0, 0, 0.5);
+    }
 
+    .img-anunciante {
+        height: 8rem;
     }
 </style>
