@@ -520,6 +520,11 @@ export default {
       this.$store.state.resultado = await api.filtrarAnuncio(
         "api/anuncios/listar_anuncios?destaque_busca=1&status_publicacao=2"
       );
+      const resultado = this.$store.state.resultado;
+      const currentPage = resultado[0].current_page;
+      const totalPages = resultado[0].total_pages;
+      this.current_page = currentPage;
+      this.total_pages = totalPages;
       this.$store.state.results = true;
       this.filtro = "";
       this.textMarca = "";
