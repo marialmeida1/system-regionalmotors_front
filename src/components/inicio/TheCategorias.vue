@@ -22,38 +22,24 @@
       <div id="splide-categoria" class="splide">
         <div class="splide__track">
           <ul class="splide__list">
-            <li
-              class="splide__slide p-2"
-              v-for="item in Api_categorias"
-              :key="item.id"
-            >
-              <!-- <router-link :to="'/verveiculo?id='+item.id"> -->
-              <div
-                class="eliteSlide bg-dark0 card-categ position-relative"
-                style="
-                  height: 170px !important;
-                  border-radius: 8px;
-                  overflow: hidden;
-                "
-              >
-                <img
-                  class="deApagar custom-image"
-                  v-lazy="`${item.foto_categoria}?v=${new Date().getTime()}`"
-                  alt="regional motors"
-                  style="
-                  width: 100%; 
-                  height: 100%;
-                  filter: brightness(75%);
-                  "
-                />
-
+            <li class="splide__slide p-2" v-for="item in Api_categorias" :key="item.id">
+              <router-link :to="'/resultados?nome_categoria=' + item.nome">
                 <div
-                  class="position-absolute p-3 nome-categ"
-                  style="bottom: 0; z-index: 99"
+                  class="eliteSlide bg-dark0 card-categ position-relative"
+                  style="height: 170px !important; border-radius: 8px; overflow: hidden"
                 >
-                  <b>{{ item.nome }}</b>
+                  <img
+                    class="deApagar custom-image"
+                    v-lazy="`${item.foto_categoria}?v=${new Date().getTime()}`"
+                    alt="regional motors"
+                    style="width: 100%; height: 100%; filter: brightness(75%)"
+                  />
+
+                  <div class="position-absolute p-3 nome-categ" style="bottom: 0; z-index: 99">
+                    <b>{{ item.nome }}</b>
+                  </div>
                 </div>
-              </div>
+              </router-link>
             </li>
 
             <!-- Adicione mais slides conforme necessário -->
@@ -72,13 +58,13 @@ import Splide from "@splidejs/splide";
 export default {
   name: "TheDestaque",
 
-    data() {
-      return {
-        pageReload: false,
-        carregar: true,
-        Api_categorias: [],
-      };
-    },
+  data() {
+    return {
+      pageReload: false,
+      carregar: true,
+      Api_categorias: [],
+    };
+  },
 
   async mounted() {
     this.Api_categorias = await api.listarCategoria();
@@ -185,7 +171,7 @@ export default {
   /*background-color: rgba(255, 31, 31, 0.8);*/
   width: 100%;
   font-weight: 900;
-  color:#fff;
+  color: #fff;
   /* transition: height 1s ease-in-out; */
   border-top-right-radius: 50px;
 }
