@@ -1186,7 +1186,7 @@ export default {
         cidade_comercial_id: this.cidade_comercial_id,
         regiao_id: this.regiao_id,
         observacao: this.observacao,
-        "banner_loja:": this.banner,
+        banner_loja: this.banner,
         banner_loja_movel: this.banner_movel,
       };
 
