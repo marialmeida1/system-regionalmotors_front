@@ -25,7 +25,8 @@ export default {
 
     // Verifica se a URL contém a palavra "regionalmotors"
     if (url.includes("regionalmotors")) {
-      window.location.href = `${newUrl}/#/inicioregional`;
+      window.location.href = `${newUrl}/`;
+      console.log(window.location.href);
     } else {
       const data = {
         "site": hostname
@@ -39,7 +40,7 @@ export default {
 
         if (response && response.id) {
           // Redireciona para a nova URL com o ID do anunciante
-          window.location.href = `${newUrl}/#/loja/${response.id}`;
+          window.location.href = `${newUrl}/loja/${response.id}`;
         } else {
           console.log("Anunciante não encontrado.");
         }
