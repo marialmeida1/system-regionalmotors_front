@@ -9,16 +9,28 @@
             <strong> Loja <i class="fa fa-store"></i> </strong>
           </div>
           <div class="card-comprar-align">
-            <div>
-              <img
-                :src="`https://api.regionalmotors.com.br/${infos?.foto}`"
-                style="object-fit: contain; width: 100%; height: 100%"
-              />
+            <div class="card-comprar-row">
+              <div>
+                <img
+                  :src="`https://api.regionalmotors.com.br/${infos?.foto}`"
+                  style="object-fit: contain; width: 10rem; height: 100%"
+                />
+              </div>
+              <div class="card-comprar-title">
+                <h4 class="mb-0 ms-4 card-comprar-title-text">
+                  {{ infos?.nome_empresa }}
+                </h4>
+              </div>
             </div>
-            <div class="card-comprar-title">
-              <h4 class="mb-0 ms-4 card-comprar-title-text">
-                {{ infos?.nome_empresa }}
-              </h4>
+            <div class="col-12 mt-3">
+              <router-link :to="`/loja/${infos?.id}/estoque`">
+                <div
+                  class="btn crimson col-12 py-2"
+                  style="background: crimson; color: #fff; font-weight: bold"
+                >
+                  ESTOQUE
+                </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -41,6 +53,7 @@ export default {
       searchQuery: "",
       infos: null,
       showBar: false,
+      id: "",
     };
   },
 
@@ -145,14 +158,19 @@ export default {
 
 .card-comprar-align {
   display: flex;
+  flex-direction: column;
+}
+
+.card-comprar-row {
+  display: flex;
   flex-direction: row;
   margin-top: 0.75rem;
   justify-content: space-around;
 }
 
 .card-comprar-title {
-    margin: 0rem 1rem 0rem 1rem;
-    border-left: solid #0000001f 2px;
+  margin: 0rem 1rem 0rem 1rem;
+  border-left: solid #0000001f 2px;
 }
 
 .card-comprar-title-text {

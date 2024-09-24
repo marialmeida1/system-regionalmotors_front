@@ -458,7 +458,8 @@ export default {
 
       const url_title_min = url_title.toLowerCase();
       const url = window.location.href;
-      const id = new URL(url).hash.split("/")[2];
+      const pathname = new URL(url).pathname;
+      const id = pathname.split("/")[2];
 
       const newPath = `/loja/${id}/estoque/#/${url_title_min}`;
       this.$router.replace(newPath);
@@ -532,7 +533,8 @@ export default {
       }
 
       const url = window.location.href;
-      const id = new URL(url).hash.split("/")[2];
+      const pathname = new URL(url).pathname;
+      const id = pathname.split("/")[2];
 
       const path = `/loja/${id}/estoque/`;
       this.$router.replace(path);
@@ -541,7 +543,8 @@ export default {
     async fetchAnunciante() {
       try {
         const url = window.location.href;
-        const id = new URL(url).hash.split("/")[2];
+        const pathname = new URL(url).pathname;
+        const id = pathname.split("/")[2];
 
         const response = await api.encontrarAnunciante(id);
 
@@ -591,7 +594,8 @@ export default {
     }
 
     const url = window.location.href;
-    const id = new URL(url).hash.split("/")[2];
+    const pathname = new URL(url).pathname;
+    const id = pathname.split("/")[2];
 
     const path = `/loja/${id}/estoque/`;
     this.$router.replace(path);
