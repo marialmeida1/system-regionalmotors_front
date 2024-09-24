@@ -13,11 +13,11 @@
             <div class="carousel-item active bg-dark">
               <div class="box-carousel-1">
                 <picture class="banner">
-                  <source media="(max-width: 568px)" :srcset="infos?.banner_mobile_movel ? `https://api.regionalmotors.com.br/${infos.banner_mobile_movel}` : '/banner/foto-mobile1.jpg'" />
+                  <source media="(max-width: 568px)" :srcset="infos?.banner_loja_movel ? `https://api.regionalmotors.com.br/${infos.banner_loja_movel}` : '/banner/foto-mobile1.jpg'" />
                   <img
-                    :src="infos?.banner_mobile ? `https://api.regionalmotors.com.br/${infos.banner_mobile}` : '/banner/foto1.jpg'"
+                    :src="infos?.banner_loja ? `https://api.regionalmotors.com.br/${infos.banner_loja}` : '/banner/foto1.jpg'"
                     alt="Banner"
-                    style="width: 100%; height: 100%; object-fit: cover"
+                    style="width: 100%; object-fit: cover"
                   />
 
                 </picture>
@@ -95,20 +95,15 @@ export default {
 </script>
 
 <style>
-.banner {
+.banner img {
   width: 100%;
-  background-size: cover; /* Redimensiona a imagem para cobrir o banner */
-  background-position: center; /* Centraliza a imagem */
+  object-fit: cover;
+  height: 170px; /* Altura padrão para web */
 }
 
-/* Estilos para mobile */
 @media (max-width: 568px) {
-  .banner {
-    height: 250px; /* Altura para mobile */
-  }
-
-  .size-banner {
-    height: 250px;
+  .banner img {
+    height: 215px; /* Altura menor para dispositivos móveis */
   }
 }
 </style>

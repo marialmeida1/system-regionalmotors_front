@@ -1,13 +1,10 @@
 <template>
-  <footer id="footer" >
+  <footer id="footer">
     <div class="rodape-dark">
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 border-smoll">
           <h5 class="pb-2">{{ infos?.nome_empresa }}</h5>
-          <img
-            :src="`https://api.regionalmotors.com.br/${infos?.foto}`"
-            class="img-contain mb-4"
-          />
+          <img :src="`https://api.regionalmotors.com.br/${infos?.foto}`" class="img-contain mb-4" />
         </div>
         <div class="col-12 col-md-6 col-lg-4 border-smoll">
           <h5 class="pb-2">Endereço:</h5>
@@ -41,17 +38,20 @@
       </div>
       <div class="pt-4 d-flex justify-content-center">
         <div class="col-12 col-md-3 col-lg-3 text-center mb-1">
-          <a class="icon-border me-3" :href="`${infos?.instagram}`">
+          <a v-if="infos?.instagram" class="icon-border me-3" :href="infos.instagram">
             <i class="fab fa-instagram fa-lg" style="color: #f0bd84"></i>
           </a>
-          <a class="icon-border" :href="`${infos?.facebook}`">
+
+          <a v-if="infos?.facebook" class="icon-border" :href="infos.facebook">
             <i class="fab fa-facebook-f fa-lg" style="color: #8fd1f7"></i>
           </a>
         </div>
       </div>
     </div>
   </footer>
-  <div class="py-3 text-center footer-powered">© Powered by <a href="https://regionalmotors.com.br/">Regional Motors</a></div>
+  <div class="py-3 text-center footer-powered">
+    © Powered by <a href="https://regionalmotors.com.br/">Regional Motors</a>
+  </div>
 </template>
 
 <script>
@@ -128,7 +128,7 @@ export default {
   }
 }
 
-.footer-powered a{
+.footer-powered a {
   color: crimson;
 }
 </style>
