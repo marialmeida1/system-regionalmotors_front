@@ -126,7 +126,7 @@ export default {
 
         if (response && response.id) {
           // Redireciona para a nova URL com o ID do anunciante
-          window.location.href = `${newUrl}/#/loja/${response.id}`;
+          window.location.href = `${newUrl}/loja/${response.id}`;
         } else {
           console.log("Anunciante não encontrado.");
         }

@@ -571,7 +571,7 @@ export default {
     const url = window.location.href; 
     const info_url = url.substring(url.indexOf('#'));
 
-    if (info_url == "#/resultados") {
+    if (info_url == "/resultados") {
       this.$store.state.resultado = await api.filtrarAnuncio(
         `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
       );

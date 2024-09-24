@@ -327,12 +327,8 @@
     </div>
 
     <div class="pagination">
-      <button @click="changePage(current_page - 1)" :disabled="current_page === 1">Anterior</button>
-      <button @click="changePage(current_page + 1)" :disabled="current_page === total_pages">
-        Próximo
-      </button>
-      <button v-for="page in total_pages" :key="page" @click="changePage(page)">
-        {{ page }}
+      <button v-if="current_page < total_pages" @click="verMaisCarros" class="btn-pagination">
+        Ver mais carros
       </button>
     </div>
 
@@ -487,9 +483,17 @@ export default {
     },
 
     async fetchAnuncios() {
-      this.$store.state.resultado = await api.filtrarAnuncio(
-        `api/anuncios/listar_anuncios/${this.ordenacao_type}?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2&page=${this.current_page}`
-      );
+      let allResults = [];
+
+      for (let page = 1; page <= this.current_page; page++) {
+        const resultado = await api.filtrarAnuncio(
+          `api/anuncios/listar_anuncios/${this.ordenacao_type}?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2&page=${this.current_page}`
+          );
+
+        allResults = [...allResults, ...resultado];
+      }
+
+      this.$store.state.resultado = allResults;
     },
 
     async getOrdenation(value) {
@@ -501,9 +505,9 @@ export default {
       this.limparFiltro();
     },
 
-    async changePage(pageNumber) {
-      if (pageNumber >= 1 && pageNumber <= this.total_pages) {
-        this.current_page = pageNumber;
+    async verMaisCarros() {
+      if (this.current_page < this.total_pages) {
+        this.current_page += 1;
         await this.fetchAnuncios();
       }
     },
@@ -516,6 +520,11 @@ export default {
       this.$store.state.resultado = await api.filtrarAnuncio(
         `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&destaque_busca=1&status_publicacao=2`
       );
+      const resultado = this.$store.state.resultado;
+      const currentPage = resultado[0].current_page;
+      const totalPages = resultado[0].total_pages;
+      this.current_page = currentPage;
+      this.total_pages = totalPages;
       this.$store.state.results = true;
       this.filtro = "";
       this.textMarca = "";
@@ -730,22 +739,17 @@ export default {
 }
 
 .pagination {
-  width: 100%;
-  gap: 0.25rem;
-  padding: 1rem 0rem 1rem 0rem;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
-.pagination button {
-  border: 1px solid #0000003b;
+.btn-pagination {
+  background-color: crimson;
+  color: #fff;
+  border: 0 solid;
   padding: 0.5rem 1rem;
-  border-radius: 0.125rem;
-  color: #000000d2;
-  font-size: 0.75rem;
-}
-
-.pagination button:disabled {
-  color: #00000071;
+  border-radius: 0.5rem;
+  margin: 2rem 0rem;
 }
 </style>

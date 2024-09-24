@@ -261,7 +261,6 @@
                           </div>
                         </div>
                       </div>
-                      <div></div>
                     </div>
                   </div>
                 </div>
@@ -271,6 +270,16 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="container d-flex justify-content-end">
+    <router-link :to="`/loja/${id}/estoque`">
+      <div
+        class="btn crimson col-12 py-2"
+        style="border: #242424 solid 1px; color: #242424; font-weight: 600; font-size: 0.75rem"
+      >
+        Ver Estoque
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -296,6 +305,7 @@ export default {
       results: false,
       loader: true,
       notFound: false,
+      id: ''
     };
   },
 
@@ -340,6 +350,8 @@ export default {
         this.notFound = true;
       }
     }
+
+    this.id = id;
   },
 
   updated() {
