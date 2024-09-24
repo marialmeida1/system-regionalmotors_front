@@ -65,7 +65,8 @@ export default {
     async fetchAnunciante() {
       try {
         const url = window.location.href;
-        const id = new URL(url).hash.split("/")[2];
+        const pathname = new URL(url).pathname;
+        const id = pathname.split("/")[2];
 
         const response = await api.encontrarAnunciante(id);
 
@@ -73,7 +74,7 @@ export default {
 
       } catch (error) {
         console.error("Erro ao buscar dados do anunciante:", error);
-        // Lide com erros conforme necessário
+        //this.$router.push({ path: '/'});
       }
     },
   },

@@ -1,17 +1,15 @@
-<template>
-  
-</template>
+<template></template>
 
 <script>
 import * as api from "../../services/api";
 
 export default {
-  name: 'TheDestaque',
+  name: "TheDestaque",
 
   data() {
     return {
       pageReload: false,
-      carregar: true
+      carregar: true,
     };
   },
 
@@ -22,6 +20,7 @@ export default {
 
     // Extrair a parte principal da URL sem o hash e o caminho
     const newUrl = `${window.location.protocol}//${hostname}:${window.location.port}`;
+    console.log(newUrl)
 
     // Verifica se a URL contém a palavra "regionalmotors"
     if (url.includes("regionalmotors")) {
@@ -29,8 +28,10 @@ export default {
       console.log(window.location.href);
     } else {
       const data = {
-        "site": hostname
+        site: hostname,
       };
+
+      console.log("awrawea")
 
       const urlRequest = "api/anunciantes/buscar_anunciante_por_site";
 
@@ -49,7 +50,6 @@ export default {
       }
     }
   },
-
 };
 </script>
 
@@ -58,5 +58,4 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
 }
-
 </style>

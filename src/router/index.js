@@ -5,7 +5,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/inicioregional',
+      path: '/',
       name: 'home',
       component: HomeView
     },
@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('../views/InicioInicioView.vue')
     },
     {
-      path: '/',
+      path: '/inicioregional',
       name: 'Inicio Regional',
       component: () => import('../views/InicioView.vue')
     },

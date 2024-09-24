@@ -74,12 +74,12 @@
     </div>
 
     <div class="row p-0 m-0">
-      <div class="col-lg-8 col-md-8 p-0 m-0">
+      <div class="col-lg-12 col-md-12 p-0 m-0">
         <div>
           <div class="row p-0 m-0">
             <!-- Card -->
             <div
-              class="col-lg-4 col-md-6 p-0 m-0 mb-3"
+              class="col-lg-3 col-md-6 p-0 m-0 mb-3"
               v-for="(item, index) in $store.state.resultado"
               :key="index"
               style="cursor: pointer"
@@ -327,9 +327,9 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4">
+      <!--<div class="col-lg-4 col-md-4">
         <div class="invisible">Ads</div>
-      </div>
+      </div>-->
     </div>
 
     <div class="pagination">
