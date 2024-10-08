@@ -568,8 +568,10 @@ export default {
 
     document.title = titles;
 
-    const url = window.location.href; 
-    const info_url = url.substring(url.indexOf('#'));
+    const url = window.location.href;
+    const baseUrl = window.location.origin; 
+    const info_url = url.replace(baseUrl, '');  
+    console.log(info_url);
 
     if (info_url == "/resultados") {
       this.$store.state.resultado = await api.filtrarAnuncio(

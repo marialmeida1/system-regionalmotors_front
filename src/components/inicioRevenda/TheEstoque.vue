@@ -586,10 +586,20 @@ export default {
 
     document.title = titles;
 
-    // Faz a chamada para a API com a query string construída dinamicamente
-    this.$store.state.resultado = await api.filtrarAnuncio(
-      `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`
-    );
+    const url = window.location.href;
+    const baseUrl = window.location.origin; 
+    const info_path = url.replace(baseUrl, '');  
+    const info_url = info_path.split("/")[3];
+
+    if (info_url == "estoque") {
+      this.$store.state.resultado = await api.filtrarAnuncio(
+        `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
+      );
+    } else {
+      this.$store.state.resultado = await api.filtrarAnuncio(
+        `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`
+      );
+    }
 
     if (this.$store.state.resultado) {
       this.results = true;
@@ -602,7 +612,7 @@ export default {
       }
     }
 
-    const url = window.location.href;
+
     const pathname = new URL(url).pathname;
     const id = pathname.split("/")[2];
 
