@@ -438,7 +438,7 @@ export default {
 
       this.arrayTitles = [];
       var titles = "Comprar ";
-      var url_title = "";
+      var url_title = "lista-";
 
       // Para iterar sobre os valores de queryParams
       Object.values(queryParams).forEach((el) => {
