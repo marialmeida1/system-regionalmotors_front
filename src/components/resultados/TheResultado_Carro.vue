@@ -462,8 +462,6 @@ export default {
         .map((key) => `${key}=${queryParams[key]}`)
         .join("&");
 
-      console.log(this.queryString);
-
       // Construa a URL com base nos filtros
       this.url = `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2`;
 
@@ -550,7 +548,6 @@ export default {
     this.$store.state.resultado = [];
 
     const keys = Object.keys(this.$route.query);
-    console.log(keys);
 
     let titles = "Comprar ";
     this.queryString = "";
@@ -571,7 +568,6 @@ export default {
     const url = window.location.href;
     const baseUrl = window.location.origin; 
     const info_url = url.replace(baseUrl, '');  
-    console.log(info_url);
 
     if (info_url == "/resultados") {
       this.$store.state.resultado = await api.filtrarAnuncio(

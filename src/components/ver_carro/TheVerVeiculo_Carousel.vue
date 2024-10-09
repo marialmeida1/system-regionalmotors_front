@@ -59,6 +59,12 @@
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden"
         >
           <div class="p-4">
+            <div class="pb-4">
+              <button class="btn btn-danger btn-sm my-3 mb-2" @click="backPage">
+                <span class="fas fa-arrow-left me-2"></span><strong>Voltar</strong>
+              </button>
+            </div>
+
             <div>
               <h1 style="font-size: 30px; margin-bottom: 5px">
                 <strong
@@ -181,27 +187,23 @@
               </div>
 
               <div class="py-2">
-                <span style="color: #000; font-weight: 600">
-                  <span style="color: #000; font-weight: 600" v-if="mostraContato">
+                <span style="color: #000">
+                  <span style="color: #000" v-if="mostraContato">
                     <p class="mb-1" style="opacity: 0.7">
                       <span class="fw-bold">Telefone:</span> {{ veiculo.celular }}
                     </p>
                     <p class="mb-1" style="opacity: 0.7">
                       <span class="fw-bold">Celular:</span> {{ veiculo.telefone }}
                     </p>
-                    <p class="mb-2" style="opacity: 0.7">
-                      <span class="fw-bold">WhatsApp:</span> {{ veiculo.whatsapp }}
-                    </p>
-
                     <a
                       :href="`https://api.whatsapp.com/send?phone=${veiculo.whatsapp}&text=testando`"
                       target="_blank"
                     >
                       <button
-                        class="btn py-3 text-center rounded-3"
+                        class="btn py-2 text-center rounded-3"
                         style="width: 200px; background-color: #5fcb71"
                       >
-                        <img src="/whatsapp.png" width="32" style="margin-top: -3px" />
+                        <img src="/whatsapp.png" width="24" style="margin-top: -3px" />
                         <span style="color: #fff; font-weight: 600">
                           <span style="font-size: 14px; font-weight: bold" @click="enviarMsg">
                             Enviar mensagem
@@ -400,6 +402,10 @@ export default {
 
     async enviarMsg() {
       await api.numClick("api/anuncios/contadorMensagem/", this.veiculo.id);
+    },
+
+    backPage(){
+      window.history.back();
     },
 
     handleScroll() {
