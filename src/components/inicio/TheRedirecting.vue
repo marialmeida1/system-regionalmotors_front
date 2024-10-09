@@ -31,8 +31,6 @@ export default {
         site: hostname,
       };
 
-      console.log("awrawea")
-
       const urlRequest = "api/anunciantes/buscar_anunciante_por_site";
 
       try {
