@@ -13,7 +13,7 @@
         <div class="p-2 px-4 p-lg-2">
           <h5 class="card-comprar-text">
             <span class="luz-card-comprar"></span>
-            <span style="margin-left: 10px">Encontre um veículo</span>
+            <span style="margin-left: 10px">Encontre seu veículo</span>
           </h5>
         </div>
 
