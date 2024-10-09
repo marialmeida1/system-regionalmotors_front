@@ -442,14 +442,16 @@ export default {
 
       // Para iterar sobre os valores de queryParams
       Object.values(queryParams).forEach((el) => {
-        if (el == 1) {
+        if (el == "1") {
           el = "Novo";
-        } else if (el == 2) {
+        } else if (el == "2") {
           el = "Usado";
+        } else if(el == 0){
+          el = "Todos"
         }
         this.arrayTitles.push(el);
         titles += el + " ";
-        url_title += el + " ";
+        url_title += el + "-";
       });
 
       document.title = titles;

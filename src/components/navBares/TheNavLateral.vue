@@ -17,7 +17,7 @@
         <div class="pesquisar pesquisar-lateral p-2">
           <select @change="applyFiltro('situacao_veiculo', $event.target.value)" class="filter-select" id="situacao_veiculo">
             <option value="" selected disabled>Situação do veículo</option>
-            <option value="">Todos</option>
+            <option value="0">Todos</option>
             <option value="1">Novo</option>
             <option value="2">Usado</option>
           </select>
@@ -507,8 +507,7 @@ export default {
 
     const url = window.location.href;
     const baseUrl = window.location.origin; 
-    const info_url = url.replace(baseUrl, '');  
-    console.log(info_url);
+    const info_url = url.replace(baseUrl, ''); 
 
     if (info_url == "/resultados") {
       document.getElementById('tipo_veiculo').value = "1";

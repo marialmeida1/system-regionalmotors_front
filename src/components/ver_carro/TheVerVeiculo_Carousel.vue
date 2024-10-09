@@ -291,7 +291,6 @@ export default {
     this.veiculo = dados[0];
 
     this.id = this.veiculo.id_anunciante;
-    console.log(JSON.stringify(this.veiculo));
 
     let title_page =
       this.veiculo.marca +
