@@ -20,12 +20,10 @@ export default {
 
     // Extrair a parte principal da URL sem o hash e o caminho
     const newUrl = `${window.location.protocol}//${hostname}:${window.location.port}`;
-    console.log(newUrl)
 
     // Verifica se a URL contém a palavra "regionalmotors"
     if (url.includes("regionalmotors")) {
       window.location.href = `${newUrl}/`;
-      console.log(window.location.href);
     } else {
       const data = {
         site: hostname,
@@ -45,6 +43,8 @@ export default {
         }
       } catch (error) {
         console.error("Erro ao buscar o anunciante:", error);
+      } finally {
+        this.carregar = false;
       }
     }
   },

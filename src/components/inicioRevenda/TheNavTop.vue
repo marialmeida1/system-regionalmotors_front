@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white navbar" v-if="infos">
+  <div class="bg-white navbar">
     <!-- Menu Mobile -->
     <div class="navegacao bg-succes" style="padding: 0.9em 0"></div>
 
@@ -27,7 +27,7 @@
                 </div>
                 <div class="items-menu-mobile">
                   <a
-                    :href="`https://api.whatsapp.com/send?phone=${infos.whatsapp}&text=testando`"
+                    :href="`https://api.whatsapp.com/send?phone=${infos?.whatsapp}&text=testando`"
                     target="_blank"
                   >
                     <button class="btn py-1 text-center rounded-2 btn-whatsapp">
@@ -41,10 +41,10 @@
                   </a>
 
                   <div class="ps-2 pt-4">
-                    <RouterLink class="menu-link-mobile" :to="`/loja/${infos.id}`">
+                    <RouterLink class="menu-link-mobile" :to="`/loja/${infos?.id}`">
                       Início
                     </RouterLink>
-                    <RouterLink class="menu-link-mobile" :to="`/loja/${infos.id}/estoque`">
+                    <RouterLink class="menu-link-mobile" :to="`/loja/${infos?.id}/estoque`">
                       Estoque
                     </RouterLink>
                     <p
@@ -71,13 +71,13 @@
           <div class="card-menu-content d-flex justify-content-between">
             <RouterLink
               class="menu-link routerLink position-relative py-3"
-              :to="`/loja/${infos.id}`"
+              :to="`/loja/${infos?.id}`"
             >
               Início
             </RouterLink>
             <RouterLink
               class="menu-link routerLink position-relative py-3"
-              :to="`/loja/${infos.id}/estoque`"
+              :to="`/loja/${infos?.id}/estoque`"
             >
               Estoque
             </RouterLink>
@@ -88,7 +88,7 @@
         </div>
         <div class="icons bg-succes px-3 d-flex align-items-center">
           <a
-            :href="`https://api.whatsapp.com/send?phone=${infos.whatsapp}&text=testando`"
+            :href="`https://api.whatsapp.com/send?phone=${infos?.whatsapp}&text=testando`"
             target="_blank"
           >
             <button class="btn py-1 text-center rounded-2 btn-whatsapp">
