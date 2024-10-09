@@ -15,7 +15,7 @@
             </p>
             <p class="p-0 mb-1">{{ infos?.bairro_comercial }}, {{ infos?.cep_comercial }}</p>
             <p class="p-0 mb-1">
-              {{ infos?.cidade_nome }}, {{ infos?.regiao_nome }}, {{ infos?.estado_nome }}
+              {{ infos?.cidade_nome }}, {{ infos?.estado_nome }}
             </p>
           </div>
         </div>
@@ -38,11 +38,11 @@
       </div>
       <div class="pt-4 d-flex justify-content-center">
         <div class="col-12 col-md-3 col-lg-3 text-center mb-1">
-          <a v-if="infos?.instagram" class="icon-border me-3" :href="infos.instagram">
+          <a v-if="infos?.instagram" class="icon-border me-3" :href="infos.instagram" target="_blank">
             <i class="fab fa-instagram fa-lg" style="color: #f0bd84"></i>
           </a>
 
-          <a v-if="infos?.facebook" class="icon-border" :href="infos.facebook">
+          <a v-if="infos?.facebook" class="icon-border" :href="infos.facebook" target="_blank">
             <i class="fab fa-facebook-f fa-lg" style="color: #8fd1f7"></i>
           </a>
         </div>
