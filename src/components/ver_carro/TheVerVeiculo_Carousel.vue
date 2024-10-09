@@ -58,8 +58,8 @@
           class="mb-3 rounded-3 px-0 bg-white card-ver-form"
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden"
         >
-          <div class="p-4">
-            <div class="pb-4">
+          <div class="pt-0 px-4 pb-4">
+            <div class="pb-2">
               <button class="btn btn-danger btn-sm my-3 mb-2" @click="backPage">
                 <span class="fas fa-arrow-left me-2"></span><strong>Voltar</strong>
               </button>
@@ -312,10 +312,13 @@ export default {
       this.veiculo.ano_modelo +
       "-" +
       this.veiculo.cor +
-      " " +
+      "-" +
       this.veiculo.combustivel +
-      " " +
-      this.veiculo.transmissao;
+      "-" +
+      this.veiculo.transmissao +
+      "-" +
+      this.veiculo.id +
+      "-RegionalMotors"
     const car = url_page.toLowerCase();
 
     const url = window.location.href;
@@ -333,17 +336,6 @@ export default {
       const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
       title_page += " - " + this.veiculo.email;
-    }
-
-    document.title = title_page;
-    let meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute("content", title_page);
-    } else {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = title_page;
-      document.getElementsByTagName("head")[0].appendChild(meta);
     }
 
     if (this.veiculo) {
