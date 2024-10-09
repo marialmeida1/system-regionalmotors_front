@@ -9,14 +9,14 @@
             <strong> Loja <i class="fa fa-store"></i> </strong>
           </div>
           <div class="card-comprar-align">
-            <div class="card-comprar-row">
+            <div class="card-comprar-row" style="min-height: 4rem;">
               <div>
                 <img
                   :src="`https://api.regionalmotors.com.br/${infos?.foto}`"
                   style="object-fit: contain; width: 10rem; height: 100%"
                 />
               </div>
-              <div class="card-comprar-title">
+              <div class="card-comprar-title d-flex align-itens-center">
                 <h4 class="mb-0 ms-4 card-comprar-title-text">
                   {{ infos?.nome_empresa }}
                 </h4>

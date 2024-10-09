@@ -53,7 +53,6 @@ export default {
     scrollToFooter() {
       const footerElement = this.$refs.footer;
       footerElement.$el.scrollIntoView({ behavior: "smooth" });
-      alert("HEy");
     },
   },
 

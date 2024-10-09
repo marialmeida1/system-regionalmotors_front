@@ -27,7 +27,7 @@
                 </div>
                 <div class="items-menu-mobile">
                   <a
-                    :href="`https://api.whatsapp.com/send?phone=${infos?.whatsapp}&text=testando`"
+                    :href="`https://api.whatsapp.com/send?phone=${infos?.whatsapp}&text=Olá! Tudo bem? Estou interessado em saber mais detalhes sobre os carros disponíveis para venda.`"
                     target="_blank"
                   >
                     <button class="btn py-1 text-center rounded-2 btn-whatsapp">

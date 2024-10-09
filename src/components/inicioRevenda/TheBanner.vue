@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-white size-banner">
+    <div class="bg-white">
       <div id="carregarBanner" class="text-center col-12" hidden>carregando...</div>
       <div class="bg-white card-banner0">
         <div
@@ -9,39 +9,20 @@
           data-bs-ride="carousel"
           data-bs-interval="4000"
         >
-          <div class="carousel-inner">
+          <div class="carousel-inner size_banner">
             <div class="carousel-item active bg-dark">
               <div class="box-carousel-1">
-                <picture class="banner">
+                <picture class="banner" v-if="bannerCarregando">
                   <source media="(max-width: 568px)" :srcset="infos?.banner_loja_movel ? `https://api.regionalmotors.com.br/${infos.banner_loja_movel}` : '/banner/foto-mobile1.jpg'" />
                   <img
                     :src="infos?.banner_loja ? `https://api.regionalmotors.com.br/${infos.banner_loja}` : '/banner/foto1.jpg'"
                     alt="Banner"
                     style="width: 100%; object-fit: cover"
                   />
-
                 </picture>
               </div>
             </div>
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
       </div>
     </div>
@@ -58,6 +39,7 @@ export default {
   data() {
     return {
       infos: null,
+      bannerCarregando: false,
     };
   },
 
@@ -86,6 +68,10 @@ export default {
     });
 
     setTimeout(() => {
+      this.bannerCarregando = true;
+    }, 800);
+
+    setTimeout(() => {
       document.getElementById("carouselExample").classList.remove("invisible");
     }, 100);
 
@@ -95,6 +81,11 @@ export default {
 </script>
 
 <style>
+
+.size_banner {
+  height: 170px;
+}
+
 .banner img {
   width: 100%;
   object-fit: cover;
@@ -104,6 +95,10 @@ export default {
 @media (max-width: 568px) {
   .banner img {
     height: 215px; /* Altura menor para dispositivos móveis */
+  }
+
+  .size_banner {
+    height: 215px;
   }
 }
 </style>
