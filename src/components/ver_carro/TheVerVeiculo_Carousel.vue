@@ -293,6 +293,7 @@ export default {
     this.id = this.veiculo.id_anunciante;
 
     let title_page =
+      "Comprar  - " + 
       this.veiculo.marca +
       " " +
       this.veiculo.modelo +
@@ -318,11 +319,12 @@ export default {
       this.veiculo.transmissao +
       "-" +
       this.veiculo.id +
-      "-RegionalMotors"
+      "-RegionalMotors";
     const car = url_page.toLowerCase();
 
     const url = window.location.href;
     const hostname = new URL(url).hostname;
+    console.log(hostname)
 
     if (
       hostname == "teste.regionalmotors.com.br" ||
@@ -335,8 +337,10 @@ export default {
     } else {
       const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
-      title_page += " - " + this.veiculo.email;
+      title_page += " - " + this.veiculo.empresa;
     }
+
+    document.title = title_page;
 
     if (this.veiculo) {
       this.showTheVerVeiculos = false;
