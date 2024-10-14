@@ -35,7 +35,7 @@
                   style="width: 90%; cursor: pointer"
                   placeholder="Digite a marca ou modelo do veiculo"
                   v-model="searchQuery"
-                  @focus="onFocus"
+                  @input="onFocus"
                   @blur="onBlur"
                 />
               </div>
@@ -160,7 +160,11 @@ export default {
     },
 
     onFocus() {
-      this.showBar = true;
+      if (this.searchQuery && this.searchQuery.trim() !== "") {
+        this.showBar = true; 
+      } else {
+        this.showBar = false;
+      }
 
       window.scrollTo({
         top: 160, // posição desejada em pixels
@@ -246,7 +250,7 @@ export default {
 }
 
 .card-comprar {
-  margin-top: -16px
+  margin-top: -16px;
 }
 
 @media (max-width: 480px) {
@@ -255,7 +259,7 @@ export default {
   }
 
   .card-comprar {
-    margin-top: 0px
+    margin-top: 0px;
   }
 }
 
