@@ -352,6 +352,7 @@ export default {
       this.precoMin = "";
       this.kmMax = "";
       this.kmMin = "";
+      this.cidades = "";
       
       document.getElementById('situacao_veiculo').value = '';
       document.getElementById('tipo_veiculo').value = '';

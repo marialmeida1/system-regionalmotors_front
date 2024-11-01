@@ -6,7 +6,7 @@
     <div class="navegacao d-block d-lg-none fixed-top">
       <header class="header bg-white">
         <div class="logo bg-succes px-3" style="width: 260px; padding: 13.5px 0">
-          <RouterLink class="routerLink pt-2" to="/inicio">
+          <RouterLink class="routerLink pt-2" to="/">
             <div class="logo bg-succes px-1 d-flex align-items-center" style="width: 190px">
               <img src="/logo.png" class="logo" alt="Logo Regional Motors" />
             </div>
@@ -90,7 +90,7 @@
     <!-- menu desktop -->
     <div class="navegacao d-none d-lg-block fixed-top">
       <header class="header bg-dark bg-white ps-5">
-        <RouterLink class="routerLink pt-2" to="/inicio">
+        <RouterLink class="routerLink pt-2" to="/">
           <div class="logo bg-succes ps-4 pt-1 d-flex align-items-center" style="width: 210px">
             <img src="/logo.png" class="logo" />
           </div>
