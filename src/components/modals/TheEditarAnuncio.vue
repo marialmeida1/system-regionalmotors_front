@@ -296,7 +296,7 @@
                   <div class="col-6">
                       <button type="button" class="ms-3 btn btn-primary" @click="criar()" 
                               data-bs-dismiss="modal" aria-label="Fechar"
-                      >Actualizar</button>
+                      >Atualizar</button>
                   </div>
                 </div>  
               </div>

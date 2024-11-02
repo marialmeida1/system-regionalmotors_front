@@ -257,7 +257,7 @@ export async function editarAnunciante(data, id) {
   try {
     const response = await api.put('api/editar_anuciantes/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -370,7 +370,7 @@ export async function editarAnuncio(data, id) {
   try {
     const response = await api.put(`api/editar_anuncios/update/${id}`, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response.data;
   } catch (error) {
@@ -544,7 +544,7 @@ export async function editarCategoria(data, id) {
   try {
     const response = await api.put('api/editar_categorias/update/'+id, data);
 
-    // sweetSucesso("Actualizado");
+    // sweetSucesso("Atualizado");
 
     return response;
 
@@ -608,7 +608,7 @@ export async function editarMarca(data, id) {
   try {
     const response = await api.put('api/editar_marca/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -673,7 +673,7 @@ export async function editarModelo(data, id) {
   try {
     const response = await api.put('api/editar_modelo/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -737,7 +737,7 @@ export async function editarPlano(data, id) {
     try {
     const response = await api.put('api/editar_planos/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -796,7 +796,7 @@ export async function editarPlanoAnunciante(data, id) {
  try {
     const response = await api.put('api/editar_planos_anuciantes/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -841,7 +841,7 @@ export async function editarCombustivel(data, id) {
   try {
     const response = await api.put('api/editar_combustivel/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -901,7 +901,7 @@ export async function editarTransmissao(data, id) {
   try {
     const response = await api.put('api/editar_transmissao/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -960,7 +960,7 @@ export async function editarTecnologia(data, id) {
   try {
     const response = await api.put('api/editar_tecnologia/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -1019,7 +1019,7 @@ export async function editarCores(data, id) {
   try {
     const response = await api.put('api/editar_cor/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -1078,7 +1078,7 @@ export async function editarEstado(data, id) {
   try {
     const response = await api.put(`api/editar_estado/update/${id}`, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -1137,7 +1137,7 @@ export async function editarRegiao(data, id) {
   try {
     const response = await api.put(`api/editar_regiao/update/${id}`, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -1199,7 +1199,7 @@ export async function editarCidade(data, id) {
   try {
     const response = await api.put(`api/editar_cidade/update/${id}`, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -1262,7 +1262,7 @@ export async function editarTipo_Veiculo(data, id) {
   try {
     const response = await api.put(`api/editar_tipos_veiculos/update/${id}`, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -1324,7 +1324,7 @@ export async function editarCategoriaOpcionais(data, id) {
    try {
     const response = await api.put('api/editar_categoria_opcionais/update/'+id, data);
 
-    sweetSucesso("Actualizado");
+    sweetSucesso("Atualizado");
 
     return response;
 
@@ -1383,7 +1383,7 @@ export async function listarOpcionais() {
 
 // Editar Segurança
 export async function editarOpcionais(data, id) {
-  console.log("Actualizado");
+  console.log("Atualizado");
   console.log(data);
 
   try {

@@ -207,31 +207,26 @@ router.beforeEach(async (to, from, next) => {
   const url = window.location.href;
   const hostname = new URL(url).hostname;
 
-  console.log(`Navegando de ${from.path} para ${to.path}`);
-  console.log(`Hostname atual: ${hostname}`);
-
   const isAllowed = allowedUrls.some((urlObj) => urlObj.site === hostname);
   console.log(`isAllowed: ${isAllowed}`);
 
-  // Permitir navegação em qualquer subpágina para o domínio regionalmotors
   if (hostname.includes("regionalmotors")) {
-    return next(); // Permitir qualquer navegação dentro do domínio
+    return next(); 
   }
 
   if (isAllowed) {
     const targetRevenda = allowedUrls.find((urlObj) => urlObj.site === hostname)?.id;
 
     if (targetRevenda) {
-      // Permitir navegação se o caminho já for o correto
       if (to.path !== `/loja/${targetRevenda}` && !to.path.startsWith(`/loja/${targetRevenda}/`)) {
         return next(`/loja/${targetRevenda}`);
       }
     }
 
-    return next(); // Permite navegação para outras rotas
+    return next(); 
   }
 
-  return next(); // Permite navegação para outras rotas se não atender às condições
+  return next(); 
 });
 
 router.afterEach((to, from) => {

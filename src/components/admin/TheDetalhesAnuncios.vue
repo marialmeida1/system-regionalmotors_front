@@ -519,7 +519,7 @@ export default {
 
           const data = 
           {
-            "tipo_veiculo": "Carro Actualizado",
+            "tipo_veiculo": "Carro Atualizado",
             "marca_id": '1',
             "modelo_id": "1",
             "numero_cliques": "2",

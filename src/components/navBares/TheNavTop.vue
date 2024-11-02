@@ -274,7 +274,7 @@ export default {
       //remover token
       if (localStorage.getItem("token")) {
         localStorage.removeItem("token");
-        this.$router.push({ path: "/inicio" }).then(() => {
+        this.$router.push({ path: "/" }).then(() => {
           window.location.reload();
         });
       }

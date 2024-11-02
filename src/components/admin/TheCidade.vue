@@ -221,7 +221,7 @@
                     data-bs-dismiss="modal"
                     aria-label="Fechar"
                   >
-                    actualizar
+                    Atualizar
                   </button>
                 </div>
               </div>

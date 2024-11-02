@@ -6,7 +6,7 @@
     <div class="navegacao d-block d-lg-none fixed-top">
       <header class="header bg-white">
         <div class="logo bg-succes px-3" style="width: 260px; padding: 13.5px 0">
-          <RouterLink class="routerLink pt-2" to="/inicio">
+          <RouterLink class="routerLink pt-2" to="/">
             <div class="logo bg-succes px-1 d-flex align-items-center" style="width: 190px">
               <!--<img src="/logo.png" class="logo" alt="Logo Regional Motors">-->
             </div>
@@ -176,7 +176,7 @@ export default {
       //remover token
       if (localStorage.getItem("token")) {
         localStorage.removeItem("token");
-        this.$router.push({ path: "/inicio" }).then(() => {
+        this.$router.push({ path: "/" }).then(() => {
           window.location.reload();
         });
       }

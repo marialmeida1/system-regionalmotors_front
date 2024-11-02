@@ -15,7 +15,7 @@
 
         //const parametros = { id: data.user.id, name: data.user.name };
         //this.$router.push({ path: '/gerenciador', query: parametros });
-        this.$router.push({ path: '/inicio'});
+        this.$router.push({ path: '/'});
       }
       else {
         this.$router.push({ path: '/login'});
