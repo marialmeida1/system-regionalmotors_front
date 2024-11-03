@@ -808,8 +808,8 @@
                     <label for="estado" class="form-label">Marcar Ativo</label>
                     <select class="form-select" v-model="status">
                       <option value="" selected disabled>Marcar</option>
-                      <option value="1">sim</option>
-                      <option value="2">nao</option>
+                      <option value="1">Sim</option>
+                      <option value="2">Não</option>
                     </select>
                   </div>
 
@@ -970,8 +970,8 @@
                 <p class="mb-1 mt-3">Ativar Plano</p>
                 <div>
                   <select class="form-select" v-model="plano_status">
-                    <option value="1">sim</option>
-                    <option value="2">nao</option>
+                    <option value="1">Sim</option>
+                    <option value="2">Não</option>
                   </select>
                 </div>
                 <div v-if="status_plano == 1">

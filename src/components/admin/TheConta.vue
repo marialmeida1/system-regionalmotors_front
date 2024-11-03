@@ -89,7 +89,7 @@
 
       <div class="bg-white p-4 rounded-3 mb-3">
         <h5 class="op-7">Planos</h5>
-        <p class="titulo-text mt-0">Plano activo</p>
+        <p class="titulo-text mt-0">Plano ativo</p>
         <p>{{ anunciante.endereco }}</p>
 
         <p class="titulo-text mt-0">Bairro</p>

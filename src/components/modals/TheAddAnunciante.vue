@@ -478,8 +478,8 @@
                   <label for="estado" class="form-label">Marcar Activo</label>
                   <select class="form-select" v-model="status" required>
                     <option value="" selected disabled>Marcar</option>
-                    <option value="1">sim</option>
-                    <option value="2">nao</option>
+                    <option value="1">Sim</option>
+                    <option value="2">Não</option>
                   </select>
                 </div>
 

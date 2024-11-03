@@ -166,10 +166,10 @@
                       <label for="nome" class="form-label">Mostrar Preço</label>
                       <select v-model="mostrar_preco" class="form-select">
                         <option value="sim" selected>
-                          sim
+                          Sim
                         </option>
                         <option value="nao">
-                          nao
+                          Não
                         </option>
                       </select>
                     </div>

@@ -59,7 +59,7 @@
                     </div>
   
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Categoria <span style="opacity: .6;">(Opcional)</span></label>
+                        <label for="nome" class="form-label">Categoria</label>
                         <select v-model="categoria_id" class="form-select">
                           <option value="" selected disabled>Selecionar</option>
                           <option v-for="categ in Api_categorias" :value="categ.id" :key="categ.id">
@@ -133,10 +133,10 @@
                       <label for="nome" class="form-label">Mostrar Preço</label>
                       <select v-model="mostrar_preco" class="form-select">
                         <option value="sim" selected>
-                          sim
+                          Sim
                         </option>
                         <option value="nao">
-                          nao
+                          Não
                         </option>
                       </select>
                     </div>
@@ -266,7 +266,7 @@
                   </div>
                   <div class="col-6">
                       <button type="button" class="ms-3 btn btn-primary" @click="criar()"
-                      >criar</button>
+                      >Criar</button>
                   </div>
                 </div>  
               </div>
