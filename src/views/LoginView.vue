@@ -6,11 +6,6 @@
     </div>    
 </div>
 
-<footer style="opacity: 0.4; margin-top: 25px;">
-    <div class="col-12 text-center">
-        copyrighit 2023 por  <a href="http://www.devaholic.ao" target="_blank">DevAholic</a>
-    </div>
-</footer>
 </template>
 
 <script>

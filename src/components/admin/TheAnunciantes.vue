@@ -224,10 +224,10 @@
                       type="file"
                       name=""
                       @change="
-                        handleFileUpload(
-                          'api/anunciantes/uploadFoto_anuciantes/',
+                        handleFileUploadFoto(
+                          item.id,
                           $event,
-                          'banner_loja'
+                          'foto'
                         )
                       "
                       class="d-none"
@@ -1510,6 +1510,13 @@ export default {
     },*/
 
     async handleFileUpload(url, event, varFoto) {
+      this.file = event.target.files[0];
+      this.createThumbnail();
+      this.uploadPhoto(url, varFoto, this.index);
+    },
+
+    async handleFileUploadFoto(id, event, varFoto) {
+      const url = `api/anunciantes/uploadFoto_anuciantes/${this.index}`;
       this.file = event.target.files[0];
       this.createThumbnail();
       this.uploadPhoto(url, varFoto, this.index);

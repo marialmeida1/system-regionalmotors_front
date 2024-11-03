@@ -183,7 +183,7 @@
                         v-else-if="anuncio.status_publicacao == 2"
                         class="text-center p-2 rounded-3"
                       >
-                        Activo
+                        Ativo
                       </div>
                       <div
                         style="width: 150px; color: #fff"

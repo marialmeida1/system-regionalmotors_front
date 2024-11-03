@@ -26,10 +26,10 @@
                             Aguardando
                           </option>
                           <option value="2" v-if="status_publicacao !== '2'">
-                            Activo
+                            Ativo
                           </option>
                           <option value="2" v-else selected>
-                            Activo
+                            Ativo
                           </option>
                           <option value="3" v-if="status_publicacao !== '3'">
                             Recusado

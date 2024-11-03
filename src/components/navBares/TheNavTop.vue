@@ -50,8 +50,7 @@
                   </div>
 
                   <div v-else class="mb-2" style="font-size: 18px">
-                    <span @click="abrirModal">Iniciar Sessão</span> |
-                    <span style="color: crimson">Registar</span>
+                    <span @click="abrirModal">Iniciar Sessão</span>
                   </div>
 
                   <h5 class="mt-4">Comprar</h5>
