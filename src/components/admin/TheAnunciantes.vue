@@ -681,6 +681,32 @@
                     </div>
                   </div>
 
+                  <div class="px-">
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Latitude</label>
+                      <input
+                        id="email"
+                        type="text"
+                        placeholder="Latitude"
+                        class="form-control"
+                        v-model="latitude"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="px-">
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Longitude</label>
+                      <input
+                        id="email"
+                        type="text"
+                        placeholder="Longitude"
+                        class="form-control"
+                        v-model="longitude"
+                      />
+                    </div>
+                  </div>
+
                   <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
                     <div
                       class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
@@ -779,7 +805,7 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="estado" class="form-label">Marcar Activo</label>
+                    <label for="estado" class="form-label">Marcar Ativo</label>
                     <select class="form-select" v-model="status">
                       <option value="" selected disabled>Marcar</option>
                       <option value="1">sim</option>
@@ -941,7 +967,7 @@
                     </option>
                   </select>
                 </div>
-                <p class="mb-1 mt-3">Activar Plano</p>
+                <p class="mb-1 mt-3">Ativar Plano</p>
                 <div>
                   <select class="form-select" v-model="plano_status">
                     <option value="1">sim</option>
@@ -1049,6 +1075,8 @@ export default {
       endereco: "",
       numero: "",
       complemento: "",
+      longitude: "",
+      latitude: "",
       bairro: "",
       endereco_comercial: "",
       numero_comercial: "",
@@ -1175,6 +1203,8 @@ export default {
         endereco: this.endereco,
         numero: this.numero,
         complemento: this.complemento,
+        longitude: this.longitude,
+        latitude: this.latitude,
         bairro: this.bairro,
         endereco_comercial: this.endereco_comercial,
         numero_comercial: this.numero_comercial,
@@ -1314,7 +1344,7 @@ export default {
       this.api_cidade = await api.listarCidade();
       this.id = id;
       this.anunciante = this.$store.state.anunciantes.find((objeto) => objeto.id == this.id);
-      console.log(JSON.stringify(this.anunciante))
+      console.log(JSON.stringify(this.anunciante));
       this.Pessoal_responsavel = this.anunciante.Pessoal_responsavel;
       this.email = this.anunciante.email;
       this.telefone = this.anunciante.telefone;
@@ -1338,6 +1368,8 @@ export default {
       this.endereco = this.anunciante.endereco;
       this.numero = this.anunciante.numero;
       this.complemento = this.anunciante.complemento;
+      this.longitude = this.anunciante.longitude;
+      this.latitude = this.anunciante.latitude;
       this.bairro = this.anunciante.bairro;
       this.endereco_comercial = this.anunciante.endereco_comercial;
       this.numero_comercial = this.anunciante.numero_comercial;

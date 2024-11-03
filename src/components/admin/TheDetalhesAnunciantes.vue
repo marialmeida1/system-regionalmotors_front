@@ -9,6 +9,7 @@
                                 <div class="pt-2 btn-show-Anuncios" @click="show_menu_lateral">
                                     <i class="fas fa-ellipsis-v fa-lg"></i>
                                     <i class="fas fa-ellipsis-v fa-lg"></i>
+                                    
                                     <i class="fas fa-ellipsis-v fa-lg"></i>
                                 </div>
                             </div>
