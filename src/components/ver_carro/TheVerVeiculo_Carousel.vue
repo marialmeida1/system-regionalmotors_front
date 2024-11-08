@@ -342,12 +342,12 @@ export default {
       const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
       title_page += " - " + this.veiculo.empresa;
+      this.namePage = this.veiculo.empresa;
     }
 
     const urlPage = window.location.href;
     this.linkPage = urlPage;
 
-    console.log(this.namePage + " " + this.linkPage);
     document.title = title_page;
 
     if (this.veiculo) {
