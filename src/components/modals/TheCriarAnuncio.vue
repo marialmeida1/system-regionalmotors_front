@@ -476,6 +476,11 @@
 
                 // Fechar modal
                 this.fecharModal()
+
+                // Abre modal de fotos
+                var modal = document.getElementById("CarregarFotos");
+                this.$store.state.modalCarregarFoto = new bootstrap.Modal(modal);
+                this.$store.state.modalCarregarFoto.show();
   
               } else {
                 // Caso contrário, exiba uma mensagem de erro ou faça o que for apropriado

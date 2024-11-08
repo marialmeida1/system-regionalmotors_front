@@ -15,7 +15,11 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Situação do veículo</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select @change="applyFiltro('situacao_veiculo', $event.target.value)" class="filter-select" id="situacao_veiculo">
+          <select
+            @change="applyFiltro('situacao_veiculo', $event.target.value)"
+            class="filter-select"
+            id="situacao_veiculo"
+          >
             <option value="" selected disabled>Situação do veículo</option>
             <option value="0">Todos</option>
             <option value="1">Novo</option>
@@ -29,7 +33,11 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Tipo de veiculo</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select @change="filtrarMarca('tipo_veiculo', $event)" class="filter-select" id="tipo_veiculo">
+          <select
+            @change="filtrarMarca('tipo_veiculo', $event)"
+            class="filter-select"
+            id="tipo_veiculo"
+          >
             <option value="" selected disabled>Veículo</option>
             <option v-for="item in $store.state.tipo_veiculo" :value="item.id">
               {{ item.tipo_veiculo }}
@@ -43,7 +51,11 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Marca</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select @change="filtrarModelo('nome_marca', $event.target.value)" class="filter-select" id="marca">
+          <select
+            @change="filtrarModelo('nome_marca', $event.target.value)"
+            class="filter-select"
+            id="marca"
+          >
             <option value="">Marca</option>
             <option v-for="item in marcas" :value="item.nome_marca">
               {{ item.nome_marca }}
@@ -57,7 +69,11 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Modelo</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select @change="applyFiltro('nome_modelo', $event.target.value)" class="filter-select" id="modelo">
+          <select
+            @change="applyFiltro('nome_modelo', $event.target.value)"
+            class="filter-select"
+            id="modelo"
+          >
             <option value="">Modelo</option>
             <option v-for="item in modelos" :value="item.nome_modelo">
               {{ item.nome_modelo }}
@@ -71,7 +87,11 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Categoria</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select @change="filtrarCategoria('nome_categoria', $event.target.value)" class="filter-select" id="categoria">
+          <select
+            @change="filtrarCategoria('nome_categoria', $event.target.value)"
+            class="filter-select"
+            id="categoria"
+          >
             <option value="">Categoria</option>
             <option v-for="item in categorias" :value="item.nome">
               {{ item.nome }}
@@ -80,12 +100,16 @@
         </div>
       </div>
 
-      <hr>
+      <hr />
 
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Estado</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select @change="filtrarCidade('estado', $event.target.value)" class="filter-select" id="estado">
+          <select
+            @change="filtrarCidade('estado', $event.target.value)"
+            class="filter-select"
+            id="estado"
+          >
             <option value="">Estados</option>
             <option v-for="item in $store.state.estado" :value="item.estado">
               {{ item.estado }}
@@ -115,7 +139,11 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Cidade</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select @change="applyFiltro('cidade', $event.target.value)" class="filter-select" id="cidade">
+          <select
+            @change="applyFiltro('cidade', $event.target.value)"
+            class="filter-select"
+            id="cidade"
+          >
             <option value="">Cidade</option>
             <option v-for="item in cidades" :value="item.cidade">
               {{ item.cidade }}
@@ -143,7 +171,7 @@
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 20.000</span>
           </div>
           <div class="col-6 pb-1 px-1 mt-2">
-            <div class="pesquisar pesquisar-lateral" :class="{'input-error': errorPreco}">
+            <div class="pesquisar pesquisar-lateral" :class="{ 'input-error': errorPreco }">
               <input
                 type="text"
                 placeholder="até"
@@ -153,7 +181,7 @@
                 @blur="blurPreco"
               />
             </div>
-            <div v-if="errorPreco" class="error-message">{{  errorPreco }}</div>
+            <div v-if="errorPreco" class="error-message">{{ errorPreco }}</div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 50.000 </span>
           </div>
         </div>
@@ -178,7 +206,7 @@
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 2000</span>
           </div>
           <div class="col-6 pb-1 px-1 mt-2">
-            <div class="pesquisar pesquisar-lateral" :class="{'input-error': errorAno}">
+            <div class="pesquisar pesquisar-lateral" :class="{ 'input-error': errorAno }">
               <input
                 type="text"
                 placeholder="até"
@@ -188,7 +216,7 @@
                 @blur="blurAno"
               />
             </div>
-            <div v-if="errorAno" class="error-message">{{  errorAno }}</div>
+            <div v-if="errorAno" class="error-message">{{ errorAno }}</div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 2024 </span>
           </div>
         </div>
@@ -213,7 +241,7 @@
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 0</span>
           </div>
           <div class="col-6 pb-1 px-1 mt-2">
-            <div class="pesquisar pesquisar-lateral" :class="{'input-error': errorKm}">
+            <div class="pesquisar pesquisar-lateral" :class="{ 'input-error': errorKm }">
               <input
                 type="text"
                 placeholder="até"
@@ -223,7 +251,7 @@
                 @blur="blurKm"
               />
             </div>
-            <div v-if="errorKm" class="error-message">{{  errorKm }}</div>
+            <div v-if="errorKm" class="error-message">{{ errorKm }}</div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 1000 </span>
           </div>
         </div>
@@ -272,8 +300,17 @@
     </div>
 
     <!-- Limpar filtro -->
-    <div class="px-2 text-center position-absolute pt-3 bg-white" style="left: 0; bottom: 0; width: 250px">
-      <button class="col-11 pb-1 px-2 btn border border-1 border-dark" style="color: #000; cursor: pointer" @click="execAllLateral">Limpar Filtros</button>
+    <div
+      class="px-2 text-center position-absolute pt-3 bg-white"
+      style="left: 0; bottom: 0; width: 250px"
+    >
+      <button
+        class="col-11 pb-1 px-2 btn border border-1 border-dark"
+        style="color: #000; cursor: pointer"
+        @click="execAllLateral"
+      >
+        Limpar Filtros
+      </button>
     </div>
   </aside>
 </template>
@@ -325,7 +362,6 @@ export default {
       kmMin: "",
       valorTipoVeiculo: "1",
       selectedText: "",
-
     };
   },
 
@@ -353,14 +389,14 @@ export default {
       this.kmMax = "";
       this.kmMin = "";
       this.cidades = "";
-      
-      document.getElementById('situacao_veiculo').value = '';
-      document.getElementById('tipo_veiculo').value = '';
-      document.getElementById('marca').value = '';
-      document.getElementById('modelo').value = '';
-      document.getElementById('categoria').value = '';
-      document.getElementById('estado').value = '';
-      document.getElementById('cidade').value = '';
+
+      document.getElementById("situacao_veiculo").value = "";
+      document.getElementById("tipo_veiculo").value = "";
+      document.getElementById("marca").value = "";
+      document.getElementById("modelo").value = "";
+      document.getElementById("categoria").value = "";
+      document.getElementById("estado").value = "";
+      document.getElementById("cidade").value = "";
 
       this.errorAno = "";
       this.errorKm = "";
@@ -378,7 +414,9 @@ export default {
 
       this.applyFiltro(chaveID, this.selectedText);
 
-      this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas?tipo_veiculo=${this.selectedText}`);
+      this.marcas = await api.filtrarAnuncio(
+        `api/marcas/listar_marcas?tipo_veiculo=${this.selectedText}`
+      );
     },
 
     async filtrarModelo(chaveID, valorID) {
@@ -390,9 +428,10 @@ export default {
     async filtrarCategoria(chaveID, valorID) {
       this.applyFiltro(chaveID, valorID);
 
-      this.categorias = await api.filtrarAnuncio(`api/categorias/listar_categorias?nome_categoria=${valorID}`);
+      this.categorias = await api.filtrarAnuncio(
+        `api/categorias/listar_categorias?nome_categoria=${valorID}`
+      );
     },
-
 
     /*async filtrarRegiao(chaveID, valorID) {
       this.applyFiltro(chaveID, valorID);
@@ -414,15 +453,15 @@ export default {
     blurPreco() {
       this.errorPreco = "";
 
-      if(this.precoMax < this.precoMin) {
-        this.errorPreco = "O valor máximo deve ser maior que o mínimo."
+      if (this.precoMax < this.precoMin) {
+        this.errorPreco = "O valor máximo deve ser maior que o mínimo.";
         return;
       }
 
-      if(this.precoMin == ""){
+      if (this.precoMin == "") {
         this.precoMin = "0";
       }
-      
+
       this.applyFiltro("preco_min", this.precoMin);
       this.applyFiltro("preco_max", this.precoMax);
     },
@@ -434,12 +473,12 @@ export default {
     blurAno() {
       this.errorAno = "";
 
-      if(this.anoMax < this.anoMin) {
-        this.errorAno = "O valor máximo deve ser maior que o mínimo."
+      if (this.anoMax < this.anoMin) {
+        this.errorAno = "O valor máximo deve ser maior que o mínimo.";
         return;
       }
 
-      if(this.anoMin == ""){
+      if (this.anoMin == "") {
         this.anoMin = "0";
       }
 
@@ -453,15 +492,14 @@ export default {
     },
 
     blurKm() {
-
       this.erroKm = "";
 
-      if(this.kmMax < this.kmMin) {
-        this.errorKm = "O valor máximo deve ser maior que o mínimo."
+      if (this.kmMax < this.kmMin) {
+        this.errorKm = "O valor máximo deve ser maior que o mínimo.";
         return;
       }
 
-      if(this.kmMin == ""){
+      if (this.kmMin == "") {
         this.kmMin = "0";
       }
 
@@ -497,22 +535,23 @@ export default {
   },
 
   async created() {
-
     this.$store.state.tipo_veiculo = await api.listarTipo_Veiculo();
     this.$store.state.estado = await api.listarEstado();
     this.Api_CategOpcionais = await api.listarCategoriaOpcionais();
     this.$store.state.categoriaOpcionais = this.Api_CategOpcionais;
     this.Api_Opcionais = await api.listarOpcionais();
-    this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas`);
     this.categorias = await api.filtrarAnuncio(`api/categorias/listar_categorias`);
 
     const url = window.location.href;
-    const baseUrl = window.location.origin; 
-    const info_url = url.replace(baseUrl, ''); 
+    const baseUrl = window.location.origin;
+    const info_url = url.replace(baseUrl, "");
 
     if (info_url == "/resultados") {
-      document.getElementById('tipo_veiculo').value = "1";
-      document.getElementById('situacao_veiculo').value = "2";
+      document.getElementById("tipo_veiculo").value = "1";
+      document.getElementById("situacao_veiculo").value = "2";
+      this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas?tipo_veiculo_id=1`);
+    } else {
+      this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas`);
     }
   },
 };

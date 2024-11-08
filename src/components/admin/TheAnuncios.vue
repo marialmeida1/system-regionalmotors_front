@@ -233,7 +233,7 @@
                 <!-- <th scope="col">Data Inicial</th>
                     <th scope="col">Data Final</th> -->
                 <th scope="col">Status</th>
-                <th scope="col" class="text-center">Açoes</th>
+                <th scope="col" class="text-center">Açõe  s</th>
               </tr>
             </thead>
             <tbody>

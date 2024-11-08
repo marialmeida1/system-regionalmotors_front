@@ -166,7 +166,9 @@
         >
           <div class="p-4">
             <div>
-              <p class="rotulo">Sobre o vendedor</p>
+              <div>
+                <p v-if="nameLink === 'Regional Motors'" class="rotulo">Sobre o vendedor</p>
+              </div>
             </div>
 
             <div class="my-" style="opacity: 0.7">
@@ -196,7 +198,7 @@
                       <span class="fw-bold">Celular:</span> {{ veiculo.telefone }}
                     </p>
                     <a
-                      :href="`https://api.whatsapp.com/send?phone=${veiculo.whatsapp}&text=testando`"
+                      :href="`https://api.whatsapp.com/send?phone=${veiculo.whatsapp}&text=Olá! Gostaria de obter mais informações sobre o anúncio da ${namePage} para o veículo ${veiculo.marca} ${veiculo.modelo}. Vi no link do anúnio: ${linkPage}. `"
                       target="_blank"
                     >
                       <button
@@ -264,6 +266,8 @@ export default {
       isVisible: false,
       showTheVerVeiculos: true,
       id: "",
+      linkPage: "",
+      namePage: "",
     };
   },
 
@@ -293,7 +297,7 @@ export default {
     this.id = this.veiculo.id_anunciante;
 
     let title_page =
-      "Comprar  - " + 
+      "Comprar  - " +
       this.veiculo.marca +
       " " +
       this.veiculo.modelo +
@@ -324,7 +328,6 @@ export default {
 
     const url = window.location.href;
     const hostname = new URL(url).hostname;
-    console.log(hostname)
 
     if (
       hostname == "teste.regionalmotors.com.br" ||
@@ -334,12 +337,17 @@ export default {
       const newPath = `/verveiculo?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
       title_page += " - Regional Motors";
+      this.namePage = "Regional Motors";
     } else {
       const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
       title_page += " - " + this.veiculo.empresa;
     }
 
+    const urlPage = window.location.href;
+    this.linkPage = urlPage;
+
+    console.log(this.namePage + " " + this.linkPage);
     document.title = title_page;
 
     if (this.veiculo) {
@@ -399,7 +407,7 @@ export default {
       await api.numClick("api/anuncios/contadorMensagem/", this.veiculo.id);
     },
 
-    backPage(){
+    backPage() {
       window.history.back();
     },
 
