@@ -37,6 +37,8 @@
                     v-lazy="`${item.foto1}principal.jpg?v=${new Date().getTime()}`"
                     :alt="item.nome_marca"
                     style="width: 100%; height: 130px"
+                    @load="onImageLoad"
+                    @error="onImageError"
                   />
 
                   <!-- Mobile -->
@@ -161,6 +163,16 @@ export default {
   },
 
   methods: {
+
+    onImageLoad() {
+    console.log('Imagem carregada com sucesso');
+    },
+    
+    onImageError(event) {
+      console.log('Erro ao carregar a imagem', event);
+      event.target.src = '/path/to/default-image.jpg'; // Defina uma imagem padrão se o carregamento falhar
+    },
+
     goVeiculo(id) {
       const parametros = { id: id };
       this.$router.push({ path: "/verveiculo", query: parametros });
@@ -203,12 +215,12 @@ export default {
 </script>
 
 <style>
-  .desc-vitrine {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-  }
+.desc-vitrine {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
 
-  .list-destaque {
-    min-height: 22rem;
-  }
+.list-destaque {
+  min-height: 22rem;
+}
 </style>

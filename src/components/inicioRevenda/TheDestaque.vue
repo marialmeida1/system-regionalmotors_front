@@ -234,7 +234,7 @@
                       <div class="px-2 pt-2 position-relative">
                         <h5>{{ item.nome_marca }} {{ item.nome_modelo }}</h5>
                         <div style="opacity: 0.5; text-transform: uppercase">
-                          <p>{{ item.motor }} {{ item.combustivel }} {{ item.cambio }}</p>
+                          <p>{{ item.combustivel }} {{ item.cambio }}</p>
                         </div>
                         <!-- div class="bg-dark position-absolute p-2" style="top: 0; right: 5px;"></div>
                                     <div class="bg-danger position-absolute p-2" style="top: 0; right: 25px;"></div -->

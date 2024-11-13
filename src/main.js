@@ -14,8 +14,7 @@ async function loadAllowedUrls() {
     const urlRequest = "api/anunciantes/buscar_site_anunciante";
     const response = await api.get(urlRequest);
 
-    allowedUrls = response.data; // Recupera urls permitidas no sistema
-    console.log("Domínios permitidos:", allowedUrls);
+    allowedUrls = response.data;
   } catch (error) {
     console.error("Erro ao carregar URLs permitidas:", error);
   }

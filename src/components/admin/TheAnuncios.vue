@@ -47,7 +47,7 @@
                   class="bg-dark p-2 text-cente"
                   style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px"
                 >
-                  <span class="ps-2">Filtrar Anucios</span>
+                  <span class="ps-2">Filtrar Anúncios</span>
                   <p class="mt-2">Todos</p>
                   <p>Pendente</p>
                   <p>Em andamento</p>

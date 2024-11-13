@@ -23,6 +23,7 @@ import ThecardComprar from "../components/inicioRevenda/ThecardComprar.vue";
 import TheDestaque from "../components/inicioRevenda/TheDestaque.vue";
 import TheFooter from "../components/inicioRevenda/TheFooter.vue";
 import loader from "../components/loaders/loader.vue";
+import * as api from "../services/api";
 
 export default {
   components: {
@@ -56,8 +57,13 @@ export default {
     },
   },
 
-  mounted() {
-    // this.hiddenLoader()
+  async mounted() {
+    const url = window.location.href;
+    const pathname = new URL(url).pathname;
+    const id = pathname.split("/")[2];
+
+    const response = await api.encontrarAnunciante(id);
+    document.title = response.data.nome_empresa;
   },
 };
 </script>
