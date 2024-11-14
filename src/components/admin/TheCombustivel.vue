@@ -59,7 +59,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Descrição</th>
-                    <th scope="col" class="text-center">Açoes</th>
+                    <th scope="col" class="text-center">Ações</th>
                     </tr>
                 </thead>
                 <tbody>

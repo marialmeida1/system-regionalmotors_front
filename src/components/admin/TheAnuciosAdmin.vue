@@ -151,7 +151,7 @@
                 <!-- <th scope="col">Data Inicial</th>
                     <th scope="col">Data Final</th> -->
                 <th scope="col">Status</th>
-                <th scope="col" class="text-center">Açoes</th>
+                <th scope="col" class="text-center">Ações</th>
               </tr>
             </thead>
             <tbody>

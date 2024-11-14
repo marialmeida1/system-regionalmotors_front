@@ -99,7 +99,7 @@
             </th>
             <th scope="col">Cidade</th>
             <th scope="col">Regiao</th>
-            <th scope="col" class="text-center">Açoes</th>
+            <th scope="col" class="text-center">Ações</th>
           </tr>
           <tbody>
             <tr v-for="categ in $store.state.cidade" :key="categ.id">

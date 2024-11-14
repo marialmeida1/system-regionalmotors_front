@@ -184,7 +184,7 @@
               <th scope="col">Regiao</th>
               <th scope="col">Cidade</th>
               <th scope="col">Status</th>
-              <th scope="col" class="text-center">Açoes</th>
+              <th scope="col" class="text-center">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -223,13 +223,7 @@
                       id="fotoAnunciante"
                       type="file"
                       name=""
-                      @change="
-                        handleFileUploadFoto(
-                          item.id,
-                          $event,
-                          'foto'
-                        )
-                      "
+                      @change="handleFileUploadFoto(item.id, $event, 'foto')"
                       class="d-none"
                     />
                   </div>
@@ -317,6 +311,14 @@
                     data-bs-toggle="modal"
                     data-bs-target="#showPlano"
                     @click="mostrarPlanoAnunciante(item.id)"
+                  >
+                  </span>
+
+                  <span
+                    class="fas fa-arrow-down ms-3"
+                    title="Baixar XML"
+                    @click="downloadXML(item.id)"
+                    type="button"
                   >
                   </span>
                 </div>
@@ -1601,6 +1603,39 @@ export default {
       this.file = null;
       this.thumbnailUrl = null;
       this.$refs.fileInput.value = ""; // Limpa o valor do campo de seleção de arquivos
+    },
+
+    async downloadXML(id) {
+      try {
+        const response = await fetch(
+          `https://api.regionalmotors.com.br/api/anunciantes/${id}/xml`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/xml",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Erro ao baixar o arquivo XML");
+        }
+
+        const blob = await response.blob();
+
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "arquivo.xml");
+        document.body.appendChild(link);
+        link.click();
+
+        link.remove();
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        console.error(error);
+        alert("Ocorreu um erro ao tentar baixar o arquivo.");
+      }
     },
   },
 
