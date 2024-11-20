@@ -197,10 +197,7 @@
                     <p class="mb-1" style="opacity: 0.7">
                       <span class="fw-bold">Celular:</span> {{ veiculo.telefone }}
                     </p>
-                    <a
-                      :href="`https://api.whatsapp.com/send?phone=${veiculo.whatsapp}&text=Olá! Gostaria de obter mais informações sobre o anúncio da ${namePage} para o veículo ${veiculo.marca} ${veiculo.modelo}. Vi no link do anúnio: ${linkPage}. `"
-                      target="_blank"
-                    >
+                    <a :href="whatsappLink" target="_blank">
                       <button
                         class="btn py-2 text-center rounded-3"
                         style="width: 200px; background-color: #5fcb71"
@@ -350,6 +347,8 @@ export default {
 
     document.title = title_page;
 
+    this.addOpenGraphMetaTags(title_page, urlPage);
+
     if (this.veiculo) {
       this.showTheVerVeiculos = false;
     }
@@ -397,7 +396,59 @@ export default {
     window.removeEventListener("resize", this.debouncedHandleResize);
   },
 
+  computed: {
+    whatsappLink() {
+      let nome_carro = this.veiculo.marca + " " + this.veiculo.modelo;
+      nome_carro = nome_carro.toLowerCase();
+
+      return `https://api.whatsapp.com/send?phone=${this.veiculo.whatsapp}&text=Olá! Gostaria de obter mais informações sobre o anúncio da ${this.namePage} para o veículo ${nome_carro}. Vi no link do anúncio: ${this.linkPage}.`;
+    },
+  },
+
   methods: {
+    addOpenGraphMetaTags(title_page, url) {
+      console.log(this.veiculo);
+
+      let situacao = "";
+      if (this.veiculo.situacao_veiculo == "2") {
+        situacao = "Usado:";
+      } else {
+        situacao = "Novo:";
+      }
+
+      const description = `${this.veiculo.tipo_veiculo} ${situacao} ${this.veiculo.marca} ${
+        this.veiculo.modelo
+      } ${
+        this.veiculo.ano_modelo
+      }, cor ${this.veiculo.cor.toLowerCase()}, câmbio ${this.veiculo.transmissao.toLowerCase()}. Disponível na ${
+        this.veiculo.empresa
+      }, ${this.veiculo.cidade}, ${this.veiculo.estado}.`;
+      console.log(description)
+
+      const image = `${this.veiculo.foto1}detalhe_mini.jpg`
+
+      const metaTitle = document.createElement("meta");
+      metaTitle.setAttribute("property", "og:title");
+      metaTitle.setAttribute("content", title_page);
+
+      const metaDescription = document.createElement("meta");
+      metaDescription.setAttribute("property", "og:description");
+      metaDescription.setAttribute("content", description);
+
+      const metaImage = document.createElement("meta");
+      metaImage.setAttribute("property", "og:image");
+      metaImage.setAttribute("content", image);
+
+      const metaUrl = document.createElement("meta");
+      metaUrl.setAttribute("property", "og:url");
+      metaUrl.setAttribute("content", url);
+
+      document.head.appendChild(metaTitle);
+      document.head.appendChild(metaDescription);
+      document.head.appendChild(metaImage);
+      document.head.appendChild(metaUrl);
+    },
+
     async mostrarContato() {
       this.mostraContato = true;
       await api.numClick("api/anuncios/contadorContacto/", this.veiculo.id);
