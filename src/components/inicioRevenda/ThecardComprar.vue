@@ -171,6 +171,8 @@ export default {
 .card-comprar-title {
   margin: 0rem 1rem 0rem 1rem;
   border-left: solid #0000001f 2px;
+  display: flex;
+  align-items: center;
 }
 
 .card-comprar-title-text {

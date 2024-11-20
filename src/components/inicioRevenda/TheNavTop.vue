@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white navbar">
+  <div class="bg-white navbar navbar-revenda">
     <!-- Menu Mobile -->
     <div class="navegacao bg-succes" style="padding: 0.9em 0"></div>
 
@@ -191,6 +191,7 @@ export default {
         const response = await api.encontrarAnunciante(id);
 
         this.infos = response.data;
+        console.log(response.data)
       } catch (error) {
         console.error("Erro ao buscar dados do anunciante:", error);
         // Lide com erros conforme necessário

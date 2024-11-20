@@ -225,3 +225,13 @@ select option {
 .link-profile:hover {
   color: #000;
 }
+
+.navbar-revenda {
+  font-weight: 800;
+  color: #252525 !important;
+}
+
+.navbar-revenda .routerLink {
+  color: #00000090 !important;
+  font-size: 0.9rem;
+}
