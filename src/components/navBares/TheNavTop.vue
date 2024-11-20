@@ -98,10 +98,10 @@
         <div id="men" class="bg-inf card-menu">
           <div class="card-menu-content d-flex align-items-center">
             <div class="menu-link position-relative py-3" @click="execAll('carro')">
-              Comprar carros
+              Comprar carros usados
             </div>
             <div class="menu-link position-relative py-3" @click="execAll('moto')">
-              Comprar motos
+              Comprar motos usadas
             </div>
 
             <!--<div class="menu-link position-relative py-3">
