@@ -267,7 +267,7 @@
       </div>
     </div>
 
-    <!-- Eliminar Anucio -->
+    <!-- Eliminar Anuncio -->
     <div
       class="modal fade"
       id="EliminarAnuncio"
