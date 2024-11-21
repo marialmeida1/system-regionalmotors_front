@@ -422,13 +422,13 @@ export default {
 
       var opcionalString = JSON.stringify(this.selecionados);
 
-      if(this.kilometro == "" && this.situacao_veiculo == "1"){
+      if (this.kilometro == "" && this.situacao_veiculo == "1") {
         this.kilometro = "0";
       }
 
-      console.log(this.kilometro)
-
-      if (this.situacao_veiculo != "" && this.tipo_veiculo != "" && this.kilometro != "") {
+      console.log(this.tipo_veiculo);
+      console.log(this.categoria_id);
+      if (this.situacao_veiculo !== "" && this.tipo_veiculo !== "" && this.kilometro !== "") {
         const data = {
           titulo: this.titulo,
           tipo_veiculo: this.tipo_veiculo,
