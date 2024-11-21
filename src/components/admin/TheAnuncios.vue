@@ -603,7 +603,6 @@ export default {
     }
 
     this.$store.state.fechaModal = false;
-    console.log(this.$store.state.anuncios)
 
 
     this.semAnuncio = false;

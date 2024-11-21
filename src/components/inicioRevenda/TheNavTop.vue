@@ -191,7 +191,6 @@ export default {
         const response = await api.encontrarAnunciante(id);
 
         this.infos = response.data;
-        console.log(response.data)
       } catch (error) {
         console.error("Erro ao buscar dados do anunciante:", error);
         // Lide com erros conforme necessário

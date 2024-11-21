@@ -173,9 +173,6 @@ export async function listarUser() {
 
 //Carregar fotos Categorias
 export async function carregarFotoAnunciante(url, data, id) {
-    console.log("Carregando foto...");
-    console.log(data);
-
     try {
         const response = await api_image.post(`${url}${id}`, data, {
             onUploadProgress: (progressEvent) => {
@@ -184,7 +181,6 @@ export async function carregarFotoAnunciante(url, data, id) {
                 const progress = (bytesEnviados / totalBytes) * 100;
 
                 store.state.progressImg = progress.toFixed(2);
-                console.log("carregando " + store.state.progressImg);
             },
         });
 
@@ -252,8 +248,6 @@ export async function detalharAnunciante(id) {
 
 //Editar Anunciante
 export async function editarAnunciante(data, id) {
-  console.log(data);
-
   try {
     const response = await api.put('api/editar_anuciantes/update/'+id, data);
 
@@ -304,8 +298,6 @@ export async function adicionarAnuncio(data) {
 //Carregar fotos Anuncios
 export async function fotoAnunciante(data, id) {
     console.log("Carregando foto...");
-    console.log(data);
-
     try {
         const response = await api_image.post(`api/anunciantes/visualizar_anuciantes/${id}`, data, {
             onUploadProgress: (progressEvent) => {
@@ -320,10 +312,6 @@ export async function fotoAnunciante(data, id) {
 
         sweetSucesso();
         store.state.progressImg = 0;
-
-        console.log('Response');
-        console.log(response.data);
-        console.log("Terminado");
 
         return response.data;
     } catch (error) {

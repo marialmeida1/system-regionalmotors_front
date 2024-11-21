@@ -426,8 +426,6 @@ export default {
         this.kilometro = "0";
       }
 
-      console.log(this.tipo_veiculo);
-      console.log(this.categoria_id);
       if (this.situacao_veiculo !== "" && this.tipo_veiculo !== "" && this.kilometro !== "") {
         const data = {
           titulo: this.titulo,

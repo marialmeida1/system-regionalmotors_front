@@ -443,10 +443,16 @@ export default {
       metaUrl.setAttribute("property", "og:url");
       metaUrl.setAttribute("content", url);
 
+      const metaType = document.createElement("meta");
+      metaUrl.setAttribute("property", "og:type");
+      metaUrl.setAttribute("content", "website");
+
       document.head.appendChild(metaTitle);
       document.head.appendChild(metaDescription);
       document.head.appendChild(metaImage);
       document.head.appendChild(metaUrl);
+      document.head.appendChild(metaType);
+
     },
 
     async mostrarContato() {

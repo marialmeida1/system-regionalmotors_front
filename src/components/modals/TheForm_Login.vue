@@ -129,7 +129,6 @@ export default {
           localStorage.setItem("anunciante_id", response.anunciante_id);
           localStorage.setItem("anunciante_nome", response.user.name);
           localStorage.setItem("perfil", response.user.perfil);
-          console.log();
 
           this.$store.state.userName = response.user.name;
 

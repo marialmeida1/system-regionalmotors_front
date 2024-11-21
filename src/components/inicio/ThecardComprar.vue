@@ -35,8 +35,7 @@
                   style="width: 90%; cursor: pointer"
                   placeholder="Digite a marca ou modelo do veiculo"
                   v-model="searchQuery"
-                  @input="onFocus"
-                  @blur="onBlur"
+                  @input="debouncedHandleSearch"
                 />
               </div>
               <div class="contant-main-buscar">
@@ -116,6 +115,7 @@ export default {
       modeloSelecionada: "",
       searchQuery: "",
       showBar: false,
+      timeout: null,
     };
   },
 
@@ -159,25 +159,25 @@ export default {
       this.guardarModelo(modelo);
     },
 
-    onFocus() {
-      if (this.searchQuery && this.searchQuery.trim() !== "") {
-        this.showBar = true; 
-      } else {
-        this.showBar = false;
-      }
+    debouncedHandleSearch() {
+      clearTimeout(this.timeout);
 
-      window.scrollTo({
-        top: 160, // posição desejada em pixels
-        behavior: "smooth", // rolagem suave
-      });
+      this.timeout = setTimeout(() => {
+        this.closeKeyboard();
+      }, 2000);
     },
 
-    onBlur() {
-      setTimeout(() => {
-        this.showBar = false;
+    closeKeyboard() {
+      const inputElement = document.querySelector("input[type='text']");
+      if (inputElement) {
+        inputElement.blur();
+      }
+    },
+  },
 
-        window.scrollTo(0, 0);
-      }, 200);
+  watch: {
+    searchQuery(value) {
+      this.showBar = value && value.trim() !== "";
     },
   },
 

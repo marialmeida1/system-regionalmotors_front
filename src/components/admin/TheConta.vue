@@ -266,7 +266,6 @@ export default {
     },
 
     visitarLoja() {
-      console.log(localStorage.getItem("anunciante_id"));
       this.$router.push({ path: "/loja/" + localStorage.getItem("anunciante_id") });
     },
 
