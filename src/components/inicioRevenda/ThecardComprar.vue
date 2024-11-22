@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="col-12 mt-3">
-              <router-link :to="`/loja/${infos?.id}/estoque`">
+              <router-link :to="`/estoque`">
                 <div
                   class="btn crimson col-12 py-2"
                   style="background: crimson; color: #fff; font-weight: bold"
@@ -98,10 +98,7 @@ export default {
 
     async fetchAnunciante() {
       try {
-        const url = window.location.href;
-        const pathname = new URL(url).pathname;
-        const id = pathname.split("/")[2];
-
+        const id = localStorage.getItem('storeId');
         const response = await api.encontrarAnunciante(id);
 
         this.infos = response.data;

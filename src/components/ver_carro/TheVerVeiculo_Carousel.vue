@@ -336,7 +336,7 @@ export default {
       title_page += " - Regional Motors";
       this.namePage = "Regional Motors";
     } else {
-      const newPath = `/loja/${this.id}/verveiculorevenda?id=${this.veiculo.id}/${car}`;
+      const newPath = `/verveiculorevenda?id=${this.veiculo.id}/${car}`;
       this.$router.replace(newPath);
       title_page += " - " + this.veiculo.empresa;
       this.namePage = this.veiculo.empresa;
@@ -520,7 +520,7 @@ export default {
     },
 
     visitarLoja() {
-      this.$router.push({ path: "/loja/" + this.id });
+      this.$router.push({ path: "/" + this.id });
     },
   },
 };

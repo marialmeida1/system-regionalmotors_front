@@ -46,12 +46,8 @@ export default {
   methods: {
     async fetchAnunciante() {
       try {
-        const url = window.location.href;
-        const pathname = new URL(url).pathname;
-        const id = pathname.split("/")[2];
-
+        const id = localStorage.getItem('storeId');
         const response = await api.encontrarAnunciante(id);
-
         this.infos = response.data;
 
       } catch (error) {

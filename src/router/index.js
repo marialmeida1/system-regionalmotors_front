@@ -23,7 +23,7 @@ const router = createRouter({
     {
       path: "/",
       name: "Inicio Regional",
-      component: () => import("../views/InicioView.vue"),
+      component: () => import("../views/Redirection.vue"),
     },
     {
       path: "/resultados",
@@ -41,7 +41,7 @@ const router = createRouter({
       component: () => import("../views/VerVeiculoView.vue"),
     },
     {
-      path: "/loja/:revenda/verveiculorevenda",
+      path: "/verveiculorevenda",
       name: "Ver Veiculo Revenda",
       component: () => import("../views/VerVeiculoRevendaView.vue"),
     },
@@ -166,12 +166,7 @@ const router = createRouter({
       component: () => import("../views/LoginView.vue"),
     },
     {
-      path: "/loja/:revenda",
-      name: "Revenda",
-      component: () => import("../views/InicioRevendaView.vue"),
-    },
-    {
-      path: "/loja/:revenda/estoque",
+      path: "/estoque",
       name: "Estoque Revenda",
       component: () => import("../views/EstoqueRevendaView.vue"),
     },
@@ -210,23 +205,24 @@ router.beforeEach(async (to, from, next) => {
   const isAllowed = allowedUrls.some((urlObj) => urlObj.site === hostname);
 
   if (hostname.includes("regionalmotors")) {
-    return next(); 
+    to.meta.pageType = "principal"; // Define tipo de página
+    return next();
   }
 
   if (isAllowed) {
     const targetRevenda = allowedUrls.find((urlObj) => urlObj.site === hostname)?.id;
 
     if (targetRevenda) {
-      if (to.path !== `/loja/${targetRevenda}` && !to.path.startsWith(`/loja/${targetRevenda}/`)) {
-        return next(`/loja/${targetRevenda}`);
-      }
+      localStorage.setItem("storeId", targetRevenda); // Armazena o ID da revenda
+      to.meta.pageType = "revenda"; // Define tipo de página
     }
 
-    return next(); 
+    return next();
   }
 
-  return next(); 
+  return next(); // Caso não seja permitido, continua normalmente
 });
+
 
 router.afterEach((to, from) => {
   document.activeElement?.blur();

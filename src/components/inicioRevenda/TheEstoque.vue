@@ -386,11 +386,8 @@ export default {
 
     showCarroDetalhes(id) {
       const parametros = { id: id };
-      const url = window.location.href;
-      const pathname = new URL(url).pathname;
-      const id_anunciante = pathname.split("/")[2];
 
-      this.$router.push({ path: `/loja/${id_anunciante}/verveiculorevenda`, query: parametros });
+      this.$router.push({ path: `/verveiculorevenda`, query: parametros });
     },
 
     upPage() {
@@ -453,11 +450,7 @@ export default {
       document.title = titles;
 
       const url_title_min = url_title.toLowerCase();
-      const url = window.location.href;
-      const pathname = new URL(url).pathname;
-      const id = pathname.split("/")[2];
-
-      const newPath = `/loja/${id}/estoque/#/${url_title_min}`;
+      const newPath = `/estoque/#/${url_title_min}`;
       this.$router.replace(newPath);
 
       this.queryString = Object.keys(queryParams)
@@ -541,19 +534,13 @@ export default {
         }
       }
 
-      const url = window.location.href;
-      const pathname = new URL(url).pathname;
-      const id = pathname.split("/")[2];
-
-      const path = `/loja/${id}/estoque/`;
+      const path = `/estoque`;
       this.$router.replace(path);
     },
 
     async fetchAnunciante() {
       try {
-        const url = window.location.href;
-        const pathname = new URL(url).pathname;
-        const id = pathname.split("/")[2];
+        const id = localStorage.getItem("storeId")
 
         const response = await api.encontrarAnunciante(id);
 
@@ -616,7 +603,7 @@ export default {
     const pathname = new URL(url).pathname;
     const id = pathname.split("/")[2];
 
-    const path = `/loja/${id}/estoque/`;
+    const path = `/estoque`;
     this.$router.replace(path);
 
     const resultado = this.$store.state.resultado;

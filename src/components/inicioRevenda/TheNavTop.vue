@@ -41,10 +41,10 @@
                   </a>
 
                   <div class="ps-2 pt-4">
-                    <RouterLink class="menu-link-mobile" :to="`/loja/${infos?.id}`">
+                    <RouterLink class="menu-link-mobile" :to="`/`">
                       Início
                     </RouterLink>
-                    <RouterLink class="menu-link-mobile" :to="`/loja/${infos?.id}/estoque`">
+                    <RouterLink class="menu-link-mobile" :to="`/estoque`">
                       Estoque
                     </RouterLink>
                     <p
@@ -71,13 +71,13 @@
           <div class="card-menu-content d-flex justify-content-between">
             <RouterLink
               class="menu-link routerLink position-relative py-3"
-              :to="`/loja/${infos?.id}`"
+              :to="`/`"
             >
               Início
             </RouterLink>
             <RouterLink
               class="menu-link routerLink position-relative py-3"
-              :to="`/loja/${infos?.id}/estoque`"
+              :to="`/estoque`"
             >
               Estoque
             </RouterLink>
@@ -184,9 +184,7 @@ export default {
 
     async fetchAnunciante() {
       try {
-        const url = window.location.href;
-        const pathname = new URL(url).pathname;
-        const id = pathname.split("/")[2];
+        const id = localStorage.getItem('storeId');
 
         const response = await api.encontrarAnunciante(id);
 

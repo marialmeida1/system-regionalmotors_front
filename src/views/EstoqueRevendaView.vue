@@ -68,9 +68,8 @@ export default {
 
     goverveiculo(id) {
       const parametros = { id: id };
-      const url = window.location.href;
-      const id_anunciante = new URL(url).hash.split("/")[2];
-      this.$router.push({ path: `/loja/${id_anunciante}/verveiculorevenda`, query: parametros });
+
+      this.$router.push({ path: `/verveiculorevenda`, query: parametros });
     },
 
     execFilterVeiculoRoute(veiculo) {

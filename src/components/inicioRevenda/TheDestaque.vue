@@ -272,7 +272,7 @@
     </div>
   </div>
   <div class="container d-flex justify-content-end">
-    <router-link :to="`/loja/${id}/estoque`">
+    <router-link :to="`/estoque`">
       <div
         class="btn crimson col-12 py-2"
         style="border: #242424 solid 1px; color: #242424; font-weight: 600; font-size: 0.75rem"
@@ -315,12 +315,7 @@ export default {
     },
 
     showCarroDetalhes(id) {
-      const parametros = { id: id };
-      const url = window.location.href;
-      const pathname = new URL(url).pathname;
-      const id_anunciante = pathname.split("/")[2];
-
-      this.$router.push({ path: `/loja/${id_anunciante}/verveiculorevenda`, query: parametros });
+      this.$router.push({ path: `/verveiculorevenda`, query: parametros });
     },
 
     upPage() {
@@ -336,7 +331,8 @@ export default {
   async mounted() {
     this.$store.state.resultado = [];
 
-    const id = this.$route.params.revenda;
+    const id = localStorage.getItem("storeId");
+    console.log("ID: ", id)
 
     this.$store.state.resultado = await api.filtrarAnuncio(
       `api/anuncios/listar_anuncios?anunciante_id=${id}&status_publicacao=2`

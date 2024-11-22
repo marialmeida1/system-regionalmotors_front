@@ -58,9 +58,7 @@ export default {
   },
 
   async mounted() {
-    const url = window.location.href;
-    const pathname = new URL(url).pathname;
-    const id = pathname.split("/")[2];
+    const id = localStorage.getItem('storeId');
 
     const response = await api.encontrarAnunciante(id);
     document.title = response.data.nome_empresa;

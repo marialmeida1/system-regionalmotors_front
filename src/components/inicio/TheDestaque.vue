@@ -105,39 +105,6 @@ export default {
     };
   },
 
-  async beforeCreate() {
-    // Pega a URL atual
-    const url = window.location.href;
-    const hostname = new URL(url).hostname;
-
-    // Verifica se a URL contém a palavra "regionalmotors"
-    if (url.includes("regionalmotors")) {
-    } else {
-      // Extrair a parte principal da URL sem o hash e o caminho
-      const newUrl = `${window.location.protocol}//${hostname}:${window.location.port}`;
-
-      const data = {
-        site: hostname,
-      };
-
-      const urlRequest = "api/anunciantes/buscar_anunciante_por_site";
-
-      try {
-        // Faz a requisição para obter o ID do anunciante
-        const response = await api.getIdToUrl(urlRequest, data);
-
-        if (response && response.id) {
-          // Redireciona para a nova URL com o ID do anunciante
-          window.location.href = `${newUrl}/loja/${response.id}`;
-        } else {
-          console.log("Anunciante não encontrado.");
-        }
-      } catch (error) {
-        console.error("Erro ao buscar o anunciante:", error);
-      }
-    }
-  },
-
   async mounted() {
     this.$store.state.anuncios = await api.filtrarAnuncio(
       `api/anuncios/listar_anuncios?status_publicacao=2&vitrine=1`
