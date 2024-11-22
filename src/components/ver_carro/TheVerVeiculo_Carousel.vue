@@ -407,7 +407,6 @@ export default {
 
   methods: {
     addOpenGraphMetaTags(title_page, url) {
-      console.log(this.veiculo);
 
       let situacao = "";
       if (this.veiculo.situacao_veiculo == "2") {
@@ -423,7 +422,6 @@ export default {
       }, cor ${this.veiculo.cor.toLowerCase()}, câmbio ${this.veiculo.transmissao.toLowerCase()}. Disponível na ${
         this.veiculo.empresa
       }, ${this.veiculo.cidade}, ${this.veiculo.estado}.`;
-      console.log(description)
 
       const image = `${this.veiculo.foto1}detalhe_mini.jpg`
 

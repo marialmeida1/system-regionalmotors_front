@@ -1518,7 +1518,7 @@ export default {
     },
 
     async handleFileUploadFoto(id, event, varFoto) {
-      const url = `api/anunciantes/uploadFoto_anuciantes/${this.index}`;
+      const url = `api/anunciantes/uploadFoto_anuciantes/`;
       this.file = event.target.files[0];
       this.createThumbnail();
       this.uploadPhoto(url, varFoto, this.index);
@@ -1587,11 +1587,10 @@ export default {
 
       try {
         const responseData = await api.carregarFotoAnunciante(url, formData, id);
-        // Assuming the API returns the URL of the uploaded photo
-        //this.imageUrl = responseData.imageUrl;
         if (responseData) {
           const dados = await api.detalharAnunciante(localStorage.getItem("anunciante_id"));
           this.$store.state.fotosAnunciantes = dados[0];
+          window.location.reload();
         }
       } catch (error) {
         console.error("Error uploading photo:", error);

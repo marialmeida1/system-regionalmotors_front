@@ -173,6 +173,7 @@ export async function listarUser() {
 
 //Carregar fotos Categorias
 export async function carregarFotoAnunciante(url, data, id) {
+  console.log(url)
     try {
         const response = await api_image.post(`${url}${id}`, data, {
             onUploadProgress: (progressEvent) => {
