@@ -315,6 +315,7 @@ export default {
     },
 
     showCarroDetalhes(id) {
+      const parametros = { id: id };
       this.$router.push({ path: `/verveiculorevenda`, query: parametros });
     },
 

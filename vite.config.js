@@ -12,7 +12,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  server: {
+  server: { 
     host: 'www.marceloveiculos.com.br',
     port: 5173,
   },

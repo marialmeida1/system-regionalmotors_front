@@ -407,7 +407,6 @@ export default {
 
   methods: {
     addOpenGraphMetaTags(title_page, url) {
-
       let situacao = "";
       if (this.veiculo.situacao_veiculo == "2") {
         situacao = "Usado:";
@@ -423,34 +422,35 @@ export default {
         this.veiculo.empresa
       }, ${this.veiculo.cidade}, ${this.veiculo.estado}.`;
 
-      const image = `${this.veiculo.foto1}detalhe_mini.jpg`
+      const image = `${this.veiculo.foto1}detalhe_mini.jpg`;
 
-      const metaTitle = document.createElement("meta");
-      metaTitle.setAttribute("property", "og:title");
-      metaTitle.setAttribute("content", title_page);
+      // Função para adicionar ou atualizar a tag <title>
+      const updateTitle = (title_page) => {
+        let titleTag = document.querySelector("title");
+        if (!titleTag) {
+          titleTag = document.createElement("title");
+          document.head.appendChild(titleTag);
+        }
+        titleTag.textContent = title_page;
+      };
 
-      const metaDescription = document.createElement("meta");
-      metaDescription.setAttribute("property", "og:description");
-      metaDescription.setAttribute("content", description);
+      const updateMetaTag = (property, content) => {
+        let metaTag = document.querySelector(`meta[property="${property}"]`);
+        if (!metaTag) {
+          metaTag = document.createElement("meta");
+          metaTag.setAttribute("property", property);
+          document.head.appendChild(metaTag);
+        }
+        metaTag.setAttribute("content", content);
+      };
 
-      const metaImage = document.createElement("meta");
-      metaImage.setAttribute("property", "og:image");
-      metaImage.setAttribute("content", image);
+      updateTitle(title_page);
 
-      const metaUrl = document.createElement("meta");
-      metaUrl.setAttribute("property", "og:url");
-      metaUrl.setAttribute("content", url);
-
-      const metaType = document.createElement("meta");
-      metaUrl.setAttribute("property", "og:type");
-      metaUrl.setAttribute("content", "website");
-
-      document.head.appendChild(metaTitle);
-      document.head.appendChild(metaDescription);
-      document.head.appendChild(metaImage);
-      document.head.appendChild(metaUrl);
-      document.head.appendChild(metaType);
-
+      updateMetaTag("title", title_page);
+      updateMetaTag("description", description);
+      updateMetaTag("image", image);
+      updateMetaTag("url", url);
+      updateMetaTag("type", "website");
     },
 
     async mostrarContato() {
