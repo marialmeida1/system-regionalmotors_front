@@ -14,9 +14,7 @@
               {{ infos?.complemento_comercial }}
             </p>
             <p class="p-0 mb-1">{{ infos?.bairro_comercial }}, {{ infos?.cep_comercial }}</p>
-            <p class="p-0 mb-1">
-              {{ infos?.cidade_nome }}, {{ infos?.estado_nome }}
-            </p>
+            <p class="p-0 mb-1">{{ infos?.cidade_nome }}, {{ infos?.estado_nome }}</p>
           </div>
         </div>
         <div class="col-12 col-md-4 col-lg-4 border-smoll">
@@ -38,11 +36,21 @@
       </div>
       <div class="pt-4 d-flex justify-content-center">
         <div class="col-12 col-md-3 col-lg-3 text-center mb-1">
-          <a v-if="infos?.instagram" class="icon-border me-3" :href="infos.instagram" target="_blank">
+          <a
+            v-if="infos?.instagram"
+            class="icon-border me-3"
+            :href="ensureValidLink(infos.instagram, 'instagram')"
+            target="_blank"
+          >
             <i class="fab fa-instagram fa-lg" style="color: #f0bd84"></i>
           </a>
 
-          <a v-if="infos?.facebook" class="icon-border" :href="infos.facebook" target="_blank">
+          <a
+            v-if="infos?.facebook"
+            class="icon-border"
+            :href="ensureValidLink(infos.facebook, 'facebook')"
+            target="_blank"
+          >
             <i class="fab fa-facebook-f fa-lg" style="color: #8fd1f7"></i>
           </a>
         </div>
@@ -69,7 +77,7 @@ export default {
   methods: {
     async fetchAnunciante() {
       try {
-        const id = localStorage.getItem('storeId');
+        const id = localStorage.getItem("storeId");
 
         const response = await api.encontrarAnunciante(id);
 
@@ -78,6 +86,41 @@ export default {
         console.error("Erro ao buscar dados do anunciante:", error);
         // Lide com erros conforme necessário
       }
+    },
+
+    isValidLink(link, type) {
+      if (!link) return false;
+
+      const baseUrls = {
+        instagram: ["https://www.instagram.com/", "https://"],
+        facebook: ["https://www.facebook.com/", "https://"],
+      };
+
+      // Verifica se o link começa com qualquer um dos prefixos válidos
+      return baseUrls[type].some((prefix) => link.startsWith(prefix));
+    },
+
+    ensureValidLink(link, type) {
+      if (!link) return ""; // Retorna vazio se o link for nulo ou indefinido
+
+      const baseUrls = {
+        instagram: "https://www.instagram.com/",
+        facebook: "https://www.facebook.com/",
+      };
+
+      // Se o link já é válido, retorna como está
+      if (this.isValidLink(link, type)) return link;
+
+      // Se contém "www.instagram.com" ou "www.facebook.com", completa com "https://"
+      if (link.includes("www.instagram.com") && type === "instagram") {
+        return `https://${link}`;
+      }
+      if (link.includes("www.facebook.com") && type === "facebook") {
+        return `https://${link}`;
+      }
+
+      // Caso contrário, assume que é um nome de usuário e completa com o prefixo base
+      return `${baseUrls[type]}${link}`;
     },
   },
 
