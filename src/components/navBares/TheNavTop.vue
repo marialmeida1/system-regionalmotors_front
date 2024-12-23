@@ -97,11 +97,11 @@
 
         <div id="men" class="bg-inf card-menu">
           <div class="card-menu-content d-flex align-items-center">
-            <div class="menu-link position-relative py-3" @click="execAll('carro')">
+            <div class="menu-link position-relative py-3" @click="execAll('2')">
               Comprar carros usados
             </div>
-            <div class="menu-link position-relative py-3" @click="execAll('moto')">
-              Comprar motos usadas
+            <div class="menu-link position-relative py-3" @click="execAll('1')">
+              Comprar carros novos
             </div>
 
             <!--<div class="menu-link position-relative py-3">
@@ -243,7 +243,8 @@ export default {
     },
 
     goVerVeiculos(veiculo) {
-      const parametros = { tipo_veiculo: veiculo };
+      const parametros = { situacao_veiculo: veiculo };
+      console.log(parametros)
       this.$router.push({ path: "/resultados", query: parametros });
 
       this.$emit("filterVeiculoRoute", veiculo);

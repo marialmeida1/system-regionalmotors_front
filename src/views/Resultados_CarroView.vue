@@ -62,7 +62,7 @@
 
             execFilterVeiculoRoute(veiculo) {
               // this.$refs.theresultado.applyFiltro('tipo', veiculo)
-              this.$refs.theNavLateral.applyFiltro('tipo_veiculo', veiculo)
+              this.$refs.theNavLateral.applyFiltro('situacao_veiculo', veiculo)
 
             },
 
