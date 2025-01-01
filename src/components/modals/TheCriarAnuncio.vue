@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="nome" class="form-label">Ano de Fabricaçao</label>
+                  <label for="ano_fabricante" class="form-label">Ano de Fabricação</label>
                   <select class="form-select" v-model="ano_fabricante">
                     <option value="" selected disabled>Selecionar</option>
                     <option v-for="(ano, index) in anos" :value="ano" :key="index">
@@ -128,10 +128,10 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="nome" class="form-label">Ano do Modelo</label>
+                  <label for="ano_modelo" class="form-label">Ano do Modelo</label>
                   <select class="form-select" v-model="ano_modelo">
                     <option value="" selected disabled>Selecionar</option>
-                    <option v-for="(ano, index) in anos" :value="ano" :key="index">
+                    <option v-for="(ano, index) in anos_modelo" :value="ano" :key="index">
                       {{ ano }}
                     </option>
                   </select>
@@ -161,13 +161,13 @@
                   />
                 </div>
 
-                <div class="mb-3">
+                <!--<div class="mb-3">
                   <label for="nome" class="form-label">Mostrar Preço</label>
                   <select v-model="mostrar_preco" class="form-select">
                     <option value="sim" selected>Sim</option>
                     <option value="nao">Não</option>
                   </select>
-                </div>
+                </div>-->
 
                 <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8">
                   <div
@@ -353,9 +353,10 @@ export default {
       Api_CategOpcionais: [],
       Api_Opcionais: [],
 
-      portas: [2, 4, 6, 8, 10],
+      portas: [1, 2, 3, 4, 5, 6],
       Api_fabricante: ["BMW", "Suzuki", "Toyota"],
       anos: [],
+      anos_modelo: [],
 
       marcas: [], // Exemplo de lista de marcas
       modelos: "", // Array vazio para modelos iniciais
@@ -604,6 +605,16 @@ export default {
 
   mounted() {
     // this.menuItemsList()
+  },
+
+  watch: {
+    ano_fabricante(newVal) {
+      this.ano_modelo = newVal;
+      let ano_ant = this.ano_modelo - 1;
+
+      this.anos_modelo.push(this.ano_modelo);
+      this.anos_modelo.push(ano_ant);
+    },
   },
 };
 </script>

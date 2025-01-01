@@ -413,6 +413,7 @@ export default {
       this.selectedText = event.target.options[selectedIndex].text;
 
       this.applyFiltro(chaveID, this.selectedText);
+      console.log(this.selectedText)
 
       this.marcas = await api.filtrarAnuncio(
         `api/marcas/listar_marcas?tipo_veiculo=${this.selectedText}`
@@ -421,6 +422,8 @@ export default {
 
     async filtrarModelo(chaveID, valorID) {
       this.applyFiltro(chaveID, valorID);
+
+      console.log(valorID)
 
       this.modelos = await api.filtrarAnuncio(`api/modelos/listar_modelos?nome_marca=${valorID}`);
     },
