@@ -293,54 +293,29 @@ export default {
 
     this.id = this.veiculo.id_anunciante;
 
-    let title_page =
-      "Comprar  - " +
-      this.veiculo.marca +
-      " " +
-      this.veiculo.modelo +
-      " " +
-      this.veiculo.ano_modelo +
-      " " +
-      this.veiculo.cor +
-      " " +
-      this.veiculo.combustivel +
-      " " +
-      this.veiculo.transmissao;
-    const url_page =
-      this.veiculo.marca +
-      "-" +
-      this.veiculo.modelo +
-      "-" +
-      this.veiculo.ano_modelo +
-      "-" +
-      this.veiculo.cor +
-      "-" +
-      this.veiculo.combustivel +
-      "-" +
-      this.veiculo.transmissao +
-      "-" +
-      this.veiculo.id +
-      "-RegionalMotors";
-    const car = url_page.toLowerCase();
-
     const url = window.location.href;
     const hostname = new URL(url).hostname;
 
+    let url_page =
+      `${this.veiculo.marca}-${this.veiculo.modelo}-${this.veiculo.ano_modelo}-${this.veiculo.cor}-${this.veiculo.combustivel}-${this.veiculo.transmissao}-${this.veiculo.id}`.toLowerCase();
+    let title_page = `${this.veiculo.marca} ${this.veiculo.modelo} ${this.veiculo.ano_modelo} ${this.veiculo.cor} ${this.veiculo.combustivel} ${this.veiculo.transmissao}`;
+
     if (
-      hostname == "teste.regionalmotors.com.br" ||
-      hostname == "regionalmotors.com.br" ||
-      hostname == "regionalmotors"
+      hostname === "teste.regionalmotors.com.br" ||
+      hostname === "regionalmotors.com.br" ||
+      hostname === "regionalmotors"
     ) {
-      const newPath = `/verveiculo?id=${this.veiculo.id}/${car}`;
-      this.$router.replace(newPath);
       title_page += " - Regional Motors";
+      url_page += "-regionalmotors";
       this.namePage = "Regional Motors";
     } else {
-      const newPath = `/verveiculorevenda?id=${this.veiculo.id}/${car}`;
-      this.$router.replace(newPath);
-      title_page += " - " + this.veiculo.empresa;
+      title_page += ` - ${this.veiculo.empresa}`;
+      url_page += `-${this.veiculo.empresa.toLowerCase().replace(/\s+/g, '')}`;
       this.namePage = this.veiculo.empresa;
     }
+
+    const newPath = `/verveiculo?id=${this.veiculo.id}/${url_page}`;
+    this.$router.replace(newPath);
 
     const urlPage = window.location.href;
     this.linkPage = urlPage;
