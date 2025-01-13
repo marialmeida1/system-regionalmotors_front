@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "generate-index": "node scripts/generateIndex.js",
+    "build": "vite build && npm run generate-index",
     "preview": "vite preview"
   },
   "dependencies": {
