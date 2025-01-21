@@ -27,4 +27,5 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sshpass
-          sshpass -p "$SSH_PASS" rsync -avz --delete -e "ssh -p 65002" dist/ $SSH_USER@$SSH_HOST:/
+          export RSYNC_RSH="ssh -o StrictHostKeyChecking=no -p 65002"
+          sshpass -p "$SSH_PASS" rsync -avz --delete dist/ $SSH_USER@$SSH_HOST:/
