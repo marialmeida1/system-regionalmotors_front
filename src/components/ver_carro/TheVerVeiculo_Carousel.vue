@@ -300,6 +300,8 @@ export default {
       `${this.veiculo.marca}-${this.veiculo.modelo}-${this.veiculo.ano_modelo}-${this.veiculo.cor}-${this.veiculo.combustivel}-${this.veiculo.transmissao}-${this.veiculo.id}`.toLowerCase();
     let title_page = `${this.veiculo.marca} ${this.veiculo.modelo} ${this.veiculo.ano_modelo} ${this.veiculo.cor} ${this.veiculo.combustivel} ${this.veiculo.transmissao}`;
 
+    let newPath = "";
+
     if (
       hostname === "teste.regionalmotors.com.br" ||
       hostname === "regionalmotors.com.br" ||
@@ -308,13 +310,14 @@ export default {
       title_page += " - Regional Motors";
       url_page += "-regionalmotors";
       this.namePage = "Regional Motors";
+      newPath = `/verveiculo?id=${this.veiculo.id}/${url_page}`;
     } else {
       title_page += ` - ${this.veiculo.empresa}`;
       url_page += `-${this.veiculo.empresa.toLowerCase().replace(/\s+/g, '')}`;
       this.namePage = this.veiculo.empresa;
+      newPath = `/verveiculorevenda?id=${this.veiculo.id}/${url_page}`;
     }
 
-    const newPath = `/verveiculo?id=${this.veiculo.id}/${url_page}`;
     this.$router.replace(newPath);
 
     const urlPage = window.location.href;
