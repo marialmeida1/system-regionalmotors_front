@@ -1,4 +1,4 @@
-name: Deploy Vue.js to Hostinger
+name: Continuous Deployment
 
 on:
   push:
@@ -6,26 +6,37 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
+    name: Deploy to Hostinguer
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - name: Install dependencies
-        run: npm install
-      - name: Build project
-        run: npm run build
-      - name: Deploy to Hostinger
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PASS: ${{ secrets.SSH_PASS }}
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y sshpass
-          export RSYNC_RSH="ssh -o StrictHostKeyChecking=no -p 65002"
-          sshpass -p "$SSH_PASS" rsync -avz --delete dist/ $SSH_USER@$SSH_HOST:/
+    # 1. Checkout do repositório
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Instalar dependências do Vue.js
+    - name: Install dependencies
+      run: npm install
+
+    # 3. Construir o projeto (build)
+    - name: Build the project
+      run: npm run build
+
+    # 4. Deploy dos arquivos principais para a raiz
+    - name: Deploy main files
+      uses: appleboy/scp-action@v0.1.0
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PASS }}
+        source: dist/* # Arquivos gerados no build
+        target: /home/u741651436/public_html
+
+    # 5. Copiar arquivos para as subpastas
+    - name: Deploy to subdirectories
+      run: |
+        ssh -o StrictHostKeyChecking=no your-ssh-user@your-server-ip << EOF
+          cp -r /home/u741651436/public_html/* /home/u741651436/public_html/revenda1/
+          cp -r /home/u741651436/public_html/* /home/u741651436/public_html/revenda2/
+        EOF
