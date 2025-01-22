@@ -32,11 +32,13 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -p 65002 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
+
     # 5. Checando SSH
     - name: Check SSH setup
       run: |
         echo "Checking SSH key and directory..."
         ls -la ~/.ssh/
+
     # 6. Deploy dos arquivos principais para a raiz
     - name: Deploy main files
       uses: appleboy/scp-action@v0.1.0
@@ -52,6 +54,9 @@ jobs:
     - name: Deploy to subdirectories
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/ /home/***/domains/regionalmotors.com.br/public_html/revenda1/
-          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/ /home/***/domains/regionalmotors.com.br/public_html/revenda2/
+          # Copia apenas o conteúdo de public_html para revenda1
+          rsync -av --delete /home/u741651436/domains/regionalmotors.com.br/public_html/ /home/u741651436/domains/regionalmotors.com.br/public_html/revenda1/ --exclude="revenda1/" --exclude="revenda2/"
+
+          # Copia apenas o conteúdo de public_html para revenda2
+          rsync -av --delete /home/u741651436/domains/regionalmotors.com.br/public_html/ /home/u741651436/domains/regionalmotors.com.br/public_html/revenda2/ --exclude="revenda1/" --exclude="revenda2/"
         EOF
