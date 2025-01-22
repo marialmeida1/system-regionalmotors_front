@@ -49,12 +49,12 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 65002
         source: dist/* # Arquivos gerados no build
-        target: home/u741651436/domains/regionalmotors.com.br/public_html/teste
+        target: /home/u741651436/domains/regionalmotors.com.br/public_html/teste
 
     # 7. Copiar arquivos para as subpastas
     - name: Deploy to subdirectories
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          cp -r home/u741651436/domains/regionalmotors.com.br/public_html/teste* home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda1/
-          cp -r home/u741651436/domains/regionalmotors.com.br/public_html/teste* home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda2/
+          cp -r /home/u741651436/domains/regionalmotors.com.br/public_html/teste* /home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda1/
+          cp -r /home/u741651436/domains/regionalmotors.com.br/public_html/teste* /home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda2/
         EOF
