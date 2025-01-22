@@ -30,6 +30,7 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PASS }}
+        port: 65002
         source: dist/* # Arquivos gerados no build
         target: /home/u741651436/public_html
 
