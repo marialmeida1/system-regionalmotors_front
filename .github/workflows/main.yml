@@ -23,7 +23,7 @@ jobs:
     - name: Build the project
       run: npm run build
 
-    # 4. Criando chave SSH
+    # 4. Configurar chave SSH
     - name: Setup SSH key
       run: |
         echo "Setting up SSH key..."
@@ -33,13 +33,13 @@ jobs:
         ssh-keyscan -p 65002 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
 
-    # 5. Checando SSH
+    # 5. Testar a configuração do SSH
     - name: Check SSH setup
       run: |
         echo "Checking SSH key and directory..."
         ls -la ~/.ssh/
 
-    # 6. Deploy dos arquivos principais para a raiz
+    # 6. Deploy inicial para a pasta raiz
     - name: Deploy main files
       uses: appleboy/scp-action@v0.1.0
       with:
@@ -47,13 +47,17 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 65002
-        source: ./dist/* # Envia apenas o conteúdo da pasta dist
+        source: ./dist/* # Apenas o conteúdo da pasta dist
         target: /home/u741651436/domains/regionalmotors.com.br/public_html/teste/
 
-    # 7. Copiar arquivos para as subpastas
+    # 7. Distribuir os arquivos para subpastas específicas
     - name: Deploy to subdirectories
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          cp -r /home/u741651436/domains/regionalmotors.com.br/public_html/teste/* /home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda1/
-          cp -r /home/u741651436/domains/regionalmotors.com.br/public_html/teste/* /home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda2/
+          # Copiar arquivos da pasta raiz para revenda1
+          rsync -av --remove-source-files /home/u741651436/domains/regionalmotors.com.br/public_html/teste/ /home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda1/
+          # Copiar arquivos da pasta raiz para revenda2
+          rsync -av --remove-source-files /home/u741651436/domains/regionalmotors.com.br/public_html/teste/ /home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda2/
+          # Limpar diretórios vazios restantes após mover arquivos
+          find /home/u741651436/domains/regionalmotors.com.br/public_html/teste/ -type d -empty -delete
         EOF
