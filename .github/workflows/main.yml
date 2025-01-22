@@ -23,7 +23,7 @@ jobs:
     - name: Build the project
       run: npm run build
 
-    # 4. Configurar chave SSH
+    # 4. Criando chave SSH
     - name: Setup SSH key
       run: |
         echo "Setting up SSH key..."
@@ -32,14 +32,12 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -p 65002 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         chmod 644 ~/.ssh/known_hosts
-
-    # 5. Testar a configuração do SSH
+    # 5. Checando SSH
     - name: Check SSH setup
       run: |
         echo "Checking SSH key and directory..."
         ls -la ~/.ssh/
-
-    # 6. Deploy inicial para a pasta raiz
+    # 6. Deploy dos arquivos principais para a raiz
     - name: Deploy main files
       uses: appleboy/scp-action@v0.1.0
       with:
@@ -47,17 +45,13 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 65002
-        source: ./dist/* # Apenas o conteúdo da pasta dist
-        target: /home/u741651436/domains/regionalmotors.com.br/public_html/teste/
+        source: ./dist/ # Arquivos gerados no build
+        target: /home/u741651436/domains/regionalmotors.com.br/public_html/teste
 
-    # 7. Distribuir os arquivos para subpastas específicas
+    # 7. Copiar arquivos para as subpastas
     - name: Deploy to subdirectories
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          # Copiar arquivos da pasta raiz para revenda1
-          rsync -av --remove-source-files /home/u741651436/domains/regionalmotors.com.br/public_html/teste/ /home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda1/
-          # Copiar arquivos da pasta raiz para revenda2
-          rsync -av --remove-source-files /home/u741651436/domains/regionalmotors.com.br/public_html/teste/ /home/u741651436/domains/regionalmotors.com.br/public_html/teste/revenda2/
-          # Limpar diretórios vazios restantes após mover arquivos
-          find /home/u741651436/domains/regionalmotors.com.br/public_html/teste/ -type d -empty -delete
+          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/teste/ /home/***/domains/regionalmotors.com.br/public_html/teste/revenda1/
+          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/teste/ /home/***/domains/regionalmotors.com.br/public_html/teste/revenda2/
         EOF
