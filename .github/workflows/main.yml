@@ -37,7 +37,7 @@ jobs:
     # 5. Copiar arquivos para as subpastas
     - name: Deploy to subdirectories
       run: |
-        ssh -o StrictHostKeyChecking=no your-ssh-user@62.72.10.4 << EOF
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
           cp -r /home/u741651436/public_html/* /home/u741651436/public_html/revenda1/
           cp -r /home/u741651436/public_html/* /home/u741651436/public_html/revenda2/
         EOF
