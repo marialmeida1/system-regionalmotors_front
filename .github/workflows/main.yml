@@ -48,7 +48,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 65002
-        source: dist/* # Arquivos gerados no build
+        source: ./dist/ # Arquivos gerados no build
         target: /home/u741651436/domains/regionalmotors.com.br/public_html/teste
 
     # 7. Copiar arquivos para as subpastas
