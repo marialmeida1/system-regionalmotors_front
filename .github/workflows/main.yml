@@ -52,6 +52,6 @@ jobs:
     - name: Deploy to subdirectories
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/teste/ /home/***/domains/regionalmotors.com.br/public_html/revenda1/
-          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/teste/ /home/***/domains/regionalmotors.com.br/public_html/revenda2/
+          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/ /home/***/domains/regionalmotors.com.br/public_html/revenda1/
+          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/ /home/***/domains/regionalmotors.com.br/public_html/revenda2/
         EOF
