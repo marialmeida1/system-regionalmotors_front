@@ -23,7 +23,14 @@ jobs:
     - name: Build the project
       run: npm run build
 
-    # 4. Deploy dos arquivos principais para a raiz
+    # 4. Verificar a chave SSH
+    - name: Check if SSH private key is set
+      run: |
+        echo "Checking SSH key..."
+        ls -l ~/.ssh/
+        cat ~/.ssh/id_rsa
+
+    # 5. Deploy dos arquivos principais para a raiz
     - name: Deploy main files
       uses: appleboy/scp-action@v0.1.0
       with:
@@ -34,7 +41,7 @@ jobs:
         source: dist/* # Arquivos gerados no build
         target: /home/u741651436/public_html
 
-    # 5. Copiar arquivos para as subpastas
+    # 6. Copiar arquivos para as subpastas
     - name: Deploy to subdirectories
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
