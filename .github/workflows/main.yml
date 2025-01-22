@@ -55,9 +55,8 @@ jobs:
     - name: Deploy to subdirectories
       run: |
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          mkdir -p /home/***/domains/regionalmotors.com.br/public_html/teste/revenda1
-          mkdir -p /home/***/domains/regionalmotors.com.br/public_html/teste/revenda2
-          cp -r /home/***/domains/regionalmotors.com.br/public_html/teste/* /home/***/domains/regionalmotors.com.br/public_html/teste/revenda1/
-          cp -r /home/***/domains/regionalmotors.com.br/public_html/teste/* /home/***/domains/regionalmotors.com.br/public_html/teste/revenda2/
+          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/teste/ /home/***/domains/regionalmotors.com.br/public_html/teste/revenda1/
+          rsync -av --exclude="revenda1/" --exclude="revenda2/" /home/***/domains/regionalmotors.com.br/public_html/teste/ /home/***/domains/regionalmotors.com.br/public_html/teste/revenda2/
         EOF
+
 
