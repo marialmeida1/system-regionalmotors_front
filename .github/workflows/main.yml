@@ -48,15 +48,8 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 65002
         source: ./dist/ # Arquivos gerados no build
-        target: /home/u741651436/domains/regionalmotors.com.br/public_html/
+        target: |
+          /home/u741651436/domains/regionalmotors.com.br/public_html/revenda1
+          /home/u741651436/domains/regionalmotors.com.br/public_html/revenda2
+          /home/u741651436/domains/regionalmotors.com.br/public_html/
 
-    # 7. Copiar arquivos para as subpastas
-    - name: Deploy to subdirectories
-      run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
-          # Copia apenas o conteúdo de public_html para revenda1
-          rsync -av --delete /home/u741651436/domains/regionalmotors.com.br/public_html/ /home/u741651436/domains/regionalmotors.com.br/public_html/revenda1/ --exclude="revenda1/" --exclude="revenda2/"
-
-          # Copia apenas o conteúdo de public_html para revenda2
-          rsync -av --delete /home/u741651436/domains/regionalmotors.com.br/public_html/ /home/u741651436/domains/regionalmotors.com.br/public_html/revenda2/ --exclude="revenda1/" --exclude="revenda2/"
-        EOF
