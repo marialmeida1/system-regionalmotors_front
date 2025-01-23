@@ -38,19 +38,38 @@ jobs:
       run: |
         echo "Checking SSH key and directory..."
 
-    # 6. Deploy dos arquivos para múltiplos diretórios
+    # 6. Deploy na Dist
+    - name: Deploy files to dist directory
+      run: |
+        # Criar a pasta 'dist' no servidor
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/u741651436/domains/regionalmotors.com.br/public_html/dist/"
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -ld /home/u741651436/domains/regionalmotors.com.br/public_html/dist/"
+
+        # Verificar se a pasta 'dist' não está vazia antes de tentar transferir
+        if [ "$(ls -A ./dist)" ]; then
+          echo "A pasta dist contém arquivos, fazendo o deploy..."
+          scp -P 65002 -r ./dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/regionalmotors.com.br/public_html/dist/
+        else
+          echo "A pasta dist está vazia! Não há arquivos para transferir."
+        fi
+
+     #7. Deploy dos arquivos para múltiplos diretórios
     - name: Deploy files to multiple directories
       run: |
         # Consultar a API e salvar os sites em folders.txt
         curl -s -X GET "https://api.regionalmotors.com.br/api/anunciantes/buscar_site_anunciante" | jq -r '.[].site' > folders.txt
         FOLDERS=$(cat folders.txt)
-        
-        # Criar a pasta 'dist' no servidor
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/u741651436/domains/regionalmotors.com.br/public_html/dist/"
-        
-        # Fazer o deploy para a pasta 'dist' e para as outras pastas da API
+
+        # Criar pasta no servidor para cada site retornado pela API
         for folder in $FOLDERS; do
+          echo "Criando pasta $folder no servidor..."
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/u741651436/domains/regionalmotors.com.br/public_html/$folder/"
+          
+          # Verificar se a pasta foi criada
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -ld /home/u741651436/domains/regionalmotors.com.br/public_html/$folder/"
+          
+          # Fazer o deploy para a pasta específica de cada site
           scp -P 65002 -r ./dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/regionalmotors.com.br/public_html/$folder/
         done
+
 
