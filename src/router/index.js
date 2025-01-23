@@ -201,7 +201,6 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const url = window.location.href;
   const hostname = new URL(url).hostname.replace(/^www\./, "");
-  console.log(hostname)
 
   const isAllowed = allowedUrls.some((urlObj) => urlObj.site === hostname);
 
