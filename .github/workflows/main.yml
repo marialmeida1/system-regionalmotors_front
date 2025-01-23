@@ -41,8 +41,14 @@ jobs:
     # 6. Deploy dos arquivos para múltiplos diretórios
     - name: Deploy files to multiple directories
       run: |
+        # Consultar a API e salvar os sites em folders.txt
         curl -s -X GET "https://api.regionalmotors.com.br/api/anunciantes/buscar_site_anunciante" | jq -r '.[].site' > folders.txt
         FOLDERS=$(cat folders.txt)
+        
+        # Criar a pasta 'dist' no servidor
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/u741651436/domains/regionalmotors.com.br/public_html/dist/"
+        
+        # Fazer o deploy para a pasta 'dist' e para as outras pastas da API
         for folder in $FOLDERS; do
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/u741651436/domains/regionalmotors.com.br/public_html/$folder/"
           scp -P 65002 -r ./dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/regionalmotors.com.br/public_html/$folder/
