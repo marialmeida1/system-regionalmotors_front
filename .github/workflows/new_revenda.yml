@@ -1,0 +1,25 @@
+name: Deploy New Revenda
+
+on:
+  workflow_dispatch: # Acionamento manual, útil para testes
+  repository_dispatch: # Para acionar via webhook
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Create folders and deploy files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Lista de pastas, com "dist" + revendas
+          FOLDERS=("dist" "${{ github.event.client_payload.site }}")
+          
+          for folder in "${FOLDERS[@]}"; do
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/u741651436/domains/regionalmotors.com.br/public_html/$folder/"
+            scp -P 65002 -r ./dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/regionalmotors.com.br/public_html/$folder/
+          done
