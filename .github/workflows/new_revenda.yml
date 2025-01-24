@@ -9,9 +9,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the code
+      # 1. Checkout do repositório
+      - name: Checkout code
         uses: actions/checkout@v3
+  
+      # 2. Instalar dependências do Vue.js
+      - name: Install dependencies
+        run: npm install
+  
+      # 3. Construir o projeto (build)
+      - name: Build the project
+        run: npm run build
+  
+      # 4. Criando chave SSH
+      - name: Setup SSH key
+        run: |
+          echo "Setting up SSH key..."
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 65002 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+  
+      # 5. Checando SSH
+      - name: Check SSH setup
+        run: |
+          echo "Checking SSH key and directory..."
 
+      # 6. Criando folders
       - name: Create folders and deploy files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
