@@ -42,7 +42,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Lista de pastas, com "dist" + revendas
-          FOLDERS=("dist" "${{ github.event.client_payload.site }}")
+          FOLDERS=("${{ github.event.client_payload.site }}")
           
           for folder in "${FOLDERS[@]}"; do
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/u741651436/domains/regionalmotors.com.br/public_html/$folder/"
