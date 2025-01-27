@@ -65,6 +65,7 @@ jobs:
       # 7. Deploy dos arquivos para múltiplos diretórios
       - name: Deploy files to revendas directories
         run: |
+          shopt -s extglob  # Ativa o extglob no bash
           # Consultar a API e salvar os sites em folders.txt
           curl -s -X GET "https://api.regionalmotors.com.br/api/anunciantes/buscar_site_anunciante" | jq -r '.[].site' > folders.txt
           FOLDERS=$(cat folders.txt)
