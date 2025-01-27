@@ -16,4 +16,13 @@ export default defineConfig({
     host: 'revendarm.com.br',
     port: 5173,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Impede a geração de hash nos arquivos
+        entryFileNames: 'assets/[name].js', // Para arquivos JS
+        assetFileNames: 'assets/[name].[ext]' // Para arquivos CSS e outros assets
+      }
+    }
+  }
 })
