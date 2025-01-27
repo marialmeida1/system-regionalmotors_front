@@ -21,6 +21,7 @@ export default defineConfig({
       output: {
         // Impede a geração de hash nos arquivos
         entryFileNames: 'assets/[name].js', // Para arquivos JS
+        chunkFileNames: 'assets/[name].js', // Para arquivos de chunk JS
         assetFileNames: 'assets/[name].[ext]' // Para arquivos CSS e outros assets
       }
     }
