@@ -1,0 +1,50 @@
+name: Deploy New Revenda
+
+on:
+  workflow_dispatch: # Acionamento manual, útil para testes
+  repository_dispatch: # Para acionar via webhook
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout do repositório
+      - name: Checkout code
+        uses: actions/checkout@v3
+  
+      # 2. Instalar dependências do Vue.js
+      - name: Install dependencies
+        run: npm install
+  
+      # 3. Construir o projeto (build)
+      - name: Build the project
+        run: npm run build
+  
+      # 4. Criando chave SSH
+      - name: Setup SSH key
+        run: |
+          echo "Setting up SSH key..."
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 65002 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+  
+      # 5. Checando SSH
+      - name: Check SSH setup
+        run: |
+          echo "Checking SSH key and directory..."
+
+      # 6. Criando folders
+      - name: Create folders and deploy files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Lista de pastas, com "dist" + revendas
+          FOLDERS=("${{ github.event.client_payload.site }}")
+          
+          for folder in "${FOLDERS[@]}"; do
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /home/u741651436/domains/$folder/public_html/"
+            scp -P 65002 -r ./dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/$folder/public_html/
+          done
