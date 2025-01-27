@@ -202,23 +202,40 @@ router.beforeEach(async (to, from, next) => {
   const url = window.location.href;
   const hostname = new URL(url).hostname.replace(/^www\./, "");
 
-  const isAllowed = allowedUrls.some((urlObj) => urlObj.site === hostname);
-
-  if (hostname.includes("regionalmotors")) {
-    to.meta.pageType = "principal"; // Define tipo de página
+  // CÓDIGOS DE DESENVOLVIMENTO
+  if(hostname.includes("homologrm")) {
+    to.meta.pageType = "principal"; 
+    localStorage.setItem("typePage", "developRegional")
     return next();
   }
 
+  if(hostname.includes("revendarm")) {
+    localStorage.setItem("typePage", "developRevenda")
+    localStorage.setItem("storeId", 29); // Armazena o ID de uma revenda exemplo
+    to.meta.pageType = "revenda"; // Define o tipo de página
+  }
+
+
+  // CÓDIGOS DE PRODUÇÃO
+  if (hostname.includes("regionalmotors")) {
+    to.meta.pageType = "principal"; // Define tipo de página
+    localStorage.setItem("typePage", "mainRegional")
+    return next();
+  }
+
+  const isAllowed = allowedUrls.some((urlObj) => urlObj.site === hostname); // Verifica domínios
   if (isAllowed) {
     const targetRevenda = allowedUrls.find((urlObj) => urlObj.site === hostname)?.id;
 
     if (targetRevenda) {
+      localStorage.setItem("typePage", "mainRevenda")
       localStorage.setItem("storeId", targetRevenda); // Armazena o ID da revenda
       to.meta.pageType = "revenda"; // Define tipo de página
     }
-
     return next();
   }
+  
+  console.log(localStorage.getItem("typePage"))
   return next(); // Caso não seja permitido, continua normalmente
 });
 

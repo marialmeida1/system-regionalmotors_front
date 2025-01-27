@@ -302,11 +302,10 @@ export default {
 
     let newPath = "";
 
-    if (
-      hostname === "teste.regionalmotors.com.br" ||
-      hostname === "regionalmotors.com.br" ||
-      hostname === "regionalmotors"
-    ) {
+    // Pegando tipo de página
+    const typePage = localStorage.getItem("typePage");
+
+    if ( (typePage == "mainRegional" || typePage == "developRegional")) {
       title_page += " - Regional Motors";
       url_page += "-regionalmotors";
       this.namePage = "Regional Motors";
