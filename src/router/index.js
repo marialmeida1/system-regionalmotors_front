@@ -235,7 +235,6 @@ router.beforeEach(async (to, from, next) => {
     return next();
   }
   
-  console.log(localStorage.getItem("typePage"))
   return next(); // Caso não seja permitido, continua normalmente
 });
 

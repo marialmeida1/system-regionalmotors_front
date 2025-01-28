@@ -1,7 +1,8 @@
 <template>
   <main class="content">
     <div class="pt-3 pe-4 pb-3 d-flex flex-row align-items-center justify-content-between">
-      <!-- Links -->
+
+      <!-- Links no Topo -->
       <div class="py-2 px-2" style="font-size: 13px">
         <span
           class="me-2 p-1 px-2 rounded-3 me-2"

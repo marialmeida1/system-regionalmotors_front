@@ -295,3 +295,6 @@ export default {
 <style>
 @import "../../assets/css/navBar.css";
 </style>
+
+<style module>
+</style>

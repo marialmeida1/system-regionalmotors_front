@@ -457,11 +457,11 @@ export default {
     const url = window.location.href;
     const baseUrl = window.location.origin;
     const info_path = url.replace(baseUrl, "");
-    const info_url = info_path.split("/")[3];
 
-    if (info_url == "estoque") {
-      document.getElementById('tipo_veiculo').value = "1";
-      document.getElementById('situacao_veiculo').value = "2";
+    if (info_path == "/estoque") {
+      document.getElementById("tipo_veiculo").value = "1";
+      document.getElementById("situacao_veiculo").value = "2";
+      this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas?tipo_veiculo_id=1`);
     }
   },
 
