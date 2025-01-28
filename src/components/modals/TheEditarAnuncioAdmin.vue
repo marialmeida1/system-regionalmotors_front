@@ -139,6 +139,16 @@
                 </div>
 
                 <div class="mb-3">
+                  <label for="nome" class="form-label">Ano de Fabricação</label>
+                  <select class="form-select" v-model="ano_fabricante">
+                    <option value="" selected disabled>Selecionar</option>
+                    <option v-for="(ano, index) in anos" :value="ano" :key="index">
+                      {{ ano }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
                   <label for="nome" class="form-label">Ano do Modelo</label>
                   <select class="form-select" v-model="ano_modelo">
                     <option value="" selected disabled>Selecionar</option>
