@@ -56,17 +56,5 @@ export default {
       footerElement.$el.scrollIntoView({ behavior: "smooth" });
     },
   },
-
-  async mounted() {
-    const id = localStorage.getItem('storeId');
-
-    const response = await api.encontrarAnunciante(id);
-    document.title = response.data.nome_empresa;
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Compre seu carro novo ou usado com segurança e pelo menor preço na " + response.data.nome_empresa +  ".");
-    }
-  },
 };
 </script>
