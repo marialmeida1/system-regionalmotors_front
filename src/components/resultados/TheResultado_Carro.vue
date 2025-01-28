@@ -77,17 +77,18 @@
       <div class="col-lg-12 col-md-12 p-0 m-0">
         <div>
           <div class="row p-0 m-0">
+
             <!-- Card -->
             <div
               class="col-lg-3 col-md-6 p-0 m-0 mb-3"
               v-for="(item, index) in $store.state.resultado"
               :key="index"
-              style="cursor: pointer"
+              style="cursor: pointer;"
             >
-              <div class="px-2 container-completo">
+              <div class="mx-2 container-completo">
                 <div class="row p-0 m-0">
-                  <div class="col-5 col-md-12 col-lg-12 m-0 p-0">
-                    <splide :options="splideOptions" class="bg-dark">
+                  <div class="col-5 col-md-12 col-lg-12 m-0 p-0" style="">
+                    <splide :options="splideOptions">
                       <splide-slide v-if="item.foto1" @click="goverveiculo(item.id)">
                         <div>
                           <div class="imagem-container2">
@@ -286,7 +287,7 @@
                   <div class="col-7 col-md-12 col-lg-12 titles p-0 m-0">
                     <div class="resultados-titulos" @click="showCarroDetalhes(item.id)">
                       <div class="px-2 pt-2 position-relative">
-                        <h5>{{ item.nome_marca }} {{ item.nome_modelo }}</h5>
+                        <h5 style="font-weight: 700;">{{ item.nome_marca }} {{ item.nome_modelo }}</h5>
                         <div style="opacity: 0.5; text-transform: uppercase">
                           <p>
                             {{ item.combustivel }}
@@ -344,7 +345,6 @@
       @click="show_menu_lateral"
     >
       <div
-        class="bg-dark"
         style="border-radius: 100px; height: 55px; width: 55px; padding-top: 5px"
       >
         <i class="fas fa-filter" style="font-size: 12px"></i> <br />
@@ -663,6 +663,18 @@ export default {
 .titles {
   background: #fff;
   padding: 10px 5px;
+  border-radius: 0rem 0rem 0.5em 0.5rem;
+}
+
+.container-completo {
+  border-radius: 0.5rem;
+  box-shadow: 0.25rem 0.25rem 1rem #00000020;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.imagem-container2 {
+  border-radius: 0.5em 0.5rem 0rem 0rem;
 }
 
 .imagem-container2 img {
