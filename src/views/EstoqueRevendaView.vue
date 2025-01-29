@@ -17,7 +17,7 @@
       />
     </div>
 
-    <TheResultado_Carro
+    <TheResultadoRevenda
       @show_menu_lateral="handle_showHidden_menu_lateral"
       :set_tipo_veiculo="set_tipo_veiculo"
       @goverveiculoNow="goverveiculo"
@@ -33,14 +33,14 @@
 <script>
 import TheNavTop from "../components/inicioRevenda/TheNavTop.vue";
 import TheNavLateral from "../components/inicioRevenda/TheNavLateral.vue";
-import TheResultado_Carro from "../components/inicioRevenda/TheEstoque.vue";
+import TheResultadoRevenda from "../components/resultados/TheResultadoRevenda.vue";
 import loader from "../components/loaders/loader.vue";
 
 export default {
   components: {
     TheNavTop,
     TheNavLateral,
-    TheResultado_Carro,
+    TheResultadoRevenda,
     loader,
   },
 

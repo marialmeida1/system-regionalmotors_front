@@ -288,7 +288,7 @@ import * as api from "../../services/api";
 import Glide from "@glidejs/glide";
 
 export default {
-  name: "TheResultado_Carro",
+  name: "TheResultadoRegional",
 
   props: {
     set_tipo_veiculo: String,

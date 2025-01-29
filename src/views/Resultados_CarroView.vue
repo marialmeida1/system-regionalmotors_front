@@ -8,7 +8,7 @@
           @filter_novo="filtrar_novo" ref="theNavLateral" @transmiteData="sendData" @limparFiltro="clearFiltros"/>
         </div>
         
-        <TheResultado_Carro @show_menu_lateral="handle_showHidden_menu_lateral" :set_tipo_veiculo="set_tipo_veiculo" @goverveiculoNow="goverveiculo" ref="theresultado"/>
+        <TheResultadoRegional @show_menu_lateral="handle_showHidden_menu_lateral" :set_tipo_veiculo="set_tipo_veiculo" @goverveiculoNow="goverveiculo" ref="theresultado"/>
 
           <div v-show="this.results">
             <loader/>
@@ -19,7 +19,7 @@
 <script>
    import TheNavTop from "../components/navBares/TheNavTop.vue"
    import TheNavLateral from "../components/navBares/TheNavLateral.vue"
-   import TheResultado_Carro from "../components/resultados/TheResultado_Carro.vue"
+   import TheResultadoRegional from "../components/resultados/TheResultadoRegional.vue"
    import loader from "../components/loaders/loader.vue" 
 
 
@@ -27,7 +27,7 @@
         components: {
               TheNavTop,
               TheNavLateral,
-              TheResultado_Carro,
+              TheResultadoRegional,
               loader
             },
 
