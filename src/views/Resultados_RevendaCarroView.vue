@@ -8,7 +8,7 @@
         @filter_novo="filtrar_novo" ref="theNavLateral" @transmiteData="sendData" @limparFiltro="clearFiltros" />
     </div>
 
-    <TheResultadoRegional @show_menu_lateral="handle_showHidden_menu_lateral" :set_tipo_veiculo="set_tipo_veiculo"
+    <TheResultadoRevenda @show_menu_lateral="handle_showHidden_menu_lateral" :set_tipo_veiculo="set_tipo_veiculo"
       @goverveiculoNow="goverveiculo" ref="theresultado" />
 
     <div v-show="this.results">
@@ -21,14 +21,14 @@
 import TheNavTop from "../components/inicioRevenda/TheNavTop.vue"
 import TheNavLateral from "../components/navBares/TheNavLateral.vue"
 import loader from "../components/loaders/loader.vue"
-import TheResultadoRegional from "../components/resultados/TheResultadoRegional.vue";
+import TheResultadoRevenda from "../components/resultados/TheResultadoRevenda.vue";
 
 
 export default {
   components: {
     TheNavTop,
     TheNavLateral,
-    TheResultadoRegionalp,
+    TheResultadoRevenda,
     loader
   },
 
@@ -57,6 +57,7 @@ export default {
 
     goverveiculo(id) {
       //document.querySelector('.loader').classList.remove('d-none')
+      console.log("Hey")
       const parametros = { id: id };
       this.$router.push({ path: '/verveiculo', query: parametros });
     },

@@ -68,7 +68,7 @@ export default {
 
     goverveiculo(id) {
       const parametros = { id: id };
-
+      
       this.$router.push({ path: `/verveiculorevenda`, query: parametros });
     },
 

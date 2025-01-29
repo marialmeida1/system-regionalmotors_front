@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "TheDestaque",
+  name: "TheCategorias",
   // Adicione lógica de carga de dados do anunciante aqui, se necessário
 };
 </script>
