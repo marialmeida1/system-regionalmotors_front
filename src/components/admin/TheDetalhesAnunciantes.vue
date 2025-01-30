@@ -1,6 +1,6 @@
 <template>
     <main class="content">
-            <!--<div class="py-2" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
+        <!--<div class="py-2" style="box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);">
             
                 <div class="row">
                     <div class="col-8 col-lg-10">
@@ -45,68 +45,70 @@
                 </div>
             </div>-->
 
-           <div class="p-4 pb-0">
-                <button class="btn bg-dark" @click="goBack()" style="cursor: pointer; opacity: 0.7;">
-                    <div style="transform: rotate(-90deg);">
-                        <i class="fas fa-arrow-up"></i>
-                    </div>
-                </button>
-           </div>
-            
-           <!-- div>
+        <div class="p-4 pb-0">
+            <button class="btn bg-dark" @click="goBack()" style="cursor: pointer; opacity: 0.7;">
+                <div style="transform: rotate(-90deg);">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </button>
+        </div>
+
+        <!-- div>
                 {{anunciante}}
             </div -->
 
-            <div class="position-relative">
-           <div class="p-2 pt-3 table-responsive">
+        <div class="position-relative">
+            <div class="p-2 pt-3 table-responsive">
 
                 <div class="px-3 pt-2">
-                <!-- <p class="" style="opacity: 0.6; font-size: 15px;">Em anúncio até  {{ detalharAnuncios.data_fim }}</p> -->
-                
+                    <!-- <p class="" style="opacity: 0.6; font-size: 15px;">Em anúncio até  {{ detalharAnuncios.data_fim }}</p> -->
 
-                <div class="rounded-3 p-3 pt-4" style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);">
-<!--                    
+
+                    <div class="rounded-3 p-3 pt-4" style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);">
+                        <!--                    
                     <div style="opacity: 0.8;">
                         <hr>
                     </div> -->
 
-                    <div>
-                        
-                    <!-- main detalhar -->
-                    
+                        <div>
 
-                        <div class="">
+                            <!-- main detalhar -->
+
+
+                            <div class="">
                                 <div class="row">
 
-                                  <!-- {{anunciante}} -->
-                                  <div>
-                                  <div style="height: 150px"
-                                        class="col-lg-3" 
-                                  >
-                                    <img :src="anunciante.foto" class="img-fluid img-anunciante">
-                                  </div>
-                                    
-                                  </div>
-
-                                  <h4 class="my-3 mt-0 p-2 ps-4" style="background-color: crimson; color: #fff; border-radius: 20px 20px 0 0;">
-                                    Empresa - {{ anunciante.nome_empresa }}
-                                  </h4>
+                                    <!-- {{anunciante}} -->
                                     <div>
-                                      <div style="width: 15px; height: 15px; border-radius: 100px; display: inline-block;" class="bg-success">
-                                        
-                                      </div>
-                                      <div class="ms-2" style="display: inline-block;">
-                                        Ativo
-                                      </div>
+                                        <div style="height: 150px" class="col-lg-3">
+                                            <img :src="anunciante.foto" class="img-fluid img-anunciante">
+                                        </div>
+
                                     </div>
-                                    
-                                    
+
+                                    <h4 class="my-3 mt-0 p-2 ps-4"
+                                        style="background-color: crimson; color: #fff; border-radius: 20px 20px 0 0;">
+                                        Empresa - {{ anunciante.nome_empresa }}
+                                    </h4>
+                                    <div>
+                                        <div style="width: 15px; height: 15px; border-radius: 100px; display: inline-block;"
+                                            class="bg-success">
+
+                                        </div>
+                                        <div class="ms-2" style="display: inline-block;">
+                                            Ativo
+                                        </div>
+                                    </div>
+
+
 
                                     <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8;">
-                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1" style="border-top-left-radius: 8px; font-size: 13px;"> 
+                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                                            style="border-top-left-radius: 8px; font-size: 13px;">
                                             Informaçoes do Anunciante
                                         </div>
-                                        <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important;">
+                                        <div class="col-5 col-md-7 col-lg-7 p-0"
+                                            style="padding-top: 13.5px !important;">
                                             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px;">
 
                                             </div>
@@ -115,38 +117,40 @@
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Tipo de Anunciante</p>
-                                        {{anunciante.tipo_anunciante}}
+                                        {{ anunciante.tipo_anunciante }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">CNPJ</p>
-                                        {{anunciante.cnpj}}
+                                        {{ anunciante.cnpj }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Telefone</p>
-                                        {{anunciante.telefone}}
+                                        {{ anunciante.telefone }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Celular</p>
-                                        {{anunciante.celular}}
+                                        {{ anunciante.celular }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">WhatsApp</p>
-                                        {{anunciante.whatsapp}}
+                                        {{ anunciante.whatsapp }}
                                     </div>
 
                                     <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8;">
-                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1" style="border-top-left-radius: 8px; font-size: 13px;"> 
+                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                                            style="border-top-left-radius: 8px; font-size: 13px;">
                                             Dados de usuario
                                         </div>
-                                        <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important;">
+                                        <div class="col-5 col-md-7 col-lg-7 p-0"
+                                            style="padding-top: 13.5px !important;">
                                             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px;">
 
                                             </div>
@@ -156,28 +160,28 @@
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Email</p>
-                                        {{anunciante.email}}
+                                        {{ anunciante.email }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
-                                        <p class="mb-1" style="opacity: 0.6; font-size: 15px;"> 
+                                        <p class="mb-1" style="opacity: 0.6; font-size: 15px;">
                                             Site
                                         </p>
-                                        {{anunciante.site}}
+                                        {{ anunciante.site }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
-                                        <p class="mb-1" style="opacity: 0.6; font-size: 15px;"> 
+                                        <p class="mb-1" style="opacity: 0.6; font-size: 15px;">
                                             Instagram
                                         </p>
-                                        {{anunciante.instagram}}
+                                        {{ anunciante.instagram }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
-                                        <p class="mb-1" style="opacity: 0.6; font-size: 15px;"> 
+                                        <p class="mb-1" style="opacity: 0.6; font-size: 15px;">
                                             Facebook
                                         </p>
-                                        {{anunciante.facebook}}
+                                        {{ anunciante.facebook }}
                                     </div>
 
 
@@ -187,11 +191,13 @@
                                         null
                                     </div>
 
-                                     <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8;">
-                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1" style="border-top-left-radius: 8px; font-size: 13px;"> 
+                                    <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8;">
+                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                                            style="border-top-left-radius: 8px; font-size: 13px;">
                                             Dados de Endereço
                                         </div>
-                                        <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important;">
+                                        <div class="col-5 col-md-7 col-lg-7 p-0"
+                                            style="padding-top: 13.5px !important;">
                                             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px;">
 
                                             </div>
@@ -200,50 +206,52 @@
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">CEP</p>
-                                        {{anunciante.cep}}
+                                        {{ anunciante.cep }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Regiao</p>
-                                        {{anunciante.regiao}}
+                                        {{ anunciante.regiao }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Cidade</p>
-                                        {{anunciante.cidade}}
+                                        {{ anunciante.cidade }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Bairro</p>
-                                        {{anunciante.bairro}}
+                                        {{ anunciante.bairro }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Endereço</p>
-                                        {{anunciante.endereco}}
+                                        {{ anunciante.endereco }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Numero</p>
-                                        {{anunciante.numero}}
+                                        {{ anunciante.numero }}
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Complemento</p>
-                                        {{anunciante.complemento}}
+                                        {{ anunciante.complemento }}
                                     </div>
 
                                     <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8;">
-                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1" style="border-top-left-radius: 8px; font-size: 13px;"> 
+                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                                            style="border-top-left-radius: 8px; font-size: 13px;">
                                             Endereço comercial
                                         </div>
-                                        <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important;">
+                                        <div class="col-5 col-md-7 col-lg-7 p-0"
+                                            style="padding-top: 13.5px !important;">
                                             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px;">
 
                                             </div>
@@ -252,44 +260,46 @@
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">CEP</p>
-                                        {{anunciante.cep_comercial}}
+                                        {{ anunciante.cep_comercial }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Estado</p>
-                                        {{anunciante.estado}}
+                                        {{ anunciante.estado }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Cidade</p>
-                                        {{anunciante.cidade_comercial}}
+                                        {{ anunciante.cidade_comercial }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Endereço</p>
-                                        {{anunciante.endereco_comercial}}
+                                        {{ anunciante.endereco_comercial }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Numero</p>
-                                        {{anunciante.numero_comercial}}
+                                        {{ anunciante.numero_comercial }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Complemento</p>
-                                        {{anunciante.complemento_comercial}}
+                                        {{ anunciante.complemento_comercial }}
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 mb-3">
                                         <p class="mb-1" style="opacity: 0.6; font-size: 15px;">Bairro</p>
-                                        {{anunciante.bairro_comercial}}
+                                        {{ anunciante.bairro_comercial }}
                                     </div>
 
                                     <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8;">
-                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1" style="border-top-left-radius: 8px; font-size: 13px;"> 
+                                        <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                                            style="border-top-left-radius: 8px; font-size: 13px;">
                                             Observação
                                         </div>
-                                        <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important;">
+                                        <div class="col-5 col-md-7 col-lg-7 p-0"
+                                            style="padding-top: 13.5px !important;">
                                             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px;">
 
                                             </div>
@@ -297,8 +307,8 @@
                                     </div>
 
 
-                                    <div class="col-12 col-md-4 col-lg-4 mb-3">
-                                        {{anunciante.observacao}}
+                                    <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4">
+                                        <p class="observacao">{{ anunciante.observacao }}</p>
                                     </div>
 
                                     <hr>
@@ -320,171 +330,197 @@
 
 
                                 </div>
+                            </div>
+
+                            <!-- fim main detalhar -->
+
+
                         </div>
-
-                    <!-- fim main detalhar -->
-
 
                     </div>
 
                 </div>
+            </div>
+        </div>
 
-            </div>
-            </div>
-           </div>
-       
-        </main>
+    </main>
 </template>
 
 <script>
 import * as api from "../../services/api";
 
 export default {
-  name: 'TheDetalhesAnuncios',
+    name: 'TheDetalhesAnuncios',
 
-  data() {
-    return {
+    data() {
+        return {
 
-      anunciante: [],
-      historico: [],
-    }
-  },
-
-  methods: {
-    show_menu_lateral(){
-        this.$emit('show_menu_lateral')
+            anunciante: [],
+            historico: [],
+        }
     },
 
-    goBack() {
-        window.history.back();
+    methods: {
+        show_menu_lateral() {
+            this.$emit('show_menu_lateral')
+        },
+
+        goBack() {
+            window.history.back();
+        },
+
+        filterIdHistoty() {
+            return this.historico.filter(history => history.id_anunciantes === this.$store.state.anunciante_id)
+        }
+
     },
 
-    filterIdHistoty() {
-        return this.historico.filter(history => history.id_anunciantes === this.$store.state.anunciante_id)
-    }
-
-  },
-
-  async created() {
+    async created() {
 
         try {
-             const id = parseInt(this.$route.query.id);
-             const dados = await api.detalharAnunciante(id)
-             this.historico = await api.listarPlanoAnunciante()
-            
+            const id = parseInt(this.$route.query.id);
+            const dados = await api.detalharAnunciante(id)
+            this.historico = await api.listarPlanoAnunciante()
+
             this.anunciante = dados[0]
 
 
         } catch (e) {
             console.error("Erro na requisição:", e);
         }
-        
+
         if (!(localStorage.getItem('token'))) {
-            this.$router.push({ path: '/login'});
+            this.$router.push({ path: '/login' });
         }
     },
 
     mounted() {
-        if(localStorage.getItem('perfil') != 'superadmin') {
-            this.$router.push({ path: '/anuncios'});
-        } 
-  }
+        if (localStorage.getItem('perfil') != 'superadmin') {
+            this.$router.push({ path: '/anuncios' });
+        }
+    }
 
 };
 </script>
 
 <style>
-    .row {
-        margin: 0;
-        padding: 0;
-    }
+.row {
+    margin: 0;
+    padding: 0;
+}
 
-    /* Estilos personalizados para a imagem dentro do slide */
-    .custom-image {
-        width: 100%;
-        height: auto;
-         /* Altura máxima da imagem */
-        object-fit: cover;
-    }
+/* Estilos personalizados para a imagem dentro do slide */
+.custom-image {
+    width: 100%;
+    height: auto;
+    /* Altura máxima da imagem */
+    object-fit: cover;
+}
 
-    .btn-add {
-        bottom: 0; background-color: crimson; color: #fff; width: 40px; height: 40px;
-        transition: background 1s ease;
-        transition: color 1s ease;
-        cursor: pointer;
-    }
+.btn-add {
+    bottom: 0;
+    background-color: crimson;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    transition: background 1s ease;
+    transition: color 1s ease;
+    cursor: pointer;
+}
 
-    .btn-add:hover {
-        background-color: crimson; color: #665d5d;
-    }
+.btn-add:hover {
+    background-color: crimson;
+    color: #665d5d;
+}
 
-    .detalhar {
-        cursor: pointer;
-    }
+.detalhar {
+    cursor: pointer;
+}
 
-    .detalhar {
-        cursor: pointer;
-        border-radius: 8px;
-        margin: 5px 0;
-        transform: scale(95%);
-        transition: transform 0.2s ease;
+.detalhar {
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 5px 0;
+    transform: scale(95%);
+    transition: transform 0.2s ease;
 
-    }
+}
 
-    .detalhar:hover {
-        transform: scale(115%);
-    }
+.detalhar:hover {
+    transform: scale(115%);
+}
 
 
 
-    .row {
-        margin: 0;
-        padding: 0;
-    }
+.row {
+    margin: 0;
+    padding: 0;
+}
 
-    /* Estilos personalizados para a imagem dentro do slide */
-    .custom-image {
-        width: 100%;
-        height: auto;
-         /* Altura máxima da imagem */
-        object-fit: cover;
-    }
+/* Estilos personalizados para a imagem dentro do slide */
+.custom-image {
+    width: 100%;
+    height: auto;
+    /* Altura máxima da imagem */
+    object-fit: cover;
+}
 
-    .btn-add {
-        bottom: 0; background-color: crimson; color: #fff; width: 40px; height: 40px;
-        transition: background 1s ease;
-        transition: color 1s ease;
-        cursor: pointer;
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-    }
+.btn-add {
+    bottom: 0;
+    background-color: crimson;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    transition: background 1s ease;
+    transition: color 1s ease;
+    cursor: pointer;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
 
-    .link_des_foto_anuncio-desc:hover {
-        border-bottom: 2px solid crimson;
-        cursor: pointer;
-    }   
+.link_des_foto_anuncio-desc:hover {
+    border-bottom: 2px solid crimson;
+    cursor: pointer;
+}
 
-    .img-preview {
-        max-width: 100%;
-        max-height: 200px; /* Defina a altura máxima desejada para a pré-visualização da imagem */
-        margin-top: 10px;
-        border-radius: 8px;
-    }
+.img-preview {
+    max-width: 100%;
+    max-height: 200px;
+    /* Defina a altura máxima desejada para a pré-visualização da imagem */
+    margin-top: 10px;
+    border-radius: 8px;
+}
 
-    .btn-carregar:hover {
-        background-color: rgb(255, 228, 234);
-    }
+.btn-carregar:hover {
+    background-color: rgb(255, 228, 234);
+}
 
-    .btn-show-Anuncios {
-        display: flex; align-items: center; justify-content: center; position: fixed; bottom: 90px; right: 24px; padding-bottom: 8px; border-radius: 100px; width: 50px; height: 50px; z-index: 999;
-        background: rgb(27, 30, 36);
-        background: linear-gradient(90deg, rgb(72, 81, 102) 1%, rgb(21, 24, 29) 90%);
-        color: #c2c2c2;
-        box-shadow: -1px 2px 10px 0px   rgba(0, 0, 0, 0.5);
-    }
+.btn-show-Anuncios {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    padding-bottom: 8px;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+    background: rgb(27, 30, 36);
+    background: linear-gradient(90deg, rgb(72, 81, 102) 1%, rgb(21, 24, 29) 90%);
+    color: #c2c2c2;
+    box-shadow: -1px 2px 10px 0px rgba(0, 0, 0, 0.5);
+}
 
-    .img-anunciante {
-        height: 8rem;
-    }
+.img-anunciante {
+    height: 8rem;
+}
+
+.observacao {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
 </style>
