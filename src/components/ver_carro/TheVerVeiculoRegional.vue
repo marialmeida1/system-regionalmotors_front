@@ -9,26 +9,17 @@
         <splide :options="splideOptions">
           <splide-slide v-for="(item, index) in veiculos" :key="index" class="custom-slide px-0">
             <!-- Conteúdo do slide -->
-            <div
-              class=""
-              style="
+            <div class="" style="
                 background-color: #e3e3e3;
                 border: 3px solid transparent;
                 border-top: none;
                 border-bottom: none;
-              "
-            >
+              ">
               <!-- Mobile mudar o nome do Fancybox -->
-              <a
-                :href="item.image + 'detalhe_mini.jpg'"
-                data-fancybox="minha-galeria"
-                :data-caption="`${veiculo.marca} - ${veiculo.modelo}`"
-              >
-                <img
-                  :src="item.image + 'destaque.jpg'"
-                  :alt="`${veiculo.marca} - ${veiculo.modelo}`"
-                  class="custom-image"
-                />
+              <a :href="item.image + 'detalhe_mini.jpg'" data-fancybox="minha-galeria"
+                :data-caption="`${veiculo.marca} - ${veiculo.modelo}`">
+                <img :src="item.image + 'destaque.jpg'" :alt="`${veiculo.marca} - ${veiculo.modelo}`"
+                  class="custom-image" />
               </a>
             </div>
           </splide-slide>
@@ -49,15 +40,10 @@
       
     </div -->
 
-    <div
-      style="position: relative"
-      class="row titles-em-card p-0 m-0 col-12 col-lg-10 col-md-10 mx-auto"
-    >
+    <div style="position: relative" class="row titles-em-card p-0 m-0 col-12 col-lg-10 col-md-10 mx-auto">
       <div class="col-12 px-md-3 mb-3">
-        <div
-          class="mb-3 rounded-3 px-0 bg-white card-ver-form"
-          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden"
-        >
+        <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
+          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="pt-0 px-4 pb-4">
             <div class="pb-2">
               <button class="btn btn-danger btn-sm my-3 mb-2" @click="backPage">
@@ -67,10 +53,8 @@
 
             <div>
               <h1 style="font-size: 30px; margin-bottom: 5px">
-                <strong
-                  >{{ veiculo.marca }}
-                  <span style="color: crimson"> {{ veiculo.modelo }} </span></strong
-                >
+                <strong>{{ veiculo.marca }}
+                  <span style="color: crimson"> {{ veiculo.modelo }} </span></strong>
               </h1>
 
               <!-- p style="font-size: 14px; opacity: 0.7;">3.2 HPE 4X4 16V TURBO INTERCOOLER DIESEL 4P AUTOMÁTICO</p -->
@@ -134,10 +118,8 @@
 
         <!-- Itens de veiculo -->
 
-        <div
-          class="mb-3 rounded-3 px-0 bg-white card-ver-form"
-          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden"
-        >
+        <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
+          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
             <div>
               <p class="rotulo">Itens de Veículo</p>
@@ -160,10 +142,8 @@
           </div>
         </div>
 
-        <div
-          class="mb-3 rounded-3 px-0 bg-white card-ver-form"
-          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden"
-        >
+        <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
+          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
             <div>
               <div>
@@ -198,10 +178,7 @@
                       <span class="fw-bold">Celular:</span> {{ veiculo.telefone }}
                     </p>
                     <a :href="whatsappLink" target="_blank">
-                      <button
-                        class="btn py-2 text-center rounded-3"
-                        style="width: 200px; background-color: #5fcb71"
-                      >
+                      <button class="btn py-2 text-center rounded-3" style="width: 200px; background-color: #5fcb71">
                         <img src="/whatsapp.png" width="24" style="margin-top: -3px" />
                         <span style="color: #fff; font-weight: 600">
                           <span style="font-size: 14px; font-weight: bold" @click="enviarMsg">
@@ -294,7 +271,6 @@ export default {
     this.id = this.veiculo.id_anunciante;
 
     const url = window.location.href;
-    const hostname = new URL(url).hostname;
 
     let url_page =
       `${this.veiculo.marca}-${this.veiculo.modelo}-${this.veiculo.ano_modelo}-${this.veiculo.cor}-${this.veiculo.combustivel}-${this.veiculo.transmissao}-${this.veiculo.id}`.toLowerCase();
@@ -305,18 +281,10 @@ export default {
     // Pegando tipo de página
     const typePage = localStorage.getItem("typePage");
 
-    if ( (typePage == "mainRegional" || typePage == "developRegional")) {
-      title_page += " - Regional Motors";
-      url_page += "-regionalmotors";
-      this.namePage = "Regional Motors";
-      newPath = `/verveiculo?id=${this.veiculo.id}/${url_page}`;
-    } else {
-      title_page += ` - ${this.veiculo.empresa}`;
-      url_page += `-${this.veiculo.empresa.toLowerCase().replace(/\s+/g, '')}`;
-      this.namePage = this.veiculo.empresa;
-      newPath = `/verveiculorevenda?id=${this.veiculo.id}/${url_page}`;
-    }
-
+    title_page += " - Regional Motors";
+    url_page += "-regionalmotors";
+    this.namePage = "Regional Motors";
+    newPath = `/verveiculo?id=${this.veiculo.id}/${url_page}`;
     this.$router.replace(newPath);
 
     const urlPage = window.location.href;
@@ -391,13 +359,10 @@ export default {
         situacao = "Novo:";
       }
 
-      const description = `${this.veiculo.tipo_veiculo} ${situacao} ${this.veiculo.marca} ${
-        this.veiculo.modelo
-      } ${
-        this.veiculo.ano_modelo
-      }, cor ${this.veiculo.cor.toLowerCase()}, câmbio ${this.veiculo.transmissao.toLowerCase()}. Disponível na ${
-        this.veiculo.empresa
-      }, ${this.veiculo.cidade}, ${this.veiculo.estado}.`;
+      const description = `${this.veiculo.tipo_veiculo} ${situacao} ${this.veiculo.marca} ${this.veiculo.modelo
+        } ${this.veiculo.ano_modelo
+        }, cor ${this.veiculo.cor.toLowerCase()}, câmbio ${this.veiculo.transmissao.toLowerCase()}. Disponível na ${this.veiculo.empresa
+        }, ${this.veiculo.cidade}, ${this.veiculo.estado}.`;
 
       const image = `${this.veiculo.foto1}detalhe_mini.jpg`;
 
@@ -511,7 +476,8 @@ export default {
 /* Estilos personalizados para a imagem dentro do slide */
 .custom-image {
   width: 100%;
-  max-height: 270px !important; /* Altura desejada para suas imagens */
+  max-height: 270px !important;
+  /* Altura desejada para suas imagens */
   object-fit: cover;
   object-position: center top !important;
 }
