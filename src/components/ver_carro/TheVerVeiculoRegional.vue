@@ -277,10 +277,6 @@ export default {
     let title_page = `${this.veiculo.marca} ${this.veiculo.modelo} ${this.veiculo.ano_modelo} ${this.veiculo.cor} ${this.veiculo.combustivel} ${this.veiculo.transmissao}`;
 
     let newPath = "";
-
-    // Pegando tipo de página
-    const typePage = localStorage.getItem("typePage");
-
     title_page += " - Regional Motors";
     url_page += "-regionalmotors";
     this.namePage = "Regional Motors";
@@ -291,9 +287,7 @@ export default {
     this.linkPage = urlPage;
 
     document.title = title_page;
-
-    this.addOpenGraphMetaTags(title_page, urlPage);
-
+    
     if (this.veiculo) {
       this.showTheVerVeiculos = false;
     }

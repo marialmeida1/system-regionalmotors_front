@@ -290,8 +290,6 @@ export default {
 
     document.title = title_page;
 
-    this.addOpenGraphMetaTags(title_page, urlPage);
-
     if (this.veiculo) {
       this.showTheVerVeiculos = false;
     }
