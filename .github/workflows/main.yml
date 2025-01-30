@@ -45,17 +45,17 @@ jobs:
 
           if [ "${{ github.ref_name }}" == "main" ]; then
             echo "Branch: main. Deploy para 'regionalmotors.com.br'"
-            scp -P 65002 -r ./dist/!(index.html) ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/regionalmotors.com.br/public_html/
+            scp -P 65002 -r ./dist/!(index.html|favicon.ico) ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/regionalmotors.com.br/public_html/
           elif [ "${{ github.ref_name }}" == "develop" ]; then
             echo "Branch: develop. Deploy para 'revendarm.com.br' e 'homologrm.com.br'"
             
             # Deploy para 'revendarm.com.br'
             echo "Deploy para 'revendarm.com.br'..."
-            scp -P 65002 -r ./dist/!(index.html) ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/revendarm.com.br/public_html/
+            scp -P 65002 -r ./dist/!(index.html|favicon.ico) ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/revendarm.com.br/public_html/
             
             # Deploy para 'homologrm.com.br'
             echo "Deploy para 'homologrm.com.br'..."
-            scp -P 65002 -r ./dist/!(index.html) ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/homologrm.com.br/public_html/
+            scp -P 65002 -r ./dist/!(index.html|favicon.ico) ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/homologrm.com.br/public_html/
           
           else
             echo "Nenhum deploy configurado para a branch: ${{ github.ref_name }}"
@@ -81,7 +81,7 @@ jobs:
               ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 65002 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -ld /home/u741651436/domains/$folder/public_html/"
 
               echo "Fazendo deploy para $folder..."
-              scp -P 65002 -r ./dist/!(index.html) ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/$folder/public_html/
+              scp -P 65002 -r ./dist/!(index.html|favicon.ico) ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u741651436/domains/$folder/public_html/
             done
           
           elif [ "${{ github.ref_name }}" == "develop" ]; then
