@@ -78,7 +78,7 @@
 
             <div class="row">
               <div>
-                <h5 class="my-3" style="font-weight: 600; opacity: 0.8">
+                <h5 class="my-3" id="preco-veiculo" style="font-weight: 600; opacity: 0.8">
                   R$ {{ veiculo.valor_preco }}
                 </h5>
               </div>
