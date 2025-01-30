@@ -12,17 +12,9 @@
             </div>
             <div class="col-10 col-lg-12 p-0">
               <div class="pesquisar" style="width: 100%; position: relative; border: none">
-                <input
-                  type="text"
-                  class="ps-4 pt-2"
-                  style="width: 89%; color: #000"
-                  v-model="filtro"
-                  placeholder="Filtrar dados"
-                />
-                <i
-                  class="fas fa-search"
-                  style="position: absolute; left: 8px; top: 36%; bottom: 0; margin: auto"
-                ></i>
+                <input type="text" class="ps-4 pt-2" style="width: 89%; color: #000" v-model="filtro"
+                  placeholder="Filtrar dados" />
+                <i class="fas fa-search" style="position: absolute; left: 8px; top: 36%; bottom: 0; margin: auto"></i>
               </div>
             </div>
           </div>
@@ -37,15 +29,11 @@
             </div>
             <div class="menu-link position-relative pesquisar-link-icon col-4 pt-3">
               <i class="fas fa-exchange-alt fa-rotate-90 fa-l relevante"></i>
-              <div
-                class="sub-menu-desktop mais-relevantes position-absolute py-2"
-                style="z-index: 99; width: 170px; left: -135px !important"
-              >
+              <div class="sub-menu-desktop mais-relevantes position-absolute py-2"
+                style="z-index: 99; width: 170px; left: -135px !important">
                 <div class="pb-3"></div>
-                <div
-                  class="bg-dark p-2 text-cente"
-                  style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px"
-                >
+                <div class="bg-dark p-2 text-cente"
+                  style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px">
                   <span class="ps-2">Filtrar Anúncios</span>
                   <p class="mt-2">Todos</p>
                   <p>Pendente</p>
@@ -78,10 +66,7 @@
               <th scope="col">#</th>
               <th scope="col">
                 <div>
-                  <select
-                    class="form-select"
-                    @change="applyFiltro('nome_empresa', $event.target.value)"
-                  >
+                  <select class="form-select" @change="applyFiltro('nome_empresa', $event.target.value)">
                     <option disabled selected>Empresa</option>
                     <option value="0">Empresa</option>
                     <option v-for="item in anunciantesOrdenados">
@@ -92,10 +77,7 @@
               </th>
               <th scope="col">
                 <div>
-                  <select
-                    class="form-select"
-                    @change="applyFiltro('tipo_anunciante', $event.target.value)"
-                  >
+                  <select class="form-select" @change="applyFiltro('tipo_anunciante', $event.target.value)">
                     <option disabled selected>Tipo</option>
                     <option value="0">Tipo</option>
                     <option value="Revenda">Revenda</option>
@@ -122,10 +104,7 @@
               </th>
               <th scope="col">
                 <div>
-                  <select
-                    class="form-select"
-                    @change="applyFiltroEstado('estado', $event.target.value)"
-                  >
+                  <select class="form-select" @change="applyFiltroEstado('estado', $event.target.value)">
                     <option disabled selected>Estado</option>
                     <option value="0">Estado</option>
                     <option v-for="item in $store.state.estado">
@@ -136,10 +115,7 @@
               </th>
               <th scope="col">
                 <div>
-                  <select
-                    class="form-select"
-                    @change="applyFiltroRegioes('regiao', $event.target.value)"
-                  >
+                  <select class="form-select" @change="applyFiltroRegioes('regiao', $event.target.value)">
                     <option disabled selected>Regiao</option>
                     <option value="0">Regiao</option>
                     <option v-for="item in regioes">
@@ -212,20 +188,12 @@
                                             </div>
                                         </div -->
 
-                    <label
-                      for="fotoAnunciante"
-                      style="position: absolute; bottom: -10px; right: 5px"
-                      @click="getIdUpload(item.id)"
-                    >
+                    <label for="fotoAnunciante" style="position: absolute; bottom: -10px; right: 5px"
+                      @click="getIdUpload(item.id)">
                       <i class="fas fa-camera"></i>
                     </label>
-                    <input
-                      id="fotoAnunciante"
-                      type="file"
-                      name=""
-                      @change="handleFileUploadFoto(item.id, $event, 'foto')"
-                      class="d-none"
-                    />
+                    <input id="fotoAnunciante" type="file" name=""
+                      @change="handleFileUploadFoto(item.id, $event, 'foto')" class="d-none" />
                   </div>
                 </div>
               </td>
@@ -265,18 +233,11 @@
                 </div>
               </td>
               <td class="pt-4">
-                <div
-                  style="width: 180px"
-                  v-if="item.status == 1"
-                  class="bg-success p-1 rounded-3 text-center"
-                >
+                <div style="width: 180px" v-if="item.status == 1" class="bg-success p-1 rounded-3 text-center">
                   Ativo
                 </div>
-                <div
-                  v-else
-                  style="width: 180px; background-color: rgba(0, 0, 0, 0.5); color: #fff"
-                  class="p-1 rounded-3 text-center"
-                >
+                <div v-else style="width: 180px; background-color: rgba(0, 0, 0, 0.5); color: #fff"
+                  class="p-1 rounded-3 text-center">
                   Bloqueado
                 </div>
               </td>
@@ -287,39 +248,19 @@
                     <i class="fas fa-eye"></i>
                   </span>
 
-                  <span
-                    class="mx-3"
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#EditarAnunciante"
-                    @click="showgetDados(item.id)"
-                  >
+                  <span class="mx-3" type="button" data-bs-toggle="modal" data-bs-target="#EditarAnunciante"
+                    @click="showgetDados(item.id)">
                     <i class="fas fa-pencil-alt"></i>
                   </span>
 
-                  <span
-                    class="fas fa-trash-alt"
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#EliminarAnunciante"
-                    @click="modalApagar(item.id)"
-                  ></span>
+                  <span class="fas fa-trash-alt" type="button" data-bs-toggle="modal"
+                    data-bs-target="#EliminarAnunciante" @click="modalApagar(item.id)"></span>
 
-                  <span
-                    class="fas fa-users ms-3"
-                    style="cursor: pointer"
-                    data-bs-toggle="modal"
-                    data-bs-target="#showPlano"
-                    @click="mostrarPlanoAnunciante(item.id)"
-                  >
+                  <span class="fas fa-users ms-3" style="cursor: pointer" data-bs-toggle="modal"
+                    data-bs-target="#showPlano" @click="mostrarPlanoAnunciante(item.id)">
                   </span>
 
-                  <span
-                    class="fas fa-arrow-down ms-3"
-                    title="Baixar XML"
-                    @click="downloadXML(item.id)"
-                    type="button"
-                  >
+                  <span class="fas fa-arrow-down ms-3" title="Baixar XML" @click="downloadXML(item.id)" type="button">
                   </span>
                 </div>
               </td>
@@ -327,25 +268,14 @@
           </tbody>
         </table>
       </div>
-      <button
-        class="btn btn-add rounded-circle position-absolute d-flex justify-content-center align-items-center"
-        style="left: 8px; z-index: 99"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#AddAnuciante"
-      >
+      <button class="btn btn-add rounded-circle position-absolute d-flex justify-content-center align-items-center"
+        style="left: 8px; z-index: 99" type="button" data-bs-toggle="modal" data-bs-target="#AddAnuciante">
         <i class="fas fa-plus"></i>
       </button>
     </div>
 
     <!-- Editar Anunciante  -->
-    <div
-      class="modal fade"
-      id="EditarAnunciante"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="EditarAnunciante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="bg-dar" id="criarAnuncio">
@@ -353,20 +283,13 @@
               <h5 class="modal-title" id="exampleModalLabel" style="font-size: 17px">
                 <span class="fas fa-bullhorn py-2 pt-0"></span> <b>Editar Anunciante</b>
               </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Fechar"
-              ></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body" style="height: 470px; overflow: auto; margin-bottom: 1em">
               <form>
                 <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 12px"
-                  >
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 12px">
                     Informaçoes do Anunciante
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -393,73 +316,41 @@
                   <div class="px-2">
                     <div class="mb-3">
                       <label for="Nome" class="form-label">Nome da Empresa</label>
-                      <input
-                        type="text"
-                        id="Nome"
-                        placeholder="Nome"
-                        class="form-control"
-                        v-model="nome_empresa"
-                      />
+                      <input type="text" id="Nome" placeholder="Nome" class="form-control" v-model="nome_empresa" />
                     </div>
                   </div>
 
                   <div class="px-2">
                     <div class="mb-3">
                       <label for="Nome" class="form-label">CNPJ</label>
-                      <input
-                        type="text"
-                        id="Nome"
-                        placeholder="CNPJ"
-                        class="form-control"
-                        v-model="cnpj"
-                      />
+                      <input type="text" id="Nome" placeholder="CNPJ" class="form-control" v-model="cnpj" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="Telefone" class="form-label">Telefone</label>
-                      <input
-                        type="text"
-                        id="Telefone"
-                        placeholder="Telefone"
-                        class="form-control"
-                        v-model="telefone"
-                      />
+                      <input type="text" id="Telefone" placeholder="Telefone" class="form-control" v-model="telefone" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="Telefone" class="form-label">Celular</label>
-                      <input
-                        type="text"
-                        id="Telefone"
-                        placeholder="Celular"
-                        class="form-control"
-                        v-model="celular"
-                      />
+                      <input type="text" id="Telefone" placeholder="Celular" class="form-control" v-model="celular" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="Telefone" class="form-label">WhatsApp</label>
-                      <input
-                        type="text"
-                        id="Telefone"
-                        placeholder="WhatsApp"
-                        class="form-control"
-                        v-model="whatsapp"
-                      />
+                      <input type="text" id="Telefone" placeholder="WhatsApp" class="form-control" v-model="whatsapp" />
                     </div>
                   </div>
 
                   <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                    <div
-                      class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                      style="border-top-left-radius: 8px; font-size: 12px"
-                    >
+                    <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                      style="border-top-left-radius: 8px; font-size: 12px">
                       Dados de usuario
                     </div>
                     <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -470,78 +361,43 @@
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Email</label>
-                      <input
-                        id="email"
-                        type="email"
-                        placeholder="Email"
-                        class="form-control"
-                        v-model="email"
-                      />
+                      <input id="email" type="email" placeholder="Email" class="form-control" v-model="email" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Senha</label>
-                      <input
-                        id="email"
-                        type="email"
-                        placeholder="Senha"
-                        class="form-control"
-                        v-model="senha"
-                      />
+                      <input id="email" type="email" placeholder="Senha" class="form-control" v-model="senha" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Site</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Site"
-                        class="form-control"
-                        v-model="site"
-                      />
+                      <input id="email" type="text" placeholder="Site" class="form-control" v-model="site" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Instagram</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Instagram"
-                        class="form-control"
-                        v-model="instagram"
-                      />
+                      <input id="email" type="text" placeholder="Instagram" class="form-control" v-model="instagram" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Facebook</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Facebook"
-                        class="form-control"
-                        v-model="facebook"
-                      />
+                      <input id="email" type="text" placeholder="Facebook" class="form-control" v-model="facebook" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Pessoa Responsavel</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Pessoa Responsavel"
-                        class="form-control"
-                        v-model="Pessoal_responsavel"
-                      />
+                      <input id="email" type="text" placeholder="Pessoa Responsavel" class="form-control"
+                        v-model="Pessoal_responsavel" />
                     </div>
                   </div>
 
@@ -551,18 +407,13 @@
                       <img :src="this.banner" class="img-fluid" />
                     </div>
                     <div class="mb-3">
-                      <input
-                        type="file"
-                        name=""
-                        class="form-control"
-                        @change="
-                          handleFileUpload(
-                            'api/anunciantes/banner_loja_anuciantes/',
-                            $event,
-                            'banner_loja'
-                          )
-                        "
-                      />
+                      <input type="file" name="" class="form-control" @change="
+                        handleFileUpload(
+                          'api/anunciantes/banner_loja_anuciantes/',
+                          $event,
+                          'banner_loja'
+                        )
+                        " />
                     </div>
                   </div>
 
@@ -572,26 +423,19 @@
                       <img :src="this.banner_movel" class="img-fluid" />
                     </div>
                     <div class="mb-3">
-                      <input
-                        type="file"
-                        name=""
-                        class="form-control"
-                        @change="
-                          handleFileUpload(
-                            'api/anunciantes/banner_loja_movel_anuciantes/',
-                            $event,
-                            'banner_loja_movel'
-                          )
-                        "
-                      />
+                      <input type="file" name="" class="form-control" @change="
+                        handleFileUpload(
+                          'api/anunciantes/banner_loja_movel_anuciantes/',
+                          $event,
+                          'banner_loja_movel'
+                        )
+                        " />
                     </div>
                   </div>
 
                   <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                    <div
-                      class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                      style="border-top-left-radius: 8px; font-size: 12px"
-                    >
+                    <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                      style="border-top-left-radius: 8px; font-size: 12px">
                       Dados de Endereço
                     </div>
                     <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -602,13 +446,7 @@
                   <div class="px-2">
                     <div class="mb-3">
                       <label for="Nome" class="form-label">CEP</label>
-                      <input
-                        type="text"
-                        id="Nome"
-                        placeholder="CEP"
-                        class="form-control"
-                        v-model="cep"
-                      />
+                      <input type="text" id="Nome" placeholder="CEP" class="form-control" v-model="cep" />
                     </div>
                   </div>
 
@@ -635,85 +473,48 @@
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Bairro</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Bairro"
-                        class="form-control"
-                        v-model="bairro"
-                      />
+                      <input id="email" type="text" placeholder="Bairro" class="form-control" v-model="bairro" />
                     </div>
                   </div>
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Endereço</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Endereço"
-                        class="form-control"
-                        v-model="endereco"
-                      />
+                      <input id="email" type="text" placeholder="Endereço" class="form-control" v-model="endereco" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Numero</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Numero"
-                        class="form-control"
-                        v-model="numero"
-                      />
+                      <input id="email" type="text" placeholder="Numero" class="form-control" v-model="numero" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Complemento</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Complemento"
-                        class="form-control"
-                        v-model="complemento"
-                      />
+                      <input id="email" type="text" placeholder="Complemento" class="form-control"
+                        v-model="complemento" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Latitude</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Latitude"
-                        class="form-control"
-                        v-model="latitude"
-                      />
+                      <input id="email" type="text" placeholder="Latitude" class="form-control" v-model="latitude" />
                     </div>
                   </div>
 
                   <div class="px-">
                     <div class="mb-3">
                       <label for="email" class="form-label">Longitude</label>
-                      <input
-                        id="email"
-                        type="text"
-                        placeholder="Longitude"
-                        class="form-control"
-                        v-model="longitude"
-                      />
+                      <input id="email" type="text" placeholder="Longitude" class="form-control" v-model="longitude" />
                     </div>
                   </div>
 
                   <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                    <div
-                      class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                      style="border-top-left-radius: 8px; font-size: 13px"
-                    >
+                    <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                      style="border-top-left-radius: 8px; font-size: 13px">
                       Endereço Comercial
                     </div>
                     <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -724,13 +525,7 @@
                   <div class="px-2">
                     <div class="mb-3">
                       <label for="Nome" class="form-label">CEP</label>
-                      <input
-                        type="text"
-                        id="Nome"
-                        placeholder="CEP"
-                        class="form-control"
-                        v-model="cep_comercial"
-                      />
+                      <input type="text" id="Nome" placeholder="CEP" class="form-control" v-model="cep_comercial" />
                     </div>
                   </div>
 
@@ -757,52 +552,32 @@
                   <div class="px-2">
                     <div class="mb-3">
                       <label for="Nome" class="form-label">Endereço</label>
-                      <input
-                        type="text"
-                        id="Nome"
-                        placeholder="Endereco"
-                        class="form-control"
-                        v-model="endereco_comercial"
-                      />
+                      <input type="text" id="Nome" placeholder="Endereco" class="form-control"
+                        v-model="endereco_comercial" />
                     </div>
                   </div>
 
                   <div class="px-2">
                     <div class="mb-3">
                       <label for="Nome" class="form-label">Numero</label>
-                      <input
-                        type="text"
-                        id="Nome"
-                        placeholder="Numero"
-                        class="form-control"
-                        v-model="numero_comercial"
-                      />
+                      <input type="text" id="Nome" placeholder="Numero" class="form-control"
+                        v-model="numero_comercial" />
                     </div>
                   </div>
 
                   <div class="px-2">
                     <div class="mb-3">
                       <label for="Nome" class="form-label">Complemento</label>
-                      <input
-                        type="text"
-                        id="Nome"
-                        placeholder="Complemento"
-                        class="form-control"
-                        v-model="complemento_comercial"
-                      />
+                      <input type="text" id="Nome" placeholder="Complemento" class="form-control"
+                        v-model="complemento_comercial" />
                     </div>
                   </div>
 
                   <div class="px-2">
                     <div class="mb-3">
                       <label for="Nome" class="form-label">Bairro</label>
-                      <input
-                        type="text"
-                        id="Nome"
-                        placeholder="Bairro"
-                        class="form-control"
-                        v-model="bairros_comercial"
-                      />
+                      <input type="text" id="Nome" placeholder="Bairro" class="form-control"
+                        v-model="bairros_comercial" />
                     </div>
                   </div>
 
@@ -815,39 +590,28 @@
                     </select>
                   </div>
 
-                  <div class="mb-3">
+                  <div class="mb-1">
                     <label for="nome" class="form-label">Observaçao</label>
-                    <textarea
-                      class="form-control"
-                      id="exampleTextarea"
-                      rows="3"
-                      v-model="observacao"
-                    >
+                    <textarea id="exampleTextarea" rows="" v-model="observacao" class="form-control"
+                      :class="{ 'limit-reached': observacao.length >= 255, 'warning': observacao.length >= 255 * 0.8 }"
+                      maxlength="255" row="3">
                     </textarea>
                   </div>
+
+                  <p class="text-cont">{{ observacao.length }}/255 caracteres</p>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <div style="display: flex; flex-wrap: wrap">
                 <div class="col-6">
-                  <button
-                    type="button"
-                    class="me-3 btn btn-secondary"
-                    data-bs-dismiss="modal"
-                    aria-label="Fechar"
-                  >
+                  <button type="button" class="me-3 btn btn-secondary" data-bs-dismiss="modal" aria-label="Fechar">
                     Cancelar
                   </button>
                 </div>
                 <div class="col-6">
-                  <button
-                    type="button"
-                    class="ms-3 btn btn-primary"
-                    @click="editar()"
-                    data-bs-dismiss="modal"
-                    aria-label="Fechar"
-                  >
+                  <button type="button" class="ms-3 btn btn-primary" @click="editar()" data-bs-dismiss="modal"
+                    aria-label="Fechar">
                     Atualizar
                   </button>
                 </div>
@@ -859,13 +623,8 @@
     </div>
 
     <!-- Eliminar Anunciante -->
-    <div
-      class="modal fade"
-      id="EliminarAnunciante"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="EliminarAnunciante" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="bg-dar" id="criarAnuncio">
@@ -873,12 +632,7 @@
               <h5 class="modal-title" id="exampleModalLabel" style="font-size: 17px">
                 <span class="fas fa-bullhorn py-2 pt-0"></span> <b>Apagar Anunciante</b>
               </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Fechar"
-              ></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body" style="height: 80px; overflow: auto; margin-bottom: 1em">
               <!-- Seu formulário aqui -->
@@ -889,23 +643,13 @@
             <div class="modal-footer">
               <div style="display: flex; flex-wrap: wrap">
                 <div class="col-6">
-                  <button
-                    type="button"
-                    class="me-3 btn btn-secondary"
-                    data-bs-dismiss="modal"
-                    aria-label="Fechar"
-                  >
+                  <button type="button" class="me-3 btn btn-secondary" data-bs-dismiss="modal" aria-label="Fechar">
                     Cancelar
                   </button>
                 </div>
                 <div class="col-6">
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    @click="apagar()"
-                    data-bs-dismiss="modal"
-                    aria-label="Fechar"
-                  >
+                  <button type="button" class="btn btn-primary" @click="apagar()" data-bs-dismiss="modal"
+                    aria-label="Fechar">
                     Confirmar
                   </button>
                 </div>
@@ -918,13 +662,7 @@
 
     <!-- Mostrar Plano  -->
 
-    <div
-      class="modal fade"
-      id="showPlano"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="showPlano" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="bg-dar">
@@ -932,28 +670,15 @@
               <h5 class="modal-title" id="exampleModalLabel">
                 <span class="far fa-user py-2 pt-0"></span> <b>Planos Atribuidos</b>
               </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Fechar"
-              ></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body" style="height: 370px; overflow: auto; margin-bottom: 1em">
               <div>
-                <span
-                  class="p-2 py-1 bg-success rounded-3"
-                  style="font-size: 15px"
-                  v-if="status_plano == 1"
-                >
+                <span class="p-2 py-1 bg-success rounded-3" style="font-size: 15px" v-if="status_plano == 1">
                   Ativo
                 </span>
 
-                <span
-                  class="p-2 py-1 bg-warning rounded-3"
-                  style="font-size: 15px"
-                  v-if="status_plano == 2"
-                >
+                <span class="p-2 py-1 bg-warning rounded-3" style="font-size: 15px" v-if="status_plano == 2">
                   Bloqueado
                 </span>
               </div>
@@ -988,22 +713,12 @@
             <div class="modal-footer">
               <div style="display: flex; flex-wrap: wrap">
                 <div class="col-6">
-                  <button
-                    type="button"
-                    class="ms-3 btn btn-secondary"
-                    data-bs-dismiss="modal"
-                    aria-label="Fechar"
-                  >
+                  <button type="button" class="ms-3 btn btn-secondary" data-bs-dismiss="modal" aria-label="Fechar">
                     Cancelar
                   </button>
                 </div>
                 <div class="col-6">
-                  <button
-                    v-if="status_plano"
-                    type="button"
-                    class="ms-3 btn btn-primary"
-                    @click="editarPlano()"
-                  >
+                  <button v-if="status_plano" type="button" class="ms-3 btn btn-primary" @click="editarPlano()">
                     Atualizar
                   </button>
                   <button v-else type="button" class="ms-3 btn btn-primary" @click="addPlano()">

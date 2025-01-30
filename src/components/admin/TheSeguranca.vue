@@ -130,7 +130,7 @@
 
 
                             <div class="mb-3"> 
-                                <label for="desc" class="form-label">Descriçao</label>
+                                <label for="desc" class="form-label">Descrição</label>
                                 <textarea class="form-control" rows="5" id="desc" v-model="desc"></textarea>
                             </div>
                             </div>

@@ -1,12 +1,6 @@
 <template>
   <!-- O modal Adicionar -->
-  <div
-    class="modal fade"
-    id="EditarAnuncios"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="EditarAnuncios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="bg-dar">
@@ -14,12 +8,7 @@
             <h5 class="modal-title" id="exampleModalLabel" style="font-size: 17px">
               <span class="fas fa-bullhorn py-2 pt-0"></span> <b>Editar Anúncio</b>
             </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Fechar"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
           </div>
           <div class="modal-body" style="height: 470px; overflow: auto; margin-bottom: 1em">
             <!-- Seu formulário aqui -->
@@ -36,10 +25,8 @@
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 13px"
-                  >
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 13px">
                     Informaçoes do Veiculo
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -63,11 +50,7 @@
                     <label for="marca" class="form-label">Tipo de Veiculo</label>
                     <select v-model="tipo_veiculo" class="form-select">
                       <option value="" selected disabled>Selecionar</option>
-                      <option
-                        v-for="item in $store.state.tipo_veiculo"
-                        :value="item.id"
-                        :key="item.id"
-                      >
+                      <option v-for="item in $store.state.tipo_veiculo" :value="item.id" :key="item.id">
                         {{ item.tipo_veiculo }}
                       </option>
                     </select>
@@ -85,9 +68,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="nome" class="form-label"
-                    >Categoria <span style="opacity: 0.6">(Opcional)</span></label
-                  >
+                  <label for="nome" class="form-label">Categoria <span style="opacity: 0.6">(Opcional)</span></label>
                   <select v-model="categoria_id" class="form-select">
                     <option value="" selected disabled>Selecionar</option>
                     <option v-for="categ in Api_categorias" :value="categ.id" :key="categ.id">
@@ -101,11 +82,7 @@
                     <label for="marca" class="form-label">Marca</label>
                     <select v-model="marca_id" class="form-select">
                       <option value="" selected disabled>Selecionar</option>
-                      <option
-                        v-for="marca in filterMarcas(tipo_veiculo)"
-                        :value="marca.id"
-                        :key="marca.id"
-                      >
+                      <option v-for="marca in filterMarcas(tipo_veiculo)" :value="marca.id" :key="marca.id">
                         {{ marca.nome_marca }}
                       </option>
                     </select>
@@ -118,11 +95,7 @@
                       <label for="" class="form-label">Modelo</label>
                       <select class="form-select" name="" id="" v-model="modelo_id">
                         <option value="">Selecionar</option>
-                        <option
-                          v-for="modelo in filterModelos(marca_id)"
-                          :value="modelo.id"
-                          :key="modelo.id"
-                        >
+                        <option v-for="modelo in filterModelos(marca_id)" :value="modelo.id" :key="modelo.id">
                           {{ modelo.nome_modelo }}
                         </option>
                       </select>
@@ -151,10 +124,8 @@
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 13px"
-                  >
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 13px">
                     Informaçoes de Preço
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -164,14 +135,8 @@
 
                 <div class="mb-3">
                   <label for="preco" class="form-label">Preço (R$)</label>
-                  <input
-                    type="text"
-                    class="text form-control"
-                    id="preco"
-                    v-model="valor_preco"
-                    @keyup="formatarNumero"
-                    placeholder=""
-                  />
+                  <input type="text" class="text form-control" id="preco" v-model="valor_preco" @keyup="formatarNumero"
+                    placeholder="" />
                 </div>
 
                 <div class="mb-3">
@@ -183,10 +148,8 @@
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 13px"
-                  >
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 13px">
                     Caracteristicas do Veiculo
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -236,25 +199,15 @@
 
                 <div class="mb-3">
                   <label for="preco" class="form-label">Kilometragem</label>
-                  <input
-                    type="number"
-                    class="text form-control"
-                    id="preco"
-                    v-model="kilometro"
-                    min="0"
-                    max="100"
-                  />
+                  <input type="number" class="text form-control" id="preco" v-model="kilometro" min="0" max="100" />
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1" style="
                       border-top-left-radius: 8px;
                       font-size: 13px;
                       background-color: crimson !important;
-                    "
-                  >
+                    ">
                     Privilegios
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -273,10 +226,8 @@
                 </div>
 
                 <div class="p-2 pt-0 row mt-md-4 mt-lg-4 mb-2" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 13px"
-                  >
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 13px">
                     Opcionais & Itens de Serie
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -290,57 +241,40 @@
 
                 <div class="mb-3">
                   <div v-for="item in Api_CategOpcionais" :key="item.id">
-                    <p
-                      @click="toggleDropdown(item.id)"
-                      style="cursor: pointer; opacity: 1; margin: 0"
-                    >
+                    <p @click="toggleDropdown(item.id)" style="cursor: pointer; opacity: 1; margin: 0">
                       <span :class="{ 'arrow-down': isDropdownOpen(item.id) }">&#9658;</span>
                       <span class="ms-2">{{ item.nome }}</span>
                     </p>
                     <div v-if="isDropdownOpen(item.id)" class="mb-2 pt-2">
                       <div v-for="item2 in filterOpcionais(item.id)" :key="item2.id" class="ps-4">
-                        <input
-                          type="checkbox"
-                          :id="'checkbox_' + item2.id"
-                          :value="item2.id"
-                          v-model="selecionados"
-                          class="me-2"
-                        />
+                        <input type="checkbox" :id="'checkbox_' + item2.id" :value="item2.id" v-model="selecionados"
+                          class="me-2" />
                         <label :for="'checkbox_' + item2.id">{{ item2.nome }}</label>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="mb-3">
-                  <label for="desc" class="form-label"
-                    >Descriçao <span style="opacity: 0.6">(Opcional)</span></label
-                  >
-                  <textarea class="form-control" rows="5" id="desc" v-model="desc"></textarea>
+                <div class="mb-1">
+                  <label for="desc" class="form-label">Descrição <span>(Opcional)</span></label>
+                  <textarea class="form-control" rows="5" id="desc" v-model="desc"
+                    :class="{ 'limit-reached': desc.length >= 140, 'warning': desc.length >= 140 * 0.8 }"
+                    maxlength="140"></textarea>
                 </div>
+                <p class="text-cont">{{ desc.length }}/140 caracteres</p>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <div style="display: flex; flex-wrap: wrap">
               <div class="col-6">
-                <button
-                  type="button"
-                  class="me-3 btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  aria-label="Fechar"
-                >
+                <button type="button" class="me-3 btn btn-secondary" data-bs-dismiss="modal" aria-label="Fechar">
                   Cancelar
                 </button>
               </div>
               <div class="col-6">
-                <button
-                  type="button"
-                  class="ms-3 btn btn-primary"
-                  @click="criar()"
-                  data-bs-dismiss="modal"
-                  aria-label="Fechar"
-                >
+                <button type="button" class="ms-3 btn btn-primary" @click="criar()" data-bs-dismiss="modal"
+                  aria-label="Fechar">
                   Atualizar
                 </button>
               </div>
@@ -532,7 +466,7 @@ export default {
       }
     },
 
-    showCarregarFotos() {},
+    showCarregarFotos() { },
 
     formatarNumero() {
       // Remove caracteres que não sejam dígitos ou pontos

@@ -1,12 +1,6 @@
 <template>
   <!-- O modal Adicionar -->
-  <div
-    class="modal fade"
-    id="AddAnuciante"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="AddAnuciante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="bg-dar">
@@ -14,21 +8,14 @@
             <h5 class="modal-title" id="exampleModalLabel">
               <span class="far fa-user py-2 pt-0"></span> <b>Novo Anunciante</b>
             </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Fechar"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
           </div>
           <div class="modal-body" style="height: 370px; overflow: auto; margin-bottom: 1em">
             <!-- Seu formulário aqui -->
             <form @submit.prevent="handleSubmit">
               <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                <div
-                  class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                  style="border-top-left-radius: 8px; font-size: 12px"
-                >
+                <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                  style="border-top-left-radius: 8px; font-size: 12px">
                   Informaçoes do Anunciante
                 </div>
                 <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -50,82 +37,46 @@
                 <div class="px-2">
                   <div class="mb-3">
                     <label for="Nome" class="form-label">Nome da Empresa</label>
-                    <input
-                      type="text"
-                      id="Nome"
-                      placeholder="Nome"
-                      class="form-control"
-                      v-model="nome_empresa"
-                      required
-                    />
+                    <input type="text" id="Nome" placeholder="Nome" class="form-control" v-model="nome_empresa"
+                      required />
                   </div>
                 </div>
 
                 <div class="px-2">
                   <div class="mb-3">
                     <label for="Nome" class="form-label">CNPJ</label>
-                    <input
-                      type="text"
-                      id="Nome"
-                      placeholder="CNPJ"
-                      class="form-control"
-                      v-model="cnpj"
-                      @keyup="formatarCNPJ"
-                      required
-                    />
+                    <input type="text" id="Nome" placeholder="CNPJ" class="form-control" v-model="cnpj"
+                      @keyup="formatarCNPJ" required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="Telefone" class="form-label">Telefone</label>
-                    <input
-                      type="text"
-                      id="Telefone"
-                      placeholder="Telefone"
-                      class="form-control"
-                      v-model="telefone"
-                      @keyup="formatarTelefone"
-                      required
-                    />
+                    <input type="text" id="Telefone" placeholder="Telefone" class="form-control" v-model="telefone"
+                      @keyup="formatarTelefone" required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="Telefone" class="form-label">Celular</label>
-                    <input
-                      type="text"
-                      id="Telefone"
-                      placeholder="Celular"
-                      class="form-control"
-                      v-model="celular"
-                      @keyup="formatCelular"
-                      required
-                    />
+                    <input type="text" id="Telefone" placeholder="Celular" class="form-control" v-model="celular"
+                      @keyup="formatCelular" required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="Telefone" class="form-label">WhatsApp</label>
-                    <input
-                      type="text"
-                      id="Telefone"
-                      placeholder="WhatsApp"
-                      class="form-control"
-                      v-model="whatsapp"
-                      @keyup="formatWhatsapp"
-                      required
-                    />
+                    <input type="text" id="Telefone" placeholder="WhatsApp" class="form-control" v-model="whatsapp"
+                      @keyup="formatWhatsapp" required />
                   </div>
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 12px"
-                  >
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 12px">
                     Dados de usuario
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -136,89 +87,48 @@
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input
-                      id="email"
-                      type="email"
-                      placeholder="Email"
-                      class="form-control"
-                      v-model="email"
-                      required
-                    />
+                    <input id="email" type="email" placeholder="Email" class="form-control" v-model="email" required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Senha</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Senha"
-                      class="form-control"
-                      v-model="senha"
-                      required
-                    />
+                    <input id="email" type="text" placeholder="Senha" class="form-control" v-model="senha" required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Site</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Site"
-                      class="form-control"
-                      v-model="sites"
-                      required
-                    />
+                    <input id="email" type="text" placeholder="Site" class="form-control" v-model="sites" required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Instagram</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Instagram"
-                      class="form-control"
-                      v-model="instagram"
-                    />
+                    <input id="email" type="text" placeholder="Instagram" class="form-control" v-model="instagram" />
                   </div>
                 </div>
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Facebook</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Facebook"
-                      class="form-control"
-                      v-model="facebook"
-                    />
+                    <input id="email" type="text" placeholder="Facebook" class="form-control" v-model="facebook" />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Pessoa Responsavel</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Pessoa Responsavel"
-                      class="form-control"
-                      v-model="pessoal_responsavel"
-                      required
-                    />
+                    <input id="email" type="text" placeholder="Pessoa Responsavel" class="form-control"
+                      v-model="pessoal_responsavel" required />
                   </div>
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 12px"
-                  >
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 12px">
                     Dados de Endereço
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -229,28 +139,14 @@
                 <div class="px-2">
                   <div class="mb-3">
                     <label for="Nome" class="form-label">CEP</label>
-                    <input
-                      type="text"
-                      id="Nome"
-                      placeholder="CEP"
-                      class="form-control"
-                      v-model="cep"
-                      @keyup="formatarCEP"
-                      required
-                    />
+                    <input type="text" id="Nome" placeholder="CEP" class="form-control" v-model="cep"
+                      @keyup="formatarCEP" required />
                   </div>
                 </div>
 
                 <div class="mb-3">
                   <label for="nome" class="form-label">Estado</label>
-                  <select
-                    class="form-select"
-                    name=""
-                    id=""
-                    v-model="id_estado"
-                    @change="listFilterRegiao"
-                    required
-                  >
+                  <select class="form-select" name="" id="" v-model="id_estado" @change="listFilterRegiao" required>
                     <option value="" selected disabled>Selecionar</option>
                     <option v-for="item in $store.state.estado" :value="item.id" :key="item.id">
                       {{ item.estado }}
@@ -270,91 +166,51 @@
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Bairro</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Bairro"
-                      class="form-control"
-                      v-model="bairro"
-                      required
-                    />
+                    <input id="email" type="text" placeholder="Bairro" class="form-control" v-model="bairro" required />
                   </div>
                 </div>
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Endereço</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Endereço"
-                      class="form-control"
-                      v-model="endereco"
-                      required
-                    />
+                    <input id="email" type="text" placeholder="Endereço" class="form-control" v-model="endereco"
+                      required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Numero</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Numero"
-                      class="form-control"
-                      v-model="numero"
-                      required
-                    />
+                    <input id="email" type="text" placeholder="Numero" class="form-control" v-model="numero" required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="email" class="form-label">Complemento</label>
-                    <input
-                      id="email"
-                      type="text"
-                      placeholder="Complemento"
-                      class="form-control"
-                      v-model="complemento"
-                      required
-                    />
+                    <input id="email" type="text" placeholder="Complemento" class="form-control" v-model="complemento"
+                      required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="text" class="form-label">Latitude</label>
-                    <input
-                      id="latitude"
-                      type="text"
-                      placeholder="Latitude"
-                      class="form-control"
-                      v-model="latitude"
-                      required
-                    />
+                    <input id="latitude" type="text" placeholder="Latitude" class="form-control" v-model="latitude"
+                      required />
                   </div>
                 </div>
 
                 <div class="px-">
                   <div class="mb-3">
                     <label for="text" class="form-label">Longitude</label>
-                    <input
-                      id="longitude"
-                      type="text"
-                      placeholder="Longitude"
-                      class="form-control"
-                      v-model="longitude"
-                      required
-                    />
+                    <input id="longitude" type="text" placeholder="Longitude" class="form-control" v-model="longitude"
+                      required />
                   </div>
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                  <div
-                    class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 13px"
-                  >
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 13px">
                     Endereço Comercial
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
@@ -365,27 +221,15 @@
                 <div class="px-2">
                   <div class="mb-3">
                     <label for="Nome" class="form-label">CEP</label>
-                    <input
-                      type="text"
-                      id="Nome"
-                      placeholder="CEP"
-                      class="form-control"
-                      v-model="cep_comercial"
-                      @keyup="formatarCEPcomercial"
-                      required
-                    />
+                    <input type="text" id="Nome" placeholder="CEP" class="form-control" v-model="cep_comercial"
+                      @keyup="formatarCEPcomercial" required />
                   </div>
                 </div>
 
                 <div class="mb-3">
                   <label for="estado" class="form-label">Estado</label>
 
-                  <select
-                    class="form-select"
-                    v-model="estado_id_2"
-                    @change="listFilterRegiaoComercial"
-                    required
-                  >
+                  <select class="form-select" v-model="estado_id_2" @change="listFilterRegiaoComercial" required>
                     <option value="0" selected disabled>Selecionar</option>
                     <option v-for="item in $store.state.estado" :key="item.id" :value="item.id">
                       {{ item.estado }}
@@ -395,12 +239,7 @@
 
                 <div class="mb-3">
                   <label for="cidade" class="form-label">Regiao</label>
-                  <select
-                    class="form-select"
-                    v-model="regiao_comercial_id"
-                    @change="listFilterCidade"
-                    required
-                  >
+                  <select class="form-select" v-model="regiao_comercial_id" @change="listFilterCidade" required>
                     <option value="0" selected disabled>Selecionar</option>
                     <option v-for="item in regioes_comercias" :key="item.id" :value="item.id">
                       {{ item.regiao }}
@@ -421,56 +260,32 @@
                 <div class="px-2">
                   <div class="mb-3">
                     <label for="Nome" class="form-label">Endereço</label>
-                    <input
-                      type="text"
-                      id="Nome"
-                      placeholder="Endereco"
-                      class="form-control"
-                      v-model="endereco_comercial"
-                      required
-                    />
+                    <input type="text" id="Nome" placeholder="Endereco" class="form-control"
+                      v-model="endereco_comercial" required />
                   </div>
                 </div>
 
                 <div class="px-2">
                   <div class="mb-3">
                     <label for="Nome" class="form-label">Numero</label>
-                    <input
-                      type="text"
-                      id="Nome"
-                      placeholder="Numero"
-                      class="form-control"
-                      v-model="numero_comercial"
-                      required
-                    />
+                    <input type="text" id="Nome" placeholder="Numero" class="form-control" v-model="numero_comercial"
+                      required />
                   </div>
                 </div>
 
                 <div class="px-2">
                   <div class="mb-3">
                     <label for="Nome" class="form-label">Complemento</label>
-                    <input
-                      type="text"
-                      id="Nome"
-                      placeholder="Complemento"
-                      class="form-control"
-                      v-model="complemento_comercial"
-                      required
-                    />
+                    <input type="text" id="Nome" placeholder="Complemento" class="form-control"
+                      v-model="complemento_comercial" required />
                   </div>
                 </div>
 
                 <div class="px-2">
                   <div class="mb-3">
                     <label for="Nome" class="form-label">Bairro</label>
-                    <input
-                      type="text"
-                      id="Nome"
-                      placeholder="Bairro"
-                      class="form-control"
-                      v-model="bairro_comercial"
-                      required
-                    />
+                    <input type="text" id="Nome" placeholder="Bairro" class="form-control" v-model="bairro_comercial"
+                      required />
                   </div>
                 </div>
 
@@ -483,34 +298,30 @@
                   </select>
                 </div>
 
-                <div class="mb-3">
-                  <label for="nome" class="form-label">Observaçao</label>
-                  <textarea class="form-control" id="exampleTextarea" rows="3" v-model="observacao">
+                <div class="mb-1">
+                  <label for="nome" class="form-label">Observação</label>
+                  <textarea id="exampleTextarea" rows="" v-model="observacao"
+                    class="form-control"
+                    :class="{ 'limit-reached': observacao.length >= 255, 'warning': observacao.length >= 255 * 0.8 }"
+                    maxlength="255"
+                    row="3">
                   </textarea>
                 </div>
+
+                <p class="text-cont">{{ observacao.length }}/255 caracteres</p>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <div style="display: flex; flex-wrap: wrap">
               <div class="col-6">
-                <button
-                  type="button"
-                  class="ms-3 btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  aria-label="Fechar"
-                >
+                <button type="button" class="ms-3 btn btn-secondary" data-bs-dismiss="modal" aria-label="Fechar">
                   Cancelar
                 </button>
               </div>
               <div class="col-6">
-                <button
-                  type="submit"
-                  class="ms-3 btn btn-primary"
-                  @click="add()"
-                  data-bs-dismiss="modal"
-                  aria-label="Fechar"
-                >
+                <button type="submit" class="ms-3 btn btn-primary" @click="add()" data-bs-dismiss="modal"
+                  aria-label="Fechar">
                   Adicionar
                 </button>
               </div>
@@ -761,3 +572,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.text-cont {
+  font-size: 0.75rem;
+}
+</style>

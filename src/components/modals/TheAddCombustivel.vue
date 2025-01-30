@@ -19,7 +19,7 @@
                       <input type="text" class="text form-control" id="nome" v-model="nome">
                   </div>
                   <div class="mb-3"> 
-                      <label for="desc" class="form-label">Descriçao 
+                      <label for="desc" class="form-label">Descrição 
                         <span style="opacity: 0.4;">
                           (Opcional)
                         </span>

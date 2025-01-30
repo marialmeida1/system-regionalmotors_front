@@ -100,7 +100,7 @@ export default {
             },
             {
                 titulo: 'titulo',
-                descricao: 'Descriçao da noticia',
+                descricao: 'Descrição da noticia',
                 foto1_capa: '',
                 foto: ''
             },

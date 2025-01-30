@@ -320,7 +320,7 @@
                   </div>
 
                   <div class="col-12 mt-3">
-                    <p class="mb-1" style="opacity: 0.6; font-size: 15px">Descriçao</p>
+                    <p class="mb-1" style="opacity: 0.6; font-size: 15px">Descrição</p>
                     {{ veiculo.descricao }}
                   </div>
                 </div>

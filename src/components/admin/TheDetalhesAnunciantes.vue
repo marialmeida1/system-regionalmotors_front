@@ -287,7 +287,7 @@
 
                                     <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8;">
                                         <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1" style="border-top-left-radius: 8px; font-size: 13px;"> 
-                                            Observaçao
+                                            Observação
                                         </div>
                                         <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important;">
                                             <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px;">

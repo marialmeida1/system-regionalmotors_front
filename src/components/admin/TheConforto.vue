@@ -127,10 +127,13 @@
                                 </div>
 
 
-                            <div class="mb-3"> 
-                                <label for="desc" class="form-label">Descriçao</label>
-                                <textarea class="form-control" rows="5" id="desc" v-model="desc"></textarea>
-                            </div>
+                                <div class="mb-1">
+                                    <label for="desc" class="form-label">Descrição</label>
+                                    <textarea class="form-control" rows="5" id="desc" v-model="desc"
+                                        :class="{ 'limit-reached': desc.length >= 100, 'warning': desc.length >= 100 * 0.8 }"
+                                        maxlength="100"></textarea>
+                                </div>
+                                <p class="text-cont">{{ desc.length }}/100 caracteres</p>
                             </div>
                             </form>
                         </div>
