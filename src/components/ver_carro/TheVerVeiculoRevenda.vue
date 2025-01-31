@@ -203,6 +203,13 @@
             </div>
           </div>
         </div>
+
+        <div class="button__mobile">
+          <WhatsappShowVehicle variant="primary" size="lg" icon="whatsapp" iconType="fab" :veiculo="veiculo"
+            :namePage="'Regional Motors'" :linkPage="'https://exemplo.com/anuncio'">
+            Enviar mensagem
+          </WhatsappShowVehicle>
+        </div>
       </div>
     </div>
   </div>
@@ -213,12 +220,14 @@ import "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js";
 import * as api from "../../services/api";
 import loader from "../loaders/loader.vue";
+import WhatsappShowVehicle from "../commons/buttons/WhatsappShowVehicle.vue";
 
 export default {
   name: "TheVerVeiculo_Carousel",
 
   components: {
     loader,
+    WhatsappShowVehicle
   },
 
   data() {
@@ -532,5 +541,36 @@ export default {
 .ver-loja:hover {
   font-size: 13px;
   transition: 0.2s ease-in-out;
+}
+
+.button__mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .button__mobile {
+    display: block;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+    padding: 0rem 1rem;
+  }
+
+  .button__mobile--btn {
+    width: 100%;
+    background-color: crimson;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 }
 </style>

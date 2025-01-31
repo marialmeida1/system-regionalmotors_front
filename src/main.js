@@ -1,10 +1,21 @@
+// Vue.js
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
-import store from "./store";
 import VueSplide from "@splidejs/vue-splide";
 import VueLazyload from "vue-lazyload";
+
+// Arquivos de configuração
+import router from "./router";
+import store from "./store";
 import { api } from "./services/api";
+
+// Importando FontAwesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+
+// Adicionando ícones à biblioteca
+library.add(faWhatsapp);
 
 export let allowedUrls = [];
 
@@ -34,6 +45,7 @@ async function initializeApp() {
     attempt: 1,
     listenEvents: ["scroll", "resize", "animationend", "transitionend"],
   });
+  app.component('font-awesome-icon', FontAwesomeIcon);
 
   // Montar a aplicação
   app.mount("#app");
