@@ -258,45 +258,6 @@
       </div>
 
       <hr />
-
-      <!-- <div>
-        <div class="mb-3">
-          <div class="mb-2">
-            Itens Opcionais
-            <p class="mb-0" style="font-size: 13px; opacity: 0.7">
-              Click para deslizar
-            </p>
-          </div>
-          <div v-for="item in Api_CategOpcionais" :key="item.id">
-            <p
-              @click="toggleDropdown(item.id)"
-              style="cursor: pointer; opacity: 1; margin: 0"
-            >
-              <span :class="{ 'arrow-down': isDropdownOpen(item.id) }"
-                >&#9658;</span
-              >
-              <span class="ms-2">{{ item.nome }}</span>
-            </p>
-            <div v-if="isDropdownOpen(item.id)" class="mb-2 pt-2">
-              <div
-                v-for="item2 in filterOpcionais(item.id)"
-                :key="item2.id"
-                class="ps-4"
-              >
-                <input
-                  type="checkbox"
-                  :id="'checkbox_' + item2.id"
-                  :value="item2.id"
-                  v-model="selecionados"
-                  class="me-2"
-                  @change="exibirEstado"
-                />
-                <label :for="'checkbox_' + item2.id">{{ item2.nome }}</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
 
     <!-- Limpar filtro -->

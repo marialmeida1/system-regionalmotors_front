@@ -64,9 +64,9 @@
           <div class="row p-0 m-0">
 
             <!-- Card -->
-            <TheCardVeiculo v-for="(item, index) in $store.state.resultado" :key="index" :id="item.id" :marca="item.nome_marca"
-              :modelo="item.nome_modelo" :combustivel="item.combustivel" :preco="item.valor_preco"
-              :ano="item.ano_modelo" :km="item.km"
+            <TheCardVeiculo v-for="(item, index) in $store.state.resultado" :key="index" :id="item.id"
+              :marca="item.nome_marca" :modelo="item.nome_modelo" :combustivel="item.combustivel"
+              :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km"
               :fotos="[item.foto1, item.foto2, item.foto3, item.foto4, item.foto5, item.foto6, item.foto7, item.foto8, item.foto9, item.foto10].filter(Boolean)"
               @abrir-detalhes="goverveiculo" />
           </div>
@@ -86,8 +86,8 @@
 
     <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="text-center d-lg-none d-md-none"
       @click="show_menu_lateral">
-      <div style="border-radius: 100px; height: 55px; width: 55px; padding-top: 5px">
-        <i class="fas fa-filter" style="font-size: 12px"></i> <br />
+      <div class="filter-icon">
+        <i class="fas fa-filter" style="font-size: 12px"></i>
         <div style="font-size: 11px">Filtrar</div>
       </div>
     </div>
@@ -369,3 +369,14 @@ export default {
   },
 };
 </script>
+
+<style>
+.filter-icon {
+  border-radius: 100px;
+  height: 55px;
+  width: 55px;
+  padding-top: 5px;
+  background-color: crimson;
+  color: #fff;
+}
+</style>

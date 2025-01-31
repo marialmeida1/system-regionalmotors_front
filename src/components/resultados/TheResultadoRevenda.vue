@@ -81,7 +81,7 @@
     <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="text-center d-lg-none d-md-none"
       @click="show_menu_lateral">
       <div>
-        <i class="fas fa-filter" style="font-size: 12px"></i> <br />
+        <i class="fas fa-filter" style="font-size: 12px"></i>
         <div style="font-size: 11px">Filtrar</div>
       </div>
     </div>
@@ -382,3 +382,14 @@ export default {
   },
 };
 </script>
+
+<style>
+.filter-icon {
+  border-radius: 100px;
+  height: 55px;
+  width: 55px;
+  padding-top: 5px;
+  background-color: crimson;
+  color: #fff;
+}
+</style>
