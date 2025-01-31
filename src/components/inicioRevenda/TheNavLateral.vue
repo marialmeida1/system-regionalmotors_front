@@ -459,19 +459,16 @@ export default {
     this.Api_CategOpcionais = await api.listarCategoriaOpcionais();
     this.$store.state.categoriaOpcionais = this.Api_CategOpcionais;
     this.Api_Opcionais = await api.listarOpcionais();
-    
+
     const url = window.location.href;
     const baseUrl = window.location.origin;
     const info_path = url.replace(baseUrl, "");
-
-    console.log(info_path)
 
     if (info_path == "/estoque") {
       document.getElementById("tipo_veiculo").value = "1";
       console.log(document.getElementById("tipo_veiculo").value)
       document.getElementById("situacao_veiculo").value = "2";
       this.marcas = await api.filtrarAnuncio(`api/marcas/listar_marcas?tipo_veiculo_id=1`);
-      console.log(this.marcas)
     }
   },
 };
