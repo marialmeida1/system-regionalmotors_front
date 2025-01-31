@@ -79,8 +79,8 @@
     </div>
 
     <div class="pagination">
-      <button v-if="current_page < total_pages" @click="verMaisCarros" class="btn-pagination">
-        Ver mais carros
+      <button v-if="current_page < total_pages" @click="verMais" class="btn-pagination">
+        Ver mais
       </button>
     </div>
 
@@ -241,7 +241,7 @@ export default {
       this.$store.state.resultado = allResults;
     },
 
-    async verMaisCarros() {
+    async verMais() {
       if (this.current_page < this.total_pages) {
         this.current_page += 1;
         await this.fetchAnuncios();
