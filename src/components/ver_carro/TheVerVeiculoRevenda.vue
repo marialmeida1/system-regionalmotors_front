@@ -174,19 +174,13 @@
                     <p class="mb-1" style="opacity: 0.7">
                       <span class="fw-bold">Telefone:</span> {{ veiculo.celular }}
                     </p>
-                    <p class="mb-1" style="opacity: 0.7">
+                    <p class="mb-3" style="opacity: 0.7">
                       <span class="fw-bold">Celular:</span> {{ veiculo.telefone }}
                     </p>
-                    <a :href="whatsappLink" target="_blank">
-                      <button class="btn py-2 text-center rounded-3" style="width: 200px; background-color: #5fcb71">
-                        <img src="/whatsapp.png" width="24" style="margin-top: -3px" />
-                        <span style="color: #fff; font-weight: 600">
-                          <span style="font-size: 14px; font-weight: bold" @click="enviarMsg">
-                            Enviar mensagem
-                          </span>
-                        </span>
-                      </button>
-                    </a>
+                    <WhatsappShowVehicle variant="secondary" size="md" icon="whatsapp" iconType="fab" :veiculo="veiculo"
+                      :namePage="veiculo.empresa" :linkPage="this.linkPage">
+                      Enviar mensagem
+                    </WhatsappShowVehicle>
                   </span>
                   <span v-else style="cursor: pointer" @click="mostrarContato">
                     (37)...
@@ -197,7 +191,7 @@
                   </span>
                 </span>
               </div>
-              <p style="font-size: 14px; font-weight: bold; opacity: 0.7">
+              <p style="font-size: 14px; font-weight: bold; opacity: 0.7" class="mt-2">
                 {{ veiculo.tipo_anunciante }}
               </p>
             </div>
@@ -206,7 +200,7 @@
 
         <div class="button__mobile">
           <WhatsappShowVehicle variant="primary" size="lg" icon="whatsapp" iconType="fab" :veiculo="veiculo"
-            :namePage="'Regional Motors'" :linkPage="'https://exemplo.com/anuncio'">
+            :namePage="veiculo.empresa" :linkPage="this.linkPage">
             Enviar mensagem
           </WhatsappShowVehicle>
         </div>
@@ -564,13 +558,13 @@ export default {
     z-index: 1000;
     padding: 0rem 1rem;
   }
+}
 
-  .button__mobile--btn {
-    width: 100%;
-    background-color: crimson;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+.button__mobile--btn {
+  width: 100%;
+  background-color: crimson;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 </style>

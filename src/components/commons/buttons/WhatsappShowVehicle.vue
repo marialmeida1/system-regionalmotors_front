@@ -25,7 +25,7 @@ export default {
         },
 
         whatsappLink() {
-            let nome_carro = `${this.veiculo.marca} ${this.veiculo.modelo}`.toLowerCase();
+            let nome_carro = `${this.veiculo.marca} ${this.veiculo.modelo}`;
             return `https://api.whatsapp.com/send?phone=${this.veiculo.whatsapp}&text=Olá! Gostaria de obter mais informações sobre o anúncio da ${this.namePage} para o veículo ${nome_carro}. Vi no link do anúncio: ${this.linkPage}.`;
         }
     }
@@ -39,7 +39,7 @@ export default {
     justify-content: center;
     padding: 10px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: 0.3s;
     gap: 8px;
@@ -57,7 +57,7 @@ export default {
 }
 
 .secondary {
-    background-color: #5fcb71;
+    background-color: #25D366;
     color: white;
 }
 

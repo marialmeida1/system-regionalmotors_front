@@ -174,19 +174,14 @@
                     <p class="mb-1" style="opacity: 0.7">
                       <span class="fw-bold">Telefone:</span> {{ veiculo.celular }}
                     </p>
-                    <p class="mb-1" style="opacity: 0.7">
+                    <p class="mb-3" style="opacity: 0.7">
                       <span class="fw-bold">Celular:</span> {{ veiculo.telefone }}
                     </p>
-                    <a :href="whatsappLink" target="_blank">
-                      <button class="btn py-2 text-center rounded-3" style="width: 200px; background-color: #5fcb71">
-                        <img src="/whatsapp.png" width="24" style="margin-top: -3px" />
-                        <span style="color: #fff; font-weight: 600">
-                          <span style="font-size: 14px; font-weight: bold" @click="enviarMsg">
-                            Enviar mensagem
-                          </span>
-                        </span>
-                      </button>
-                    </a>
+
+                    <WhatsappShowVehicle variant="secondary" size="md" icon="whatsapp" iconType="fab" :veiculo="veiculo"
+                      :namePage="'Regional Motors'" :linkPage="this.linkPage">
+                      Enviar mensagem
+                    </WhatsappShowVehicle>
                   </span>
                   <span v-else style="cursor: pointer" @click="mostrarContato">
                     (37)...
@@ -197,11 +192,18 @@
                   </span>
                 </span>
               </div>
-              <p style="font-size: 14px; font-weight: bold; opacity: 0.7">
+              <p style="font-size: 14px; font-weight: bold; opacity: 0.7" class="mt-2">
                 {{ veiculo.tipo_anunciante }}
               </p>
             </div>
           </div>
+        </div>
+
+        <div class="button__mobile">
+          <WhatsappShowVehicle variant="primary" size="lg" icon="whatsapp" iconType="fab" :veiculo="veiculo"
+            :namePage="'Regional Motors'" :linkPage="this.linkPage">
+            Enviar mensagem
+          </WhatsappShowVehicle>
         </div>
       </div>
     </div>
@@ -213,12 +215,14 @@ import "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js";
 import * as api from "../../services/api";
 import loader from "../loaders/loader.vue";
+import WhatsappShowVehicle from "../commons/buttons/WhatsappShowVehicle.vue";
 
 export default {
   name: "TheVerVeiculo_Carousel",
 
   components: {
     loader,
+    WhatsappShowVehicle
   },
 
   data() {
@@ -287,7 +291,7 @@ export default {
     this.linkPage = urlPage;
 
     document.title = title_page;
-    
+
     if (this.veiculo) {
       this.showTheVerVeiculos = false;
     }
@@ -530,5 +534,36 @@ export default {
 .ver-loja:hover {
   font-size: 13px;
   transition: 0.2s ease-in-out;
+}
+
+.button__mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .button__mobile {
+    display: block;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+    padding: 0rem 1rem;
+  }
+}
+
+.button__mobile--btn {
+  width: 100%;
+  background-color: crimson;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 </style>
