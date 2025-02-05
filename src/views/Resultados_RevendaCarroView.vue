@@ -57,7 +57,6 @@ export default {
 
     goverveiculo(id) {
       //document.querySelector('.loader').classList.remove('d-none')
-      console.log("Hey")
       const parametros = { id: id };
       this.$router.push({ path: '/verveiculo', query: parametros });
     },
