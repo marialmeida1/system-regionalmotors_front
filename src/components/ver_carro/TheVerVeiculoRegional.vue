@@ -403,8 +403,13 @@ export default {
     },
 
     backPage() {
-      window.history.back();
+      if (document.referrer) {
+        window.history.back();
+      } else {
+        window.location.href = "/resultados";
+      }
     },
+
 
     handleScroll() {
       if (window.scrollY == 0 || window.pageYOffset == 0) {
