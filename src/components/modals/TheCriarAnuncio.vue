@@ -14,6 +14,43 @@
             <!-- Seu formulário aqui -->
             <form>
               <div class="row">
+                <!-- Placa Fipe -->
+                <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 13px">
+                    Placa do Veículo
+                  </div>
+                  <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
+                    <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px"></div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="mb-2">Preencher os dados usando a placa do carro?</label>
+                  <div class="form-check">
+                    <input value="1" v-model="usePlate" class="form-check-input" type="radio" name="flexRadioDefault"
+                      id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Sim
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input value="0" v-model="usePlate" class="form-check-input" type="radio" name="flexRadioDefault"
+                      id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Não
+                    </label>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="preco" class="form-label">Placa do Carro</label>
+                  <input type="text" class="text form-control" id="preco" placeholder="" :disabled="usePlate === '0'"
+                    :required="usePlate === '1'" maxlength="8"/>
+                </div>
+
+                <!-- Informações do Veículo -->
+
                 <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
                   <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
                     style="border-top-left-radius: 8px; font-size: 13px">
@@ -333,6 +370,7 @@ export default {
       ],
       selecionados: [],
       dropdownState: {},
+      usePlate: '0',
     };
   },
 

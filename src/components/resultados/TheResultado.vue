@@ -102,11 +102,6 @@ const resultado = computed(() => store.state.resultado);
 const currentPage = computed(() => store.state.current_page);
 const hasMore = computed(() => store.state.resultado.length === store.state.total_pages);
 
-
-const fetchAnuncios = () => {
-  store.dispatch("fetchAnuncios"); 
-};
-
 export default {
     name: "TheResultado",
 
@@ -225,6 +220,15 @@ export default {
                 .join("&");
 
             return `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`;
+        },
+
+        async fetchAnuncios() {
+            const resultado = await api.filtrarAnuncio(
+                `api/anuncios/listar_anuncios/${this.ordenacao_type}?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2&page=${this.current_page}`
+            );
+
+            console.log("Novos dados recebidos:", resultado);
+            console.log("Depois da atualização:", this.$store.state.resultado);
         },
 
         async getOrdenation(value) {
