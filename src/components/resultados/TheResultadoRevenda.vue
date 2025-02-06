@@ -80,7 +80,7 @@
 
     <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="text-center d-lg-none d-md-none"
       @click="show_menu_lateral">
-      <div class="filter-icon">
+      <div>
         <i class="fas fa-filter" style="font-size: 12px"></i>
         <div style="font-size: 11px">Filtrar</div>
       </div>

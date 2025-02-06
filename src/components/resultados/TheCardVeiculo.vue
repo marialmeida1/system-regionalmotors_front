@@ -40,14 +40,24 @@
 
 <script>
 export default {
+
+  data() {
+    return {
+      splideOptions: {
+        type: "carousel", // Tipo de slider
+        perPage: 1,
+      },
+    }
+  },
+
   props: {
     id: Number,
     marca: String,
     modelo: String,
     combustivel: String,
-    preco: Number,
-    ano: Number,
-    km: Number,
+    preco: String,
+    ano: String,
+    km: String,
     fotos: Array
   },
   methods: {
