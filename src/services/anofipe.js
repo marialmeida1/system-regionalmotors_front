@@ -1,0 +1,17 @@
+import axios from 'axios';
+
+const API_URL = 'https://fipe.parallelum.com.br/api/v2/';
+
+export const getYearIdFipe = async (type, fipe) => {
+  try {
+    const response = await axios.get(`${API_URL}${type}/${fipe}/years`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar os id da placa Fipe:', error);
+    throw error;
+  }
+};

@@ -28,15 +28,15 @@
                 <div class="mb-3">
                   <label class="mb-2">Preencher os dados usando a placa do carro?</label>
                   <div class="form-check">
-                    <input value="1" v-model="usePlate" class="form-check-input" type="radio" name="flexRadioDefault"
-                      id="flexRadioDefault1">
+                    <input value="1" v-model="usePlate" @change="clearPlate" class="form-check-input" type="radio"
+                      name="flexRadioDefault" id="flexRadioDefault1">
                     <label class="form-check-label" for="flexRadioDefault1">
                       Sim
                     </label>
                   </div>
                   <div class="form-check">
-                    <input value="0" v-model="usePlate" class="form-check-input" type="radio" name="flexRadioDefault"
-                      id="flexRadioDefault2">
+                    <input value="0" v-model="usePlate" @change="clearPlate" class="form-check-input" type="radio"
+                      name="flexRadioDefault" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
                       Não
                     </label>
@@ -311,6 +311,7 @@
 // import { setTransitionHooks } from "vue";
 import * as api from "../../services/api";
 import { getPlacaFipeData } from '@/services/placafipe';
+import { getYearIdFipe } from '@/services/anofipe';
 
 export default {
   name: "TheCriarAnuncio",
@@ -373,6 +374,10 @@ export default {
       dropdownState: {},
       usePlate: '0',
       plate: null,
+      dataFipe: [],
+      yearId: '',
+      codeFipe: '',
+      modelFipe: '',
     };
   },
 
@@ -387,13 +392,6 @@ export default {
       else return 0;
     },
 
-    /* Função para abrir o modal
-          abrirModal() {
-            var modal = document.getElementById('CarregarFotos');
-            var modalBootstrap = new bootstrap.Modal(modal);
-            modalBootstrap.show();
-          } */
-
     // Função para fechar o modal
     fecharModal() {
       this.$store.state.modalCriarAnuncio.hide();
@@ -401,6 +399,16 @@ export default {
 
     async criar() {
       this.titulo = this.marca_id + " " + this.modelo_id + " - " + this.ano_modelo;
+
+      // Definindo tipo do veículo
+      const typeVehicle = this.findTypeVehicle();
+
+      // Armazenar no banco
+      const result = await this.saveYearId(this.dataFipe.informacoes_veiculo.ano, typeVehicle, this.dataFipe.fipe[0].codigo_fipe);
+      this.yearId = result.code;
+      this.codeFipe = this.dataFipe.fipe[0].codigo_fipe;
+      this.modelFipe = this.dataFipe.fipe[0].modelo;
+      console.log(this.yearId, this.codeFipe, this.modelFipe);
 
       var opcionalString = JSON.stringify(this.selecionados);
 
@@ -451,6 +459,9 @@ export default {
           sinistrado: "null",
           opcionais_id: opcionalString,
           descricao: this.desc,
+          codeFipe: this.codeFipe,
+          yearId: this.yearId,
+          modelFipe: this.modelFipe,
         };
 
         try {
@@ -549,30 +560,22 @@ export default {
 
     //Filtros de Seleção
     filterOpcionais(id) {
-      // Implemente sua lógica para filtrar os opcionais com base na categoriaId
-      // Exemplo fictício:
       return this.Api_Opcionais.filter((item) => item.categoria_opcional_id == id);
     },
     filterMarcas(id) {
-      // Implemente sua lógica para filtrar os opcionais com base na categoriaId
-      // Exemplo fictício:
       return this.$store.state.marcas.filter((item) => item.tipo_veiculo_id == id);
     },
 
     filterModelos(id) {
-      // Implemente sua lógica para filtrar os opcionais com base na categoriaId
-      // Exemplo fictício:
       return this.$store.state.modelos.filter((item) => item.id_marca == id);
     },
 
     handleInput() {
-      console.log("Entrou")
       if (this.typingTimeout) {
         clearTimeout(this.typingTimeout);
       }
 
-      if (this.plate.length >= 7) {
-        console.log("Agora sim pode entrar de verdade")
+      if (this.plate.length >= 7 && this.usePlate == '1') {
         this.typingTimeout = setTimeout(() => {
           this.searchFipe();
         }, 1000);
@@ -580,15 +583,105 @@ export default {
     },
 
     async searchFipe() {
-      this.errorMessage = ''; // Reseta erro caso a placa seja válida
+      this.errorMessage = '';
 
       try {
-        const data = await getPlacaFipeData(this.plate);
-        console.log('Dados da placa:', data);
+        this.dataFipe = await getPlacaFipeData(this.plate);
+        //console.log(this.dataFipe)
+        //const jsonData = `{"codigo":1,"msg":"total de 2 modelo(s) encontrado(s)","fipe":[{"similaridade":"62.50","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN PRIVILÈGE HI-FLEX 1.6 16V 4P","ano_modelo":2010,"codigo_fipe":"025137-2","codigo_marca":"48","codigo_modelo":"4389","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22452.00","desvalorizometro":"MjAxMCM0Mzg5IzEjNDgjMSNMT0dBTiBQUklWSUzDiEdFIEhJLUZMRVggMS42IDE2ViA0UCAtIEdhc29saW5hIzQ5ZDY2ZmZhNGVhOGJlOWY0NDRhYmVkZTQzMjA5MTQw","unidade_valor":"R$"},{"similaridade":"73.68","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN EXPRESSION HI-FLEX 1.6 8V 4P","ano_modelo":2010,"codigo_fipe":"025139-9","codigo_marca":"48","codigo_modelo":"4481","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22370.00","desvalorizometro":"MjAxMCM0NDgxIzEjNDgjMSNMT0dBTiBFWFBSRVNTSU9OIEhJLUZMRVggMS42IDhWIDRQIC0gR2Fzb2xpbmEjNGZmYjU0NmNhYTMyMzc2MTVjNzBkYjI2YzEyNWE5NWY=","unidade_valor":"R$"}],"informacoes_veiculo":{"marca":"RENAULT","modelo":"LOGAN EXP 16","ano":"2010","ano_modelo":"2010","cor":"Branca","chassi":"******6889","motor":"******","municipio":"PALHOCA","uf":"SC","segmento":"AUTO","sub_segmento":"AU - SEDAN PEQUENO","placa":"MIH5B55","cilindradas":"1598","combustivel":"ALCOOL / GASOLINA"},"tempo":322,"undiade_tempo":"ms","unidade_tempo":"ms","algoritmo":"phalcondecodev117","placa":"MIH5B55"}`;
+        //this.dataFipe = JSON.parse(jsonData);
+        this.setInformations();
       } catch (error) {
         this.errorMessage = error.message;
       }
+    },
+
+    async setInformations() {
+      const infoVehicle = this.dataFipe.informacoes_veiculo;
+      const infoFipe = this.dataFipe.fipe[0]
+
+      // Anos
+      this.ano_fabricante = infoVehicle.ano;
+      this.ano_modelo = infoVehicle.ano_modelo;
+
+      // Cores
+      const resultColor = this.findRightColor(infoVehicle.cor);
+      this.cor = resultColor.id;
+
+      // Combustível
+      const resultFuel = this.findRightFuel(infoFipe.combustivel);
+      this.combustivel = resultFuel.id;
+    },
+
+    findRightColor(color) {
+      const colorFind = color.toLowerCase().slice(0, 3);
+      return this.Api_cores.find(item => {
+        const colorItem = item.cor.toLowerCase().slice(0, 3);
+        return colorItem === colorFind;
+      });
+    },
+
+    findRightFuel(fuel) {
+      return this.Api_combustivel.find(item => {
+        return item.combustivel === fuel;
+      })
+    },
+
+    async saveYearId(year, type, codeFipe) {
+      const years = await getYearIdFipe(type, codeFipe);
+      return years.find(item => {
+        const yearIdItem = item.code.slice(0, 4);
+        return yearIdItem === year;
+      });
+    },
+
+    findTypeVehicle() {
+      let typeVehicle = "cars"
+      if (this.tipo_veiculo == '2') {
+        typeVehicle = "motorcycles";
+      } else if (this.tipo_veiculo == '3') {
+        typeVehicle = "trucks";
+      }
+
+      return typeVehicle;
+    },
+
+    findRightMark() {
+      const dataMarks = this.filterMarcas(this.tipo_veiculo);
+      if (this.usePlate == '1') {
+        const mark = dataMarks.find(item => {
+          return item.nome_marca === this.dataFipe.informacoes_veiculo.marca;
+        });
+
+        console.log(mark.id)
+        this.marca_id = mark.id;
+        this.findRightModel(this.marca_id);
+      }
+    },
+
+    findRightModel(markId) {
+      const dataModels = this.filterModelos(markId);
+      const model = dataModels.find(item => {
+        if (this.dataFipe.informacoes_veiculo.modelo.includes(item.nome_modelo)) {
+          return item;
+        }
+      });
+
+      this.modelo_id = model.id;
+    },
+
+    clearPlate() {
+      if (this.usePlate === '0') {
+        this.plate = '';
+        this.marca_id = '';
+        this.modelo_id = '';
+        this.cor = '';
+        this.combustivel = '';
+        this.ano_fabricante = '';
+        this.ano_modelo = '';
+      }
     }
+
   },
 
   async created() {
@@ -620,6 +713,10 @@ export default {
 
       this.anos_modelo.push(this.ano_modelo);
       this.anos_modelo.push(ano_ant);
+    },
+
+    tipo_veiculo(newVal) {
+      this.findRightMark(newVal);
     },
   },
 };

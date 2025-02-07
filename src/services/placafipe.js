@@ -6,7 +6,6 @@ const token = import.meta.env.VITE_APP_PLACAFIPE_TOKEN;
 
 export const getPlacaFipeData = async (placa) => {
   try {
-    console.log(token)
     const response = await axios.get(`${API_URL}${placa}/${token}`, {
       headers: {
         'Content-Type': 'application/json',
