@@ -46,7 +46,7 @@
                 <div class="mb-3">
                   <label for="preco" class="form-label">Placa do Carro</label>
                   <input type="text" class="text form-control" id="preco" placeholder="" :disabled="usePlate === '0'"
-                    :required="usePlate === '1'" maxlength="8"/>
+                    :required="usePlate === '1'" maxlength="8" v-model="plate" @input="handleInput" />
                 </div>
 
                 <!-- Informações do Veículo -->
@@ -310,6 +310,7 @@
 <script>
 // import { setTransitionHooks } from "vue";
 import * as api from "../../services/api";
+import { getPlacaFipeData } from '@/services/placafipe';
 
 export default {
   name: "TheCriarAnuncio",
@@ -371,6 +372,7 @@ export default {
       selecionados: [],
       dropdownState: {},
       usePlate: '0',
+      plate: null,
     };
   },
 
@@ -562,6 +564,31 @@ export default {
       // Exemplo fictício:
       return this.$store.state.modelos.filter((item) => item.id_marca == id);
     },
+
+    handleInput() {
+      console.log("Entrou")
+      if (this.typingTimeout) {
+        clearTimeout(this.typingTimeout);
+      }
+
+      if (this.plate.length >= 7) {
+        console.log("Agora sim pode entrar de verdade")
+        this.typingTimeout = setTimeout(() => {
+          this.searchFipe();
+        }, 1000);
+      }
+    },
+
+    async searchFipe() {
+      this.errorMessage = ''; // Reseta erro caso a placa seja válida
+
+      try {
+        const data = await getPlacaFipeData(this.plate);
+        console.log('Dados da placa:', data);
+      } catch (error) {
+        this.errorMessage = error.message;
+      }
+    }
   },
 
   async created() {
