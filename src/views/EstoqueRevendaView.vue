@@ -41,7 +41,7 @@ export default {
   components: {
     TheNavTop,
     TheNavLateral,
-    TheResultado,
+    TheResultadoRevenda,
     loader,
   },
 
