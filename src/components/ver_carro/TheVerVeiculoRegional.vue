@@ -161,7 +161,7 @@
                 <h1>{{ this.priceFipe}}</h1>
               </div>
             </div>
-          </div>Tabela
+          </div>
         </div>
 
         <!-- Informações do vendedor -->
