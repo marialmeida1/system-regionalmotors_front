@@ -142,7 +142,7 @@
         </div>
 
         <!-- Compare preços -->
-        <div class="mb-3 rounded-3 px-0 py-4 bg-dark card-ver-form"
+        <div class="mb-3 rounded-3 px-0 bg-dark card-ver-form" v-if="priceFipe"
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
             <div>
@@ -153,12 +153,12 @@
 
               <div>
                 <p>Valor Anunciado</p>
-                <h1>R$ 76.900</h1>
+                <h1>R$ {{ veiculo.valor_preco }}</h1>
               </div>
 
               <div>
                 <p>Tabela FIPE</p>
-                <h1>R$ 76.989</h1>
+                <h1>{{ this.priceFipe }}</h1>
               </div>
             </div>
           </div>
@@ -272,6 +272,7 @@ export default {
       id: "",
       linkPage: "",
       namePage: "",
+      priceFipe: "",
     };
   },
 
@@ -297,6 +298,13 @@ export default {
     const id = parseInt(this.$route.query.id); // Converter para número
     const dados = await api.detalharAnuncio(id);
     this.veiculo = dados[0];
+
+    const typeVehicle = this.findTypeVehicle(this.veiculo.tipo_veiculo);
+    if (this.veiculo.codeFipe != null || this.veiculo.yearId != null) {
+      console.log(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId)
+      const dataFipe = await getPriceFipe(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId);
+      this.priceFipe = dataFipe.price;
+    }
 
     this.id = this.veiculo.id_anunciante;
 
@@ -377,50 +385,6 @@ export default {
   },
 
   methods: {
-    addOpenGraphMetaTags(title_page, url) {
-      let situacao = "";
-      if (this.veiculo.situacao_veiculo == "2") {
-        situacao = "Usado:";
-      } else {
-        situacao = "Novo:";
-      }
-
-      const description = `${this.veiculo.tipo_veiculo} ${situacao} ${this.veiculo.marca} ${this.veiculo.modelo
-        } ${this.veiculo.ano_modelo
-        }, cor ${this.veiculo.cor.toLowerCase()}, câmbio ${this.veiculo.transmissao.toLowerCase()}. Disponível na ${this.veiculo.empresa
-        }, ${this.veiculo.cidade}, ${this.veiculo.estado}.`;
-
-      const image = `${this.veiculo.foto1}detalhe_mini.jpg`;
-
-      // Função para adicionar ou atualizar a tag <title>
-      const updateTitle = (title_page) => {
-        let titleTag = document.querySelector("title");
-        if (!titleTag) {
-          titleTag = document.createElement("title");
-          document.head.appendChild(titleTag);
-        }
-        titleTag.textContent = title_page;
-      };
-
-      const updateMetaTag = (property, content) => {
-        let metaTag = document.querySelector(`meta[property="${property}"]`);
-        if (!metaTag) {
-          metaTag = document.createElement("meta");
-          metaTag.setAttribute("property", property);
-          document.head.appendChild(metaTag);
-        }
-        metaTag.setAttribute("content", content);
-      };
-
-      updateTitle(title_page);
-
-      updateMetaTag("title", title_page);
-      updateMetaTag("description", description);
-      updateMetaTag("image", image);
-      updateMetaTag("url", url);
-      updateMetaTag("type", "website");
-    },
-
     async mostrarContato() {
       this.mostraContato = true;
       await api.numClick("api/anuncios/contadorContacto/", this.veiculo.id);
@@ -494,6 +458,17 @@ export default {
 
     visitarLoja() {
       this.$router.push({ path: "/" + this.id });
+    },
+
+    findTypeVehicle(tipo_veiculo) {
+      let typeVehicle = "cars"
+      if (tipo_veiculo == 'Moto') {
+        typeVehicle = "motorcycles";
+      } else if (tipo_veiculo == 'Caminhão') {
+        typeVehicle = "trucks";
+      }
+
+      return typeVehicle;
     },
   },
 };
