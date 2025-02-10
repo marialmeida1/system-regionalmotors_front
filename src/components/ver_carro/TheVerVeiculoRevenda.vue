@@ -117,7 +117,6 @@
         </div>
 
         <!-- Itens de veiculo -->
-
         <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
@@ -142,6 +141,29 @@
           </div>
         </div>
 
+        <!-- Compare preços -->
+        <div class="mb-3 rounded-3 px-0 py-4 bg-dark card-ver-form"
+          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
+          <div class="p-4">
+            <div>
+              <p class="rotulo">Compare os preços</p>
+            </div>
+
+            <div class="pt-4 compare-price">
+
+              <div>
+                <p>Valor Anunciado</p>
+                <h1>R$ 76.900</h1>
+              </div>
+
+              <div>
+                <p>Tabela FIPE</p>
+                <h1>R$ 76.989</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
@@ -153,7 +175,12 @@
 
             <div class="my-" style="opacity: 0.7">
               <div class="row p-0">
-                <div class="col-lg-6 mb-2">
+
+                <div class="p-0">
+                  <p class="rotulo">Sobre o vendedor</p>
+                </div>
+
+                <div class="col-lg-6 mb-2 p-0">
                   <div>
                     <h3 class="m-0 pt-1">{{ veiculo.empresa }}</h3>
                     <p class="pt-1 mb-1">{{ veiculo.cidade }}, {{ veiculo.uf }}</p>
@@ -571,5 +598,21 @@ export default {
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.compare-price {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+}
+
+.compare-price p {
+  font-size: 0.8rem;
+  padding-bottom: 0.5rem;
+}
+
+.compare-price h1 {
+  font-weight: bold;
+  font-size: 2rem;
 }
 </style>

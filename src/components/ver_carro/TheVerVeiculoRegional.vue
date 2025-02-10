@@ -117,7 +117,6 @@
         </div>
 
         <!-- Itens de veiculo -->
-
         <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
@@ -142,6 +141,30 @@
           </div>
         </div>
 
+        <!-- Compare preços -->
+        <div class="mb-3 rounded-3 px-0 bg-dark card-ver-form"
+          style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
+          <div class="p-4">
+            <div>
+              <p class="rotulo">Compare os preços</p>
+            </div>
+
+            <div class="pt-4 compare-price">
+
+              <div>
+                <p>Valor Anunciado</p>
+                <h1>R$ {{ veiculo.valor_preco }}</h1>
+              </div>
+
+              <div>
+                <p>Tabela FIPE</p>
+                <h1>R$ 76.989</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informações do vendedor -->
         <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
@@ -153,7 +176,12 @@
 
             <div class="my-" style="opacity: 0.7">
               <div class="row p-0">
-                <div class="col-lg-6 mb-2">
+
+                <div class="p-0">
+                  <p class="rotulo">Sobre o vendedor</p>
+                </div>
+
+                <div class="col-lg-6 mb-2 p-0">
                   <div>
                     <h3 class="m-0 pt-1">{{ veiculo.empresa }}</h3>
                     <p class="pt-1 mb-1">{{ veiculo.cidade }}, {{ veiculo.uf }}</p>
@@ -216,6 +244,7 @@ import "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.mi
 import * as api from "../../services/api";
 import loader from "../loaders/loader.vue";
 import WhatsappShowVehicle from "../commons/buttons/WhatsappShowVehicle.vue";
+import { getPriceFipe } from '@/services/precofipe';
 
 export default {
   name: "TheVerVeiculo_Carousel",
@@ -246,6 +275,7 @@ export default {
       id: "",
       linkPage: "",
       namePage: "",
+      priceFipe: "",
     };
   },
 
@@ -271,6 +301,10 @@ export default {
     const id = parseInt(this.$route.query.id); // Converter para número
     const dados = await api.detalharAnuncio(id);
     this.veiculo = dados[0];
+
+    const typeVehicle = this.findTypeVehicle(this.veiculo.tipo_veiculo);
+    const dataFipe = await getPriceFipe(this.plate);
+
 
     this.id = this.veiculo.id_anunciante;
 
@@ -462,10 +496,22 @@ export default {
           pagination: false,
         };
       }
+
     },
 
     visitarLoja() {
       this.$router.push({ path: "/" + this.id });
+    },
+
+    findTypeVehicle(tipo_veiculo) {
+      let typeVehicle = "cars"
+      if (tipo_veiculo == 'Moto') {
+        typeVehicle = "motorcycles";
+      } else if (tipo_veiculo == 'Caminhão') {
+        typeVehicle = "trucks";
+      }
+
+      return typeVehicle;
     },
   },
 };
@@ -570,5 +616,29 @@ export default {
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.compare-price {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+}
+
+@media (max-width: 768px) {
+  .compare-price {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+
+.compare-price p {
+  font-size: 0.8rem;
+  padding-bottom: 0.5rem;
+}
+
+.compare-price h1 {
+  font-weight: bold;
+  font-size: 2rem;
 }
 </style>
