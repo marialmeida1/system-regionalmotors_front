@@ -299,7 +299,7 @@ export default {
 
   data() {
     return {
-      id_anunciante: "",
+      anunciante_id: "",
       id: "",
       tipo_veiculo: "",
       categoria_id: "",
@@ -372,6 +372,9 @@ export default {
       this.titulo = this.marca_id + " " + this.modelo_id + " - " + this.ano_modelo;
 
       var opcionalString = JSON.stringify(this.selecionados);
+      console.log(this.anunciante_id)
+
+
 
       const data = {
         titulo: this.titulo,
@@ -381,7 +384,7 @@ export default {
         modelo_id: this.modelo_id,
         numero_cliques: "2",
         situacao_veiculo: this.situacao_veiculo,
-        anunciante_id: this.id_anunciante,
+        anunciante_id: this.anunciante_id,
         categoria_id: this.categoria_id,
         data_inicio: "20-02-2021",
         data_fim: "20-02-2022",
@@ -522,6 +525,8 @@ export default {
         (objeto) => objeto.id === this.$store.state.anuncioID
       );
 
+      console.log(this.anuncios.anunciante_id)
+
       //const dados = await api.detalhar('api/anuncios/detalhar_anucios/', this.$store.state.anuncioID)
       //this.anuncios = dados[0]
 
@@ -564,7 +569,7 @@ export default {
       this.kilometro = this.anuncios.km;
       this.selecionados = JSON.parse(this.anuncios.opcionais_id);
       this.desc = this.anuncios.descricao;
-      this.id_anunciante = this.anuncios.id_anunciante;
+      this.anunciante_id = this.anuncios.anunciante_id;
     },
   },
 
@@ -588,7 +593,7 @@ export default {
   },
 
   mounted() {
-    // this.menuItemsList()
+    this.showgetDados()
   },
-};
+} ;
 </script>
