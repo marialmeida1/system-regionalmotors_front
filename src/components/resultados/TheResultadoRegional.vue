@@ -11,7 +11,7 @@
             <span v-if="filtro.valor == '2'"> Usado </span>
           </span>
           <span v-else-if="filtro.chave == 'opcionais_id'"> Itens Opcionais </span>
-          <span v-else>{{ filtro.valor }}</span>
+          <span v-else> {{ filtro.valor }}</span>
         </span>
       </div>
 
@@ -28,8 +28,6 @@
     </div>
 
     <div hidden>
-      <!-- Resultados 
-                {{$store.state.anuncios}} -->
       <div class="px-2 py-2">
         <h4>
           Resultados
@@ -53,40 +51,29 @@
         <h4>Nenhum resultado!</h4>
         <p class="m-0">
           Click para
-          <span style="color: crimson; cursor: pointer" @click="verTodos"> ver todos </span>
+          <span style="color: crimson; cursor: pointer" @click="verTodos"> Ver todos </span>
         </p>
       </div>
     </div>
 
-    <div class="row p-0 m-0">
+    <div class="row p-0 m-0" v-if="!notFound && !loader">
       <div class="col-lg-12 col-md-12 p-0 m-0">
-        <div>
-          <div class="row p-0 m-0">
+        <RecycleScroller :items="filteredResultados" :item-size="1" key-field="id" direction="horizontal"
+          v-slot="{ item }">
 
-            <!-- Card -->
-            <TheCardVeiculo v-for="(item, index) in $store.state.resultado" :key="item.id" :id="item.id"
-              :marca="item.nome_marca" :modelo="item.nome_modelo" :combustivel="item.combustivel"
-              :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km"
-              :fotos="[item.foto1, item.foto2, item.foto3, item.foto4, item.foto5, item.foto6, item.foto7, item.foto8, item.foto9, item.foto10].filter(Boolean)"
-              @abrir-detalhes="goverveiculo" />
-          </div>
-        </div>
+          <TheCardVeiculo :key="item.id" :id="item.id" :marca="item.nome_marca" :modelo="item.nome_modelo"
+            :combustivel="item.combustivel" :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km" :fotos="[
+              item.foto1, item.foto2, item.foto3, item.foto4, item.foto5,
+              item.foto6, item.foto7, item.foto8, item.foto9, item.foto10
+            ].filter(Boolean)" @abrir-detalhes="goverveiculo" />
+        </RecycleScroller>
+
       </div>
-
-      <!--<div class="col-lg-4 col-md-4">
-        <div class="invisible">Ads</div>
-      </div>-->
-    </div>
-
-    <div class="pagination">
-      <button v-if="current_page < total_pages" @click="verMais" class="btn-pagination">
-        Ver mais
-      </button>
     </div>
 
     <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="text-center d-lg-none d-md-none"
       @click="show_menu_lateral">
-      <div class="filter-icon">
+      <div>
         <i class="fas fa-filter" style="font-size: 12px"></i>
         <div style="font-size: 11px">Filtrar</div>
       </div>
@@ -98,122 +85,72 @@
 import * as api from "../../services/api";
 import Glide from "@glidejs/glide";
 import TheCardVeiculo from "./TheCardVeiculo.vue";
+import { useStore } from "vuex";
+import { RecycleScroller } from "vue3-virtual-scroller";
 
 export default {
-  name: "TheResultadoRegional",
+  name: "TheResultado",
 
   components: {
+    RecycleScroller,
     TheCardVeiculo
   },
 
-  props: {
-    set_tipo_veiculo: String,
+  computed: {
+    filteredResultados() {
+      if (Array.isArray(this.$store.state.resultado)) {
+        return this.$store.state.resultado.filter(item => item.foto1 && item.foto2 && item.foto3);
+      }
+      return [];
+    }
   },
 
   data() {
     return {
-      splideOptions: {
-        type: "carousel", // Tipo de slider
-        perPage: 1,
-      },
-
       array_filtros: [],
       results: false,
       loader: true,
       notFound: false,
       arrayTitles: [],
-      ordenacao_type: "0",
       url: "",
       queryString: "",
-      total_pages: 0,
-      current_page: 1,
+      infos: null,
+      ordenacao_type: "0",
+      chamada: 0
     };
   },
 
   methods: {
-    show_menu_lateral() {
+    show_menu_lateral() { // Botão de filtragem mobile
       this.$emit("show_menu_lateral");
     },
 
-    showCarroDetalhes(id) {
-      const parametros = { id: id };
-      this.$router.push({ path: "/verveiculo", query: parametros });
-    },
-
-    upPage() {
-      // Mover o scroll para o topo da página
-      window.scrollTo(0, 0);
-    },
-
-    goverveiculo(id) {
+    goverveiculo(id) { // Emite informações para abrir página 
       this.$emit("goverveiculoNow", id);
     },
 
-    async listData(data) {
-      this.$store.state.resultado = await data;
-    },
-
     async applyFiltro(chaveID, valorID) {
+      this.chamada += 1;
+      console.log("Chamada", this.chamada);
+
       this.notFound = false;
       this.loader = true;
+      console.log(chaveID, valorID);
 
-      const chavesUnicas = {};
+      this.updateFiltros(chaveID, valorID); // Update nos filtros
+      const queryParams = this.createQueryParams(); // Cria
+      this.formatTitleUrl(queryParams);
 
-      this.$store.state.resultado = [];
+      this.url = this.constructUrl(queryParams);
 
-      // Atualiza o objeto temporário com as chaves únicas e seus valores
-      this.array_filtros.forEach((filtro) => {
-        chavesUnicas[filtro.chave] = filtro.valor;
-      });
+      console.log("Iniciando requisição para:", this.url);
+      const startTime = Date.now(); // Registra o tempo inicial
 
-      // Adiciona ou atualiza o valor da chave no objeto temporário
-      chavesUnicas[chaveID] = valorID;
-
-      // Atualiza o array_filtros a partir do objeto temporário
-      this.array_filtros = Object.keys(chavesUnicas).map((chave) => ({
-        chave,
-        valor: chavesUnicas[chave],
-      }));
-
-      // Use qs.stringify para converter os parâmetros em uma string de consulta
-      const queryParams = {};
-      this.array_filtros.forEach((filtro) => {
-        queryParams[filtro.chave] = filtro.valor;
-      });
-
-      this.arrayTitles = [];
-      var titles = "Comprar ";
-      var url_title = "lista-";
-
-      // Para iterar sobre os valores de queryParams
-      Object.values(queryParams).forEach((el) => {
-        if (el == "1") {
-          el = "Novo";
-        } else if (el == "2") {
-          el = "Usado";
-        } else if (el == 0) {
-          el = "Todos"
-        }
-        this.arrayTitles.push(el);
-        titles += el + " ";
-        url_title += el + "-";
-      });
-
-      document.title = titles;
-
-      const url_title_min = url_title.toLowerCase();
-      const newPath = `/resultados/#/${url_title_min}`;
-      this.$router.replace(newPath);
-
-      this.queryString = Object.keys(queryParams)
-        .map((key) => `${key}=${queryParams[key]}`)
-        .join("&");
-
-      // Construa a URL com base nos filtros
-      this.url = `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2`;
-
-      // Chamada à API para filtrar anúncios com a URL construída
       this.$store.state.resultado = await api.filtrarAnuncio(this.url);
+
+      const endTime = Date.now(); // Registra o tempo final
+      console.log(`Requisição concluída em ${endTime - startTime}ms`);
+      console.log(this.$store.state.resultado);
 
       if (this.$store.state.resultado) {
         this.results = true;
@@ -225,27 +162,69 @@ export default {
           this.notFound = false;
         }
       }
+
+    },
+
+
+    updateFiltros(chaveID, valorID) {
+      const chavesUnicas = {};
+
+
+      this.$store.state.resultado = []; // Reseta os dados antes de buscar
+      this.array_filtros.forEach((filtro) => { // Atualiza os filtros no objeto temporário
+        chavesUnicas[filtro.chave] = filtro.valor;
+      });
+
+
+      chavesUnicas[chaveID] = valorID; // Adiciona ou atualiza o filtro
+      this.array_filtros = Object.keys(chavesUnicas).map((chave) => ({ // Atualiza o array de filtros com as chaves únicas
+        chave,
+        valor: chavesUnicas[chave],
+      }));
+    },
+
+    createQueryParams() { // Gera a string de parametros
+      const queryParams = {};
+
+      this.array_filtros.forEach((filtro) => {
+        queryParams[filtro.chave] = filtro.valor;
+      });
+
+      return queryParams;
+    },
+
+    formatTitleUrl(queryParams) {
+      this.arrayTitles = [];
+      var titles = "Comprar ";
+      var url_title = "";
+
+      Object.values(queryParams).forEach((el) => {
+        el = el === '1' ? "Novo" : el === '2' ? "Usado" : el;
+        this.arrayTitles.push(el);
+        titles += el + " ";
+        url_title += el + "%";
+      });
+
+      document.title = titles;
+      const url_title_min = url_title.toLowerCase();
+      const newPath = `/estoque/#/${url_title_min}`;
+      this.$router.replace(newPath);
+    },
+
+    constructUrl(queryParams) {
+      this.queryString = Object.keys(queryParams)
+        .map((key) => `${key}=${queryParams[key]}`)
+        .join("&");
+
+      return `api/anuncios/listar_anuncios_new?${this.queryString}&destaque_busca=1&status_publicacao=2`;
     },
 
     async fetchAnuncios() {
-      let allResults = [];
+      const resultado = await api.filtrarAnuncio(
+        `api/anuncios/listar_anuncios_new/${this.ordenacao_type}?${this.queryString}&destaque_busca=1&status_publicacao=2`
+      );
 
-      for (let page = 1; page <= this.current_page; page++) {
-        const resultado = await api.filtrarAnuncio(
-          `api/anuncios/listar_anuncios/${this.ordenacao_type}?${this.queryString}&destaque_busca=1&status_publicacao=2&page=${page}`
-        );
-
-        allResults = [...allResults, ...resultado];
-      }
-
-      this.$store.state.resultado = allResults;
-    },
-
-    async verMais() {
-      if (this.current_page < this.total_pages) {
-        this.current_page += 1;
-        await this.fetchAnuncios();
-      }
+      this.$store.state.resultado = resultado;
     },
 
     async getOrdenation(value) {
@@ -263,13 +242,9 @@ export default {
       this.notFound = false;
       this.array_filtros = [];
       this.$store.state.resultado = await api.filtrarAnuncio(
-        "api/anuncios/listar_anuncios?destaque_busca=1&status_publicacao=2"
+        `api/anuncios/listar_anuncios_new?destaque_busca=1&status_publicacao=2`
       );
       const resultado = this.$store.state.resultado;
-      const currentPage = resultado[0].current_page;
-      const totalPages = resultado[0].total_pages;
-      this.current_page = currentPage;
-      this.total_pages = totalPages;
       this.$store.state.results = true;
       this.filtro = "";
       this.textMarca = "";
@@ -286,14 +261,13 @@ export default {
         }
       }
 
-      const path = `/resultados`;
+      const path = `/estoque`;
       this.$router.replace(path);
     },
   },
 
   async mounted() {
     this.$store.state.resultado = [];
-
     const keys = Object.keys(this.$route.query);
 
     let titles = "Comprar ";
@@ -314,19 +288,19 @@ export default {
 
     const url = window.location.href;
     const baseUrl = window.location.origin;
-    const info_url = url.replace(baseUrl, '');
+    const info_path = url.replace(baseUrl, '');
+    const info_url = info_path.split("/")[3];
 
-    if (info_url == "/resultados") {
+    if (info_url == "estoque") {
       this.$store.state.resultado = await api.filtrarAnuncio(
-        `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
+        `api/anuncios/listar_anuncios_new?${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
       );
     } else {
       this.$store.state.resultado = await api.filtrarAnuncio(
-        `api/anuncios/listar_anuncios?${this.queryString}&destaque_busca=1&status_publicacao=2`
+        `api/anuncios/listar_anuncios_new?${this.queryString}&destaque_busca=1&status_publicacao=2`
       );
     }
 
-    // Faz a chamada para a API com a query string construída dinamicamente
     if (this.$store.state.resultado) {
       this.results = true;
       this.loader = false;
@@ -338,12 +312,10 @@ export default {
       }
     }
 
-    const resultado = this.$store.state.resultado;
+    const path = `/estoque`;
+    this.$router.replace(path);
 
-    const currentPage = resultado[0].current_page;
-    const totalPages = resultado[0].total_pages;
-    this.current_page = currentPage;
-    this.total_pages = totalPages;
+    const resultado = this.$store.state.resultado;
   },
 
   updated() {
@@ -378,5 +350,30 @@ export default {
   padding-top: 5px;
   background-color: crimson;
   color: #fff;
+}
+
+.vue-recycle-scroller__item-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 0rem 1rem 0rem 0rem;
+  margin: 0;
+}
+
+
+@media (max-width: 768px) {
+  .row.p-0.m-0 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .row.p-0.m-0 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vue-recycle-scroller__item-view {
+  transform: translate(0px) !important;
 }
 </style>
