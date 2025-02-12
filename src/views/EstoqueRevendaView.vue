@@ -8,7 +8,7 @@
         @transmiteData="sendData" @limparFiltro="clearFiltros" />
     </div>
 
-    <TheResultado @show_menu_lateral="handle_showHidden_menu_lateral" :set_tipo_veiculo="set_tipo_veiculo"
+    <TheResultadoRevenda @show_menu_lateral="handle_showHidden_menu_lateral" :set_tipo_veiculo="set_tipo_veiculo"
       @goverveiculoNow="goverveiculo" ref="theresultado" />
 
     <div v-show="this.results">
@@ -22,7 +22,6 @@ import TheNavTop from "../components/inicioRevenda/TheNavTop.vue";
 import TheNavLateral from "../components/inicioRevenda/TheNavLateral.vue";
 import TheResultadoRevenda from "../components/resultados/TheResultadoRevenda.vue";
 import loader from "../components/loaders/loader.vue";
-import TheResultado from "../components/resultados/TheResultado.vue";
 
 export default {
   components: {
