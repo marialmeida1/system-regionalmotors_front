@@ -15,11 +15,8 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Situação do veículo</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select
-            @change="applyFiltro('situacao_veiculo', $event.target.value)"
-            class="filter-select"
-            id="situacao_veiculo"
-          >
+          <select @change="applyFiltro('situacao_veiculo', $event.target.value)" class="filter-select"
+            id="situacao_veiculo">
             <option value="" selected disabled>Situação do veículo</option>
             <option value="">Todos</option>
             <option value="1">Novo</option>
@@ -33,11 +30,7 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Tipo de veiculo</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select
-            @change="filtrarMarca('tipo_veiculo', $event)"
-            class="filter-select"
-            id="tipo_veiculo"
-          >
+          <select @change="filtrarMarca('tipo_veiculo', $event)" class="filter-select" id="tipo_veiculo">
             <option value="" selected disabled>Veículo</option>
             <option v-for="item in $store.state.tipo_veiculo" :value="item.id">
               {{ item.tipo_veiculo }}
@@ -51,11 +44,7 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Marca</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select
-            @change="filtrarModelo('nome_marca', $event.target.value)"
-            class="filter-select"
-            id="marca"
-          >
+          <select @change="filtrarModelo('nome_marca', $event.target.value)" class="filter-select" id="marca">
             <option value="">Marca</option>
             <option v-for="item in marcas" :value="item.nome_marca">
               {{ item.nome_marca }}
@@ -69,11 +58,7 @@
       <div class="px-2 pb-2">
         <div class="title__filter pb-2">Modelo</div>
         <div class="pesquisar pesquisar-lateral p-2">
-          <select
-            @change="applyFiltro('nome_modelo', $event.target.value)"
-            class="filter-select"
-            id="modelo"
-          >
+          <select @change="applyFiltro('nome_modelo', $event.target.value)" class="filter-select" id="modelo">
             <option value="">Modelo</option>
             <option v-for="item in modelos" :value="item.nome_modelo">
               {{ item.nome_modelo }}
@@ -89,27 +74,16 @@
         <div class="row">
           <div class="col-6 pb-1 px-1 mt-2">
             <div class="pesquisar pesquisar-lateral">
-              <input
-                type="text"
-                placeholder="de"
-                class="form-control filter-input"
-                style="background: none; border: none; color: #000 !important"
-                @click="limparInputPreco2"
-                v-model="precoMin"
-              />
+              <input type="text" placeholder="de" class="form-control filter-input"
+                style="background: none; border: none; color: #000 !important" @click="limparInputPreco2"
+                v-model="precoMin" />
             </div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 20.000</span>
           </div>
           <div class="col-6 pb-1 px-1 mt-2">
             <div class="pesquisar pesquisar-lateral" :class="{ 'input-error': errorPreco }">
-              <input
-                type="text"
-                placeholder="até"
-                class="form-control filter-input"
-                style="background: none; border: none; color: #000 !important"
-                v-model="precoMax"
-                @blur="blurPreco"
-              />
+              <input type="text" placeholder="até" class="form-control filter-input"
+                style="background: none; border: none; color: #000 !important" v-model="precoMax" @blur="blurPreco" />
             </div>
             <div v-if="errorPreco" class="error-message">{{ errorPreco }}</div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 50.000 </span>
@@ -124,27 +98,16 @@
         <div class="row">
           <div class="col-6 pb-1 px-1 mt-2">
             <div class="pesquisar pesquisar-lateral">
-              <input
-                type="text"
-                placeholder="de"
-                class="form-control filter-input"
-                style="background: none; border: none; color: #000 !important"
-                @click="limparInputAno2"
-                v-model="anoMin"
-              />
+              <input type="text" placeholder="de" class="form-control filter-input"
+                style="background: none; border: none; color: #000 !important" @click="limparInputAno2"
+                v-model="anoMin" />
             </div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 2000</span>
           </div>
           <div class="col-6 pb-1 px-1 mt-2">
             <div class="pesquisar pesquisar-lateral" :class="{ 'input-error': errorAno }">
-              <input
-                type="text"
-                placeholder="até"
-                class="form-control filter-input"
-                style="background: none; border: none; color: #000 !important"
-                v-model="anoMax"
-                @blur="blurAno"
-              />
+              <input type="text" placeholder="até" class="form-control filter-input"
+                style="background: none; border: none; color: #000 !important" v-model="anoMax" @blur="blurAno" />
             </div>
             <div v-if="errorAno" class="error-message">{{ errorAno }}</div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 2024 </span>
@@ -159,27 +122,16 @@
         <div class="row">
           <div class="col-6 pb-1 px-1 mt-2">
             <div class="pesquisar pesquisar-lateral">
-              <input
-                type="text"
-                placeholder="de"
-                class="form-control filter-input"
-                style="background: none; border: none; color: #000 !important"
-                @click="limparInputKm2"
-                v-model="kmMin"
-              />
+              <input type="text" placeholder="de" class="form-control filter-input"
+                style="background: none; border: none; color: #000 !important" @click="limparInputKm2"
+                v-model="kmMin" />
             </div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 0</span>
           </div>
           <div class="col-6 pb-1 px-1 mt-2">
             <div class="pesquisar pesquisar-lateral" :class="{ 'input-error': errorKm }">
-              <input
-                type="text"
-                placeholder="até"
-                class="form-control filter-input"
-                style="background: none; border: none; color: #000 !important"
-                v-model="kmMax"
-                @blur="blurKm"
-              />
+              <input type="text" placeholder="até" class="form-control filter-input"
+                style="background: none; border: none; color: #000 !important" v-model="kmMax" @blur="blurKm" />
             </div>
             <div v-if="errorKm" class="error-message">{{ errorKm }}</div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 1000 </span>
@@ -230,15 +182,9 @@
     </div>
 
     <!-- Limpar filtro -->
-    <div
-      class="px-2 text-center position-absolute pt-3 bg-white"
-      style="left: 0; bottom: 0; width: 250px"
-    >
-      <button
-        class="col-11 pb-1 px-2 btn border border-1 border-dark"
-        style="color: #000; cursor: pointer"
-        @click="execAllLateral"
-      >
+    <div class="px-2 text-center position-absolute pt-3 bg-white" style="left: 0; bottom: 0; width: 250px">
+      <button class="col-11 pb-1 px-2 btn border border-1 border-dark" style="color: #000; cursor: pointer"
+        @click="execAllLateral">
         Limpar Filtros
       </button>
     </div>
@@ -363,33 +309,21 @@ export default {
       this.cidades = await api.filtrarAnuncio(`api/cidade/listar_cidades?estado=${valorID}`);
     },
 
-    /*async filtrarCidade(chaveID, valorID) {
-        this.applyFiltro(chaveID, valorID);
-  
-        this.cidades = await api.filtrarAnuncio(`api/cidade/listar_cidades?regiao=${valorID}`);
-      },*/
 
-    blurPreco() {
-      this.errorPreco = "";
+    async blurPreco() {
 
-      if (this.precoMax < this.precoMin) {
-        this.errorPreco = "O valor máximo deve ser maior que o mínimo.";
-        return;
+      if(this.precoMin == ''){
+        this.precoMin = 0;
       }
 
-      if (this.precoMin == "") {
-        this.precoMin = "0";
-      }
-
-      this.applyFiltro("preco_min", this.precoMin);
-      this.applyFiltro("preco_max", this.precoMax);
+      await this.applyFiltro(`preco_min=${this.precoMin}&preco_max`, this.precoMax);
     },
 
     limparInputPreco2() {
       this.precoMax = "";
     },
 
-    blurAno() {
+    async blurAno() {
       this.errorAno = "";
 
       if (this.anoMax < this.anoMin) {
@@ -397,12 +331,12 @@ export default {
         return;
       }
 
-      if (this.anoMin == "") {
+      if (this.anoMin == "") {     
         this.anoMin = "0";
       }
 
-      this.applyFiltro("ano_modelo_min", this.anoMin);
-      this.applyFiltro("ano_modelo_max", this.anoMax);
+      await this.applyFiltro(`ano_modelo_min=${this.anoMin}&ano_modelo_max`, this.anoMax);
+
     },
 
     limparInputAno2() {
@@ -410,7 +344,7 @@ export default {
       this.anoMax = "";
     },
 
-    blurKm() {
+    async blurKm() {
       this.erroKm = "";
 
       if (this.kmMax < this.kmMin) {
@@ -422,8 +356,8 @@ export default {
         this.kmMin = "0";
       }
 
-      this.applyFiltro("quilometragem_min", this.kmMin);
-      this.applyFiltro("quilometragem_max", this.kmMax);
+      await this.applyFiltro(`quilometragem_min=${this.kmMin}&quilometragem_max`, this.kmMax);
+
     },
 
     limparInputKm2() {

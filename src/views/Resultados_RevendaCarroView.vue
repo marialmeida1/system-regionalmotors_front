@@ -51,10 +51,6 @@ export default {
       this.set_tipo_veiculo = tipo_veiculo
     },
 
-    filter_novo(novo) {
-
-    },
-
     goverveiculo(id) {
       //document.querySelector('.loader').classList.remove('d-none')
       const parametros = { id: id };

@@ -2,27 +2,14 @@
   <div>
     <TheNavTop @filterVeiculoRoute="execFilterVeiculoRoute" />
 
-    <div
-      id="TheNavLateral"
-      class="menu-lateral showHidden_menu-lateral bg-white"
-      style="box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1)"
-    >
-      <TheNavLateral
-        @show_menu_lateral="handle_showHidden_menu_lateral"
-        @filter_tipo="filtrar_tipo"
-        @filter_novo="filtrar_novo"
-        ref="theNavLateral"
-        @transmiteData="sendData"
-        @limparFiltro="clearFiltros"
-      />
+    <div id="TheNavLateral" class="menu-lateral showHidden_menu-lateral bg-white"
+      style="box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1)">
+      <TheNavLateral @show_menu_lateral="handle_showHidden_menu_lateral" @filter_tipo="filtrar_tipo" ref="theNavLateral"
+        @transmiteData="sendData" @limparFiltro="clearFiltros" />
     </div>
 
-    <TheResultado
-      @show_menu_lateral="handle_showHidden_menu_lateral"
-      :set_tipo_veiculo="set_tipo_veiculo"
-      @goverveiculoNow="goverveiculo"
-      ref="theresultado"
-    />
+    <TheResultado @show_menu_lateral="handle_showHidden_menu_lateral" :set_tipo_veiculo="set_tipo_veiculo"
+      @goverveiculoNow="goverveiculo" ref="theresultado" />
 
     <div v-show="this.results">
       <loader />
@@ -69,7 +56,7 @@ export default {
 
     goverveiculo(id) {
       const parametros = { id: id };
-      
+
       this.$router.push({ path: `/verveiculorevenda`, query: parametros });
     },
 
@@ -78,8 +65,8 @@ export default {
       this.$refs.theNavLateral.applyFiltro("tipo_veiculo", veiculo);
     },
 
-    sendData(chaveID, valorID) {
-      this.$refs.theresultado.applyFiltro(chaveID, valorID);
+    async sendData(chaveID, valorID) {
+      const resultado = await this.$refs.theresultado.applyFiltro(chaveID, valorID);
     },
 
     clearFiltros() {

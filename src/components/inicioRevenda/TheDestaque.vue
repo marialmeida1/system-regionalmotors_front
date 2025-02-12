@@ -18,18 +18,17 @@
   <div class="container">
     <div class="row p-0 m-0">
       <div class="col-lg-12 col-md-12 p-0 m-0">
-        <div>
-          <div class="row p-0 m-0">
+        <!-- Card -->
+        <RecycleScroller :items="filteredResultados" :item-size="1" key-field="id" direction="horizontal"
+          v-slot="{ item }">
 
-            <!-- Card -->
-            <TheCardVeiculo v-for="(item, index) in $store.state.resultado" :key="index" :id="item.id"
-              :marca="item.nome_marca" :modelo="item.nome_modelo" :combustivel="item.combustivel"
-              :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km"
-              :fotos="[item.foto1, item.foto2, item.foto3, item.foto4, item.foto5, item.foto6, item.foto7, item.foto8, item.foto9, item.foto10].filter(Boolean)"
-              @abrir-detalhes="goverveiculo" />
+          <TheCardVeiculo :key="item.id" :id="item.id" :marca="item.nome_marca" :modelo="item.nome_modelo"
+            :combustivel="item.combustivel" :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km" :fotos="[
+              item.foto1, item.foto2, item.foto3, item.foto4, item.foto5,
+              item.foto6, item.foto7, item.foto8, item.foto9, item.foto10
+            ].filter(Boolean)" @abrir-detalhes="goverveiculo" />
+        </RecycleScroller>
 
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -47,6 +46,7 @@
 import * as api from "../../services/api";
 import Glide from "@glidejs/glide";
 import TheCardVeiculo from "../resultados/TheCardVeiculo.vue";
+import { RecycleScroller } from "vue3-virtual-scroller";
 
 export default {
   name: "TheResultadoRegional",
@@ -71,7 +71,17 @@ export default {
   },
 
   components: {
+    RecycleScroller,
     TheCardVeiculo
+  },
+
+  computed: {
+    filteredResultados() {
+      if (Array.isArray(this.$store.state.resultado)) {
+        return this.$store.state.resultado.filter(item => item.foto1 && item.foto2 && item.foto3);
+      }
+      return [];
+    }
   },
 
   methods: {
@@ -98,7 +108,7 @@ export default {
     console.log("ID: ", id)
 
     this.$store.state.resultado = await api.filtrarAnuncio(
-      `api/anuncios/listar_anuncios?anunciante_id=${id}&status_publicacao=2`
+      `api/anuncios/listar_anuncios_new?anunciante_id=${id}&status_publicacao=2&limite=12`
     );
 
     if (this.$store.state.resultado) {
@@ -136,3 +146,30 @@ export default {
   },
 };
 </script>
+
+<style>
+.vue-recycle-scroller__item-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 0rem 1rem 0rem 0rem;
+  margin: 0;
+}
+
+
+@media (max-width: 768px) {
+  .row.p-0.m-0 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .row.p-0.m-0 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vue-recycle-scroller__item-view {
+  transform: translate(0px) !important;
+}
+</style>

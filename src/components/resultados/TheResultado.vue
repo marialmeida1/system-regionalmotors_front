@@ -57,26 +57,20 @@
             </div>
         </div>
 
-        <div class="row p-0 m-0">
+        <div class="row p-0 m-0" v-if="!notFound && !loader">
             <div class="col-lg-12 col-md-12 p-0 m-0">
-                <div>
-                    <div class="row p-0 m-0">
+                <RecycleScroller :items="filteredResultados" :item-size="1" key-field="id" direction="horizontal"
+                    v-slot="{ item }">
 
-                        <!-- Card -->
-                        <TheCardVeiculo v-for="(item, index) in filteredResultados" :key="item.id" :id="item.id"
-                            :marca="item.nome_marca" :modelo="item.nome_modelo" :combustivel="item.combustivel"
-                            :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km"
-                            :fotos="[item.foto1, item.foto2, item.foto3, item.foto4, item.foto5, item.foto6, item.foto7, item.foto8, item.foto9, item.foto10].filter(Boolean)"
-                            @abrir-detalhes="goverveiculo" />
-                    </div>
-                </div>
+                    <TheCardVeiculo :key="item.id" :id="item.id" :marca="item.nome_marca" :modelo="item.nome_modelo"
+                        :combustivel="item.combustivel" :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km"
+                        :fotos="[
+                            item.foto1, item.foto2, item.foto3, item.foto4, item.foto5,
+                            item.foto6, item.foto7, item.foto8, item.foto9, item.foto10
+                        ].filter(Boolean)" @abrir-detalhes="goverveiculo" />
+                </RecycleScroller>
+
             </div>
-        </div>
-
-        <div class="pagination">
-            <button v-if="current_page < total_pages" @click="fetchAnuncios" class="btn-pagination">
-                Ver mais
-            </button>
         </div>
 
         <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="text-center d-lg-none d-md-none"
@@ -93,19 +87,14 @@
 import * as api from "../../services/api";
 import Glide from "@glidejs/glide";
 import TheCardVeiculo from "./TheCardVeiculo.vue";
-import { ref } from 'vue';
-import { computed } from "vue";
 import { useStore } from "vuex";
-
-const store = useStore();
-const resultado = computed(() => store.state.resultado);
-const currentPage = computed(() => store.state.current_page);
-const hasMore = computed(() => store.state.resultado.length === store.state.total_pages);
+import { RecycleScroller } from "vue3-virtual-scroller";
 
 export default {
     name: "TheResultado",
 
     components: {
+        RecycleScroller,
         TheCardVeiculo
     },
 
@@ -129,9 +118,7 @@ export default {
             queryString: "",
             infos: null,
             ordenacao_type: "0",
-            total_pages: 0,
-            current_page: 1,
-            hasMore: true,
+            chamada: 0
         };
     },
 
@@ -144,17 +131,28 @@ export default {
             this.$emit("goverveiculoNow", id);
         },
 
-        async applyFiltro(chaveID, valorID) { // Pega os filtros selecionados e gera os novos dados
+        async applyFiltro(chaveID, valorID) {
+            this.chamada += 1;
+            console.log("Chamada", this.chamada);
+
             this.notFound = false;
             this.loader = true;
+            console.log(chaveID, valorID);
 
             this.updateFiltros(chaveID, valorID); // Update nos filtros
             const queryParams = this.createQueryParams(); // Cria
             this.formatTitleUrl(queryParams);
 
-
             this.url = this.constructUrl(queryParams);
+
+            console.log("Iniciando requisição para:", this.url);
+            const startTime = Date.now(); // Registra o tempo inicial
+
             this.$store.state.resultado = await api.filtrarAnuncio(this.url);
+
+            const endTime = Date.now(); // Registra o tempo final
+            console.log(`Requisição concluída em ${endTime - startTime}ms`);
+            console.log(this.$store.state.resultado);
 
             if (this.$store.state.resultado) {
                 this.results = true;
@@ -166,6 +164,7 @@ export default {
                     this.notFound = false;
                 }
             }
+
         },
 
 
@@ -219,16 +218,15 @@ export default {
                 .map((key) => `${key}=${queryParams[key]}`)
                 .join("&");
 
-            return `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`;
+            return `api/anuncios/listar_anuncios_new?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`;
         },
 
         async fetchAnuncios() {
             const resultado = await api.filtrarAnuncio(
-                `api/anuncios/listar_anuncios/${this.ordenacao_type}?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2&page=${this.current_page}`
+                `api/anuncios/listar_anuncios_new/${this.ordenacao_type}?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`
             );
 
-            console.log("Novos dados recebidos:", resultado);
-            console.log("Depois da atualização:", this.$store.state.resultado);
+            this.$store.state.resultado = resultado;
         },
 
         async getOrdenation(value) {
@@ -240,24 +238,15 @@ export default {
             this.limparFiltro();
         },
 
-        verMais() {
-            this.page += 1;
-            this.fetchAnuncios();
-        },
-
         async limparFiltro() {
             this.$store.state.resultado = [];
             this.loader = true;
             this.notFound = false;
             this.array_filtros = [];
             this.$store.state.resultado = await api.filtrarAnuncio(
-                `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&destaque_busca=1&status_publicacao=2`
+                `api/anuncios/listar_anuncios_new?anunciante_id=${this.infos.id}&destaque_busca=1&status_publicacao=2`
             );
             const resultado = this.$store.state.resultado;
-            const currentPage = resultado[0].current_page;
-            const totalPages = resultado[0].total_pages;
-            this.current_page = currentPage;
-            this.total_pages = totalPages;
             this.$store.state.results = true;
             this.filtro = "";
             this.textMarca = "";
@@ -319,11 +308,11 @@ export default {
 
         if (info_url == "estoque") {
             this.$store.state.resultado = await api.filtrarAnuncio(
-                `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
+                `api/anuncios/listar_anuncios_new?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
             );
         } else {
             this.$store.state.resultado = await api.filtrarAnuncio(
-                `api/anuncios/listar_anuncios?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`
+                `api/anuncios/listar_anuncios_new?anunciante_id=${this.infos.id}&${this.queryString}&destaque_busca=1&status_publicacao=2`
             );
         }
 
@@ -342,11 +331,6 @@ export default {
         this.$router.replace(path);
 
         const resultado = this.$store.state.resultado;
-
-        const currentPage = resultado[0].current_page;
-        const totalPages = resultado[0].total_pages;
-        this.current_page = currentPage;
-        this.total_pages = totalPages;
     },
 
     updated() {
@@ -381,5 +365,30 @@ export default {
     padding-top: 5px;
     background-color: crimson;
     color: #fff;
+}
+
+.vue-recycle-scroller__item-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 0rem 1rem 0rem 0rem;
+    margin: 0;
+}
+
+
+@media (max-width: 768px) {
+    .row.p-0.m-0 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .row.p-0.m-0 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.vue-recycle-scroller__item-view {
+    transform: translate(0px) !important;
 }
 </style>

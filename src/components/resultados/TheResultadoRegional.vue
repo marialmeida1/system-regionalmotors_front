@@ -64,7 +64,7 @@
           <div class="row p-0 m-0">
 
             <!-- Card -->
-            <TheCardVeiculo v-for="(item, index) in $store.state.resultado" :key="index" :id="item.id"
+            <TheCardVeiculo v-for="(item, index) in $store.state.resultado" :key="item.id" :id="item.id"
               :marca="item.nome_marca" :modelo="item.nome_modelo" :combustivel="item.combustivel"
               :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km"
               :fotos="[item.foto1, item.foto2, item.foto3, item.foto4, item.foto5, item.foto6, item.foto7, item.foto8, item.foto9, item.foto10].filter(Boolean)"
