@@ -53,16 +53,19 @@
 
             <div>
               <div class="line__markprice">
-                <h3>
-                  <strong>{{ veiculo.marca }}
-                    <span style="color: crimson"> {{ veiculo.modelo }} </span></strong>
-                </h3>
+                <div>
+                  <h3>
+                    <strong>{{ veiculo.marca }}
+                      <span style="color: crimson"> {{ veiculo.modelo }} </span></strong>
+                  </h3>
+                  <p style="opacity: 0.6">{{ veiculo.modelFipe }}</p>
+                </div>
 
                 <h1 class="line__markprice--price" id="preco-veiculo" style="font-weight: 600; opacity: 0.8">
                   R$ {{ veiculo.valor_preco }}
                 </h1>
               </div>
-              <p>{{  veiculo.modelFipe }}</p>
+
             </div>
 
             <div class="row">
