@@ -62,8 +62,7 @@
                   R$ {{ veiculo.valor_preco }}
                 </h1>
               </div>
-
-              <!-- p style="font-size: 14px; opacity: 0.7;">3.2 HPE 4X4 16V TURBO INTERCOOLER DIESEL 4P AUTOMÁTICO</p -->
+              <p>{{  veiculo.modelFipe }}</p>
             </div>
 
             <div class="row">

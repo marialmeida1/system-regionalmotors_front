@@ -207,7 +207,7 @@ export default {
 
       document.title = titles;
       const url_title_min = url_title.toLowerCase();
-      const newPath = `/estoque/#/${url_title_min}`;
+      const newPath = `/resultados/#/${url_title_min}`;
       this.$router.replace(newPath);
     },
 
@@ -261,7 +261,7 @@ export default {
         }
       }
 
-      const path = `/estoque`;
+      const path = `/resultados`;
       this.$router.replace(path);
     },
   },
@@ -291,7 +291,7 @@ export default {
     const info_path = url.replace(baseUrl, '');
     const info_url = info_path.split("/")[3];
 
-    if (info_url == "estoque") {
+    if (info_url == "resultados") {
       this.$store.state.resultado = await api.filtrarAnuncio(
         `api/anuncios/listar_anuncios_new?${this.queryString}&destaque_busca=1&status_publicacao=2&situacao_veiculo=2&tipo_veiculo=Carro`
       );
@@ -312,7 +312,7 @@ export default {
       }
     }
 
-    const path = `/estoque`;
+    const path = `/resultados`;
     this.$router.replace(path);
 
     const resultado = this.$store.state.resultado;

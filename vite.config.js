@@ -13,7 +13,7 @@ export default defineConfig({
     }
   },
   server: { 
-    host: 'revendarm.com.br',
+    host: 'homologrm.com.br',
     port: 5173,
   },
   build: {
