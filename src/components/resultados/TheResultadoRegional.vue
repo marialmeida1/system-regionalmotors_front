@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="text-center d-lg-none d-md-none"
+    <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="filter-icon text-center d-lg-none d-md-none"
       @click="show_menu_lateral">
       <div>
         <i class="fas fa-filter" style="font-size: 12px"></i>
@@ -360,11 +360,20 @@ export default {
   margin: 0;
 }
 
+@media screen and (min-width: 481px) and (max-width: 1204px) {
+  .vue-recycle-scroller__item-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0rem;
+  }
+}
+
 
 @media (max-width: 768px) {
-  .row.p-0.m-0 {
-    grid-template-columns: repeat(2, 1fr);
+  .vue-recycle-scroller__item-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0rem;
   }
+
 }
 
 @media (max-width: 480px) {
