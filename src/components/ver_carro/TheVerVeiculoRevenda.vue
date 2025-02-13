@@ -52,26 +52,22 @@
             </div>
 
             <div>
-              <h1 style="font-size: 30px; margin-bottom: 5px">
-                <strong>{{ veiculo.marca }}
-                  <span style="color: crimson"> {{ veiculo.modelo }} </span></strong>
-              </h1>
+              <div class="line__markprice">
+                <h3>
+                  <strong>{{ veiculo.marca }}
+                    <span style="color: crimson"> {{ veiculo.modelo }} </span></strong>
+                </h3>
+
+                <h1 class="line__markprice--price" id="preco-veiculo" style="font-weight: 600; opacity: 0.8">
+                  R$ {{ veiculo.valor_preco }}
+                </h1>
+              </div>
 
               <!-- p style="font-size: 14px; opacity: 0.7;">3.2 HPE 4X4 16V TURBO INTERCOOLER DIESEL 4P AUTOMÁTICO</p -->
             </div>
 
             <div class="row">
-              <div>
-                <h5 class="my-3" id="preco-veiculo" style="font-weight: 600; opacity: 0.8">
-                  R$ {{ veiculo.valor_preco }}
-                </h5>
-              </div>
               <div class="col-6 col-lg-4">
-                <div class="mb-2">
-                  <p class="rotulo">Cidade</p>
-                  <p class="valor-rotulo">{{ veiculo.cidade }} - {{ veiculo.uf }}</p>
-                </div>
-
                 <div class="mb-2">
                   <p class="rotulo">Ano</p>
                   <p class="valor-rotulo">{{ veiculo.ano_modelo }}</p>
@@ -173,26 +169,29 @@
               </div>
             </div>
 
-            <div class="my-" style="opacity: 0.7">
-              <div class="row p-0">
+            <div style="opacity: 0.7">
+              <div>
 
                 <div class="p-0">
                   <p class="rotulo">Sobre o vendedor</p>
                 </div>
 
-                <div class="col-lg-6 mb-2 p-0">
-                  <div>
-                    <h3 class="m-0 pt-1">{{ veiculo.empresa }}</h3>
-                    <p class="pt-1 mb-1">{{ veiculo.cidade }}, {{ veiculo.uf }}</p>
+                <div class="about__sailor">
+                  <div class="col-lg-6 mb-2 p-0">
+                    <div>
+                      <h3 class="m-0 pt-1">{{ veiculo.empresa }}</h3>
+                      <p class="pt-1 mb-1">{{ veiculo.cidade }}, {{ veiculo.uf }}</p>
+                    </div>
                   </div>
-                </div>
-                <div class="col-lg-6 mb-3">
-                  <div class="col-lg-8 col-md-10 p-0">
-                    <div style="height: 50px">
-                      <img :src="veiculo.foto" class="img-fluid" style="height: 100%" />
+                  <div class="col-lg-6 mb-3">
+                    <div class="col-lg-8 col-md-10 p-0">
+                      <div style="height: 50px">
+                        <img :src="veiculo.foto" class="img-fluid" style="height: 100%" />
+                      </div>
                     </div>
                   </div>
                 </div>
+
               </div>
 
               <div class="py-2">
@@ -589,5 +588,54 @@ export default {
 .compare-price h1 {
   font-weight: bold;
   font-size: 2rem;
+}
+
+.line__markprice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.line__markprice--price {
+  margin-right: 4rem;
+  font-weight: 600 !important;
+  font-size: 3rem;
+}
+
+.about__sailor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 480px) {
+  .line__markprice {
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .line__markprice {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+
+  .line__markprice h3 {
+    font-size: 1.25rem;
+  }
+
+  .line__markprice--price {
+    font-size: 2.5rem;
+    margin-top: 1rem;
+  }
+
+  .about__sailor {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

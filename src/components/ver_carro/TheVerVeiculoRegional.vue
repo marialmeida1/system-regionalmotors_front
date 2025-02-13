@@ -52,20 +52,21 @@
             </div>
 
             <div>
-              <h1 style="font-size: 30px; margin-bottom: 5px">
-                <strong>{{ veiculo.marca }}
-                  <span style="color: crimson"> {{ veiculo.modelo }} </span></strong>
-              </h1>
+              <div class="line__markprice">
+                <h3>
+                  <strong>{{ veiculo.marca }}
+                    <span style="color: crimson"> {{ veiculo.modelo }} </span></strong>
+                </h3>
+
+                <h1 class="line__markprice--price" id="preco-veiculo" style="font-weight: 600; opacity: 0.8">
+                  R$ {{ veiculo.valor_preco }}
+                </h1>
+              </div>
 
               <!-- p style="font-size: 14px; opacity: 0.7;">3.2 HPE 4X4 16V TURBO INTERCOOLER DIESEL 4P AUTOMÁTICO</p -->
             </div>
 
             <div class="row">
-              <div>
-                <h5 class="my-3" id="preco-veiculo" style="font-weight: 600; opacity: 0.8">
-                  R$ {{ veiculo.valor_preco }}
-                </h5>
-              </div>
               <div class="col-6 col-lg-4">
                 <div class="mb-2">
                   <p class="rotulo">Cidade</p>
@@ -158,7 +159,7 @@
 
               <div>
                 <p>Tabela FIPE</p>
-                <h1>{{ this.priceFipe}}</h1>
+                <h1>{{ this.priceFipe }}</h1>
               </div>
             </div>
           </div>
@@ -303,7 +304,7 @@ export default {
     this.veiculo = dados[0];
 
     const typeVehicle = this.findTypeVehicle(this.veiculo.tipo_veiculo);
-    if(this.veiculo.codeFipe != null || this.veiculo.yearId != null){
+    if (this.veiculo.codeFipe != null || this.veiculo.yearId != null) {
       console.log(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId)
       const dataFipe = await getPriceFipe(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId);
       this.priceFipe = dataFipe.price;
@@ -597,5 +598,54 @@ export default {
 .compare-price h1 {
   font-weight: bold;
   font-size: 2rem;
+}
+
+.line__markprice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.line__markprice--price {
+  margin-right: 4rem;
+  font-weight: 600 !important;
+  font-size: 3rem;
+}
+
+.about__sailor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 480px) {
+  .line__markprice {
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .line__markprice {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+
+  .line__markprice h3 {
+    font-size: 1.25rem;
+  }
+
+  .line__markprice--price {
+    font-size: 2.5rem;
+    margin-top: 1rem;
+  }
+
+  .about__sailor {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

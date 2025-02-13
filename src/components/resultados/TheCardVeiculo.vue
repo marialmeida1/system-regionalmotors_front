@@ -112,7 +112,6 @@ export default {
   .imagem-container2,
   .glide__slides,
   .imagem-container2 img {
-    /*width: 110px;*/
     height: 130px;
   }
 }
@@ -174,5 +173,15 @@ export default {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   margin: 2rem 0rem;
+}
+
+@media (max-width: 768px) {
+  .titles {
+    border-radius: 0em 0.5rem 0.5rem 0rem;
+  }
+
+  .imagem-container2 {
+    border-radius: 0.5rem 0rem 0rem 0.5rem;
+  }
 }
 </style>
