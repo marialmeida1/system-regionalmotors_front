@@ -374,8 +374,6 @@ export default {
       var opcionalString = JSON.stringify(this.selecionados);
       console.log(this.anunciante_id)
 
-
-
       const data = {
         titulo: this.titulo,
         tipo_veiculo: this.tipo_veiculo,
@@ -525,8 +523,6 @@ export default {
         (objeto) => objeto.id === this.$store.state.anuncioID
       );
 
-      console.log(this.anuncios.anunciante_id)
-
       //const dados = await api.detalhar('api/anuncios/detalhar_anucios/', this.$store.state.anuncioID)
       //this.anuncios = dados[0]
 
@@ -569,7 +565,7 @@ export default {
       this.kilometro = this.anuncios.km;
       this.selecionados = JSON.parse(this.anuncios.opcionais_id);
       this.desc = this.anuncios.descricao;
-      this.anunciante_id = this.anuncios.anunciante_id;
+      this.anunciante_id = this.anuncios.id_anunciante;
     },
   },
 

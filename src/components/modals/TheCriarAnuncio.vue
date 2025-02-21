@@ -14,47 +14,12 @@
             <!-- Seu formulário aqui -->
             <form>
               <div class="row">
+
                 <!-- Placa Fipe -->
                 <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
                   <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
                     style="border-top-left-radius: 8px; font-size: 13px">
-                    Placa do Veículo
-                  </div>
-                  <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
-                    <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px"></div>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label class="mb-2">Preencher os dados usando a placa do carro?</label>
-                  <div class="form-check">
-                    <input value="1" v-model="usePlate" @change="clearPlate" class="form-check-input" type="radio"
-                      name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Sim
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input value="0" v-model="usePlate" @change="clearPlate" class="form-check-input" type="radio"
-                      name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Não
-                    </label>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="preco" class="form-label">Placa do Carro</label>
-                  <input type="text" class="text form-control" id="preco" placeholder="" :disabled="usePlate === '0'"
-                    :required="usePlate === '1'" maxlength="8" v-model="plate" @input="handleInput" />
-                </div>
-
-                <!-- Informações do Veículo -->
-
-                <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 13px">
-                    Informaçoes do Veiculo
+                    Informações Gerais
                   </div>
                   <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
                     <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px"></div>
@@ -102,6 +67,53 @@
                       {{ categ.nome }}
                     </option>
                   </select>
+                </div>
+
+                <!-- Placa Fipe -->
+                <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 13px">
+                    Placa do Veículo
+                  </div>
+                  <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
+                    <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px"></div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="mb-2">Preencher os dados usando a placa do carro?</label>
+                  <div class="form-check">
+                    <input value="1" v-model="usePlate" @change="clearPlate" class="form-check-input" type="radio"
+                      name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Sim
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input value="0" v-model="usePlate" @change="clearPlate" class="form-check-input" type="radio"
+                      name="flexRadioDefault" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Não
+                    </label>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="preco" class="form-label">Placa do Carro</label>
+                  <input type="text" class="text form-control" id="preco" placeholder="" :disabled="usePlate === '0'"
+                    :required="usePlate === '1'" maxlength="8" v-model="plate" @input="handleInput" />
+                </div>
+
+                <!-- Informações do Veículo -->
+
+                <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
+                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
+                    style="border-top-left-radius: 8px; font-size: 13px">
+                    Informaçoes do Veiculo
+                  </div>
+                  <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
+                    <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px"></div>
+                  </div>
                 </div>
 
                 <div class="mb-3">
@@ -312,6 +324,7 @@
 import * as api from "../../services/api";
 import { getPlacaFipeData } from '@/services/placafipe';
 import { getYearIdFipe } from '@/services/anofipe';
+import { version } from "vue";
 
 export default {
   name: "TheCriarAnuncio",
@@ -378,6 +391,7 @@ export default {
       yearId: '',
       codeFipe: '',
       modelFipe: '',
+      nameModel: '',
     };
   },
 
@@ -397,6 +411,11 @@ export default {
       this.$store.state.modalCriarAnuncio.hide();
     },
 
+    createVersion(version, model) {
+      const regex = new RegExp(`\\b${model}\\b`, "gi"); 
+      return version.replace(regex, "").replace(/\s+/g, " ").trim();
+    },
+
     async criar() {
       this.titulo = this.marca_id + " " + this.modelo_id + " - " + this.ano_modelo;
 
@@ -407,7 +426,12 @@ export default {
       const result = await this.saveYearId(this.dataFipe.informacoes_veiculo.ano, typeVehicle, this.dataFipe.fipe[0].codigo_fipe);
       this.yearId = result.code;
       this.codeFipe = this.dataFipe.fipe[0].codigo_fipe;
-      this.modelFipe = this.dataFipe.fipe[0].modelo;
+
+      // Versão
+      this.findExactModel(this.modelo_id);
+      this.modelFipe = this.createVersion(this.dataFipe.fipe[0].modelo, this.nameModel);
+
+
       console.log(this.yearId, this.codeFipe, this.modelFipe);
 
       var opcionalString = JSON.stringify(this.selecionados);
@@ -454,7 +478,7 @@ export default {
           cor: this.cor,
           transmissao: this.transmissao,
           combustivel: this.combustivel,
-          placa: "null",
+          placa: this.plate,
           km: this.kilometro,
           sinistrado: "null",
           opcionais_id: opcionalString,
@@ -529,8 +553,6 @@ export default {
       }
     },
 
-    showCarregarFotos() { },
-
     formatarNumero() {
       // Remove caracteres que não sejam dígitos ou pontos
       let value = this.valor_preco.replace(/[^\d.]/g, "");
@@ -571,6 +593,9 @@ export default {
     },
 
     handleInput() {
+
+      this.plate = this.plate.toUpperCase();
+
       if (this.typingTimeout) {
         clearTimeout(this.typingTimeout);
       }
@@ -587,6 +612,7 @@ export default {
 
       try {
         this.dataFipe = await getPlacaFipeData(this.plate);
+        console.log(this.dataFipe)
         //console.log(this.dataFipe)
         //const jsonData = `{"codigo":1,"msg":"total de 2 modelo(s) encontrado(s)","fipe":[{"similaridade":"62.50","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN PRIVILÈGE HI-FLEX 1.6 16V 4P","ano_modelo":2010,"codigo_fipe":"025137-2","codigo_marca":"48","codigo_modelo":"4389","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22452.00","desvalorizometro":"MjAxMCM0Mzg5IzEjNDgjMSNMT0dBTiBQUklWSUzDiEdFIEhJLUZMRVggMS42IDE2ViA0UCAtIEdhc29saW5hIzQ5ZDY2ZmZhNGVhOGJlOWY0NDRhYmVkZTQzMjA5MTQw","unidade_valor":"R$"},{"similaridade":"73.68","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN EXPRESSION HI-FLEX 1.6 8V 4P","ano_modelo":2010,"codigo_fipe":"025139-9","codigo_marca":"48","codigo_modelo":"4481","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22370.00","desvalorizometro":"MjAxMCM0NDgxIzEjNDgjMSNMT0dBTiBFWFBSRVNTSU9OIEhJLUZMRVggMS42IDhWIDRQIC0gR2Fzb2xpbmEjNGZmYjU0NmNhYTMyMzc2MTVjNzBkYjI2YzEyNWE5NWY=","unidade_valor":"R$"}],"informacoes_veiculo":{"marca":"RENAULT","modelo":"LOGAN EXP 16","ano":"2010","ano_modelo":"2010","cor":"Branca","chassi":"******6889","motor":"******","municipio":"PALHOCA","uf":"SC","segmento":"AUTO","sub_segmento":"AU - SEDAN PEQUENO","placa":"MIH5B55","cilindradas":"1598","combustivel":"ALCOOL / GASOLINA"},"tempo":322,"undiade_tempo":"ms","unidade_tempo":"ms","algoritmo":"phalcondecodev117","placa":"MIH5B55"}`;
         //this.dataFipe = JSON.parse(jsonData);
@@ -611,6 +637,10 @@ export default {
       // Combustível
       const resultFuel = this.findRightFuel(infoFipe.combustivel);
       this.combustivel = resultFuel.id;
+
+      if (this.tipo_veiculo != '') {
+        this.findRightMark(this.tipo_veiculo);
+      }
     },
 
     findRightColor(color) {
@@ -670,6 +700,13 @@ export default {
       this.modelo_id = model.id;
     },
 
+    findExactModel(id_model) {
+      const modelo = this.$store.state.modelos.filter((item) => item.id == id_model)
+      this.nameModel = modelo[0].nome_modelo;
+      console.log(this.nameModel)
+    },
+
+
     clearPlate() {
       if (this.usePlate === '0') {
         this.plate = '';
@@ -697,13 +734,18 @@ export default {
     this.$store.state.categoriaOpcionais = this.Api_CategOpcionais;
     this.Api_Opcionais = await api.listarOpcionais();
 
-    for (let ano = 2025; 1990 < ano; ano--) {
+    // Padrao
+    this.situacao_veiculo = 2;
+    this.tipo_veiculo = 1;
+    this.tecnologia = 1;
+    this.num_portas = 4;
+
+    // Ano
+    const currentYear = new Date().getFullYear();
+
+    for (let ano = currentYear + 1; 1990 < ano; ano--) {
       this.anos.push(ano);
     }
-  },
-
-  mounted() {
-    // this.menuItemsList()
   },
 
   watch: {
@@ -718,6 +760,12 @@ export default {
     tipo_veiculo(newVal) {
       this.findRightMark(newVal);
     },
+
+    num_portas(newVal) {
+      if (this.tipo_veiculo == 1) {
+        this.num_portas = 4;
+      }
+    }
   },
 };
 </script>

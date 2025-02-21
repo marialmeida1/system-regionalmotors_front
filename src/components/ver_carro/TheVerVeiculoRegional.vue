@@ -184,16 +184,18 @@
                   <p class="rotulo">Sobre o vendedor</p>
                 </div>
 
-                <div class="col-lg-6 mb-2 p-0">
-                  <div>
-                    <h3 class="m-0 pt-1">{{ veiculo.empresa }}</h3>
-                    <p class="pt-1 mb-1">{{ veiculo.cidade }}, {{ veiculo.uf }}</p>
+                <div class="about__sailor">
+                  <div class="col-lg-6 mb-2 p-0">
+                    <div>
+                      <h3 class="m-0 pt-1">{{ veiculo.empresa }}</h3>
+                      <p class="pt-1 mb-1">{{ veiculo.cidade }}, {{ veiculo.uf }}</p>
+                    </div>
                   </div>
-                </div>
-                <div class="col-lg-6 mb-3">
-                  <div class="col-lg-8 col-md-10 p-0">
-                    <div style="height: 50px">
-                      <img :src="veiculo.foto" class="img-fluid" style="height: 100%" />
+                  <div class="col-lg-6 mb-3">
+                    <div class="col-lg-8 col-md-10 p-0">
+                      <div style="height: 50px">
+                        <img :src="veiculo.foto" class="img-fluid" style="height: 100%" />
+                      </div>
                     </div>
                   </div>
                 </div>
