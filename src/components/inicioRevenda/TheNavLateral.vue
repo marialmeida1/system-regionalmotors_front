@@ -123,15 +123,16 @@
           <div class="col-6 pb-1 px-1 mt-2">
             <div class="pesquisar pesquisar-lateral">
               <input type="text" placeholder="de" class="form-control filter-input"
-                style="background: none; border: none; color: #000 !important" @click="limparInputKm2"
-                v-model="kmMin" />
+                style="background: none; border: none; color: #000 !important" @click="limparInputKm2" v-model="kmMin"
+                @input="formatarKilometragem" />
             </div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 0</span>
           </div>
           <div class="col-6 pb-1 px-1 mt-2">
             <div class="pesquisar pesquisar-lateral" :class="{ 'input-error': errorKm }">
               <input type="text" placeholder="até" class="form-control filter-input"
-                style="background: none; border: none; color: #000 !important" v-model="kmMax" @blur="blurKm" />
+                style="background: none; border: none; color: #000 !important" v-model="kmMax" @blur="blurKm"
+                @input="formatarKilometragem" />
             </div>
             <div v-if="errorKm" class="error-message">{{ errorKm }}</div>
             <span style="font-size: 12px; padding-left: 4px; opacity: 0.4">ex: 1000 </span>
@@ -241,6 +242,16 @@ export default {
   },
 
   methods: {
+
+    formatarKilometragem() {
+      let valor01 = this.kmMax.replace(/\D/g, ''); // Remove tudo que não for número
+      let valor02 = this.kmMin.replace(/\D/g, ''); // Remove tudo que não for número
+      valor01 = valor01.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Adiciona o separador de milhar
+      this.kmMax = valor01; // Atualiza o valor com o formato
+      valor02 = valor02.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Adiciona o separador de milhar
+      this.kmMin = valor02; // Atualiza o valor com o formato
+    },
+
     show_menu_lateral() {
       this.$emit("show_menu_lateral");
     },
@@ -312,7 +323,7 @@ export default {
 
     async blurPreco() {
 
-      if(this.precoMin == ''){
+      if (this.precoMin == '') {
         this.precoMin = 0;
       }
 
@@ -331,7 +342,7 @@ export default {
         return;
       }
 
-      if (this.anoMin == "") {     
+      if (this.anoMin == "") {
         this.anoMin = "0";
       }
 
@@ -345,6 +356,9 @@ export default {
     },
 
     async blurKm() {
+      let newKmMax = this.kmMax.replace(/\D/g, '');
+      let newKmMin = this.kmMin.replace(/\D/g, '');
+
       this.erroKm = "";
 
       if (this.kmMax < this.kmMin) {
@@ -354,9 +368,10 @@ export default {
 
       if (this.kmMin == "") {
         this.kmMin = "0";
+        newKmMin = "0";
       }
 
-      await this.applyFiltro(`quilometragem_min=${this.kmMin}&quilometragem_max`, this.kmMax);
+      await this.applyFiltro(`quilometragem_min=${newKmMin}&quilometragem_max`, newKmMax);
 
     },
 

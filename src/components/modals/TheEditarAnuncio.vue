@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="nome" class="form-label">Ano de Fabricaçao</label>
+                  <label for="nome" class="form-label">Ano de Fabricação</label>
                   <select class="form-select" v-model="ano_fabricante">
                     <option value="" selected disabled>Selecionar</option>
                     <option v-for="(ano, index) in anos" :value="ano" :key="index">
@@ -199,7 +199,7 @@
 
                 <div class="mb-3">
                   <label for="preco" class="form-label">Kilometragem</label>
-                  <input type="number" class="text form-control" id="preco" v-model="kilometro" min="0" max="100" />
+                  <input type="number" class="text form-control" id="preco" v-model="kilometro" min="0" max="140"  />
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8">
@@ -235,10 +235,6 @@
                   </div>
                 </div>
 
-                <!--
-                      {{ Api_CategOpcionais }}
-                      -->
-
                 <div class="mb-3">
                   <div v-for="item in Api_CategOpcionais" :key="item.id">
                     <p @click="toggleDropdown(item.id)" style="cursor: pointer; opacity: 1; margin: 0">
@@ -256,7 +252,7 @@
                 </div>
 
                 <div class="mb-1">
-                  <label for="desc" class="form-label">Descrição <span>(Opcional)</span></label>
+                  <label for="desc" class="form-label">Descriçao <span>(Opcional)</span></label>
                   <textarea class="form-control" rows="5" id="desc" v-model="desc"
                     :class="{ 'limit-reached': desc.length >= 140, 'warning': desc.length >= 140 * 0.8 }"
                     maxlength="140"></textarea>
@@ -287,17 +283,15 @@
 </template>
 
 <script>
-// import { setTransitionHooks } from "vue";
 import * as api from "../../services/api";
+import { reactive } from 'vue';
 
 export default {
-  name: "TheCriarAnuncio",
-
+  name: "TheEditarAnuncio",
   data() {
     return {
+      anunciante_id: "",
       id: "",
-      tipo_veiculo: "",
-      categoria_id: "",
       photos: [],
       Api_categorias: [],
       Api_transmissao: [],
@@ -314,12 +308,9 @@ export default {
       Api_fabricante: ["BMW", "Suzuki", "Toyota"],
       anos: [],
 
-      marcas: [], // Exemplo de lista de marcas
-      modelos: "", // Array vazio para modelos iniciais
-      marca_id: null, // Inicialmente, nenhuma marca selecionada
-      modelo_id: "", // Inicialmente, nenhum modelo selecionado
-      ano_modelo: "",
-      desc: "",
+      marcas: [],
+      modelos: "",
+      marca_id: null,
       previewImage: null,
       estado: "",
       cidade: "",
@@ -328,27 +319,40 @@ export default {
       ano_fabricante: "",
       num_portas: "",
       cor: "",
-      transmissao: "",
-      combustivel: "",
-      kilometro: "",
-      desc: "",
       conforto: [],
       seguranca: [],
-      situacao_veiculo: "",
       vitrine: "",
       destaque: "",
-      tecnologia: "",
-      mostrar_preco: "sim",
 
       valor_preco: "",
 
       Api_CategOpcionais: [
         // Seus dados aqui
       ],
-      selecionados: [],
       dropdownState: {},
       opc: [],
-      status_publicacao: "",
+
+      // Info inputs
+      status_publicacao: '',
+      situacao_veiculo: '',
+      tipo_veiculo: '',
+      tecnologia: '',
+      categoria_id: '',
+      marca_id: '',
+      modelo_id: '',
+      ano_fabricante: '',
+      ano_modelo: '',
+      valor_preco: '',
+      mostrar_preco: "sim",
+      cor: '',
+      num_portas: '',
+      transmissao: '',
+      combustivel: '',
+      kilometro: '',
+      vitrine: '',
+      destaque: '',
+      selecionados: [],
+      desc: '',
     };
   },
 
@@ -466,8 +470,6 @@ export default {
       }
     },
 
-    showCarregarFotos() { },
-
     formatarNumero() {
       // Remove caracteres que não sejam dígitos ou pontos
       let value = this.valor_preco.replace(/[^\d.]/g, "");
@@ -519,22 +521,14 @@ export default {
         (objeto) => objeto.id === this.$store.state.anuncioID
       );
 
-      //Coletar dados
-
-      //"titulo": this.titulo,
       this.tipo_veiculo = this.anuncios.tipo_veiculo_id;
       this.tecnologia = this.anuncios.tecnologia_id;
       this.marca_id = this.anuncios.id_marca;
       this.modelo_id = this.anuncios.id_modelo;
       this.situacao_veiculo = this.anuncios.situacao_veiculo;
       this.categoria_id = this.anuncios.id_categoria;
-      //"this.anuncios.ordenacao": "2",
-
       this.status_publicacao = this.anuncios.status_publicacao;
-      //"this.anuncios.status_pagamento": "1",
 
-      //"this.anuncios.tipo": "2",
-      //"this.anuncios.vendido": "1",
       if (this.anuncios.destaque_busca == 1) {
         this.destaque = true;
       } else {
@@ -551,13 +545,13 @@ export default {
       this.ano_fabricante = this.anuncios.ano_fabricacao;
       this.ano_modelo = this.anuncios.ano_modelo;
       this.num_portas = this.anuncios.portas;
-      //this.cor = this.anuncios.cor
       this.cor = this.anuncios.cor_id;
       this.transmissao = this.anuncios.transmissao_id;
       this.combustivel = this.anuncios.combustivel_id;
       this.kilometro = this.anuncios.km;
       this.selecionados = JSON.parse(this.anuncios.opcionais_id);
       this.desc = this.anuncios.descricao;
+      this.anunciante_id = this.anuncios.id_anunciante;
     },
   },
 
@@ -578,10 +572,6 @@ export default {
     for (let ano = 2025; 1990 < ano; ano--) {
       this.anos.push(ano);
     }
-  },
-
-  mounted() {
-    // this.menuItemsList()
   },
 };
 </script>

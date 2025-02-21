@@ -291,18 +291,15 @@
 </template>
 
 <script>
-// import { setTransitionHooks } from "vue";
 import * as api from "../../services/api";
 
 export default {
-  name: "TheCriarAnuncio",
+  name: "TheEditarAnuncio",
 
   data() {
     return {
       anunciante_id: "",
       id: "",
-      tipo_veiculo: "",
-      categoria_id: "",
       photos: [],
       Api_categorias: [],
       Api_transmissao: [],
@@ -319,12 +316,9 @@ export default {
       Api_fabricante: ["BMW", "Suzuki", "Toyota"],
       anos: [],
 
-      marcas: [], // Exemplo de lista de marcas
-      modelos: "", // Array vazio para modelos iniciais
-      marca_id: null, // Inicialmente, nenhuma marca selecionada
-      modelo_id: "", // Inicialmente, nenhum modelo selecionado
-      ano_modelo: "",
-      desc: "",
+      marcas: [],
+      modelos: "", 
+      marca_id: null,
       previewImage: null,
       estado: "",
       cidade: "",
@@ -333,27 +327,40 @@ export default {
       ano_fabricante: "",
       num_portas: "",
       cor: "",
-      transmissao: "",
-      combustivel: "",
-      kilometro: "",
-      desc: "",
       conforto: [],
       seguranca: [],
-      situacao_veiculo: "",
       vitrine: "",
       destaque: "",
-      tecnologia: "",
-      mostrar_preco: "sim",
 
       valor_preco: "",
 
       Api_CategOpcionais: [
         // Seus dados aqui
       ],
-      selecionados: [],
       dropdownState: {},
       opc: [],
-      status_publicacao: "",
+
+      // Info inputs
+      status_publicacao: '',
+      situacao_veiculo: '',
+      tipo_veiculo: '',
+      tecnologia: '',
+      categoria_id: '',
+      marca_id: '',
+      modelo_id: '',
+      ano_fabricante: '',
+      ano_modelo: '',
+      valor_preco: '',
+      mostrar_preco: "sim",
+      cor: '',
+      num_portas: '',
+      transmissao: '',
+      combustivel: '',
+      kilometro: '',
+      vitrine: '',
+      destaque: '',
+      selecionados: [],
+      desc: '',
     };
   },
 
@@ -507,6 +514,7 @@ export default {
       // Exemplo fictício:
       return this.Api_Opcionais.filter((item) => item.categoria_opcional_id === id);
     },
+    
     filterMarcas(id) {
       // Implemente sua lógica para filtrar os opcionais com base na categoriaId
       // Exemplo fictício:
@@ -523,25 +531,14 @@ export default {
         (objeto) => objeto.id === this.$store.state.anuncioID
       );
 
-      //const dados = await api.detalhar('api/anuncios/detalhar_anucios/', this.$store.state.anuncioID)
-      //this.anuncios = dados[0]
-
-      //Coletar dados
-
-      //"titulo": this.titulo,
       this.tipo_veiculo = this.anuncios.tipo_veiculo_id;
       this.tecnologia = this.anuncios.tecnologia_id;
       this.marca_id = this.anuncios.id_marca;
       this.modelo_id = this.anuncios.id_modelo;
       this.situacao_veiculo = this.anuncios.situacao_veiculo;
       this.categoria_id = this.anuncios.id_categoria;
-      //"this.anuncios.ordenacao": "2",
-
       this.status_publicacao = this.anuncios.status_publicacao;
-      //"this.anuncios.status_pagamento": "1",
 
-      //"this.anuncios.tipo": "2",
-      //"this.anuncios.vendido": "1",
       if (this.anuncios.destaque_busca == 1) {
         this.destaque = true;
       } else {
@@ -558,7 +555,6 @@ export default {
       this.ano_fabricante = this.anuncios.ano_fabricacao;
       this.ano_modelo = this.anuncios.ano_modelo;
       this.num_portas = this.anuncios.portas;
-      // this.cor = this.anuncios.cor
       this.cor = this.anuncios.cor_id;
       this.transmissao = this.anuncios.transmissao_id;
       this.combustivel = this.anuncios.combustivel_id;
@@ -586,10 +582,6 @@ export default {
     for (let ano = 2025; 1990 < ano; ano--) {
       this.anos.push(ano);
     }
-  },
-
-  mounted() {
-    this.showgetDados()
   },
 } ;
 </script>
