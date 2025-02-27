@@ -412,7 +412,7 @@ export default {
     },
 
     createVersion(version, model) {
-      const regex = new RegExp(`\\b${model}\\b`, "gi"); 
+      const regex = new RegExp(`\\b${model}\\b`, "gi");
       return version.replace(regex, "").replace(/\s+/g, " ").trim();
     },
 
@@ -421,18 +421,18 @@ export default {
 
       // Definindo tipo do veículo
       const typeVehicle = this.findTypeVehicle();
+      
+      if (this.usePlate == '1') {
+        // Armazenar no banco
+        const result = await this.saveYearId(this.dataFipe.informacoes_veiculo.ano, typeVehicle, this.dataFipe.fipe[0].codigo_fipe);
+        this.yearId = result.code;
+        this.codeFipe = this.dataFipe.fipe[0].codigo_fipe;
 
-      // Armazenar no banco
-      const result = await this.saveYearId(this.dataFipe.informacoes_veiculo.ano, typeVehicle, this.dataFipe.fipe[0].codigo_fipe);
-      this.yearId = result.code;
-      this.codeFipe = this.dataFipe.fipe[0].codigo_fipe;
+        // Versão
+        this.findExactModel(this.modelo_id);
+        this.modelFipe = this.createVersion(this.dataFipe.fipe[0].modelo, this.nameModel);
+      }
 
-      // Versão
-      this.findExactModel(this.modelo_id);
-      this.modelFipe = this.createVersion(this.dataFipe.fipe[0].modelo, this.nameModel);
-
-
-      console.log(this.yearId, this.codeFipe, this.modelFipe);
 
       var opcionalString = JSON.stringify(this.selecionados);
 

@@ -199,7 +199,7 @@
 
                 <div class="mb-3">
                   <label for="preco" class="form-label">Kilometragem</label>
-                  <input type="number" class="text form-control" id="preco" v-model="kilometro" min="0" max="140"  />
+                  <input type="number" class="text form-control" id="preco" v-model="kilometro" min="0" max="140" />
                 </div>
 
                 <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8">
@@ -253,11 +253,12 @@
 
                 <div class="mb-1">
                   <label for="desc" class="form-label">Descriçao <span>(Opcional)</span></label>
-                  <textarea class="form-control" rows="5" id="desc" v-model="desc"
-                    :class="{ 'limit-reached': desc.length >= 140, 'warning': desc.length >= 140 * 0.8 }"
-                    maxlength="140"></textarea>
+                  <textarea class="form-control" rows="5" id="desc" v-model="desc" :class="{
+                    'limit-reached': (desc || '').length >= 140,
+                    'warning': (desc || '').length >= 140 * 0.8
+                  }" maxlength="140"></textarea>
                 </div>
-                <p class="text-cont">{{ desc.length }}/140 caracteres</p>
+                <p class="text-cont">{{ desc ? desc.length : 0 }}/140 caracteres</p>
               </div>
             </form>
           </div>
@@ -352,7 +353,7 @@ export default {
       vitrine: '',
       destaque: '',
       selecionados: [],
-      desc: '',
+      desc: "",
     };
   },
 
