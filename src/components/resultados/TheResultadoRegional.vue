@@ -63,7 +63,8 @@
 
           <TheCardVeiculo :key="item.id" :id="item.id" :marca="item.nome_marca" :modelo="item.nome_modelo"
             :combustivel="item.combustivel" :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km" :fotos="[
-              item.foto1, item.foto2, item.foto3, item.foto4, item.foto5,
+              item.foto1 || '/public/assets/pictures/placeholder', // Se não existir, usa a imagem padrão
+              item.foto2, item.foto3, item.foto4, item.foto5,
               item.foto6, item.foto7, item.foto8, item.foto9, item.foto10
             ].filter(Boolean)" @abrir-detalhes="goverveiculo" />
         </RecycleScroller>
@@ -71,8 +72,8 @@
       </div>
     </div>
 
-    <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99" class="filter-icon text-center d-lg-none d-md-none"
-      @click="show_menu_lateral">
+    <div style="position: fixed; right: 15px; bottom: 25px; z-index: 99"
+      class="filter-icon text-center d-lg-none d-md-none" @click="show_menu_lateral">
       <div>
         <i class="fas fa-filter" style="font-size: 12px"></i>
         <div style="font-size: 11px">Filtrar</div>
@@ -99,7 +100,7 @@ export default {
   computed: {
     filteredResultados() {
       if (Array.isArray(this.$store.state.resultado)) {
-        return this.$store.state.resultado.filter(item => item.foto1 && item.foto2 && item.foto3);
+        return this.$store.state.resultado;
       }
       return [];
     }
@@ -244,7 +245,7 @@ export default {
       this.$store.state.resultado = await api.filtrarAnuncio(
         `api/anuncios/listar_anuncios_new?destaque_busca=1&status_publicacao=2`
       );
-      const resultado = this.$store.state.resultado;
+      const resultado = this.$store.state.resultado; 4
       this.$store.state.results = true;
       this.filtro = "";
       this.textMarca = "";
