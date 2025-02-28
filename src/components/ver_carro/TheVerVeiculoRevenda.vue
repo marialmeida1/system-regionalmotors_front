@@ -291,7 +291,6 @@ export default {
         },
       });
     });
-
     window.addEventListener("scroll", this.handleScroll);
 
     this.veiculo = [];
@@ -299,6 +298,10 @@ export default {
     const id = parseInt(this.$route.query.id); // Converter para número
     const dados = await api.detalharAnuncio(id);
     this.veiculo = dados[0];
+
+    // Formatando valor do preço
+    this.veiculo.km = this.formatarMilhar(this.veiculo.km);
+
 
     const typeVehicle = this.findTypeVehicle(this.veiculo.tipo_veiculo);
     if (this.veiculo.codeFipe != null || this.veiculo.yearId != null) {
@@ -386,6 +389,11 @@ export default {
   },
 
   methods: {
+    formatarMilhar(valor) {
+      if (!valor) return "0";
+      return valor.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+
     async mostrarContato() {
       this.mostraContato = true;
       await api.numClick("api/anuncios/contadorContacto/", this.veiculo.id);

@@ -307,6 +307,10 @@ export default {
     const dados = await api.detalharAnuncio(id);
     this.veiculo = dados[0];
 
+    // Formatando valor do preço
+    this.veiculo.km = this.formatarMilhar(this.veiculo.km);
+    console.log(this.veiculo.km)
+
     const typeVehicle = this.findTypeVehicle(this.veiculo.tipo_veiculo);
     if (this.veiculo.codeFipe != null || this.veiculo.yearId != null) {
       console.log(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId)
@@ -389,6 +393,12 @@ export default {
   },
 
   methods: {
+    formatarMilhar(valor) {
+      console.log(valor)
+      if (!valor) return "0";
+      return valor.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+
     async mostrarContato() {
       this.mostraContato = true;
       await api.numClick("api/anuncios/contadorContacto/", this.veiculo.id);
