@@ -58,14 +58,22 @@ export default {
     km: String,
     fotos: Array
   },
+
   methods: {
     goverveiculo(id) {
       this.$emit("abrir-detalhes", id);
     },
+
     showCarroDetalhes(id) {
       this.$emit("abrir-detalhes", id);
     }
-  }
+  },
+
+  computed: {
+    km() {
+      return this.km ? this.km.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : "0";
+    }
+  },
 };
 </script>
 

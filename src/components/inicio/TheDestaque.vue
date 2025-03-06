@@ -70,7 +70,7 @@
                             {{ item.ano_modelo }}
                           </div>
                           <div class="col-6 p-0 m-0 text-end" style="font-size: 12px; opacity: 0.7">
-                            {{ item.km }} km
+                            {{ item.km.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") }} km
                           </div>
                         </div>
                       </div>

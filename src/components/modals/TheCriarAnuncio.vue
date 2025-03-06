@@ -612,10 +612,9 @@ export default {
 
       try {
         this.dataFipe = await getPlacaFipeData(this.plate);
-        console.log(this.dataFipe)
-        //console.log(this.dataFipe)
-        //const jsonData = `{"codigo":1,"msg":"total de 2 modelo(s) encontrado(s)","fipe":[{"similaridade":"62.50","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN PRIVILÈGE HI-FLEX 1.6 16V 4P","ano_modelo":2010,"codigo_fipe":"025137-2","codigo_marca":"48","codigo_modelo":"4389","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22452.00","desvalorizometro":"MjAxMCM0Mzg5IzEjNDgjMSNMT0dBTiBQUklWSUzDiEdFIEhJLUZMRVggMS42IDE2ViA0UCAtIEdhc29saW5hIzQ5ZDY2ZmZhNGVhOGJlOWY0NDRhYmVkZTQzMjA5MTQw","unidade_valor":"R$"},{"similaridade":"73.68","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN EXPRESSION HI-FLEX 1.6 8V 4P","ano_modelo":2010,"codigo_fipe":"025139-9","codigo_marca":"48","codigo_modelo":"4481","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22370.00","desvalorizometro":"MjAxMCM0NDgxIzEjNDgjMSNMT0dBTiBFWFBSRVNTSU9OIEhJLUZMRVggMS42IDhWIDRQIC0gR2Fzb2xpbmEjNGZmYjU0NmNhYTMyMzc2MTVjNzBkYjI2YzEyNWE5NWY=","unidade_valor":"R$"}],"informacoes_veiculo":{"marca":"RENAULT","modelo":"LOGAN EXP 16","ano":"2010","ano_modelo":"2010","cor":"Branca","chassi":"******6889","motor":"******","municipio":"PALHOCA","uf":"SC","segmento":"AUTO","sub_segmento":"AU - SEDAN PEQUENO","placa":"MIH5B55","cilindradas":"1598","combustivel":"ALCOOL / GASOLINA"},"tempo":322,"undiade_tempo":"ms","unidade_tempo":"ms","algoritmo":"phalcondecodev117","placa":"MIH5B55"}`;
-        //this.dataFipe = JSON.parse(jsonData);
+        // console.log(this.dataFipe)
+        // const jsonData = `{"codigo":1,"msg":"total de 2 modelo(s) encontrado(s)","fipe":[{"similaridade":"62.50","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN PRIVILÈGE HI-FLEX 1.6 16V 4P","ano_modelo":2010,"codigo_fipe":"025137-2","codigo_marca":"48","codigo_modelo":"4389","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22452.00","desvalorizometro":"MjAxMCM0Mzg5IzEjNDgjMSNMT0dBTiBQUklWSUzDiEdFIEhJLUZMRVggMS42IDE2ViA0UCAtIEdhc29saW5hIzQ5ZDY2ZmZhNGVhOGJlOWY0NDRhYmVkZTQzMjA5MTQw","unidade_valor":"R$"},{"similaridade":"73.68","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN EXPRESSION HI-FLEX 1.6 8V 4P","ano_modelo":2010,"codigo_fipe":"025139-9","codigo_marca":"48","codigo_modelo":"4481","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22370.00","desvalorizometro":"MjAxMCM0NDgxIzEjNDgjMSNMT0dBTiBFWFBSRVNTSU9OIEhJLUZMRVggMS42IDhWIDRQIC0gR2Fzb2xpbmEjNGZmYjU0NmNhYTMyMzc2MTVjNzBkYjI2YzEyNWE5NWY=","unidade_valor":"R$"}],"informacoes_veiculo":{"marca":"RENAULT","modelo":"LOGAN EXP 16","ano":"2010","ano_modelo":"2010","cor":"Branca","chassi":"******6889","motor":"******","municipio":"PALHOCA","uf":"SC","segmento":"AUTO","sub_segmento":"AU - SEDAN PEQUENO","placa":"MIH5B55","cilindradas":"1598","combustivel":"ALCOOL / GASOLINA"},"tempo":322,"undiade_tempo":"ms","unidade_tempo":"ms","algoritmo":"phalcondecodev117","placa":"MIH5B55"}`;
+        // this.dataFipe = JSON.parse(jsonData);
         this.setInformations();
       } catch (error) {
         this.errorMessage = error.message;
@@ -644,9 +643,11 @@ export default {
     },
 
     findRightColor(color) {
-      const colorFind = color.toLowerCase().slice(0, 3);
+      const colorFind = color.toLowerCase().slice(0, 4);
       return this.Api_cores.find(item => {
-        const colorItem = item.cor.toLowerCase().slice(0, 3);
+        const colorItem = item.cor.toLowerCase().slice(0, 4);
+        console.log("Color Item: ", colorItem);
+        console.log("Color Find: ", color);
         return colorItem === colorFind;
       });
     },
