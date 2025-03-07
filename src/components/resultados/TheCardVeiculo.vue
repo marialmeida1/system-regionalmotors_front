@@ -11,24 +11,27 @@
         </splide>
       </div>
 
-      <div class="col-7 col-md-12 col-lg-12 titles p-0 m-0">
+      <div class="col-7 col-md-12 col-lg-12 titles p-4 m-0">
         <div class="resultados-titulos" @click="showCarroDetalhes(id)">
-          <div class="px-2 pt-2 position-relative">
-            <h5 style="font-weight: 700;">{{ marca }} {{ modelo }}</h5>
-            <div style="opacity: 0.5; text-transform: uppercase">
-              <p>{{ combustivel }}</p>
+          <div class="position-relative">
+            <h4 class="title-card" style="font-weight: 800;">{{ marca }} {{ modelo }}</h4>
+            <div style="opacity: 0.5; text-transform: uppercase; min-height: 1.5rem;" c>
+              <p>{{ version }}</p>
+            </div>
+            <div class="row m-0 pt-0">
+              <div class="d-flex gap-3 flex-wrap px-0">
+                <div class="d-flex align-items-center" style="font-size: 12px; opacity: 0.7">
+                  <i class="far fa-calendar-alt me-1"></i> {{ ano }}
+                </div>
+                <div class="d-flex align-items-center" style="font-size: 12px; opacity: 0.7">
+                  <i class="fas fa-tachometer-alt me-1"></i> {{ km }} km
+                </div>
+              </div>
+
             </div>
           </div>
-          <div class="pt-2 pb-1 position-relative">
-            <h5 class="py-1 ps-2" style="color: #000000">R$ {{ preco }}</h5>
-            <div class="row p-2 m-0">
-              <div class="col-6 p-0 m-0" style="font-size: 12px; opacity: 0.7">
-                {{ ano }}
-              </div>
-              <div class="col-6 p-0 m-0 text-end" style="font-size: 12px; opacity: 0.7">
-                {{ km }} km
-              </div>
-            </div>
+          <div class="pt-4 position-relative price">
+            <h4 style="color: #000000; opacity: 0.8;">R$ {{ preco }}</h4>
           </div>
         </div>
       </div>
@@ -37,6 +40,8 @@
 </template>
 
 <script>
+import { version } from 'vue';
+
 export default {
 
   data() {
@@ -56,7 +61,9 @@ export default {
     preco: String,
     ano: String,
     km: String,
-    fotos: Array
+    fotos: Array,
+    version: String,
+    transmission: String
   },
 
   methods: {
@@ -79,6 +86,11 @@ export default {
 
 
 <style>
+
+.title-card {
+  font-size: 1rem !important;
+}
+
 .imagem-container2,
 .glide__slides {
   /*width: 110px;*/
@@ -181,6 +193,11 @@ export default {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   margin: 2rem 0rem;
+}
+
+.price h4{
+    font-size: 1.5rem !important;
+    font-weight: 800;
 }
 
 @media (max-width: 768px) {

@@ -23,8 +23,10 @@
           v-slot="{ item }">
 
           <TheCardVeiculo :key="item.id" :id="item.id" :marca="item.nome_marca" :modelo="item.nome_modelo"
-            :combustivel="item.combustivel" :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km" :fotos="[
-              item.foto1 || '/public/assets/pictures/placeholder', item.foto2, item.foto3, item.foto4, item.foto5,
+            :combustivel="item.combustivel" :preco="item.valor_preco" :transmission="item.transmissao"
+            :version="item.modelFipe" :ano="item.ano_modelo" :km="item.km" :fotos="[
+              item.foto1 || '/public/assets/pictures/placeholder', // Se não existir, usa a imagem padrão
+              item.foto2, item.foto3, item.foto4, item.foto5,
               item.foto6, item.foto7, item.foto8, item.foto9, item.foto10
             ].filter(Boolean)" @abrir-detalhes="goverveiculo" />
         </RecycleScroller>
@@ -47,6 +49,7 @@ import * as api from "../../services/api";
 import Glide from "@glidejs/glide";
 import TheCardVeiculo from "../resultados/TheCardVeiculo.vue";
 import { RecycleScroller } from "vue3-virtual-scroller";
+import { version } from "vue";
 
 export default {
   name: "TheResultadoRegional",

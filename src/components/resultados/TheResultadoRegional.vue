@@ -60,9 +60,9 @@
       <div class="col-lg-12 col-md-12 p-0 m-0">
         <RecycleScroller :items="filteredResultados" :item-size="1" key-field="id" direction="horizontal"
           v-slot="{ item }">
-
           <TheCardVeiculo :key="item.id" :id="item.id" :marca="item.nome_marca" :modelo="item.nome_modelo"
-            :combustivel="item.combustivel" :preco="item.valor_preco" :ano="item.ano_modelo" :km="item.km" :fotos="[
+            :combustivel="item.combustivel" :preco="item.valor_preco" :transmission="item.transmissao"
+            :version="item.modelFipe" :ano="item.ano_modelo" :km="item.km" :fotos="[
               item.foto1 || '/public/assets/pictures/placeholder', // Se não existir, usa a imagem padrão
               item.foto2, item.foto3, item.foto4, item.foto5,
               item.foto6, item.foto7, item.foto8, item.foto9, item.foto10
@@ -86,7 +86,6 @@
 import * as api from "../../services/api";
 import Glide from "@glidejs/glide";
 import TheCardVeiculo from "./TheCardVeiculo.vue";
-import { useStore } from "vuex";
 import { RecycleScroller } from "vue3-virtual-scroller";
 
 export default {
