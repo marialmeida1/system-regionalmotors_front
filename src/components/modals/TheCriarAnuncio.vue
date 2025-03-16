@@ -69,53 +69,7 @@
                   </select>
                 </div>
 
-                <!-- Placa Fipe -->
-                <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
-                  <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
-                    style="border-top-left-radius: 8px; font-size: 13px">
-                    Placa do Veículo
-                  </div>
-                  <div class="col-5 col-md-7 col-lg-7 p-0" style="padding-top: 13.5px !important">
-                    <div style="background-color: rgba(0, 0, 0, 0.5); padding: 1px"></div>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label class="mb-2">Preencher os dados usando a placa do carro?</label>
-                  <div class="form-check">
-                    <input value="1" v-model="usePlate" @change="clearPlate" class="form-check-input" type="radio"
-                      name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Sim
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input value="0" v-model="usePlate" @change="clearPlate" class="form-check-input" type="radio"
-                      name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Não
-                    </label>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="preco" class="form-label">Placa do Carro</label>
-                  <input type="text" class="text form-control" id="preco" placeholder="" :disabled="usePlate === '0'"
-                    :required="usePlate === '1'" maxlength="8" v-model="plate" @input="handleInput" />
-                </div>
-
-                <div class="mb-3">
-                  <label for="preco" class="form-label">Selecionar Versão</label>
-                  <select v-model="modelFipe" class="form-select" :disabled="versionsOption.length === 0">
-                    <option value="" selected disabled>Selecionar</option>
-                    <option v-for="(item, index) in versionsOption" :value="item" :key="index">
-                      {{ item }}
-                    </option>
-                  </select>
-                </div>
-
                 <!-- Informações do Veículo -->
-
                 <div class="p-2 pt-0 row mb-2 mt-md-1 mt-lg-1" style="opacity: 0.8">
                   <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
                     style="border-top-left-radius: 8px; font-size: 13px">
@@ -140,18 +94,6 @@
                 </div>
 
                 <div class="mb-3">
-                  <div>
-                    <label for="modelo" class="form-label">Modelo</label>
-                    <select v-model="modelo_id" class="form-select">
-                      <option value="" selected disabled>Selecionar</option>
-                      <option v-for="modelo in filterModelos(marca_id)" :value="modelo.id" :key="modelo.id">
-                        {{ modelo.nome_modelo }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="mb-3">
                   <label for="ano_fabricante" class="form-label">Ano de Fabricação</label>
                   <select class="form-select" v-model="ano_fabricante">
                     <option value="" selected disabled>Selecionar</option>
@@ -170,6 +112,29 @@
                     </option>
                   </select>
                 </div>
+
+                <div class="mb-3">
+                  <div>
+                    <label for="modelo" class="form-label">Modelo</label>
+                    <select v-model="modelo_id" class="form-select">
+                      <option value="" selected disabled>Selecionar</option>
+                      <option v-for="modelo in filterModelos(marca_id)" :value="modelo.id" :key="modelo.id">
+                        {{ modelo.nome_modelo }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="versao" class="form-label">Versões</label>
+                  <select class="form-select" v-model="modelId">
+                    <option value="" selected disabled>Selecionar</option>
+                    <option v-for="(versao, index) in versionsOption" :value="versao" :key="index">
+                      {{ versao.name }}
+                    </option>
+                  </select>
+                </div>
+
 
                 <div class="p-2 pt-0 row mb-2 mt-md-4 mt-lg-4" style="opacity: 0.8">
                   <div class="col-7 col-md-5 bg-dark col-lg-5 text-center p-0 py-1"
@@ -331,10 +296,8 @@
 
 <script>
 // import { setTransitionHooks } from "vue";
+import { version } from "vuex/dist/vuex.cjs.js";
 import * as api from "../../services/api";
-import { getPlacaFipeData } from '@/services/placafipe';
-import { getYearIdFipe } from '@/services/anofipe';
-import { version } from "vue";
 
 export default {
   name: "TheCriarAnuncio",
@@ -364,6 +327,7 @@ export default {
       marcas: [], // Exemplo de lista de marcas
       modelos: "", // Array vazio para modelos iniciais
       marca_id: null, // Inicialmente, nenhuma marca selecionada
+      nome_marca: "",
       modelo_id: "", // Inicialmente, nenhum modelo selecionado
       ano_modelo: "",
       desc: "",
@@ -386,6 +350,11 @@ export default {
       destaque: "",
       tecnologia: "",
       mostrar_preco: "sim",
+      typeVehicle: "",
+      brandId: "",
+      modelId: "",
+      yearId: "",
+      versionsOption: [],
 
       valor_preco: "",
       selecionados: [],
@@ -395,14 +364,6 @@ export default {
       ],
       selecionados: [],
       dropdownState: {},
-      usePlate: '0',
-      plate: null,
-      dataFipe: [],
-      yearId: '',
-      codeFipe: '',
-      modelFipe: '',
-      nameModel: '',
-      versionsOption: [],
     };
   },
 
@@ -422,34 +383,27 @@ export default {
       this.$store.state.modalCriarAnuncio.hide();
     },
 
-    createVersion(version, model) {
-      const regex = new RegExp(`\\b${model}\\b`, "gi");
-      return version.replace(regex, "").replace(/\s+/g, " ").trim();
-    },
-
     async criar() {
       this.titulo = this.marca_id + " " + this.modelo_id + " - " + this.ano_modelo;
-
-      // Definindo tipo do veículo
-      const typeVehicle = this.findTypeVehicle();
-
-      if (this.usePlate == '1') {
-        // Armazenar no banco
-        const result = await this.saveYearId(this.dataFipe.informacoes_veiculo.ano, typeVehicle, this.dataFipe.fipe[0].codigo_fipe);
-        this.yearId = result.code;
-        this.codeFipe = this.dataFipe.fipe[0].codigo_fipe;
-
-        // Versão
-        this.findExactModel(this.modelo_id);
-        this.modelFipe = this.createVersion(this.modelFipe);
-      }
-
 
       var opcionalString = JSON.stringify(this.selecionados);
 
       if (this.kilometro == "" && this.situacao_veiculo == "1") {
         this.kilometro = "0";
       }
+
+      const response = await fetch(`https://fipe.parallelum.com.br/api/v2/${this.typeVehicle}/brands/${this.brandId.code}/models/${this.modelId.code}/years/${this.yearId}`);
+      const fipeInfo = await response.json();
+      console.log(fipeInfo);
+
+      const dataModels = this.filterModelos(this.marca_id);
+      const model = dataModels.find(item => {
+        return item.id === this.modelo_id;
+      });
+      const nome_modelo = model.nome_modelo; 
+
+      const versionSave = this.extrairVersao(this.modelId.name, nome_modelo);
+      console.log(versionSave)
 
       if (this.situacao_veiculo !== "" && this.tipo_veiculo !== "" && this.kilometro !== "") {
         const data = {
@@ -494,9 +448,9 @@ export default {
           sinistrado: "null",
           opcionais_id: opcionalString,
           descricao: this.desc,
-          codeFipe: this.codeFipe,
+          codeFipe: fipeInfo.codeFipe,
           yearId: this.yearId,
-          modelFipe: this.modelFipe,
+          modelFipe: versionSave,
         };
 
         try {
@@ -564,6 +518,62 @@ export default {
       }
     },
 
+    async findBrandCode() {
+      try {
+        // 1. Buscar todas as marcas
+        const brandsResponse = await fetch(`https://fipe.parallelum.com.br/api/v2/${this.typeVehicle}/brands`);
+        const brands = await brandsResponse.json();
+
+        const dataMarks = this.filterMarcas(this.tipo_veiculo);
+        const mark = dataMarks.find(item => {
+          return item.id === this.marca_id;
+        });
+
+        this.nome_marca = mark.nome_marca;
+        // 2. Encontrar o ID da marca pelo nome
+        this.brandId = brands.find(b => b.name.toLowerCase() === this.nome_marca.toLowerCase());
+        if (!this.brandId) {
+          console.error("Marca não encontrada!");
+          return;
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    },
+
+    async findVersions() {
+
+      const yearsId = await this.saveYearId(this.ano_fabricante); // Código de Anos de Acordo com o Ano de Fabricante
+
+      const modelsResponses = await Promise.all(
+        yearsId.map(async (yearId) => {
+          const response = await fetch(`https://fipe.parallelum.com.br/api/v2/${this.typeVehicle}/brands/${this.brandId.code}/years/${yearId.code}/models`);
+          return response.json(); // Converte a resposta para JSON
+        })
+      ); // Todos os modelos de acordo com os anos
+
+      const models = modelsResponses.flat(); // Junta todos
+
+      const dataModels = this.filterModelos(this.marca_id);
+      const model = dataModels.find(item => {
+        return item.id === this.modelo_id;
+      });
+      const nome_modelo = model.nome_modelo; // Encontra o nome do modelo usado
+
+      this.versionsOption = models.filter(m => m.name.toLowerCase().includes(nome_modelo.toLowerCase()));
+
+      if (this.versionsOption.length === 0) {
+        console.error("Modelos não encontrado!");
+        return;
+      }
+
+      console.log(this.versionsOption);
+    },
+
+    extrairVersao(versao, modelo) {
+      return versao.replace(new RegExp(`^${modelo}\\s*`, "i"), "").trim();
+    },
+
     formatarNumero() {
       // Remove caracteres que não sejam dígitos ou pontos
       let value = this.valor_preco.replace(/[^\d.]/g, "");
@@ -618,107 +628,35 @@ export default {
       }
     },
 
-    async searchFipe() {
-      this.errorMessage = '';
-
-      try {
-        this.dataFipe = await getPlacaFipeData(this.plate);
-        // const jsonData = `{"codigo":1,"msg":"total de 2 modelo(s) encontrado(s)","fipe":[{"similaridade":"62.50","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN PRIVILÈGE HI-FLEX 1.6 16V 4P","ano_modelo":2010,"codigo_fipe":"025137-2","codigo_marca":"48","codigo_modelo":"4389","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22452.00","desvalorizometro":"MjAxMCM0Mzg5IzEjNDgjMSNMT0dBTiBQUklWSUzDiEdFIEhJLUZMRVggMS42IDE2ViA0UCAtIEdhc29saW5hIzQ5ZDY2ZmZhNGVhOGJlOWY0NDRhYmVkZTQzMjA5MTQw","unidade_valor":"R$"},{"similaridade":"73.68","correspondencia":"66.67","marca":"RENAULT","modelo":"LOGAN EXPRESSION HI-FLEX 1.6 8V 4P","ano_modelo":2010,"codigo_fipe":"025139-9","codigo_marca":"48","codigo_modelo":"4481","mes_referencia":"Fevereiro de 2025","combustivel":"GASOLINA","valor":"22370.00","desvalorizometro":"MjAxMCM0NDgxIzEjNDgjMSNMT0dBTiBFWFBSRVNTSU9OIEhJLUZMRVggMS42IDhWIDRQIC0gR2Fzb2xpbmEjNGZmYjU0NmNhYTMyMzc2MTVjNzBkYjI2YzEyNWE5NWY=","unidade_valor":"R$"}],"informacoes_veiculo":{"marca":"RENAULT","modelo":"LOGAN EXP 16","ano":"2010","ano_modelo":"2010","cor":"Branca","chassi":"******6889","motor":"******","municipio":"PALHOCA","uf":"SC","segmento":"AUTO","sub_segmento":"AU - SEDAN PEQUENO","placa":"MIH5B55","cilindradas":"1598","combustivel":"ALCOOL / GASOLINA"},"tempo":322,"undiade_tempo":"ms","unidade_tempo":"ms","algoritmo":"phalcondecodev117","placa":"MIH5B55"}`;
-        // this.dataFipe = JSON.parse(jsonData);
-        console.log(this.dataFipe.fipe)
-        this.versionsOption = this.dataFipe.fipe.map(item => item.modelo);
-        this.setInformations();
-      } catch (error) {
-        this.errorMessage = error.message;
+    async saveYearId(year) {
+      if (!this.typeVehicle || !this.brandId?.code) {
+        console.error("Faltam parâmetros para buscar os anos!");
+        return;
       }
-    },
 
-    async setInformations() {
-      const infoVehicle = this.dataFipe.informacoes_veiculo;
-      const infoFipe = this.dataFipe.fipe[0]
+      const response = await fetch(
+        `https://fipe.parallelum.com.br/api/v2/${this.typeVehicle}/brands/${this.brandId.code}/years`
+      );
 
-      // Anos
-      this.ano_fabricante = infoVehicle.ano;
-      this.ano_modelo = infoVehicle.ano_modelo;
+      const years = await response.json();
 
-      // Cores
-      const resultColor = this.findRightColor(infoVehicle.cor);
-      this.cor = resultColor.id;
-
-      // Combustível
-      const resultFuel = this.findRightFuel(infoFipe.combustivel);
-      this.combustivel = resultFuel.id;
-
-      if (this.tipo_veiculo != '') {
-        this.findRightMark(this.tipo_veiculo);
-      }
-    },
-
-    findRightColor(color) {
-      const colorFind = color.toLowerCase().slice(0, 4);
-      return this.Api_cores.find(item => {
-        const colorItem = item.cor.toLowerCase().slice(0, 4);
-        console.log("Color Item: ", colorItem);
-        console.log("Color Find: ", color);
-        return colorItem === colorFind;
-      });
-    },
-
-    findRightFuel(fuel) {
-      return this.Api_combustivel.find(item => {
-        return item.combustivel === fuel;
-      })
-    },
-
-    async saveYearId(year, type, codeFipe) {
-      const years = await getYearIdFipe(type, codeFipe);
-      return years.find(item => {
+      return years.filter(item => {
         const yearIdItem = item.code.slice(0, 4);
-        return yearIdItem === year;
+        return yearIdItem == year;
       });
+
     },
 
     findTypeVehicle() {
-      let typeVehicle = "cars"
+      let tV = "cars"
       if (this.tipo_veiculo == '2') {
-        typeVehicle = "motorcycles";
+        tV = "motorcycles";
       } else if (this.tipo_veiculo == '3') {
-        typeVehicle = "trucks";
+        tV = "trucks";
       }
 
-      return typeVehicle;
+      this.typeVehicle = tV;
     },
-
-    findRightMark() {
-      const dataMarks = this.filterMarcas(this.tipo_veiculo);
-      if (this.usePlate == '1') {
-        const mark = dataMarks.find(item => {
-          return item.nome_marca === this.dataFipe.informacoes_veiculo.marca;
-        });
-
-        this.marca_id = mark.id;
-        this.findRightModel(this.marca_id);
-      }
-    },
-
-    findRightModel(markId) {
-      const dataModels = this.filterModelos(markId);
-      const model = dataModels.find(item => {
-        console.log(this.dataFipe.informacoes_veiculo.modelo, "|", item.nome_modelo)
-        if (this.dataFipe.informacoes_veiculo.modelo.includes(item.nome_modelo)) {
-          return item;
-        }
-      });
-
-      this.modelo_id = model.id;
-    },
-
-    findExactModel(id_model) {
-      const modelo = this.$store.state.modelos.filter((item) => item.id == id_model)
-      this.nameModel = modelo[0].nome_modelo;
-      console.log(this.nameModel)
-    },
-
 
     clearPlate() {
       if (this.usePlate === '0') {
@@ -759,6 +697,8 @@ export default {
     for (let ano = currentYear + 1; 1990 < ano; ano--) {
       this.anos.push(ano);
     }
+
+    this.findTypeVehicle();
   },
 
   watch: {
@@ -770,14 +710,30 @@ export default {
       this.anos_modelo.push(ano_ant);
     },
 
-    tipo_veiculo(newVal) {
-      this.findRightMark(newVal);
-    },
-
     num_portas(newVal) {
       if (this.tipo_veiculo == 1) {
         this.num_portas = 4;
       }
+    },
+
+    marca_id(newVal) {
+      this.findBrandCode()
+    },
+
+    modelo_id() {
+      this.findVersions();
+    },
+
+    async modelId() {
+      const response = await fetch(`https://fipe.parallelum.com.br/api/v2/${this.typeVehicle}/brands/${this.brandId.code}/models/${this.modelId.code}/years`);
+      const getYearId = await response.json();
+
+      const year = getYearId.find(item => {
+        const yearIdItem = item.code.slice(0, 4);
+        return yearIdItem == this.ano_fabricante;
+      });
+
+      this.yearId = year.code;
     }
   },
 };

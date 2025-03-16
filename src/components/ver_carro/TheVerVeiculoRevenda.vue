@@ -297,6 +297,7 @@ export default {
 
     const id = parseInt(this.$route.query.id); // Converter para número
     const dados = await api.detalharAnuncio(id);
+    console.log(dados)
     this.veiculo = dados[0];
 
     // Formatando valor do preço
