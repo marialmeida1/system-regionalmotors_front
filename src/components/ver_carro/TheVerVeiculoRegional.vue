@@ -24,11 +24,6 @@
             </div>
           </splide-slide>
         </splide>
-        <!--<div style="position: fixed; top: 50px; z-index: 99; cursor: pointer" class="ver-loja">
-          <div @click="visitarLoja">
-            <div class="bg-dark p-2 px-1"><i class="fa fa-store" style="opacity: 0.8"></i> Visitar Loja</div>
-          </div>
-        </div>-->
       </div>
     </div>
 
@@ -145,7 +140,7 @@
         </div>
 
         <!-- Compare preços -->
-        <!--<div class="mb-3 rounded-3 px-0 bg-dark card-ver-form" v-if="priceFipe"
+        <div class="mb-3 rounded-3 px-0 bg-dark card-ver-form" v-if="priceFipe"
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
             <div>
@@ -165,7 +160,7 @@
               </div>
             </div>
           </div>
-        </div>-->
+        </div>
 
         <!-- Informações do vendedor -->
         <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
@@ -250,6 +245,7 @@ import * as api from "../../services/api";
 import loader from "../loaders/loader.vue";
 import WhatsappShowVehicle from "../commons/buttons/WhatsappShowVehicle.vue";
 import { getPriceFipe } from '@/services/precofipe';
+import { data } from "jquery";
 
 export default {
   name: "TheVerVeiculo_Carousel",
@@ -306,16 +302,16 @@ export default {
     const id = parseInt(this.$route.query.id); // Converter para número
     const dados = await api.detalharAnuncio(id);
     this.veiculo = dados[0];
-    console.log(this.veiculo)
 
     // Formatando valor do preço
     this.veiculo.km = this.formatarMilhar(this.veiculo.km);
-    console.log(this.veiculo.km)
 
     const typeVehicle = this.findTypeVehicle(this.veiculo.tipo_veiculo);
     if (this.veiculo.codeFipe != null || this.veiculo.yearId != null) {
       console.log(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId)
-      const dataFipe = await getPriceFipe(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId);
+      const responde = await fetch(`https://fipe.parallelum.com.br/api/v2/${typeVehicle}/${this.veiculo.codeFipe}/years/${this.veiculo.yearId}`)
+      const dataFipe = await responde.json();
+      console.log(dataFipe)
       this.priceFipe = dataFipe.price;
     }
 
