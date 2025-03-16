@@ -61,7 +61,7 @@
 
                 <div class="mb-3">
                   <label for="nome" class="form-label">Categoria</label>
-                  <select v-model="categoria_id" class="form-select">
+                  <select v-model="categoria_id" :disabled="tipo_veiculo === 2" class="form-select">
                     <option value="" selected disabled>Selecionar</option>
                     <option v-for="categ in Api_categorias" :value="categ.id" :key="categ.id">
                       {{ categ.nome }}
@@ -181,8 +181,8 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="nome" class="form-label">Numero de Portas</label>
-                  <select v-model="num_portas" class="form-select">
+                  <label for="nome" class="form-label">Número de Portas</label>
+                  <select v-model="num_portas" :disabled="tipo_veiculo === 2" class="form-select">
                     <option value="" selected disabled>Selecionar</option>
                     <option v-for="(porta, index) in portas" :value="porta" :key="index">
                       {{ porta }}
@@ -394,7 +394,6 @@ export default {
 
       const response = await fetch(`https://fipe.parallelum.com.br/api/v2/${this.typeVehicle}/brands/${this.brandId.code}/models/${this.modelId.code}/years/${this.yearId}`);
       const fipeInfo = await response.json();
-      console.log(fipeInfo);
 
       const dataModels = this.filterModelos(this.marca_id);
       const model = dataModels.find(item => {
@@ -403,7 +402,6 @@ export default {
       const nome_modelo = model.nome_modelo; 
 
       const versionSave = this.extrairVersao(this.modelId.name, nome_modelo);
-      console.log(versionSave)
 
       if (this.situacao_veiculo !== "" && this.tipo_veiculo !== "" && this.kilometro !== "") {
         const data = {
@@ -520,7 +518,6 @@ export default {
 
     async findBrandCode() {
       try {
-        // 1. Buscar todas as marcas
         const brandsResponse = await fetch(`https://fipe.parallelum.com.br/api/v2/${this.typeVehicle}/brands`);
         const brands = await brandsResponse.json();
 
@@ -530,7 +527,7 @@ export default {
         });
 
         this.nome_marca = mark.nome_marca;
-        // 2. Encontrar o ID da marca pelo nome
+
         this.brandId = brands.find(b => b.name.toLowerCase() === this.nome_marca.toLowerCase());
         if (!this.brandId) {
           console.error("Marca não encontrada!");
@@ -566,8 +563,6 @@ export default {
         console.error("Modelos não encontrado!");
         return;
       }
-
-      console.log(this.versionsOption);
     },
 
     extrairVersao(versao, modelo) {
@@ -649,9 +644,9 @@ export default {
 
     findTypeVehicle() {
       let tV = "cars"
-      if (this.tipo_veiculo == '2') {
+      if (this.tipo_veiculo == 2) {
         tV = "motorcycles";
-      } else if (this.tipo_veiculo == '3') {
+      } else if (this.tipo_veiculo == 3) {
         tV = "trucks";
       }
 
@@ -697,8 +692,6 @@ export default {
     for (let ano = currentYear + 1; 1990 < ano; ano--) {
       this.anos.push(ano);
     }
-
-    this.findTypeVehicle();
   },
 
   watch: {
@@ -734,6 +727,13 @@ export default {
       });
 
       this.yearId = year.code;
+    },
+
+    tipo_veiculo() {
+      this.findTypeVehicle();
+      if(this.tipo_veiculo == '2'){
+        this.num_portas = null;
+      }
     }
   },
 };
