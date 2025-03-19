@@ -355,6 +355,7 @@ export default {
       modelId: "",
       yearId: "",
       versionsOption: [],
+      yearsId: [],
 
       valor_preco: "",
       selecionados: [],
@@ -399,7 +400,7 @@ export default {
       const model = dataModels.find(item => {
         return item.id === this.modelo_id;
       });
-      const nome_modelo = model.nome_modelo; 
+      const nome_modelo = model.nome_modelo;
 
       const versionSave = this.extrairVersao(this.modelId.name, nome_modelo);
 
@@ -417,7 +418,7 @@ export default {
           data_inicio: "20-02-2021",
           data_fim: "20-02-2022",
           ordenacao: "2",
-          status_publicacao: "1",
+          status_publicacao: "2",
           status_pagamento: "1",
           tipo: "2",
           vendido: "1",
@@ -528,11 +529,14 @@ export default {
 
         this.nome_marca = mark.nome_marca;
 
-        this.brandId = brands.find(b => b.name.toLowerCase() === this.nome_marca.toLowerCase());
+        this.brandId = brands.find(b =>
+          b.name.toLowerCase().includes(this.nome_marca.toLowerCase())
+        );
         if (!this.brandId) {
           console.error("Marca não encontrada!");
           return;
         }
+        console.log(this.brandId)
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
@@ -540,10 +544,10 @@ export default {
 
     async findVersions() {
 
-      const yearsId = await this.saveYearId(this.ano_fabricante); // Código de Anos de Acordo com o Ano de Fabricante
+      this.versionsOption = "";
 
       const modelsResponses = await Promise.all(
-        yearsId.map(async (yearId) => {
+        this.yearsId.map(async (yearId) => {
           const response = await fetch(`https://fipe.parallelum.com.br/api/v2/${this.typeVehicle}/brands/${this.brandId.code}/years/${yearId.code}/models`);
           return response.json(); // Converte a resposta para JSON
         })
@@ -558,6 +562,7 @@ export default {
       const nome_modelo = model.nome_modelo; // Encontra o nome do modelo usado
 
       this.versionsOption = models.filter(m => m.name.toLowerCase().includes(nome_modelo.toLowerCase()));
+      console.log(this.versionsOption)
 
       if (this.versionsOption.length === 0) {
         console.error("Modelos não encontrado!");
@@ -623,7 +628,7 @@ export default {
       }
     },
 
-    async saveYearId(year) {
+    async findYearId() {
       if (!this.typeVehicle || !this.brandId?.code) {
         console.error("Faltam parâmetros para buscar os anos!");
         return;
@@ -635,11 +640,16 @@ export default {
 
       const years = await response.json();
 
-      return years.filter(item => {
+      this.yearsId = years.filter(item => {
         const yearIdItem = item.code.slice(0, 4);
-        return yearIdItem == year;
+        return yearIdItem == this.ano_fabricante;
       });
 
+      if (this.modelo_id != '') {
+        this.findVersions();
+      } else {
+        console.log("Não foi selecionado modelo ainda")
+      }
     },
 
     findTypeVehicle() {
@@ -697,10 +707,13 @@ export default {
   watch: {
     ano_fabricante(newVal) {
       this.ano_modelo = newVal;
+      this.anos_modelo = [];
       let ano_ant = this.ano_modelo - 1;
 
       this.anos_modelo.push(this.ano_modelo);
       this.anos_modelo.push(ano_ant);
+
+      this.findYearId();
     },
 
     num_portas(newVal) {
@@ -709,7 +722,7 @@ export default {
       }
     },
 
-    marca_id(newVal) {
+    marca_id() {
       this.findBrandCode()
     },
 
@@ -731,10 +744,10 @@ export default {
 
     tipo_veiculo() {
       this.findTypeVehicle();
-      if(this.tipo_veiculo == '2'){
+      if (this.tipo_veiculo == '2') {
         this.num_portas = null;
       }
-    }
+    },
   },
 };
 </script>
