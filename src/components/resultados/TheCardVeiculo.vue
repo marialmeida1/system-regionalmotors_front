@@ -14,24 +14,23 @@
       <div class="col-7 col-md-12 col-lg-12 titles p-4 m-0">
         <div class="resultados-titulos" @click="showCarroDetalhes(id)">
           <div class="position-relative">
-            <h4 class="title-card" style="font-weight: 800;">{{ marca }} {{ modelo }}</h4>
-            <div style="opacity: 0.5; text-transform: uppercase; min-height: 1.5rem;" c>
-              <p>{{ version }}</p>
+            <h4 class="title-card" style="font-weight: 800;opacity: 0.9">{{ marca }} {{ modelo }}</h4>
+            <div style="opacity: 0.5; text-transform: uppercase; min-height: 1.5rem;">
+              <p style="font-size: 12px; opacity: 0.7">{{ version }}</p>
             </div>
-            <div class="row m-0 pt-0">
+            <div class="row m-0 pt-4">
               <div class="d-flex gap-3 flex-wrap px-0">
                 <div class="d-flex align-items-center" style="font-size: 12px; opacity: 0.7">
-                  <i class="far fa-calendar-alt me-1"></i> {{ ano }}
+                  <i class="far fa-calendar-alt me-1" style="font-size: 12px; opacity: 0.7"></i> <p style="font-size: 12px; opacity: 0.7">{{ ano }}</p>
                 </div>
                 <div class="d-flex align-items-center" style="font-size: 12px; opacity: 0.7">
-                  <i class="fas fa-tachometer-alt me-1"></i> {{ km }} km
+                  <i class="fas fa-tachometer-alt me-1" style="font-size: 12px; opacity: 0.7"></i> <p style="font-size: 12px; opacity: 0.7">{{ km }} </p>
                 </div>
               </div>
-
             </div>
           </div>
           <div class="pt-4 position-relative price">
-            <h4 style="color: #000000; opacity: 0.8;">R$ {{ preco }}</h4>
+            <h4 style="opacity: 0.9">R$ {{ preco }}</h4>
           </div>
         </div>
       </div>
@@ -40,17 +39,14 @@
 </template>
 
 <script>
-import { version } from 'vue';
-
 export default {
-
   data() {
     return {
       splideOptions: {
         type: "carousel", // Tipo de slider
         perPage: 1,
       },
-    }
+    };
   },
 
   props: {
@@ -63,7 +59,7 @@ export default {
     km: String,
     fotos: Array,
     version: String,
-    transmission: String
+    transmission: String,
   },
 
   methods: {
@@ -73,33 +69,36 @@ export default {
 
     showCarroDetalhes(id) {
       this.$emit("abrir-detalhes", id);
-    }
+    },
   },
 
   computed: {
     km() {
       return this.km ? this.km.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : "0";
-    }
+    },
   },
 };
 </script>
 
-
-<style>
-
+<style scoped>
 .title-card {
   font-size: 1rem !important;
 }
 
-.imagem-container2,
-.glide__slides {
-  /*width: 110px;*/
-  height: 150px;
+.imagem-container2 {
+  height: 200px; /* Set a fixed height for the image container */
+  width: 100%;
   overflow: hidden;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.imagem-container2 img {
+  object-fit: cover; /* Ensure the image covers the container area without distortion */
+  height: 100%; /* Make the image fill the container */
+  width: 100%; /* Ensure the image width is 100% of the container */
 }
 
 .titles * {
@@ -117,23 +116,6 @@ export default {
   box-shadow: 0.25rem 0.25rem 1rem #00000020;
   padding: 0rem;
   margin: 0rem;
-}
-
-.imagem-container2 {
-  border-radius: 0.5em 0.5rem 0rem 0rem;
-}
-
-.imagem-container2 img {
-  width: 100% !important;
-}
-
-@media (max-width: 568px) {
-
-  .imagem-container2,
-  .glide__slides,
-  .imagem-container2 img {
-    height: 130px;
-  }
 }
 
 .ano-km * {
@@ -195,9 +177,9 @@ export default {
   margin: 2rem 0rem;
 }
 
-.price h4{
-    font-size: 1.5rem !important;
-    font-weight: 800;
+.price h4 {
+  font-size: 1.5rem !important;
+  font-weight: 800;
 }
 
 @media (max-width: 768px) {
@@ -209,4 +191,5 @@ export default {
     border-radius: 0.5rem 0rem 0rem 0.5rem;
   }
 }
+
 </style>
