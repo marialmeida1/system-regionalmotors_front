@@ -21,10 +21,12 @@
             <div class="row m-0 pt-4">
               <div class="d-flex gap-3 flex-wrap px-0">
                 <div class="d-flex align-items-center" style="font-size: 12px; opacity: 0.7">
-                  <i class="far fa-calendar-alt me-1" style="font-size: 12px; opacity: 0.7"></i> <p style="font-size: 12px; opacity: 0.7">{{ ano }}</p>
+                  <i class="far fa-calendar-alt me-1" style="font-size: 12px; opacity: 0.7"></i>
+                  <p style="font-size: 12px; opacity: 0.7">{{ ano }}</p>
                 </div>
                 <div class="d-flex align-items-center" style="font-size: 12px; opacity: 0.7">
-                  <i class="fas fa-tachometer-alt me-1" style="font-size: 12px; opacity: 0.7"></i> <p style="font-size: 12px; opacity: 0.7">{{ km }} </p>
+                  <i class="fas fa-tachometer-alt me-1" style="font-size: 12px; opacity: 0.7"></i>
+                  <p style="font-size: 12px; opacity: 0.7">{{ km }} </p>
                 </div>
               </div>
             </div>
@@ -86,19 +88,24 @@ export default {
 }
 
 .imagem-container2 {
-  height: 200px; /* Set a fixed height for the image container */
+  height: 200px;
+  /* Set a fixed height for the image container */
   width: 100%;
   overflow: hidden;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
 }
 
 .imagem-container2 img {
-  object-fit: cover; /* Ensure the image covers the container area without distortion */
-  height: 100%; /* Make the image fill the container */
-  width: 100%; /* Ensure the image width is 100% of the container */
+  object-fit: cover;
+  /* Ensure the image covers the container area without distortion */
+  height: 100%;
+  /* Make the image fill the container */
+  width: 100%;
+  /* Ensure the image width is 100% of the container */
 }
 
 .titles * {
@@ -191,5 +198,4 @@ export default {
     border-radius: 0.5rem 0rem 0rem 0.5rem;
   }
 }
-
 </style>

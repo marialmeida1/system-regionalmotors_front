@@ -174,83 +174,6 @@ export default {
   font-size: 1rem !important;
 }
 
-.imagem-container2 {
-  height: 200px; /* Set a fixed height for the image container */
-  width: 100%;
-  overflow: hidden;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.imagem-container2 img {
-  object-fit: cover; /* Ensure the image covers the container area without distortion */
-  height: 100%; /* Make the image fill the container */
-  width: 100%; /* Ensure the image width is 100% of the container */
-}
-
-.titles * {
-  font-size: 14px;
-}
-
-.titles {
-  background: #fff;
-  padding: 10px 5px;
-  border-radius: 0rem 0rem 0.5em 0.5rem;
-}
-
-.container-completo {
-  border-radius: 0.5rem;
-  box-shadow: 0.25rem 0.25rem 1rem #00000020;
-  padding: 0rem;
-  margin: 0rem;
-}
-
-.ano-km * {
-  font-size: 12px;
-  opacity: 0.7;
-}
-
-.glide__arrows * {
-  border: none;
-  box-shadow: none;
-}
-
-.glide__arrows span {
-  font-size: 32px;
-}
-
-.glide__arrow--right {
-  right: 0rem !important;
-}
-
-.glide__arrow--left {
-  left: 0rem !important;
-}
-
-.glide__arrow--left span {
-  display: inline-block;
-  transform: rotate(180deg);
-}
-
-.ordenacao {
-  color: rgba(51, 51, 51, 0.562);
-}
-
-.ordenacao_select {
-  appearance: none;
-  border: 0px solid;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: transparent;
-  font-size: 14px;
-  color: rgba(51, 51, 51, 0.562);
-  padding-left: 0.5rem;
-  max-width: 8rem;
-  cursor: pointer;
-}
-
 .pagination {
   display: flex;
   justify-content: center;
@@ -271,13 +194,23 @@ export default {
   font-weight: 800;
 }
 
-@media (max-width: 768px) {
-  .titles {
-    border-radius: 0em 0.5rem 0.5rem 0rem;
-  }
-
-  .imagem-container2 {
-    border-radius: 0.5rem 0rem 0rem 0.5rem;
-  }
+.eliteSlide {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Garante que todos os cartões tenham altura uniforme */
 }
+
+.eliteSlide img {
+  height: 130px !important; /* Define uma altura fixa para as imagens */
+  width: 100%;
+  object-fit: cover; /* Mantém a proporção e cobre o espaço disponível */
+}
+
+.m-o {
+  flex-grow: 1; /* Faz com que o conteúdo do card ocupe o espaço disponível */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Mantém os elementos organizados */
+}
+
 </style>

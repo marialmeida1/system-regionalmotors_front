@@ -128,12 +128,12 @@
                   <b>{{ item.nome }}</b>
                 </p>
 
-                <!---<div v-for="item2 in listOpcionais(item.id)">
+                <div v-for="item2 in listOpcionais(item.id)">
                   <p class="mb-1 mx-2">
                     <img src="/bom.png" width="22" style="margin-top: -3px" />
                     {{ item2.nome }}
                   </p>
-                </div>-->
+                </div>
               </div>
             </div>
           </div>
