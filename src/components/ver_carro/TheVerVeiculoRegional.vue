@@ -140,7 +140,7 @@
         </div>
 
         <!-- Compare preços -->
-        <div class="mb-3 rounded-3 px-0 bg-dark card-ver-form" v-if="priceFipe"
+        <!--<div class="mb-3 rounded-3 px-0 bg-dark card-ver-form" v-if="priceFipe"
           style="box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2); overflow: hidden">
           <div class="p-4">
             <div>
@@ -160,7 +160,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
 
         <!-- Informações do vendedor -->
         <div class="mb-3 rounded-3 px-0 bg-white card-ver-form"
