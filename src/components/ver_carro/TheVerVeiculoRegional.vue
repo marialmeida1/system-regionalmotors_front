@@ -244,8 +244,6 @@ import "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.mi
 import * as api from "../../services/api";
 import loader from "../loaders/loader.vue";
 import WhatsappShowVehicle from "../commons/buttons/WhatsappShowVehicle.vue";
-import { getPriceFipe } from '@/services/precofipe';
-import { data } from "jquery";
 
 export default {
   name: "TheVerVeiculo_Carousel",

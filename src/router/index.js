@@ -211,7 +211,7 @@ router.beforeEach(async (to, from, next) => {
 
   if(hostname.includes("revendarm")) {
     localStorage.setItem("typePage", "developRevenda")
-    localStorage.setItem("storeId", 29); // Armazena o ID de uma revenda exemplo
+    localStorage.setItem("storeId", 40); // Armazena o ID de uma revenda exemplo
     to.meta.pageType = "revenda"; // Define o tipo de página
   }
 

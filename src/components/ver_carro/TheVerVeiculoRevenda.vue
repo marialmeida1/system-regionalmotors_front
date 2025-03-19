@@ -303,11 +303,12 @@ export default {
     // Formatando valor do preço
     this.veiculo.km = this.formatarMilhar(this.veiculo.km);
 
-
     const typeVehicle = this.findTypeVehicle(this.veiculo.tipo_veiculo);
     if (this.veiculo.codeFipe != null || this.veiculo.yearId != null) {
       console.log(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId)
-      const dataFipe = await getPriceFipe(typeVehicle, this.veiculo.codeFipe, this.veiculo.yearId);
+      const responde = await fetch(`https://fipe.parallelum.com.br/api/v2/${typeVehicle}/${this.veiculo.codeFipe}/years/${this.veiculo.yearId}`)
+      const dataFipe = await responde.json();
+      console.log(dataFipe)
       this.priceFipe = dataFipe.price;
     }
 
