@@ -708,7 +708,7 @@ export default {
     ano_fabricante(newVal) {
       this.ano_modelo = newVal;
       this.anos_modelo = [];
-      let ano_ant = this.ano_modelo - 1;
+      let ano_ant = this.ano_modelo + 1;
 
       this.anos_modelo.push(this.ano_modelo);
       this.anos_modelo.push(ano_ant);

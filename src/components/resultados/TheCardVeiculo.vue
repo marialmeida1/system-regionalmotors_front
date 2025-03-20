@@ -3,9 +3,10 @@
     <div class="row p-0 m-0">
       <div class="col-5 col-md-12 col-lg-12 m-0 p-0">
         <splide :options="splideOptions">
-          <splide-slide v-for="(foto, index) in fotos" :key="index" @click="goverveiculo(id)">
+          <splide-slide v-for="(foto, index) in fotos.length ? fotos : [null]" :key="index" @click="goverveiculo(id)">
             <div class="imagem-container2">
-              <img v-lazy="`${foto}destaque_mini.jpg`" :alt="marca" class="img-fluid" />
+              <img v-if="foto" v-lazy="`${foto}destaque_mini.jpg`" :alt="marca" class="img-fluid" />
+              <div v-else class="imagem-placeholder">Fotos <br> em Preparação</div>
             </div>
           </splide-slide>
         </splide>
@@ -197,5 +198,18 @@ export default {
   .imagem-container2 {
     border-radius: 0.5rem 0rem 0rem 0.5rem;
   }
+}
+
+.imagem-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #d3d3d3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
 }
 </style>
