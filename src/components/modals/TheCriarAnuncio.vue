@@ -265,7 +265,7 @@
                   </div>
                 </div>
 
-                <<div class="mb-1">
+                <div class="mb-1">
                   <label for="desc" class="form-label">Descrição</label>
                   <textarea class="form-control" rows="5" id="desc" v-model="desc"
                     :class="{ 'limit-reached': (desc?.length || 0) >= 140, 'warning': (desc?.length || 0) >= 140 * 0.8 }"
