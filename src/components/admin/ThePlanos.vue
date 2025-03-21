@@ -208,15 +208,12 @@
                                 </div>
 
                                 <div class="mb-1">
-                                    <!-- Texto do plano -->
-                                    <label for="nome" class="form-label">Descrição</label>
-                                    <textarea class="form-control" id="exampleTextarea" rows="3"
-                                        :class="{ 'limit-reached': texto_plano.length >= 200, 'warning': texto_plano.length >= 200 * 0.8 }"
-                                        maxlength="200" v-model="texto_plano">
-                                  </textarea>
+                                    <label for="desc" class="form-label">Descrição</label>
+                                    <textarea class="form-control" rows="5" id="desc" v-model="desc"
+                                    :class="{ 'limit-reached': (texto_plano?.length || 0) >= 140, 'warning': (texto_plano?.length || 0) >= 140 * 0.8 }"
+                                    maxlength="140"></textarea>
                                 </div>
-
-                                <p class="text-cont">{{ texto_plano.length }}/140 caracteres</p>
+                                <p class="text-cont">{{ texto_plano?.length || 0 }}/140 caracteres</p>
 
 
                                 <div class="mb-3">

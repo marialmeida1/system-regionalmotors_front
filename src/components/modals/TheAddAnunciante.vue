@@ -299,16 +299,14 @@
                 </div>
 
                 <div class="mb-1">
-                  <label for="nome" class="form-label">Observação</label>
-                  <textarea id="exampleTextarea" rows="" v-model="observacao"
-                    class="form-control"
-                    :class="{ 'limit-reached': observacao.length >= 255, 'warning': observacao.length >= 255 * 0.8 }"
-                    maxlength="255"
-                    row="3">
-                  </textarea>
+                  <label for="nome" class="form-label">Observaçao</label>
+                  <textarea id="exampleTextarea" rows="" v-model="observacao" class="form-control"
+                    :class="{ 'limit-reached': (observacao?.length || 0) >= 255, 'warning': (observacao?.length || 0) >= 255 * 0.8 }"
+                    maxlength="255" row="3">
+                    </textarea>
                 </div>
 
-                <p class="text-cont">{{ observacao.length }}/255 caracteres</p>
+                <p class="text-cont">{{ observacao?.length || 0 }}/255 caracteres</p>
               </div>
             </form>
           </div>

@@ -260,12 +260,12 @@
                 </div>
 
                 <div class="mb-1">
-                  <label for="desc" class="form-label">Descriçao <span>(Opcional)</span></label>
+                  <label for="desc" class="form-label">Descrição</label>
                   <textarea class="form-control" rows="5" id="desc" v-model="desc"
-                    :class="{ 'limit-reached': desc.length >= 140, 'warning': desc.length >= 140 * 0.8 }"
+                    :class="{ 'limit-reached': (desc?.length || 0) >= 140, 'warning': (desc?.length || 0) >= 140 * 0.8 }"
                     maxlength="140"></textarea>
                 </div>
-                <p class="text-cont">{{ desc.length }}/140 caracteres</p>
+                <p class="text-cont">{{ desc?.length || 0 }}/140 caracteres</p>
               </div>
             </form>
           </div>
@@ -317,7 +317,7 @@ export default {
       anos: [],
 
       marcas: [],
-      modelos: "", 
+      modelos: "",
       marca_id: null,
       previewImage: null,
       estado: "",
@@ -514,7 +514,7 @@ export default {
       // Exemplo fictício:
       return this.Api_Opcionais.filter((item) => item.categoria_opcional_id === id);
     },
-    
+
     filterMarcas(id) {
       // Implemente sua lógica para filtrar os opcionais com base na categoriaId
       // Exemplo fictício:
@@ -583,5 +583,5 @@ export default {
       this.anos.push(ano);
     }
   },
-} ;
+};
 </script>

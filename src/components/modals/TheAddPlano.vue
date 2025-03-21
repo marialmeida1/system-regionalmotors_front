@@ -52,16 +52,13 @@
                 <input type="number" class="text form-control" id="nome" v-model="dias_publicacao">
               </div>
 
-              <div class="mb-3">
-                <!-- Texto do plano -->
-                <label for="nome" class="form-label">Descrição</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3" v-model="texto_plano"
-                  :class="{ 'limit-reached': texto_plano.length >= 200, 'warning': texto_plano.length >= 200 * 0.8 }"
-                  maxlength="200">
-                      </textarea>
+              <div class="mb-1">
+                <label for="texto_plano" class="form-label">Descrição</label>
+                <textarea class="form-control" rows="5" id="texto_plano" v-model="texto_plano"
+                  :class="{ 'limit-reached': (texto_plano?.length || 0) >= 200, 'warning': (texto_plano?.length || 0) >= 200 * 0.8 }"
+                  maxlength="200"></textarea>
               </div>
-
-              <p class="text-cont">{{ texto_plano.length }}/200 caracteres</p>
+              <p class="text-cont">{{ texto_plano?.length || 0 }}/200 caracteres</p>
 
               <div class="mb-3">
                 <label for="" class="form-label">Quantidade de Fotos</label>

@@ -119,12 +119,14 @@
                                     <input type="text" class="text form-control" id="nome" v-model="nome">
                                 </div>
                                 <div class="mb-1">
-                                    <label for="desc" class="form-label">Descrição</label>
-                                    <textarea class="form-control" rows="5" id="desc" v-model="desc"
-                                        :class="{ 'limit-reached': desc.length >= 100, 'warning': desc.length >= 100 * 0.8 }"
-                                        maxlength="100"></textarea>
+                                    <label for="nome" class="form-label">Observaçao</label>
+                                    <textarea id="exampleTextarea" rows="" v-model="desc" class="form-control"
+                                        :class="{ 'limit-reached': (desc?.length || 0) >= 255, 'warning': (desc?.length || 0) >= 255 * 0.8 }"
+                                        maxlength="255" row="3">
+                    </textarea>
                                 </div>
-                                <p class="text-cont">{{ desc.length }}/100 caracteres</p>
+
+                                <p class="text-cont">{{ desc?.length || 0 }}/255 caracteres</p>
 
                             </form>
                         </div>

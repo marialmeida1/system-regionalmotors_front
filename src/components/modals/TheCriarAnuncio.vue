@@ -265,32 +265,31 @@
                   </div>
                 </div>
 
-                <div class="mb-1">
-                  <label for="desc" class="form-label">Descrição <span style="opacity: 0.6">(Opcional)</span></label>
-                  <textarea class="form-control" rows="5" id="desc"
-                    :class="{ 'limit-reached': desc.length >= 140, 'warning': desc.length >= 140 * 0.8 }"
-                    maxlength="140" v-model="desc"></textarea>
-                </div>
-
-                <p class="text-cont">{{ desc.length }}/140 caracteres</p>
+                <<div class="mb-1">
+                  <label for="desc" class="form-label">Descrição</label>
+                  <textarea class="form-control" rows="5" id="desc" v-model="desc"
+                    :class="{ 'limit-reached': (desc?.length || 0) >= 140, 'warning': (desc?.length || 0) >= 140 * 0.8 }"
+                    maxlength="140"></textarea>
               </div>
-            </form>
+              <p class="text-cont">{{ desc?.length || 0 }}/140 caracteres</p>
           </div>
-          <div class="modal-footer">
-            <div style="display: flex; flex-wrap: wrap">
-              <div class="col-6">
-                <button type="button" class="me-3 btn btn-secondary" data-bs-dismiss="modal" aria-label="Fechar">
-                  Cancelar
-                </button>
-              </div>
-              <div class="col-6">
-                <button type="button" class="ms-3 btn btn-primary" @click="criar()">Criar</button>
-              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div style="display: flex; flex-wrap: wrap">
+            <div class="col-6">
+              <button type="button" class="me-3 btn btn-secondary" data-bs-dismiss="modal" aria-label="Fechar">
+                Cancelar
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="button" class="ms-3 btn btn-primary" @click="criar()">Criar</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 

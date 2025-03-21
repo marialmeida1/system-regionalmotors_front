@@ -21,10 +21,10 @@
               <div class="mb-1">
                 <label for="desc" class="form-label">Descrição</label>
                 <textarea class="form-control" rows="5" id="desc" v-model="desc"
-                  :class="{ 'limit-reached': desc.length >= 100, 'warning': desc.length >= 100 * 0.8 }"
+                  :class="{ 'limit-reached': (desc?.length || 0) >= 100, 'warning': (desc?.length || 0) >= 100 * 0.8 }"
                   maxlength="100"></textarea>
               </div>
-              <p class="text-cont">{{ desc.length }}/100 caracteres</p>
+              <p class="text-cont">{{ desc?.length || 0 }}/100 caracteres</p>
             </form>
           </div>
           <div class="modal-footer">
