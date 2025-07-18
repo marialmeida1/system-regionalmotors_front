@@ -201,7 +201,6 @@ export default {
 }
 
 .eliteSlide img {
-  height: 130px !important; /* Define uma altura fixa para as imagens */
   width: 100%;
   object-fit: cover; /* Mantém a proporção e cobre o espaço disponível */
 }
